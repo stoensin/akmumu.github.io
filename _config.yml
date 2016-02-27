@@ -12,8 +12,8 @@ description: > # this means to ignore newlines until "baseurl:"
   木木老蔫的博客，主要记录关于PHP，MYSQL等相关技术以及框架应用日志，还有一些互联网新闻，加上自己的生活见解，组成了这样一个博客
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://akmumu.github.io" # the base hostname & protocol for your site
-twitter_username: akmumu
-github_username:  akmumu2013
+twitter_username: akmumu2013
+github_username:  akmumu
 
 # Build settings
 markdown: kramdown
