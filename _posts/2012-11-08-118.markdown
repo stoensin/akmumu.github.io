@@ -1145,25 +1145,17 @@ zencoing可以很方便的写html,一些常用命令：
 
 假如有以下内容
 
-
-
-    
-    <img src="foo.png" />
-    
-
+{% highlight html %}
+  <img src="foo.png" />
+{% endhighlight %}
 
 
 
 光标移动到img标签上，按下ctrl + y + i 该插件会自动获取foo.png的大小并插入宽高属性 看起来像这个样子
 
-
-
-    
-    <img src="foo.png" width="32" height="48" />
-    
-
-
-
+```html
+<img src="foo.png" width="32" height="48" />
+```
 
 
 
