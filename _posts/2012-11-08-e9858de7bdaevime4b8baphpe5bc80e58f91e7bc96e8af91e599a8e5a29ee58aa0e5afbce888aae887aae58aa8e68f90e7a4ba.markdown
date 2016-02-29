@@ -5,6 +5,7 @@ date: 2012-11-08 03:50:00+00:00
 layout: post
 slug: '%e9%85%8d%e7%bd%aevim%e4%b8%baphp%e5%bc%80%e5%8f%91%e7%bc%96%e8%af%91%e5%99%a8%e5%a2%9e%e5%8a%a0%e5%af%bc%e8%88%aa%e8%87%aa%e5%8a%a8%e6%8f%90%e7%a4%ba'
 title: 配置vim为php开发编译器增加导航自动提示
+permalink: /2012/11/08/118.html
 wordpress_id: 118
 categories:
 - LINUX
@@ -60,11 +61,11 @@ whereis vim :
 
 
 
-
+```ruby
 root@Cyrec-desktop:/usr/share/vim/vimfiles# whereis vim  
 
 vim: /usr/bin/vim /usr/bin/vim.basic /etc/vim /usr/share/vim /usr/share/man/man1/vim.1.gz 可以找到vim安装
-
+```
 
 
 
