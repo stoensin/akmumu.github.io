@@ -558,17 +558,6 @@ ctrl + ] ,回到原来位置是 ctrl + t
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   1. map :NERDTreeToggle
   2. map :TlistToggle
   3. map t :NERDTreeMirrorgTwgtw
@@ -960,7 +949,7 @@ line 13:
 php 中 一般是会在 "$", "->", "::" 后需要出现自动补全，在 .vimrc 中加入以下代码：
 
 
-    
+{% highlight %}    
     if !exists('g:AutoComplPop_Behavior')
         let g:AutoComplPop_Behavior = {}
         let g:AutoComplPop_Behavior['php'] = []
@@ -970,7 +959,7 @@ php 中 一般是会在 "$", "->", "::" 后需要出现自动补全，在 .vimrc
                    'repeat'    : 0,
                 })
     endif
-
+{% endhighlight %}
 
 
 
@@ -978,7 +967,7 @@ php 中 一般是会在 "$", "->", "::" 后需要出现自动补全，在 .vimrc
 
 
 
-
+{% highlight %}
 :inoremap ( ()<ESC>i  
 
 :inoremap ) <c-r>=ClosePair(')')<CR>  
@@ -1011,17 +1000,10 @@ endif
 
 endf
 
-
+{% endhighlight %}
 
 
 这样，写代码的时候不再担心会丢掉右边的括号了，尤其是函数嵌套的时候。
-
-
-
-
-
-
-
 
 
 
@@ -1153,9 +1135,9 @@ zencoing可以很方便的写html,一些常用命令：
 
 光标移动到img标签上，按下ctrl + y + i 该插件会自动获取foo.png的大小并插入宽高属性 看起来像这个样子
 
-```html
+{% highlight html %}
 <img src="foo.png" width="32" height="48" />
-```
+{% endhighlight %}
 
 
 
@@ -1167,11 +1149,11 @@ zencoing可以很方便的写html,一些常用命令：
 
 
 
-    
+{% highlight html %}
     <div>
         hello world
     </div>
-    
+{% endhighlight %}    
 
 
 
@@ -1180,11 +1162,11 @@ zencoing可以很方便的写html,一些常用命令：
 
 
 
-    
+{% highlight html %}    
     <!-- <div>
         hello world
     </div> -->
-    
+{% endhighlight %}    
 
 
 
