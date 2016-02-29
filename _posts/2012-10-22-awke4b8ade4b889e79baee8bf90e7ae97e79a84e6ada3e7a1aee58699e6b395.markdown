@@ -1,0 +1,39 @@
+---
+author: admin
+comments: true
+date: 2012-10-22 11:00:00+00:00
+layout: post
+slug: awk%e4%b8%ad%e4%b8%89%e7%9b%ae%e8%bf%90%e7%ae%97%e7%9a%84%e6%ad%a3%e7%a1%ae%e5%86%99%e6%b3%95
+title: awk中三目运算的正确写法
+wordpress_id: 102
+categories:
+- LINUX
+tags:
+- linux
+---
+
+
+
+
+awk '{max=($2>$4?$2:$4); print max}' a.txt
+
+
+
+
+这个格式正确的
+
+
+
+
+
+
+
+有的同学把中间的小括号变为大括号有的版本就会报错，还有变量不要使用$
+
+
+
+
+中间要加一个分号
+
+
+

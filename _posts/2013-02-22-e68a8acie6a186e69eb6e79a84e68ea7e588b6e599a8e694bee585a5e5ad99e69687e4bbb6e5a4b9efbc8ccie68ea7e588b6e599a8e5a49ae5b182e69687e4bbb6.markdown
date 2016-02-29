@@ -1,0 +1,98 @@
+---
+author: admin
+comments: true
+date: 2013-02-22 01:33:00+00:00
+layout: post
+slug: '%e6%8a%8aci%e6%a1%86%e6%9e%b6%e7%9a%84%e6%8e%a7%e5%88%b6%e5%99%a8%e6%94%be%e5%85%a5%e5%ad%99%e6%96%87%e4%bb%b6%e5%a4%b9%ef%bc%8cci%e6%8e%a7%e5%88%b6%e5%99%a8%e5%a4%9a%e5%b1%82%e6%96%87%e4%bb%b6'
+title: 把ci框架的控制器放入孙文件夹，ci控制器多层文件夹中，ci框架扩展路由
+wordpress_id: 165
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+CI2.1 controller层目前只支持2级目录即[http://xx.com/admin/some/detail/1](http://xx.com/admin/notice/detail/1)
+
+
+
+
+实际我们经常会出现
+
+
+
+
+
+<table cellpadding="0" style="word-wrap:break-word; empty-cells:show; border-collapse:collapse; table-layout:fixed; width:757px" cellspacing="0" >
+<tbody style="word-wrap:break-word" >
+<tr style="word-wrap:break-word" >
+
+<td style="word-wrap:break-word; font-size:14px" class="t_f" id="postmessage_72220" >
+\application\controllers\admin\tools\some.php
+</td>
+</tr>
+</tbody>
+</table>
+上述的访问方式，即admin目录下的tools目录下的some.php文件
+
+
+
+
+应用中如果需要
+
+
+[http://xx.com/admin/site/some/detail/1](http://xx.com/admin/site/notice/detail/1)  
+
+
+
+
+[http://xx.com/admin/site/sonmedir/some/detail/1](http://xx.com/admin/site/sys/notice/detail/1)
+
+
+
+
+就要重新定义路由，即对路由扩展。
+
+
+
+
+下面奉上文件，放入systemcore文件夹替换即可，我已经修改过，不会报错了
+
+
+
+
+http://download.csdn.net/download/akmumu2010/5078291  
+
+
+
+
+
+
+下载用即可解决问题
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+

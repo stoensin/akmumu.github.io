@@ -1,0 +1,60 @@
+---
+author: admin
+comments: true
+date: 2013-07-06 16:27:00+00:00
+layout: post
+slug: ubuntu%e4%b8%ad%e4%bd%bf%e7%94%a8tab%e9%94%ae%e6%9d%a5%e8%a1%a5%e9%bd%90%e8%be%93%e5%85%a5%e5%91%bd%e4%bb%a4%e6%99%ae%e9%80%9a%e7%94%a8%e6%88%b7%e5%8f%af%e7%94%a8%e5%88%87%e6%8d%a2root%e5%90%8e
+title: ubuntu中使用tab键来补齐输入命令普通用户可用切换root后不能的解决方法
+wordpress_id: 181
+categories:
+- LINUX
+tags:
+- linux
+---
+
+
+
+
+在终端输入即可，注意.和/之间的空格  
+
+
+
+
+
+
+. /etc/bash_completion
+
+
+
+
+这样就可以了，但是重启又不行，找到root的配置文件修改即可
+
+
+
+
+找到 /root/.bashrc文件进行编辑，最后的三行
+
+
+
+
+# enable programmable completion features (you don't need to enable  
+
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile  
+
+# sources /etc/bash.bashrc).  
+
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then  
+
+. /etc/bash_completion  
+
+fi
+
+
+
+
+注释掉如上即可，exit退出再来就可以了  
+
+
+
+
+

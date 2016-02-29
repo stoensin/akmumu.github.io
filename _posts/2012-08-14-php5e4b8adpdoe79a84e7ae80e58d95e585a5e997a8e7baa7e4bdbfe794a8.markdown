@@ -1,0 +1,1535 @@
+---
+author: admin
+comments: true
+date: 2012-08-14 08:46:00+00:00
+layout: post
+slug: php5%e4%b8%adpdo%e7%9a%84%e7%ae%80%e5%8d%95%e5%85%a5%e9%97%a8%e7%ba%a7%e4%bd%bf%e7%94%a8
+title: PHP5中PDO的简单入门级使用
+wordpress_id: 47
+categories:
+- MYSQL
+- PHP
+tags:
+- Mysql
+- php程序设计
+---
+
+
+PDO(PHP Data Object) 是PHP 5新出来的东西，在PHP 6都要出来的时候，PHP 6只默认使用PDO来处理数据库，将把所有的数据库扩展移到了PECL，那么默认就是没有了我们喜爱的php_mysql.dll之类的了，那怎么办捏，我们只有与时俱进了，我就小试了一把PDO。（本文只是入门级的，高手可以略过，呵呵）
+
+
+  
+
+【PDO是啥】
+
+
+
+
+PDO是PHP 5新加入的一个重大功能，因为在PHP 5以前的php4/php3都是一堆的数据库扩展来跟各个数据库的连接和处理，什么
+php_mysql.dll、php_pgsql.dll、php_mssql.dll、php_sqlite.dll等等扩展来连接MySQL、PostgreSQL、MS
+ SQL Server、SQLite，同样的，我们必须借助 
+ADOdb、PEAR::DB、PHPlib::DB之类的数据库抽象类来帮助我们，无比烦琐和低效，毕竟，php代码的效率怎么能够我们直接用C/C++写的扩展斜率高捏？所以嘛，PDO的出现是必然的，大家要平静学习的心态去接受使用，也许你会发现能够减少你不少功夫哦。
+
+
+
+
+
+
+
+【安装PDO】
+
+
+
+
+我是在Windows XP SP2 上面，所以嘛，整个过程都是在Windows行进行的啦，至于Linux/FreeBSD 等平台，请自行查找资料设置安装。  
+
+我的是PHP 5.1.4，已经自带有了php_pdo.dll的扩展，不过需要稍微设置一下才能使用。
+
+
+
+
+打开 c:windowsphp.ini ，那是我的PHP配置文件，找到下面这行：  
+
+extension_dir  
+
+这个就是我们扩展存在的目录，我的PHP 5扩展是在：C:php5ext，那么我就把这行改成：
+
+
+
+
+
+
+
+extension_dir =
+"C:/php5/ext"
+
+
+
+
+
+
+
+  
+
+然后再往php.ini下面找到：  
+
+  
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;  
+
+; Dynamic Extensions ;  
+
+;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+
+
+
+
+  
+
+下面有一堆类似 ;extension=php_mbstring.dll 的东西，这里就是PHP扩展加载的配置了，我们再最后面添加上我们PDO的扩展：
+
+
+
+
+
+
+
+extension=php_pdo.dll  
+
+extension=php_pdo_mysql.dll  
+
+extension=php_pdo_pgsql.dll  
+
+extension=php_pdo_sqlite.dll  
+
+extension=php_pdo_mssql.dll  
+
+extension=php_pdo_odbc.dll  
+
+extension=php_pdo_firebird.dll  
+
+;extension=php_pdo_oci8.dll
+
+
+
+
+
+
+
+  
+
+各种PDO的驱动，能给加上的全给加上，不过后面的php_pdo_oci8.dll，因为我没有安装Oralce数据库，所以没有这个，就使用分号注释掉它。然后重启我们的Web服务器, IIS/Apache，我的是IIS，嘿嘿，表鄙视我，在Windows上，简单嘛。  
+
+重启后，在我们Web服务器的文档目录下写一个phpinfo.php的文件，加上这些：  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+<?  
+
+phpinfo();  
+
+?>
+
+
+
+
+
+
+
+  
+
+然后打开我们可爱的浏览器：IE/FireFox，我的是FireFox 2.0，刚下载的，很爽，不怕流氓软件，哈哈。  
+
+在浏览器里面输入：[_http://localhost/phpinfo.php_](http://localhost/phpinfo.php)，如果你的这个页面路径不一致，请自行输入。  
+
+输出的内容中，如果你能够顺利的看到：  
+
+  
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)PDO  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)PDO support enabled  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)PDO drivers mysql, pgsql,
+ sqlite, mssql, odbc, firebird
+
+
+
+
+
+
+  
+
+后面有各种驱动的说明，  
+
+PDO_Firebird，pdo_mssql，pdo_mysql，PDO_ODBC，pdo_pgsql，pdo_sqlite
+
+
+
+
+
+那么，恭喜你安装成功了，否则请仔细检查上面的步骤。
+
+
+
+
+
+
+
+【牛刀小小试验】
+
+
+
+
+我用的是MySQL 4.0.26，但是我个人推荐大家使用 MySQL 4.1.x 或者 MySQL 5.0.x，因为那些版本有很多有趣的东西值得去学习。我们这里PDO需要连接的就是我的MySQL 4.0啦，如果你没有安装MySQL，请自行安装。我们建立好了MySQL，并且在test库里添加了表foo，包括 id,name,gender,time等四个字段。
+
+
+
+
+我们开始构造第一个PDO应用，建立一个pdo.php文件在Web文档目录下：
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)<?php  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$dsn
+= "mysql:host=localhost;dbname=test";  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$db
+= new
+PDO($dsn,
+'root',
+'');  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$count
+= $db->exec("INSERT
+ INTO foo SET name = 'heiyeluren',gender='男',time=NOW()");  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)echo
+$count;  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$db
+= null;  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)?>
+
+
+
+
+
+  
+
+
+
+
+
+
+不明白啥意思，俺们来慢慢讲讲。这行：  
+
+$dsn = "mysql:host=localhost;dbname=test";  
+
+就是构造我们的DSN（数据源），看看里面的信息包括：数据库类型是mysql，主机地址是localhost，数据库名称是test，就这么几个信息。不同数据库的数据源构造方式是不一样的。
+
+
+
+
+$db = new PDO($dsn, 'root', '');  
+
+初始化一个PDO对象，构造函数的参数第一个就是我们的数据源，第二个是连接数据库服务器的用户，第三个参数是密码。我们不能保证连接成功，后面我们会讲到异常情况，这里我们姑且认为它是连接成功的。
+
+
+
+
+$count = $db->exec("INSERT INTO foo SET name = 'heiyeluren',gender='男',time=NOW()");  
+
+echo $count;  
+
+调用我们连接成功的PDO对象来执行一个查询，这个查询是一个插入一条记录的操作，使用PDO::exec() 方法会返回一个影响记录的结果，所以我们输出这个结果。最后还是需要结束对象资源：  
+
+$db = null;
+
+
+
+
+默认这个不是长连接，如果需要数据库长连接，需要最后加一个参数：array(PDO::ATTR_PERSISTENT => true)
+变成这样：  
+
+$db = new PDO($dsn, 'root', '', array(PDO::ATTR_PERSISTENT => true));
+
+
+
+
+一次操作就这么简单，也许跟以前的没有太大区别，跟ADOdb倒是有几分相似。
+
+
+
+
+
+
+
+【继续了解】
+
+
+
+
+如果我们想提取数据的话，那么就应该使用数据获取功能。（下面用到的$db都是上面已经连接好的对象）  
+
+  
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)<?php  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)foreach($db->query("SELECT
+ * FROM foo")){  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+print_r($row);  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)}  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)?>
+
+
+
+
+
+  
+
+  
+
+我们也可以使用这种获取方式：  
+
+  
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)<?php  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$rs
+= $db->query("SELECT
+ * FROM foo");  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)while($row
+= $rs->fetch()){  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+print_r($row);  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)}  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)?>
+
+
+
+
+
+  
+
+  
+
+如果想一次把数据都获取到数组里可以这样：  
+
+  
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)<?php  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$rs
+= $db->query("SELECT
+ * FROM foo");  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$result_arr
+= $rs->fetchAll();  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)print_r($result_arr);  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)?>
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+输出：
+
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)Array  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)(  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [0]
+=> Array  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) (  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [id]
+=> 1  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [0]
+=> 1  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [name]
+=> heiyeluren  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [1]
+=> heiyeluren  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [gender]
+=> 男  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [2]
+=> 男  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [time] =>
+2006-10-28
+23:14:23  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [3]
+=> 2006-10-28
+23:14:23  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) )  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)}
+
+
+
+
+
+  
+
+  
+
+我们看里面的记录，数字索引和关联索引都有，浪费资源，我们只需要关联索引的：  
+
+  
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)<?php  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$db->setAttribute(PDO::ATTR_CASE,
+PDO::CASE_UPPER);  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$rs
+= $db->query("SELECT
+ * FROM foo");  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$rs->setFetchMode(PDO::FETCH_ASSOC);  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$result_arr
+= $rs->fetchAll();  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)print_r($result_arr);  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)?>
+
+
+
+
+
+  
+
+  
+
+看上面的代码，setAttribute() 方法是设置部分属性，主要属性有：PDO::ATTR_CASE、PDO::ATTR_ERRMODE等等，我们这里需要设置的是PDO::ATTR_CASE，就是我们使用关联索引获取数据集的时候，关联索引是大写还是小写，有几个选择：  
+
+  
+
+PDO::CASE_LOWER -- 强制列名是小写  
+
+PDO::CASE_NATURAL
+-- 列名按照原始的方式  
+
+PDO::CASE_UPPER
+-- 强制列名为大写
+
+
+
+
+
+我们使用setFetchMode方法来设置获取结果集的返回值的类型，同样类型还有：  
+
+  
+
+PDO::FETCH_ASSOC -- 关联数组形式  
+
+PDO::FETCH_NUM
+-- 数字索引数组形式  
+
+PDO::FETCH_BOTH
+-- 两者数组形式都有，这是缺省的  
+
+PDO::FETCH_OBJ -- 按照对象的形式，类似于以前的 mysql_fetch_object()
+
+
+
+
+当然，一般情况下我们是使用PDO::FETCH_ASSOC，具体使用什么，按照你自己的需要，其他获取类型参考手册。
+
+
+
+
+  
+
+除了上面这种获取数据的方式，还有这种：  
+
+  
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)<?php  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$rs
+= $db->prepare("SELECT
+ * FROM foo");  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$rs->execute();  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)while($row
+= $rs->fetch()){  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+print_r($row);  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)}  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)?>
+
+
+
+
+
+  
+
+  
+
+其实差不多啦。如果你想获取指定记录里一个字段结果的话，可以使用 PDOStatement::fetchColumn():  
+
+  
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)<?php  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$rs
+= $db->query("SELECT
+ COUNT(*) FROM foo");  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$col
+= $rs->fetchColumn();  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)echo
+$col;  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)?>
+
+
+
+
+
+  
+
+一般使用fetchColumn()来进行count统计或者某些只需要单字段的记录很好操作。
+
+
+
+
+
+  
+
+简单的总结一下上面的操作:
+
+
+
+
+查询操作主要是PDO::query()、PDO::exec()、PDO::prepare()。PDO::query()主要是用于有记录结果返回的操作，特别是SELECT操作，PDO::exec()主要是针对没有结果集合返回的操作，比如INSERT、UPDATE、DELETE等操作，它返回的结果是当前操作影响的列数。PDO::prepare()主要是预处理操作，需要通过$rs->execute()来执行预处理里面的SQL语句，这个方法可以绑定参数，功能比较强大，不是本文能够简单说明白的，大家可以参考手册和其他文档。
+
+
+
+
+获取结果集操作主要是：PDOStatement::fetchColumn()、PDOStatement::fetch()、PDOStatement::fetchALL()。PDOStatement::fetchColumn()
+ 是获取结果指定第一条记录的某个字段，缺省是第一个字段。PDOStatement::fetch() 是用来获取一条记录，PDOStatement::fetchAll()是获取所有记录集到一个中，获取结果可以通过PDOStatement::setFetchMode来设置需要结果集合的类型。
+
+
+
+
+另外有两个周边的操作，一个是PDO::lastInsertId()和PDOStatement::rowCount()。PDO::lastInsertId()是返回上次插入操作，主键列类型是自增的最后的自增ID。PDOStatement::rowCount()主要是用于PDO::query()和PDO::prepare()进行DELETE、INSERT、UPDATE操作影响的结果集，对PDO::exec()方法和SELECT操作无效。
+
+
+
+
+
+
+
+【错误处理】
+
+
+
+
+如果程序中碰到错误咋办？我们这里描述PDO类的错误信息和异常处理。
+
+
+
+
+1. 面向对象的方式
+
+
+
+
+先看看如果连接错误等的处理，使用面向对象的方式来处理：  
+
+  
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)<?php  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)try {  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+$db =
+new 
+PDO('mysql:host=localhost;dbname=test',
+$user,
+$pass);  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+$db =
+null;  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)}
+catch (PDOException
+$e) {  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+print 
+"Error: "
+. $e->getMessage()
+. "<br/>";  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+die();  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)}  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)?>
+
+
+
+
+
+  
+
+
+
+
+
+
+这里利用我们PHP 5面向对象的异常处理特征，如果里面有异常的话就初始化调用PDOException来初始化一个异常类。  
+
+PDOException异常类的属性结构：
+
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)<?php  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)class
+PDOException extends
+Exception  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif){  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+public 
+$errorInfo =
+null; 
+// 错误信息，可以调用 
+PDO::errorInfo() 或 PDOStatement::errorInfo()来访问  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+protected 
+$message; // 异常信息，可以试用 Exception::getMessage() 来访问  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+protected 
+$code; // SQL状态错误代码，可以使用 Exception::getCode() 来访问  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)}  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)?>
+
+
+
+
+
+  
+
+
+
+
+
+
+这个异常处理类是集成PHP 5内置的异常处理类，我们简单的看一下PHP 5内置的异常处理类结构：  
+
+  
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)<?php  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)class
+Exception  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif){  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+// 属性  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+protected 
+$message =
+'Unknown exception';
+// 异常信息  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+protected 
+$code =
+0; // 用户自定义异常代码  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+protected 
+$file; // 发生异常的文件名  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+protected 
+$line; // 发生异常的代码行号  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) // 方法  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+final 
+function getMessage();
+// 返回异常信息  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+final 
+function getCode(); 
+// 返回异常代码  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+final 
+function getFile(); 
+// 返回发生异常的文件名  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+final 
+function getLine(); 
+// 返回发生异常的代码行号  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+final 
+function getTrace();
+// backtrace() 数组  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+final 
+function getTraceAsString();
+// 已格成化成字符串的 getTrace() 信息  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)}  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)?>  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+
+
+
+
+
+
+
+
+  
+
+
+
+相应的，在代码中可以合适的调用 getFile() 和 
+getLine() 来进行错误定位，更方便的进行调试。
+
+
+
+
+  
+
+2. 使用面向过程的方法  
+
+先看代码：  
+
+  
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)<?  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$db
+= new
+PDO('mysql:host=localhost;dbname=test',
+$user,
+$pass);  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$rs
+= $db->query("SELECT
+ aa,bb,cc FROM foo");  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)if ($db->errorCode()
+!= '00000'){  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+print_r($db->errorInfo());  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)
+exit;  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)}  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$arr
+= $rs->fetchAll();  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)print_r($arr);  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)$db
+= null;  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)?>
+
+
+
+
+
+  
+
+  
+
+PDO和PDOStatement对象有errorCode() 和
+errorInfo() 方法，如果没有任何错误, 
+errorCode() 返回的是: 00000 ，否则就会返回一些错误代码。errorInfo() 返回的一个数组，包括PHP定义的错误代码和MySQL的错误代码和错误信息，数组结构如下：  
+
+  
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)Array  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif)(  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [0]
+=> 42S22  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [1]
+=> 1054  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif) [2]
+=> Unknown column
+'aaa' in
+'field list'  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_csdn_None.gif))
+
+
+
+
+
+
+
+
+
+
+每次执行查询以后，errorCode() 的结果都是最新的，所以我们可以很容易自己控制错误信息显示。
+
+
+
+
+
+
+
+【简单总结】
+
+
+
+
+从上面的使用看出，PDO功能确实强大，另外还有一些内容我没有讲到，比如绑定参数、预处理、存储过程、事务处理等等功能。另外还有不同数据扩 DSN的构造，Oracle数据库自己很多特殊的东西，都需要深入去学习理解，这篇文章就只是简单的描述了一些入门知识，算是对PDO一个简单的了解吧。
+
+
+
+
+  
+
+  
+
+[ 参考资料 ]  
+
+[_PHP 5 数据对象 (PDO) 抽象层与 Oracle_](http://www.oracle.com/technology/global/cn/pub/articles/php_experts/otn_pdo_oracle5.html)  
+
+  
+
+[_PDO Functions_](http://www.php.net/manual/zh/ref.pdo.php)  
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/www_cnblogs_055243623.gif)![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/www_cnblogs_055243623.gif)![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/www_cnblogs_055243623.gif)![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/www_cnblogs_055243623.gif)![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/www_cnblogs_055243623.gif)![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/www_cnblogs_055243623.gif)![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/www_cnblogs_055243623.gif)![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/www_cnblogs_055243623.gif)![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/www_cnblogs_055243623.gif)![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/www_cnblogs_055243623.gif)![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/www_cnblogs_055243623.gif)
+
+
+
+
+
+
+
+PDO为何物？  
+
+POD（PHP Data Object）扩展在PHP5中加入，PHP6中将默认识用PDO连接[_**数据库**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;)，所有非PDO扩展将会在PHP6被从扩展中移除。该扩展提供PHP内置类
+PDO来对数据库进行访问，不同数据库使用相同的[_**方法**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;)名，解决数据库连接不统一的问题。  
+
+我是配置在windows下做开发用的。  
+
+  
+
+  
+
+■PDO的目标  
+
+提供一种轻型、清晰、方便的 API 统一各种不同 RDBMS 库的共有特性，但不排除更高级的特性。 通过 PHP 脚本提供可选的较大程度的抽象/兼容性。  
+
+  
+
+■PDO的特点：  
+
+性能。PDO 从一开始就吸取了现有数据库扩展成功和失败的经验教训。因为
+PDO 的[_**代码**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;)是全新的，所以我们有机会重新开始设计性能，以利用 PHP 5 的最新特性。 能力。PDO
+ 旨在将常见的数据库功能作为基础提供，同时提供对于 RDBMS 独特功能的方便访问。 简单。PDO 旨在使您能够轻松使用数据库。API 不会强行介入您的代码，同时会清楚地表明每个函数调用的过程。 运行时可扩展。PDO 扩展是模块化的，使您能够在运行时为您的数据库后端加载驱动程序，而不必重新编译或重新[_**安装**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;)整个
+ PHP 程序。例如，PDO_OCI 扩展会替代 
+PDO 扩展实现 [
+_**Oracle**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;) 数据库 API。还有一些用于
+[
+_**MySQL**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;)、PostgreSQL、ODBC 和 Firebird 的驱动程序，更多的驱动程序尚在开发。  
+
+■安装PDO  
+
+我这里是WINDOWS下开发用的PDO扩展，要是你要在[_**Linux**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;)下安装配置，请到别的地方寻找。  
+
+版本要求：  
+
+php5.1以及以后版本的程序包里已经带了；  
+
+php5.0.x则要到pecl.php.net下载，放到你的扩展库，就是PHP所在的文件夹的ext文件夹下；  
+
+手册上说5.0之前的版本不能运行PDO扩展。  
+
+  
+
+配置：  
+
+修改你的php.ini配置文件,使它支持pdo.（php.ini这个东西没有弄懂的话，先弄清楚，要修改调用你的phpinfo()函数所显示的那个php.ini）  
+
+把  
+
+extension=php_pdo.dll前面的分号去掉，分毫是php配置文件注释符号,这个扩展是必须的。  
+
+往下还有  
+
+;extension=php_pdo.dll  
+
+;extension=php_pdo_firebird.dll  
+
+;extension=php_pdo_informix.dll  
+
+;extension=php_pdo_mssql.dll  
+
+;extension=php_pdo_mysql.dll  
+
+;extension=php_pdo_oci.dll  
+
+;extension=php_pdo_oci8.dll  
+
+;extension=php_pdo_odbc.dll  
+
+;extension=php_pdo_pgsql.dll  
+
+;extension=php_pdo_sqlite.dll  
+
+各各扩展所对应的数据库是：  
+
+Driver nameSupported databasesPDO_DBLIBFreeTDS / Microsoft SQL Server / SybasePDO_FIREBIRDFirebird/Interbase
+ 6PDO_INFORMIX[_**IBM**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;) Informix
+ Dynamic ServerPDO_MYSQLMySQL 3.x/4.xPDO_OCIOracle Call InterfacePDO_ODBCODBC
+ v3 (IBM DB2, unixODBC and win32 ODBC)PDO_PGSQLPostgreSQLPDO_SQLITESQLite 3 and SQLite 2  
+
+  
+
+你要使用哪种数据库，只要把相应的扩展前的注释符号";"去掉就可以了。  
+
+  
+
+■**使用PDO**  
+
+我这里假设你已经装好mysql了，要是没装的话，麻烦先想办法装上，我的是mysql5.0.22,黑夜路人用的是MySQL 4.0.26也可以用。  
+
+★**数据库的连接：  
+
+**我们通过下面的例子来分析PDO连接数据库，  
+
+<table bgcolor="#f1f1f1" style="width:95%" cellspacing="0" class="t_table " >
+<tbody >
+<tr >
+
+<td ><?php  
+
+$dbms='mysql';
+//数据库类型 Oracle 用ODI,对于开发者来说，使用不同的数据库，只要改这个，不用记住那么多的函数了  
+
+$host='localhost';//数据库主机名  
+
+$dbName='test';
+//使用的数据库  
+
+$user='root';
+//数据库连接用户名  
+
+$pass='';
+//对应的密码  
+
+$dsn="$dbms:host=$host;dbname=$dbName";  
+
+//  
+
+  
+
+try{  
+
+$dbh=newPDO($dsn,$user,$pass);//初始化一个PDO对象，就是创建了数据库连接对象$dbh  
+
+echo"连接成功<br/>";  
+
+/*你还可以进行一次搜索操作  
+
+  
+
+foreach($dbh->query('SELECT
+ * from FOO')as$row){  
+
+print_r($row);//你可以用
+ echo($GLOBAL); 来看到这些值  
+
+}  
+
+*/  
+
+$dbh=null;  
+
+}catch(PDOException$e){  
+
+die("Error!: ".$e->getMessage()."<br/>");  
+
+}  
+
+//默认这个不是长连接，如果需要数据库长连接，需要最后加一个参数：array(PDO::ATTR_PERSISTENT => true) 变成这样：  
+
+$db=newPDO($dsn,$user,$pass,array(PDO::ATTR_PERSISTENT=>true));  
+
+  
+
+?>
+</td>
+</tr>
+</tbody>
+</table>
+  
+
+★**数据库查询：**  
+
+上面我们已经进行了一次查询，我们还可以使用如下的查询：  
+
+<table bgcolor="#f1f1f1" style="width:95%" cellspacing="0" class="t_table " >
+<tbody >
+<tr >
+
+<td ><?php  
+
+$db->setAttribute(PDO::ATTR_CASE,PDO::CASE_UPPER);
+ //设置属性  
+
+$rs=$db->query("SELECT * FROM foo");  
+
+$rs->setFetchMode(PDO::FETCH_ASSOC);  
+
+$result_arr=$rs->fetchAll();  
+
+print_r($result_arr);  
+
+?>
+</td>
+</tr>
+</tbody>
+</table>
+  
+
+以上因为用到setAttribute()方法，放上那两个参数，把字段名强制转换成大写。下面列出多有PDO::setAttribute()的参数：  
+
+
+
+
+
+
+
+
+  * PDO::ATTR_CASE: 强制列名变成一种格式，详细如下(第二个参数)：  
+
+
+
+    * PDO::CASE_LOWER: 强制列名是小写.  
+
+
+    * PDO::CASE_NATURAL: 列名按照原始的方式  
+
+
+    * PDO::CASE_UPPER: 强制列名为大写.  
+
+
+
+  
+
+
+  * PDO::ATTR_ERRMODE: 错误提示.  
+
+
+
+    * PDO::ERRMODE_SILENT: 不显示错误信息，只显示错误码.  
+
+
+    * PDO::ERRMODE_WARNING: 显示警告错误.  
+
+
+    * PDO::ERRMODE_EXCEPTION: 抛出异常.  
+
+
+
+  
+
+
+  * PDO::ATTR_ORACLE_NULLS(不仅仅是ORACLE有效，别的数据库也有效): ）指定数据库返回的NULL值在php中对应的数值。  
+
+
+
+    * PDO::NULL_NATURAL: 不变.  
+
+
+    * PDO::NULL_EMPTY_STRING: Empty string is converted toNULL.  
+
+
+    * PDO::NULL_TO_STRING: NULL is converted to an empty string.  
+
+
+
+  
+
+
+  * PDO::ATTR_STRINGIFY_FETCHES: Convert numeric values to strings when fetching. Requires bool.  
+
+
+  * PDO::ATTR_STATEMENT_CLASS: Set user-supplied statement class derived from
+PDOStatement. Cannot be used with persistent
+PDO instances. Requiresarray(string classname, array(mixed constructor_args)).  
+
+
+  * PDO::ATTR_AUTOCOMMIT(available in OCI, Firebird and MySQL): Whether to autocommit every single statement.  
+
+
+  * PDO::MYSQL_ATTR_USE_BUFFERED_QUERY(available in MySQL): Use buffered queries.  
+
+
+
+
+
+  
+
+例子中的$rs->setFetchMode(PDO::FETCH_ASSOC);是PDOStatement::setFetchMode()，对返回类型的声明。  
+
+有如下：  
+
+PDO::FETCH_ASSOC-- 关联数组形式  
+
+PDO::FETCH_NUM
+-- 数字索引数组形式  
+
+PDO::FETCH_BOTH
+-- 两者数组形式都有，这是缺省的  
+
+PDO::FETCH_OBJ
+-- 按照[_**对象**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;)的形式，类似于以前的 mysql_fetch_object()  
+
+  
+
+更多返回类型声明(PDOStatement::方法名)看手册。  
+
+  
+
+**★插入，更新，删除数据，**  
+
+<table bgcolor="#f1f1f1" style="width:95%" cellspacing="0" class="t_table " >
+<tbody >
+<tr >
+
+<td >$db->exec("DELETE FROM `xxxx_menu` where mid=43");
+</td>
+</tr>
+</tbody>
+</table>
+  
+
+  
+
+**简单的[__](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;)****总结**一下上面的操作:  
+
+查询操作主要是PDO::query()、PDO::exec()、PDO::prepare()。  
+
+PDO::query()主要是用于有记录结果返回的操作，特别是SELECT操作，  
+
+PDO::exec()主要是针对没有结果集合返回的操作，比如INSERT、UPDATE、DELETE等操作，它返回的结果是当前操作影响的列数。  
+
+PDO::prepare()主要是预处理操作，需要通过$rs->execute()来执行预处理里面的SQL语句，这个方法可以绑定参数，功能比较强大，不是本文能够简单说明白的，大家可以参考手册和其他文档。  
+
+获取结果集操作主要是：PDOStatement::fetchColumn()、PDOStatement::fetch()、PDOStatement::fetchALL()。  
+
+PDOStatement::fetchColumn()是获取结果指定第一条记录的某个字段，缺省是第一个字段。  
+
+PDOStatement::fetch()是用来获取一条记录，  
+
+PDOStatement::fetchAll()是获取所有记录集到一个中，获取结果可以通过PDOStatement::setFetchMode来设置需要结果集合的类型。  
+
+另外有两个周边的操作，一个是PDO::lastInsertId()和PDOStatement::rowCount()。PDO::lastInsertId()是返回上次插入操作，主键列类型是自增的最后的自增ID。  
+
+PDOStatement::rowCount()主要是用于PDO::query()和PDO::prepare()进行DELETE、INSERT、UPDATE操作影响的结果集，对PDO::exec()方法和SELECT操作无效。  
+
+  
+
+  
+
+  
+
+★**事务和自动提交**  
+
+  
+
+至此，您已经通过 PDO 连接到了 mysql，在发出查询之前，您应该理解
+PDO 是如何管理事务的。如果之前没有接触过事务，那么首先要知道事务的 4 个特征：原子性（Atomicity）、一致性（Consistency）、独立性（Isolation）和持久性（Durability），即 ACID。用外行人的话说，对于在一个事务中执行的任何[_**工作**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;)，即使它是分阶段执行的，也一定可以保证该工作会安全地应用于数据库，并且在工作被提交时，不会受到来自其他连接的影响。事务性工作可以根据请求自动撤销（假设您还没有提交它），这使得脚本中的错误处理变得更加容易。  
+
+事务通常是通过把一批更改积蓄起来、使之同时生效而实现的。这样做的好处是可以大大提高这些更新的效率。换句话说，事务可以使脚本更快，而且可能更健壮（不过需要正确地使用事务才能获得这样的好处）。  
+
+不幸的是，并不是每种数据库都支持事务(Mysql5支持事务，mysql4我不知道)，所以当第一次打开连接时，PDO 需要在所谓的“自动提交（auto-commit）”模式下运行。自动提交模式意味着，如果数据库支持事务，那么您所运行的每一个查询都有它自己的隐式事务，如果数据库不支持事务，每个查询就没有这样的事务。如果您需要一个事务，那么必须使用
+PDO::beginTransaction() 方法来启动一个事务。如果底层驱动程序不支持事务，那么将会抛出一个
+PDOException（无论错误处理设置是怎样的：这总是一个严重错误状态）。在一个事务中，可以使用
+PDO::commit() 或 
+PDO::rollBack() 来结束该事务，这取决于事务中运行的代码是否成功。  
+
+当脚本结束时，或者当一个连接即将被关闭时，如果有一个未完成的事务，那么 PDO 将自动回滚该事务。这是一种安全措施，有助于避免在脚本非正常结束时出现不一致的情况 —— 如果没有显式地提交事务，那么假设有某个地方会出现不一致，所以要执行回滚，以保证数据的安全性。  
+
+<table bgcolor="#f1f1f1" style="width:95%" cellspacing="0" class="t_table " >
+<tbody >
+<tr >
+
+<td >//例子来自http://www.ibm.com/developerworks/cn/db2/library/techarticles/dm-0505furlong/index.html  
+
+try{  
+
+$dbh=new 
+PDO('odbc:SAMPLE','db2inst1','ibmdb2',  
+
+array(PDO_ATTR_PERSISTENT=>true));  
+
+echo"Connectedn";  
+
+$dbh->setAttribute(PDO_ATTR_ERRMODE,PDO_ERRMODE_EXCEPTION);  
+
+$dbh->beginTransaction();  
+
+$dbh->exec("insert into staff (id, first, last) values (23, 'Joe', 'Bloggs')");  
+
+$dbh->exec("insert into salarychange (id, amount, changedate)  
+
+values (23, 50000, NOW())");  
+
+$dbh->commit();  
+
+  
+
+}catch(Exception $e){  
+
+$dbh->rollBack();  
+
+echo"Failed: ".$e->getMessage();  
+
+}  
+
+
+</td>
+</tr>
+</tbody>
+</table>
+  
+
+  
+
+在上面的示例中，假设我们为一个新雇员创建一组条目，这个雇员有一个 ID 号，即 23。除了输入这个人的基本数据外，我们还需要记录雇员的薪水。两个更新分别完成起来很简单，但通过将这两个更新包括在 beginTransaction() 和 commit() 调用中，就可以保证在更改完成之前，其他人无法看到更改。如果发生了错误，catch 块可以回滚事务开始以来发生的所有更改，并打印出一条错误消息。  
+
+并不是一定要在事务中作出更新。您也可以发出复杂的查询来提取数据，还可以使用那种信息构建更多的更新和查询。当事务在[_**活动**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;)时，可以保证其他人在工作进行当中无法作出更改。事实上，这不是 100% 的正确，但如果您之前没有[_**听说**_](http://www.cnblogs.com/xiaochaohuashengmi/admin/javascript:;)过事务的话，这样介绍也未尝不可。  
+
+  
+
+★**预处理语句和存储过程**  
+
+很多更成熟的数据库都支持预处理语句的概念。什么是预处理语句？您可以把预处理语句看作您想要运行的 SQL 的一种编译过的模板，它可以使用变量参数进行定制。预处理语句可以带来两大好处：  
+
+
+
+
+
+
+
+
+  * 查询只需解析（或准备）一次，但是可以用相同或不同的参数执行多次。当查询准备好后，数据库将分析、编译和优化执行该查询的计划。对于复杂的查询，这个过程要花比较长的时间，如果您需要以不同参数多次重复相同的查询，那么该过程将大大降低应用程序的速度。通过使用预处理语句，可以避免重复分析/ 编译/优化周期。简言之，预处理语句使用更少的资源，因而运行得更快。
+
+  * 提供给预处理语句的参数不需要用引号括起来，驱动程序会处理这些。如果应用程序独占地使用预处理语句，那么可以确保没有 SQL 入侵发生。（然而，如果您仍然将查询的其他部分建立在不受信任的输入之上，那么就仍然存在风险）。
+
+
+
+
+预处理语句是如此有用，以致 PDO 实际上打破了在目标 4 中设下的规则：如果驱动程序不支持预处理语句，那么
+PDO 将仿真预处理语句。  
+
+  
+
+  
+
+实例：PDO的应用例子：  
+
+  
+
+<table bgcolor="#f1f1f1" style="width:95%" cellspacing="0" class="t_table " >
+<tbody >
+<tr >
+
+<td ><?php  
+
+$dbms='mysql';//数据库类型
+ Oracle 用ODI,对于开发者来说，使用不同的数据库，只要改这个，不用记住那么多的函数了  
+
+  
+
+$host='localhost';//数据库主机名  
+
+  
+
+$dbName='test';//使用的数据库  
+
+  
+
+$user='root';//数据库连接用户名  
+
+  
+
+$pass='';//对应的密码  
+
+  
+
+$dsn="$dbms:host=$host;dbname=$dbName";  
+
+  
+
+  
+
+classdbextendsPDO{  
+
+publicfunction__construct(){  
+
+try{  
+
+parent::__construct("$GLOBALS[dsn]",$GLOBALS['user'],$GLOBALS['pass']);  
+
+}catch(PDOException$e){  
+
+die("Error: ".$e->__toString()."<br/>");  
+
+}  
+
+}  
+
+  
+
+publicfinalfunctionquery($sql){  
+
+try{  
+
+returnparent::query($this->setString($sql));  
+
+}catch(PDOException$e){  
+
+die("Error: ".$e->__toString()."<br/>");  
+
+}  
+
+}  
+
+  
+
+privatefinalfunctionsetString($sql){  
+
+echo"我要处理一下$sql";  
+
+return$sql;  
+
+}  
+
+}  
+
+  
+
+$db=newdb();  
+
+$db->setAttribute(PDO::ATTR_CASE,PDO::CASE_UPPER);  
+
+foreach($db->query('SELECT
+ * from xxxx_menu')as$row){  
+
+print_r($row);  
+
+}  
+
+$db->exec('DELETE FROM `xxxx_menu` where mid=43');  
+
+?>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+

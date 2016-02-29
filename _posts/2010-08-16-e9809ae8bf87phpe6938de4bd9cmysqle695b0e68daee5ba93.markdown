@@ -1,0 +1,1000 @@
+---
+author: admin
+comments: true
+date: 2010-08-16 14:58:00+00:00
+layout: post
+slug: '%e9%80%9a%e8%bf%87php%e6%93%8d%e4%bd%9cmysql%e6%95%b0%e6%8d%ae%e5%ba%93'
+title: 通过PHP操作MySQL数据库
+wordpress_id: 107
+categories:
+- MYSQL
+- PHP
+---
+
+
+
+
+在数据库中，数据查询是通过Select语句完成的。Select语句可以从数据库中按用户要求提供的限定条件检索数据，并将查询结果以表格的形式返回。
+
+
+
+
+例如，查询图书信息表中图书名称为"PHP数据库系统开发完全手册"的图书信息。代码如下：
+
+
+
+
+$sql=mysql_query("select * from tab_book where bookname='PHP数据库系统开发完全手册'");
+
+
+
+
+$info=mysql_fetch_array($sql);
+
+
+
+
+下面通过具体的范例来讲解数据查询的方法和技巧。
+
+
+
+
+
+
+
+1）利用include包含文件命令引用数据库配置文件，即可访问数据库。代码如下：
+
+
+
+
+<?php include "conn/conn.php"; ?>
+
+
+
+
+（2）创建记录集。首先通过接收表单传递的值赋值给Session变量，然后利用If…Then…Else条件语句判断用户当前选择的操作符，从而执行相对应的SQL语句来检索商品的相关信息，并判断记录集是否为空。如果检索到记录尾，没有找到符合条件的记录，那么将弹出提示信息。主要程序代码如下：
+
+
+
+
+?php
+
+
+
+
+$txt_sel=$_POST[txt_sel];
+
+
+
+
+$txt_tj=$_POST[txt_tj];
+
+
+
+
+$txt_book=$_POST[txt_book];
+
+
+
+
+if ($_POST[Submit]=="查询"){
+
+
+
+
+if($_POST[txt_tj]=="like"){ //如果选择的条件为"like",则进行模糊查询
+
+
+
+
+$sql=mysql_query("select * from tab_book where ".$txt_sel." like '%".$txt_book."%'");
+
+
+
+
+$info=mysql_fetch_array($sql);
+
+
+
+
+}
+
+
+
+
+if($_POST[txt_tj]=="="){
+
+
+
+
+$sql=mysql_query("select * from tab_book where ".$txt_sel." = '".$txt_book."'");
+
+
+
+
+$info=mysql_fetch_array($sql);
+
+
+
+
+}
+
+
+
+
+if($_POST[txt_tj]==">"){
+
+
+
+
+$sql=mysql_query("select * from tab_book where ".$txt_sel." > '".$txt_book."'");
+
+
+
+
+$info=mysql_fetch_array($sql);
+
+
+
+
+}
+
+
+
+
+if($_POST[txt_tj]=="<"){
+
+
+
+
+$sql=mysql_query("select * from tab_book where ".$txt_sel." < '".$txt_book."'");
+
+
+
+
+$info=mysql_fetch_array($sql);
+
+
+
+
+}
+
+
+
+
+else{
+
+
+
+
+if($info==false){ //如果检索的信息不存在，则输出相应的提示信息
+
+
+
+
+echo "<div align='center' style='color:#FF0000; font-size:12px'>对不起，您检索的图书信息不存在!</div>";
+
+
+
+
+}
+
+
+
+
+}
+
+
+
+
+}
+
+
+
+
+?>
+
+
+
+
+
+
+
+![](http://book.csdn.net/BookFiles/503/img/image004.jpg)注意：本范例在实现模糊查询时，使用了通配符"%"。"%"表示任意零个或多个字符。
+
+
+
+
+
+
+
+（3）利用Do…While循环语句以表格形式输出数据信息到浏览器中。代码如下：
+
+
+
+
+<?php
+
+
+
+
+do{
+
+
+
+
+?>
+
+
+
+
+<tr align="left" bgcolor="#FFFFFF">
+
+
+
+
+<td height="20" align="center"><?php echo $info[id]; ?></td>
+
+
+
+
+<td >&nbsp;<?php echo $info[bookname]; ?></td>
+
+
+
+
+<td>&nbsp;<?php echo $info[issuDate]; ?></td>
+
+
+
+
+<td align="center"><?php echo $info[price]; ?></td>
+
+
+
+
+<td>&nbsp;&nbsp;<?php echo $info[synopsis]; ?></td>
+
+
+
+
+<td>&nbsp;<?php echo $info[Maker]; ?></td>
+
+
+
+
+<td>&nbsp;<?php echo $info[publisher]; ?></td>
+
+
+
+
+</tr>
+
+
+
+
+<?php
+
+
+
+
+}
+
+
+
+
+while($info=mysql_fetch_array($sql));
+
+
+
+
+?>
+
+
+
+
+查询指定时间段的数据
+
+
+
+
+在对日期数据进行查询时，经常需要对某一时间段内的数据进行查询。首先介绍一个简单的日期查询。
+
+
+
+
+例如，利用SQL语句查询采购信息表中指定时间的采购信息，代码如下：
+
+
+
+
+$sql=mysql_query("select * from tb_cgdan where cgdate >'2007-01-12'");
+
+
+
+
+$result=mysql_fetch_array($sql);
+
+
+
+
+利用SQL语句中的BETWEEN…AND语句可以实现时间段查询的功能。
+
+
+
+
+BETWEEN…AND语句的语法格式如下：
+
+
+
+
+test_expression [ NOT ] BETWEEN begin_expression AND end_expression
+
+
+
+
+test_expression：用来在由begin_expression和end_expression定义的范围内进行测试的表达式。
+
+
+
+
+NOT：指定谓词的结果被取反。
+
+
+
+
+begin_expression：任何有效的表达式。
+
+
+
+
+begin_expression为时间段的起始日期。
+
+
+
+
+end_expression：任何有效的表达式。
+
+
+
+
+test_expression为时间段的终止日期。
+
+
+
+
+AND：作为一个占位符，表示test_expression应该处于由begin_expression和end_expression指定的范围内。
+
+
+
+
+下面详细介绍对指定时间段内数据记录进行查询的方法。
+
+
+
+
+
+<table cellpadding="0" cellspacing="0" style="width: 547px; border-collapse: collapse; background: #d9d9d9; border-style: none;" border="1" class="MsoNormalTable" >
+<tbody >
+<tr style="page-break-inside: avoid; height: 18pt;" >
+
+<td width="321" style="border-bottom: gray 1pt solid; padding-bottom: 0cm; padding-left: 5.4pt; width: 240.8pt; padding-right: 5.4pt; height: 18pt; border-left-color: gray; border-top: gray 1pt solid; border-left-width: 1pt; border-right: gray 1pt solid; padding-top: 0cm;" rowspan="2" >
+
+
+范例09-05 查询指定时间段的数据
+
+
+
+</td>
+
+<td width="238" style="border-bottom: gray 1pt solid; padding-bottom: 0cm; border-right-style: none; padding-left: 5.4pt; width: 178.8pt; padding-right: 5.4pt; height: 18pt; border-left-style: none; border-top: gray 1pt solid; padding-top: 0cm;" >
+
+
+![](http://book.csdn.net/BookFiles/503/img/image005.gif) 范例位置：mr/fl/09/05
+
+
+
+</td>
+</tr>
+<tr style="page-break-inside: avoid; height: 15.2pt;" >
+
+<td width="238" style="border-bottom: gray 1pt solid; padding-bottom: 0cm; border-right-style: none; padding-left: 5.4pt; width: 178.8pt; padding-right: 5.4pt; border-top-style: none; height: 15.2pt; border-left-style: none; padding-top: 0cm;" >
+
+
+![](http://book.csdn.net/BookFiles/503/img/image006.gif) 录像位置：mr/lx/09
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+本范例的实现过程如下。
+
+
+
+
+（1）利用include包含文件命令引用数据库配置文件访问数据库。代码如下：
+
+
+
+
+<?php include "conn/conn.php"; ?>
+
+
+
+
+（2）利用复合条件BETWEEN…AND语句检索指定时间段内的商品采购信息，主要程序代码如下：
+
+
+
+
+<?php
+
+
+
+
+if($_POST["subb"]<>""){
+
+
+
+
+$_SESSION["sdate"]=$_POST["sdate"];
+
+
+
+
+$_SESSION["edate"]=$_POST["edate"];
+
+
+
+
+$sql=mysql_query("select * from tb_cgdan where cgdate between '".$_SESSION["sdate"]."' and '".$_SESSION ["edate"]."'");
+
+
+
+
+$result=mysql_fetch_array($sql);
+
+
+
+
+if($result==false){
+
+
+
+
+echo "<div align=center><font color=red>Sorry！该时间段内没有采购商品！</font></div>";
+
+
+
+
+}
+
+
+
+
+?>
+
+
+
+
+（3）利用Do…While循环输出语句将符合条件的采购信息输出到浏览器中，代码如下：
+
+
+
+
+<?php
+
+
+
+
+do{
+
+
+
+
+?>
+
+
+
+
+<tr align="center" bgcolor="#FFFFFF">
+
+
+
+
+<td><?php echo $result["id"]; ?></td>
+
+
+
+
+<td align="left"><?php echo $result["spname"]; ?></td>
+
+
+
+
+<td align="left"><?php echo $result["cd"]; ?></td>
+
+
+
+
+<td align="left"><?php echo $result["gg"]; ?></td>
+
+
+
+
+<td><?php echo $result["dw"]; ?></td>
+
+
+
+
+<td align="left"><?php echo $result["dj"]; ?></td>
+
+
+
+
+<td align="left"><?php echo $result["sl"]; ?></td>
+
+
+
+
+<td align="left"><?php echo $result["je"]; ?></td>
+
+
+
+
+<td align="left"><?php echo $result["cgdate"]; ?></td>
+
+
+
+
+</tr>
+
+
+
+
+<?php
+
+
+
+
+}while($result=mysql_fetch_array($sql));
+
+
+
+
+}
+
+
+
+
+mysql_close();
+
+
+
+
+?>
+
+
+
+
+
+
+
+查询畅销的前5种商品
+
+
+
+
+要查询出最畅销的商品，必须利用ORDER BY子句根据一个或一个以上的字段来排序查询结果，然后再使用LIMIT子句限制Select语句返回的行数。LIMIT取1个或2个参数，如果给定2个参数，第一个参数用于指定要返回的第一行的偏移量，第二个参数用于指定返回行的最大数目。初始行的偏移量是0（不是1）。
+
+
+
+
+mysql> select * from table LIMIT 5,10; # Retrieve rows 6-15
+
+
+
+
+如果给定一个参数，它指出返回行的最大数目。
+
+
+
+
+mysql> select * from table LIMIT 5; # Retrieve first 5 rows
+
+
+
+
+即LIMIT n等价于LIMIT 0,n。
+
+
+
+
+数据查询有一项极为重要的功能，那就是它能够查询出最前面的或最后的。下面通过具体的范例进行讲解。
+
+
+
+
+
+<table cellpadding="0" cellspacing="0" style="width: 547px; border-collapse: collapse; background: #d9d9d9; border-style: none;" border="1" class="MsoNormalTable" >
+<tbody >
+<tr style="page-break-inside: avoid; height: 18pt;" >
+
+<td width="321" style="border-bottom: gray 1pt solid; padding-bottom: 0cm; padding-left: 5.4pt; width: 240.8pt; padding-right: 5.4pt; height: 18pt; border-left-color: gray; border-top: gray 1pt solid; border-left-width: 1pt; border-right: gray 1pt solid; padding-top: 0cm;" rowspan="2" >
+
+
+范例09-06 查询畅销的前5种商品
+
+
+
+</td>
+
+<td width="238" style="border-bottom: gray 1pt solid; padding-bottom: 0cm; border-right-style: none; padding-left: 5.4pt; width: 178.8pt; padding-right: 5.4pt; height: 18pt; border-left-style: none; border-top: gray 1pt solid; padding-top: 0cm;" >
+
+
+![](http://book.csdn.net/BookFiles/503/img/image005.gif) 范例位置：mr/fl/09/06
+
+
+
+</td>
+</tr>
+<tr style="page-break-inside: avoid; height: 15.2pt;" >
+
+<td width="238" style="border-bottom: gray 1pt solid; padding-bottom: 0cm; border-right-style: none; padding-left: 5.4pt; width: 178.8pt; padding-right: 5.4pt; border-top-style: none; height: 15.2pt; border-left-style: none; padding-top: 0cm;" >
+
+
+![](http://book.csdn.net/BookFiles/503/img/image006.gif) 录像位置：mr/lx/09
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+查询时不仅可以查询具有相同字段信息的记录，还可以对某一特定范围内的数据信息进行查询。运行本范例，如图9.10所示，默认页显示tb_stocks数据表中的全部信息。单击【查询】按钮，即可统计出最畅销的前5种商品（本范例按销售总量降序排列，再返回查询结果的前5条记录）并将结果输出到浏览器
+
+
+
+
+（1）利用框架嵌套技术布局范例页面，代码如下：
+
+
+
+
+<frameset rows="80,*" cols="*" framespacing="0" frameborder="NO" border="0">
+
+
+
+
+<frame src="spxxindex.php" name="topFrame" scrolling="NO" noresize >
+
+
+
+
+<frame src="indexdefault.php" name="MainFrame" noresize>
+
+
+
+
+</frameset>
+
+
+
+
+（2）利用include包含文件命令引用数据库配置文件访问数据库。代码如下：
+
+
+
+
+<?php include "conn/conn.php"; ?>
+
+
+
+
+（3）创建记录集。利用LIMIT 5子句返回满足Where子句的前5条记录，代码如下：
+
+
+
+
+<?php
+
+
+
+
+if ($_POST[subb]=="查询"){
+
+
+
+
+$sql=mysql_query("select spname,cd,dw,price,sum(xssl) as sum_xssl,sum(xsje) as sum_xsje from tb_ stocks group by spname,cd,dw,price order by sum_xssl desc LIMIT 5");
+
+
+
+
+$result=mysql_fetch_array($sql);
+
+
+
+
+}
+
+
+
+
+?>
+
+
+
+
+（4）利用Do…While循环语句输出查询结果，代码如下：
+
+
+
+
+<?php
+
+
+
+
+do{
+
+
+
+
+?>
+
+
+
+
+<tr align="center" bgcolor="#FFFFFF">
+
+
+
+
+<td align="left">&nbsp;<?php echo $result[spname]; ?></td>
+
+
+
+
+<td align="left">&nbsp;<?php echo $result[cd]; ?></td>
+
+
+
+
+<td align="center"><?php echo $result[dw]; ?></td>
+
+
+
+
+<td align="center"><?php echo $result[price]; ?></td>
+
+
+
+
+<td><?php echo $result[sum_xssl]; ?></td>
+
+
+
+
+<td><?php echo $result[sum_xsje]; ?></td>
+
+
+
+
+</tr>
+
+
+
+
+<?php
+
+
+
+
+}while($result=mysql_fetch_array($sql));
+
+
+
+
+?>
+
+
+
+
+多表分组统计商品的销售情况
+
+
+
+
+在查询统计中经常会遇到对查询结果进行排序、分组的情况。多表分组统计主要应用了SUM聚集函数，该函数主要用于返回表达式中所有值的和，或只返回DISTINCT值。需要说明的是，SUM聚集函数只能用于数据类型是数字的列，且忽略NULL值。
+
+
+
+
+语法如下：
+
+
+
+
+SUM ( [ALL|DISTINCT] expression )
+
+
+
+
+其中，参数ALL表示对所有的值进行聚集函数运算，是默认值；参数DISTINCT用于指定SUM返回惟一值的和；参数expression是常量、列或函数，或者是算术、按位与字符串等运算符的任意组合。expression是精确数字或近似数字数据类型分类（bit数据类型除外）的表达式。其他情况下不允许使用聚集函数和子查询。
+
+
+
+
+说明：SUM函数在对列中数值相加时忽略NULL值。但是，如果列中的所有值均为NULL，则SUM函数返回NULL作为其结果。
+
+
+
+
+下面通过具体的范例详细讲解多表分组统计的应用。
+
+
+
+
+
+<table cellpadding="0" cellspacing="0" style="width: 547px; border-collapse: collapse; background: #d9d9d9; border-style: none;" border="1" class="MsoNormalTable" >
+<tbody >
+<tr style="page-break-inside: avoid; height: 19.55pt;" >
+
+<td width="314" style="border-bottom: gray 1pt solid; padding-bottom: 0cm; padding-left: 5.4pt; width: 235.15pt; padding-right: 5.4pt; height: 19.55pt; border-left-color: gray; border-top: gray 1pt solid; border-left-width: 1pt; border-right: gray 1pt solid; padding-top: 0cm;" rowspan="2" >
+
+
+范例09-07 多表分组统计商品的销售情况
+
+
+
+</td>
+
+<td width="233" style="border-bottom: gray 1pt solid; padding-bottom: 0cm; border-right-style: none; padding-left: 5.4pt; width: 175.05pt; padding-right: 5.4pt; height: 19.55pt; border-left-style: none; border-top: gray 1pt solid; padding-top: 0cm;" >
+
+
+![](http://book.csdn.net/BookFiles/503/img/image005.gif) 范例位置：mr/fl/09/07
+
+
+
+</td>
+</tr>
+<tr style="page-break-inside: avoid; height: 19.6pt;" >
+
+<td width="233" style="border-bottom: gray 1pt solid; padding-bottom: 0cm; border-right-style: none; padding-left: 5.4pt; width: 175.05pt; padding-right: 5.4pt; border-top-style: none; height: 19.6pt; border-left-style: none; padding-top: 0cm;" >
+
+
+![](http://book.csdn.net/BookFiles/503/img/image006.gif) 录像位置：mr/lx/09
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+本范例实现的是在商品销售信息表和商品库存信息表中查询商品的销售数量和现存数量，并按商品编号进行分组。运行本范例，单击【统计】按钮，即可将符合条件的统计结果输出到浏览器中
+
+
+
+
+（1）利用include包含文件命令引用数据库配置文件访问数据库。代码如下：
+
+
+
+
+<?php include "Conn/conn.php";?>
+
+
+
+
+（2）创建记录集。在图书销售信息表和图书库存信息表中查询图书的销售数量和现存数量，并按图书编码、图书名称、作者等分组，从而实现从多个表中分组统计数据信息。主要程序代码如下：
+
+
+
+
+<?php
+
+
+
+
+if ($_POST[subb]=="统计"){
+
+
+
+
+$sql=mysql_query("select k.spid,k.spname,k.kcsl,sum(x.xssl) as sum_xssl from tb_stocks as k,tb_market as x where k.spid=x.spid group by k.spid,k.spname,k.kcsl");
+
+
+
+
+$result=mysql_fetch_array($sql);
+
+
+
+
+}
+
+
+
+
+?>
+
+
+
+
+（3）利用Do…While语句循环输出统计后的商品库存信息和销售信息。代码如下：
+
+
+
+
+<?php do{ ?>
+
+
+
+
+<tr align="center" bgcolor="#FFFFFF">
+
+
+
+
+<td align="left">&nbsp;<?php echo $result[spid]; ?></td>
+
+
+
+
+<td align="left">&nbsp;<?php echo $result[spname]; ?></td>
+
+
+
+
+<td align="left">&nbsp;<?php echo $result[kcsl]; ?></td>
+
+
+
+
+<td align="left">&nbsp;<?php echo $result[sum_xssl]; ?></td>
+
+
+
+
+</tr>
+
+
+
+
+<?php
+
+
+
+
+}while($result=mysql_fetch_array($sql));
+
+
+
+
+mysql_close(); 
+
+
+
+
+?>
+
+
+

@@ -1,0 +1,1244 @@
+---
+author: admin
+comments: true
+date: 2012-11-08 03:50:00+00:00
+layout: post
+slug: '%e9%85%8d%e7%bd%aevim%e4%b8%baphp%e5%bc%80%e5%8f%91%e7%bc%96%e8%af%91%e5%99%a8%e5%a2%9e%e5%8a%a0%e5%af%bc%e8%88%aa%e8%87%aa%e5%8a%a8%e6%8f%90%e7%a4%ba'
+title: 配置vim为php开发编译器增加导航自动提示
+wordpress_id: 118
+categories:
+- LINUX
+- 实用软件技巧
+tags:
+- linux
+- 实用软件技巧
+---
+
+
+
+用到了NERDtree,taglist,AutoComplPop,ZenCoding插件和一些
+
+
+配置,具体步骤记录下：
+
+
+
+
+安装vim
+
+
+
+
+设置在上篇文章：[这里有介绍](http://cc.ecjtu.net/posts/ubuntu-c-environment)
+
+
+
+
+上述设置启用了格式化高亮、行号显示，以及括号匹配、自动缩进等编辑功能，对于大多数情况都可以获得理
+
+
+
+
+想的编辑体验。不过此时对.php文件的支持还不完善，需要下载专门的php插件。
+
+
+
+
+下载地址：[http://download.csdn.net/download/akmumu2010/4745210](http://download.csdn.net/download/akmumu2010/4745210)  
+
+下载文件：php.tar.gz
+
+
+
+
+将其中的php.vim复制到$VIMvimfilessyntax目录中即可。$VIM根据不同系统不同,我的是ubuntu,执行
+
+
+
+
+whereis vim :
+
+
+
+
+root@Cyrec-desktop:/usr/share/vim/vimfiles# whereis vim  
+
+vim: /usr/bin/vim /usr/bin/vim.basic /etc/vim /usr/share/vim /usr/share/man/man1/vim.1.gz 可以找到vim安装
+
+
+
+
+在/usr/share/vim中,下面的/usr/share/vim都用$VIM代替。
+
+
+
+
+一开始在设置里更换主题一直无法显示,后来找到问题的原因：
+
+
+
+
+一般的Linux发行版默认的终端都是16色的，但事实上几乎所有的终端都支持256色终端。
+
+
+
+
+1.将Terminal设为Xterm模式:编辑->配置文件首选项->颜色 设置为自定义,内置方案选择XTerm.
+
+
+
+
+2.vimrc里设置：set t_Co=256
+
+
+
+
+然后就可以随便color自己喜欢到主题了。我是用的:colorscheme desert。
+
+
+
+
+
+
+
+## 打造PHP IDE
+
+
+
+
+IDE左侧是目录导航，中间是编辑区域，而右侧则是方法列表，用于在已经打开的文件中快速跳转。在编辑区
+
+
+
+
+域按下CTRL+X键，还会显示已打开文件的列表。 
+
+
+
+
+其他诸如自动补全、代码模板等功能，都应有尽有。看过了漂亮的截图，我们就来一步步打造PHP IDE吧。
+
+
+
+
+### 用NERDTree实现目录导航
+
+
+
+
+在进行PHP应用开发时，同时编辑多个文件是很正常的事情。所以必须有一个方便的目录导航工具，以便在目
+
+
+
+
+录结构间快速切换，找到需要编辑的文件。
+
+
+
+
+vim中提供该类功能的插件很多，比较知名的有project、winmanager等。但笔者个人认为最好用的还是The
+
+
+
+
+NERD Tree这个插件。NERDTree不但可以显示完整的目录树结构，还可以将任何一个目录设置为根目录。并
+
+
+
+
+且提供了目录导航的书签功能，可谓非常方便。
+
+
+
+
+下载地址：[http://download.csdn.net/download/akmumu2010/4745226](http://download.csdn.net/download/akmumu2010/4745226)  
+
+下载文件：NERD_tree.zip
+
+
+
+
+解压缩时，要把压缩包中的目录结构完整的解压缩到$VIMvimfiles目录中。完成后，应该分别找到$VIM
+
+
+
+
+vimfilesdocNERD_tree.txt文件和$VIMvimfilespluginNERD_tree.vim文件。然后在vim中输入命令:helptags
+
+
+
+
+$VIMvimfilesdoc，将NERDTree的帮助文档添加到vim中。
+
+
+
+
+最后在_vimrc添加如下内容：
+
+
+
+
+
+
+
+" NERDTree
+
+
+
+
+map <F8> :NERDTreeToggle<CR>
+
+
+
+
+上述格式一定要正确，看好空格，不然不可以，而且保证你这个F8不和其他冲突，我的就和有道冲突了
+
+
+
+
+
+
+
+重启vim后，按下F8键，就可以在左侧看到一个目录树了。在目录树窗口中按下?键可以查看详细的帮助信息
+
+
+
+
+最常用的操作键有：
+
+
+<table cellpadding="1" cellspacing="1" border="1" >
+<tbody >
+<tr >
+
+<td >按键
+</td>
+
+<td >作用
+</td>
+</tr>
+<tr >
+
+<td >C（大写C键）
+</td>
+
+<td >将光标所在目录设置为根目录
+</td>
+</tr>
+<tr >
+
+<td >u（小写u键）
+</td>
+
+<td >转到上一级目录
+</td>
+</tr>
+<tr >
+
+<td >o（小写o键，不是“零”）
+</td>
+
+<td >展开（或折叠）光标所在目录的子目录。如果光标所在位置是一个文件，则在编辑窗口中打开该文件
+</td>
+</tr>
+</tbody>
+</table>
+
+
+此外在目录树窗口中输入目录:Bookmark 收藏名还可以将光标所在目录添加到收藏夹中。下次使
+
+
+
+
+用:BookmarkToRoot 收藏名可以直接转到该目录，并且以该目录作为根目录。更多命令可以参考NERDTree的
+
+
+
+
+帮助文档。
+
+
+
+
+### 用taglist实现代码导航
+
+
+
+
+解决了目录和文件导航问题，我们还要为代码之间的跳转提供辅助手段，taglist就是这样一个插件。taglist可以
+
+
+
+
+列出已打开文件中定义的类、函数、常量，甚至变量。
+
+
+
+
+下载地址：[http://download.csdn.net/download/akmumu2010/4745259](http://download.csdn.net/download/akmumu2010/4745259)  
+
+下载文件：taglist_45.zip
+
+
+
+
+压缩包需要完整解压缩到$VIMvimfiles目录，并且用:helptags $VIMvimfilesdoc命令索引taglist插件的帮助文
+
+
+
+
+档。taglist插件需要依赖ctags程序才能工作。目前常用的ctags版本是Exuberant Ctags。
+
+
+
+
+sudo apt-get install ctags,然后whereis ctags,找到ctags: /usr/bin/ctags 这目录下的ctags。
+
+
+
+
+你也可以直接下载安装
+
+
+
+
+地址：[http://download.csdn.net/download/akmumu2010/4745500](http://download.csdn.net/download/akmumu2010/4745500)
+
+
+
+
+解压ctags：tar -zxcf ctags-5.8.tar.gz
+
+
+
+
+进入ctags：cd ctags-5.8
+
+
+
+
+打上PHP补丁（否则按下ctrl+n，连基本的function include等函数都出不来）：
+
+
+
+
+wget http://svn.bitflux.ch/repos/public/misc/ctags-php5.patch
+
+
+
+
+patch php.c ctags-php5.patch
+
+
+
+
+编译安装：
+
+
+
+
+./configure
+
+
+
+
+make
+
+
+
+
+sudo make install
+
+
+
+
+经过这三步后就生成 /usr/local/bin/ctags
+
+
+
+
+
+
+
+继续回来修改~/.vim/plugin/taglist.vim
+
+
+
+
+在 if !exists('loaded_taglist')上面加入
+
+
+
+
+let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
+
+
+
+
+或加在~/.vim/.vimrc文件，只要能让vim开启时加载的*.vim文件即可
+
+
+
+
+此时Ctags和Taglist已经结合起来，再用vim编辑php文件， 执行 :TlistToggle 就会在右边出现一个当前文件的类 函数 变量 等东西
+
+
+
+
+还记得我们使用netbeans eclipse等大型开发工具的时候吗，按着 
+ctrl + 鼠标左键 点击一个函数，就会跳转到该函数定义处，他其实也是使用的tags跟踪跳转，只不过他们会自动去扫描源码目录，生成一个tags文件(是否曾经为netbeans没完没了的扫描崩溃过？)，而vim需要我们自己去生成这个tags。这个功能对代码跟踪非常有好处，下面我们就来实现他  
+
+
+
+
+
+
+在相应的源码目录运行ctags -R产生相应的tags文件
+
+
+
+
+cd ~/www/mysite
+
+
+
+
+ctags -R *
+
+
+
+
+打开vim
+
+
+
+
+:cd ~/www/mysite
+
+
+
+
+:set tags=tags
+
+
+
+
+现在，我们设置好了tags选项，接下来我们使用它，我们先来查找一个名叫make_html的方法：
+
+
+
+
+方法一：
+
+
+
+
+:tag make_html
+
+
+
+
+如果make_html方法的定义只存在一个文件中你会看到VIM打开了该文件，并把光标定位到make_html方法所在行上。
+
+
+
+
+如果make_html方法的定义存在多个文件中，会提示：
+
+
+
+
+找到 tag：1 / 14 或更多
+
+
+
+
+这时我们可以列出保护这个方法的所有文件
+
+
+
+
+:tselect "显示列表
+
+
+
+
+这时会列出所有文件，让我们选择一个文件打开
+
+
+
+
+# pri kind tag 文件  
+
+> 1 F C f make_html function/my_function.php  
+
+2 F f make_html xxx/xxx.php  
+
+键入数字和回车(empty cacels) :
+
+
+
+
+根据提示输入我们想查看的文件对应的序号然后回车就可以了。
+
+
+
+
+:tn "显示后一个tag到的PHP文件  
+
+:tp "显示前一个tag到的PHP文件  
+
+:tags "显示标签栈  
+
+
+
+
+
+
+我们还可以把鼠标停留在想要跳转的 类 函数 变量 上面，然后按 
+ctrl + ] ,回到原来位置是 ctrl + t
+
+
+
+
+方法二：
+
+
+
+
+把鼠标停留在 make_html 上面，然后按ctrl+]，怎么样，和直接输入:tag make_html 是一模一样的吧
+
+
+
+
+现在，我们已经跳转到make_html函数的定义处，看到了函数的详细定义，明确知道如何使用这个函数了，那怎么回到原来的位置呢，答案是按 ctrl+o 返回。
+
+
+
+
+## 小技巧：
+
+
+
+
+细心的朋友可能会发现，作为一个强大的IDE，还应该解决以下几个问题：
+
+
+
+
+1.左边目录树结构不变。
+
+
+
+
+
+
+
+2.代码块注释，删除注释。
+
+
+
+
+3.代码块缩进，删除缩进。
+
+
+
+
+解决问题：
+
+
+
+
+1.一般情况下，我们会以标签的方式打开一个文件（让光标停留在一个要打开的文件上，按 t ），此时左边没有目录树，输入 :NERDTreeToggle打开目录树，此目录树为新建的，和第一个文件的目录树结构不同，这不符合我们普通IDE的习惯，还记得我们用Netbeans之类的编辑器吗？左边的目录书结构一直没变，其实是所有文件共享一颗树的原因，NERDTree也允许我们共享树，命令是 :NERDTreeMirror，结合Tlist，我的快捷方式定义如下：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  1. map :NERDTreeToggle
+  2. map :TlistToggle
+  3. map t :NERDTreeMirrorgTwgtw
+
+
+
+
+
+
+
+
+    
+    map  :NERDTreeToggle map  :TlistToggle map  t :NERDTreeMirrorgTwgtw
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+现在，看看我写代码的习惯：
+
+
+
+
+首先，打开vi编辑器。
+
+
+
+
+按 F2 打开目录树
+
+
+
+
+把光标停留在需要建立标签的文件夹上， :Bookmark 收藏名。
+
+
+
+
+以后只需要 打开目录树，Shift+B打开收藏标签，双击一下想打开的标签，再按一次Shift+B关闭收藏标签。
+
+
+
+
+鼠标选中需要打开的文件，按 F4 
+快捷键 ，此时，vi会先执行 t (标签方式打开文件)，再执行:NERDTreeMirror共享第一棵树，后面一串是为了保持之前打开的文件便签还是显示文件名用的。
+
+
+
+
+怎么样，效果和大型IDE差不多了吧。
+
+
+
+
+2.代码块注释，删除注释
+
+
+
+
+
+
+
+注释：ctrl+v 进入列编辑模式，向上或向下移动光标，把需要注释的行的开头标记起来,然后按大写的I,再插入注释符,比如"//",再按Esc,就会全部注释了。
+
+
+
+
+删除：ctrl+v 进入列编辑模式，选中注释部分，然后按d，就会删除注释符号。
+
+
+
+
+3.代码块缩进，删除缩进。 
+
+
+
+
+缩进：选择需要缩进的代码行（键盘鼠标都可以，选中了就行），>（shift+.）
+
+
+
+
+删除：选择需要缩进的代码行（键盘鼠标都可以，选中了就行），<（shift+,）
+
+
+
+
+
+
+
+### 下面是我一直使用的配置文件，有兴趣的朋友可以参考一下
+
+
+
+
+[.vimrc](http://www.kukaka.org/userfiles/.vimrc)
+
+
+
+
+下面两个放在~/.vim/plugin/下
+
+
+
+
+[MY_keymap.vim](http://www.kukaka.org/userfiles/MY_keymap.vim) 键盘映射
+
+
+
+
+[MY_taglist.vim](http://www.kukaka.org/userfiles/MY_taglist.vim) taglist插件配置
+
+
+
+
+
+
+
+将ctags复制到$VIMvim72目录中即可。
+
+
+
+
+最后在/etc/vim/vimrc添加下列内容，设置好taglist插件：
+
+
+
+
+“”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"
+
+
+
+
+” => Plugin configuration
+
+
+
+
+“”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"”"
+
+
+
+
+” taglist
+
+
+
+
+let Tlist_Auto_Highlight_Tag = 1
+
+
+
+
+let Tlist_Auto_Open = 1
+
+
+
+
+let Tlist_Auto_Update = 1
+
+
+
+
+let Tlist_Close_On_Select = 0
+
+
+
+
+let Tlist_Compact_Format = 0
+
+
+
+
+let Tlist_Display_Prototype = 0
+
+
+
+
+let Tlist_Display_Tag_Scope = 1
+
+
+
+
+let Tlist_Enable_Fold_Column = 0
+
+
+
+
+let Tlist_Exit_OnlyWindow = 0
+
+
+
+
+let Tlist_File_Fold_Auto_Close = 0
+
+
+
+
+let Tlist_GainFocus_On_ToggleOpen = 1
+
+
+
+
+let Tlist_Hightlight_Tag_On_BufEnter = 1
+
+
+
+
+let Tlist_Inc_Winwidth = 0
+
+
+
+
+利用ctrl+ww来进行两个窗口之间的切换。
+
+
+
+
+在taglist窗口中，可以使用下面的快捷键：
+
+
+
+
+<CR> 跳到光标下tag所定义的位置，用鼠标双击此tag功能也一样  
+
+o 在一个新打开的窗口中显示光标下tag  
+
+<Space> 显示光标下tag的原型定义  
+
+u 更新taglist窗口中的tag  
+
+s 更改排序方式，在按名字排序和按出现顺序排序间切换  
+
+x taglist窗口放大和缩小，方便查看较长的tag  
+
++ 打开一个折叠，同zo  
+
+- 将tag折叠起来，同zc  
+
+* 打开所有的折叠，同zR  
+
+= 将所有tag折叠起来，同zM  
+
+[[ 跳到前一个文件  
+
+]] 跳到后一个文件  
+
+q 关闭taglist窗口
+
+
+
+
+在vimrc中加下面设置可以按F6打开关闭taglist
+
+
+
+
+"函数和变量列表  
+
+map <F6> :TlistToggle<CR>
+
+
+
+
+
+
+
+
+
+
+### 用AutoComplPop实现代码自动提示
+
+
+
+
+点击下面网址，进去下载autocomplpop插件
+
+
+
+
+[http://download.csdn.net/download/akmumu2010/4745413](http://download.csdn.net/download/akmumu2010/4745413)[](http://www.vim.org/scripts/script.php?script_id=1879)
+
+
+
+
+下载的是一个zip文件,解压后会有三个文件夹,分别是autoload,doc,plugin。到Vim的根目录下,找到名字
+
+
+
+
+和这三个一样的文件夹。不同系统目录位置不同。我的fedora是/usr/share/vim/vimfiles
+
+
+
+
+按照文件夹对应的把里面的acp.vim和其他的什么文件都copy过去。然后重启Vim。这时候可能会有错误提示
+
+
+
+
+<blockquote>
+
+> 
+> Error detected while processing /home/carlos/.vim/plugin/acp.vim:  
+
+line 13:  
+
+***** L9 library must be installed! *****
+> 
+> 
+</blockquote>
+
+
+
+
+这是插件放出的一个错误提示，查看plugin里的acp.vim可以看到。是缺少L9 library库。这个也是需要下载的。地址在下面
+
+
+
+
+[http://download.csdn.net/download/akmumu2010/4745507](http://download.csdn.net/download/akmumu2010/4745507)
+
+
+
+
+说明：哥也没有出现这个错误，不过以防万一，还是下载安装了
+
+
+
+
+下载下来，它也是一个插件形式，以同样的方式copy到Vim目录下。
+
+
+
+
+安装完后就可以了。
+
+
+
+
+再就是这个插件默认是没有设置php自动补全的，可以设置一个PHP函数字典，让其根据字典的内容进行自动
+
+
+
+
+补全。
+
+
+
+    
+    这个是一个PHP字典:.
+
+
+
+    
+    编辑配置文件.vimrc,在文件后面加上下面的代码
+
+
+
+    
+    au FileType php setlocal dict+=/etc/vim/php_funclist.txt
+
+
+
+    
+    后面跟着的是字典的目录地址，根据自己的需求存放在一个地方就好。我是放到了/etc/vim/目录下。
+    
+    php_funclist下载:<a href="http://download.csdn.net/download/akmumu2010/4745537">http://download.csdn.net/download/akmumu2010/4745537</a>
+
+
+
+
+再附加一些自动补全配置（加入到vimrc中）：
+
+
+
+
+php 中 一般是会在 "$", "->", "::" 后需要出现自动补全，在 .vimrc 中加入以下代码：
+
+
+
+    
+    if !exists('g:AutoComplPop_Behavior')
+        let g:AutoComplPop_Behavior = {}
+        let g:AutoComplPop_Behavior['php'] = []
+        call add(g:AutoComplPop_Behavior['php'], {
+                   'command'   : "<C-x><C-o>", 
+                   'pattern'   : printf('(->|::|$)k{%d,}$', 0),
+                   'repeat'    : 0,
+                })
+    endif
+
+
+
+
+在 Vim 中实现括号自动补全：
+
+
+
+
+:inoremap ( ()<ESC>i  
+
+:inoremap ) <c-r>=ClosePair(')')<CR>  
+
+:inoremap { {}<ESC>i  
+
+:inoremap } <c-r>=ClosePair('}')<CR>  
+
+:inoremap [ []<ESC>i  
+
+:inoremap ] <c-r>=ClosePair(']')<CR>  
+
+:inoremap < <><ESC>i  
+
+:inoremap > <c-r>=ClosePair('>')<CR>  
+
+  
+
+function ClosePair(char)  
+
+if getline('.')[col('.') - 1] == a:char  
+
+return "<Right>"  
+
+else  
+
+return a:char  
+
+endif  
+
+endf
+
+
+
+
+这样，写代码的时候不再担心会丢掉右边的括号了，尤其是函数嵌套的时候。
+
+
+
+
+
+
+
+
+
+
+### 安装ZenCoding插件
+
+
+
+
+到[http://download.csdn.net/download/akmumu2010/4745591](http://download.csdn.net/download/akmumu2010/4745591)下载压缩包,然后解压到vimfiles文件夹,和上面一样,将doc plugin
+
+
+
+
+autoload三个文件夹放到相应文件夹下。然后在vim中输入helptags /etc/vim/doc 导入帮助文件.就OK了。
+
+
+
+
+zencoing可以很方便的写html,一些常用命令：
+
+
+
+
+输入 div>p#foo$*3>a 这样的缩写,然后按 ctrl + y + , 来展开(注意那个逗号)，展开后它应该是这个样子的
+
+
+
+    
+     <div>
+          <p id="foo1">
+              <a href=""></a>
+          </p>
+          <p id="foo2">
+              <a href=""></a>
+          </p>
+          <p id="foo3">
+              <a href=""></a>
+          </p>
+      </div>
+    
+
+
+
+
+
+
+  * 多行缩写 
+
+
+
+输入如下:
+
+
+
+    
+    test1
+    test2
+    test3
+    
+
+
+
+
+然后进入行选择模式，选中这三行按 ctrl + y + ,，接着它会提示你要使用的tag名称，TAG: 输入 ‘ul>li* 会变成如下的样子
+
+
+
+    
+    <ul>
+        <li>test1</li>
+        <li>test2</li>
+        <li>test3</li>
+    </ul>
+    
+
+
+
+
+如果是输入blockquote，那么会变成这样
+
+
+
+    
+      <blockquote>
+          test1
+          test2
+          test3
+      </blockquote>
+    
+
+
+
+
+
+
+  * 跳转到下一个标签编辑位置 
+
+
+
+输入ctrl + y + n 进入插入模式
+
+
+
+
+
+
+  * 跳转到上一个标签编辑位置 
+
+
+
+输入ctrl + y + N 进入插入模式
+
+
+
+
+
+
+  * 更新标签中图片大小 
+
+
+
+假如有以下内容
+
+
+
+    
+    <img src="foo.png" />
+    
+
+
+
+
+光标移动到img标签上，按下ctrl + y + i 该插件会自动获取foo.png的大小并插入宽高属性 看起来像这个样子
+
+
+
+    
+    <img src="foo.png" width="32" height="48" />
+    
+
+
+
+
+
+
+  * 切换注释 
+
+
+
+如有以下段
+
+
+
+    
+    <div>
+        hello world
+    </div>
+    
+
+
+
+
+光标移动到此段落，输入ctrl + y + /变成
+
+
+
+    
+    <!-- <div>
+        hello world
+    </div> -->
+    
+
+
+
+
+再次输入则还原
+
+
+
+
+
+
+  * 生成url连接 
+
+
+
+将光标移动到一个url上，如：
+
+
+
+    
+    http://www.google.com/
+    
+
+
+
+
+输入ctrl + y + a 它会自动获取url页面的标题并生成一个连接
+
+
+
+    
+    <a href="http://www.google.com/"></a>
+    
+
+
+
+
+Zen Coding官方提供的速查手册(PDF)：[http://zen-coding.googlecode.com/files/ZenCodingCheatSheet.pdf](http://zen-coding.googlecode.com/files/ZenCodingCheatSheet.pdf)
+
+
+
+
+配置OK了，最后上张帅气的vim图:
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/img_my_1352346896_1248.jpg)
+
+
+

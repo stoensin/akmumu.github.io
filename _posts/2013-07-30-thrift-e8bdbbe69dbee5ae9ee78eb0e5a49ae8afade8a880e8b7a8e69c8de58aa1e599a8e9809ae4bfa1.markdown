@@ -1,0 +1,738 @@
+---
+author: admin
+comments: true
+date: 2013-07-30 09:43:00+00:00
+layout: post
+slug: thrift-%e8%bd%bb%e6%9d%be%e5%ae%9e%e7%8e%b0%e5%a4%9a%e8%af%ad%e8%a8%80%e8%b7%a8%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%80%9a%e4%bf%a1
+title: thrift 轻松实现多语言跨服务器通信
+wordpress_id: 189
+categories:
+- PHP
+- 实用软件技巧
+tags:
+- php程序设计
+- 实用软件技巧
+---
+
+[thrift](http://incubator.apache.org/thrift/)是由facebook开发的轻量级跨语言的服务框架，现在已经移交到apache基金会下。和他类似的是google出的protocol buffer和ice。 thrift的一大优势就是支持的语言很丰富，它使用自己的IDL语言来描述服务接口和数据交换的格式。
+
+
+
+
+
+
+
+官方网站：[http://incubator.apache.org/thrift/](http://incubator.apache.org/thrift/)
+
+
+
+
+
+
+
+**一、安装：**
+
+
+
+
+
+
+
+
+
+
+    
+    yum -y install gcc-c++ autoconf automake sysconftool boost /
+        boost-devel libtool perl-ExtUtils-MakeMaker gettext-base /
+        gettext gettext-devel liblocale-gettext-perl zlib-devel /
+        byacc bison flex pkgconfig python-devel 
+    
+    wget http://apache.freelamp.com/incubator/thrift/0.2.0-incubating/thrift-0.2.0-incubating.tar.gz
+    
+    ./bootstrap.sh 
+    ./configure --prefix=/usr/local/thrift --with-ruby=no --with-erlang=no --with-java=no --with-csharp=no --enable-gen-java=no --enable-gen-csharp=no --enable-gen-rb=no --enable-gen-erl=no
+    make
+    make install
+
+
+
+
+
+
+
+
+
+
+**二、IDL描述：**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**[c]** [view
+plain](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[copy](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[print](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[?](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  1.  <textarea cols="50" rows="15" name="code" class="c-sharp"># 1.支持的变量类型  
+
+	
+  2.    
+
+	
+  3. 类型          描述    
+
+	
+  4. bool            #true, false    
+
+	
+  5. byte            #8位的有符号整数    
+
+	
+  6. i16             #16位的有符号整数    
+
+	
+  7. i32             #32位的有符号整数    
+
+	
+  8. i64             #64位的有符号整数    
+
+	
+  9. double          #64位的浮点数    
+
+	
+  10. string          #UTF-8编码的字符串    
+
+	
+  11. binary          #字符数组    
+
+	
+  12. struct          #结构体    
+
+	
+  13. list<type>        #有序的元素列表，类似于STL的vector    
+
+	
+  14. set<type>     #无序的不重复元素集，类似于STL的set    
+
+	
+  15. map<type1,type2>  #key-value型的映射，类似于STL的map    
+
+	
+  16. exception       #是一个继承于本地语言的exception基类    
+
+	
+  17. service         #服务包含多个函数接口(纯虚函数)    
+
+	
+  18.    
+
+	
+  19. # 2.摘一段例子上来，让瞧瞧这是啥东东。（本例子文件名为：tutorial.thrift，是本身带的教程。）  
+
+	
+  20. include "shared.thrift"  
+
+	
+  21.    
+
+	
+  22.    
+
+	
+  23. namespace cpp tutorial  
+
+	
+  24. namespace java tutorial  
+
+	
+  25. namespace php tutorial  
+
+	
+  26. namespace perl tutorial  
+
+	
+  27. namespace smalltalk.category Thrift.Tutorial  
+
+	
+  28.    
+
+	
+  29. typedef i32 MyInteger  
+
+	
+  30.    
+
+	
+  31. const i32 INT32CONSTANT = 9853  
+
+	
+  32. const map<string,string> MAPCONSTANT = {'hello':'world', 'goodnight':'moon'}  
+
+	
+  33.    
+
+	
+  34. enum Operation {  
+
+	
+  35.   ADD = 1,  
+
+	
+  36.   SUBTRACT = 2,  
+
+	
+  37.   MULTIPLY = 3,  
+
+	
+  38.   DIVIDE = 4  
+
+	
+  39. }  
+
+	
+  40.    
+
+	
+  41. struct Work {  
+
+	
+  42.   1: i32 num1 = 0,  
+
+	
+  43.   2: i32 num2,  
+
+	
+  44.   3: Operation op,  
+
+	
+  45.   4: optional string comment,  
+
+	
+  46. }  
+
+	
+  47.    
+
+	
+  48. exception InvalidOperation {  
+
+	
+  49.   1: i32 what,  
+
+	
+  50.   2: string why  
+
+	
+  51. }  
+
+	
+  52.    
+
+	
+  53. service Calculator extends shared.SharedService {  
+
+	
+  54.    
+
+	
+  55.    void ping(),  
+
+	
+  56.    
+
+	
+  57.    i32 add(1:i32 num1, 2:i32 num2),  
+
+	
+  58.    
+
+	
+  59.    i32 calculate(1:i32 logid, 2:Work w) throws (1:InvalidOperation ouch),  
+
+	
+  60.    
+
+	
+  61.    oneway void zip()  
+
+	
+  62.    
+
+	
+  63. }  
+
+	
+  64.    
+
+	
+  65. # 3. 我们来写个 helloworld.thrift  
+
+	
+  66.    
+
+	
+  67. service HelloWorld{  
+
+	
+  68.  string ping(1: string name),  
+
+	
+  69.  string getpng(),  
+
+	
+  70. }</textarea>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+**[c]** [view
+plain](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[copy](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[print](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[?](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  1.    
+
+
+
+
+
+
+
+
+
+
+
+
+
+**三、编译 helloworld：**
+
+
+
+
+****
+
+
+
+
+
+
+
+
+
+
+
+**[php]** [view
+plain](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[copy](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[print](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[?](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  1. /usr/local/thrift/bin/thrift -r --gen py helloworld.thrift  
+
+	
+  2. /usr/local/thrift/bin/thrift -r --gen php helloworld.thrift  
+
+	
+  3. #会在当前目录下生成 gen-* 目录。  
+
+
+
+
+
+
+
+
+
+
+
+****
+
+
+
+
+**四、编写服务器端：**
+
+
+
+
+
+
+
+
+
+
+****
+
+
+
+
+****
+
+
+
+
+
+
+
+
+**[python]** [view
+plain](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[copy](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[print](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[?](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  1. import sys  
+
+	
+  2. sys.path.append('./gen-py')  
+
+	
+  3.    
+
+	
+  4. from helloworld import HelloWorld  
+
+	
+  5. from helloworld.ttypes import *  
+
+	
+  6.    
+
+	
+  7. from thrift.transport import TSocket  
+
+	
+  8. from thrift.transport import TTransport  
+
+	
+  9. from thrift.protocol import TBinaryProtocol  
+
+	
+  10. from thrift.server import TServer  
+
+	
+  11.    
+
+	
+  12. class HellowordHandler:  
+
+	
+  13.     def __init__ (self):  
+
+	
+  14.         pass  
+
+	
+  15.    
+
+	
+  16.     def ping (self, name):  
+
+	
+  17.         print name + ' from server.'  
+
+	
+  18.         return "%s from server." % name  
+
+	
+  19.     def getpng (self):  
+
+	
+  20.         f = open("./logo.png", "rb")  
+
+	
+  21.         c = f.read()  
+
+	
+  22.         f.close()  
+
+	
+  23.         return c  
+
+	
+  24. handler = HellowordHandler()  
+
+	
+  25. processor = HelloWorld.Processor(handler)  
+
+	
+  26. transport = TSocket.TServerSocket(9090)  
+
+	
+  27. tfactory = TTransport.TBufferedTransportFactory()  
+
+	
+  28. pfactory = TBinaryProtocol.TBinaryProtocolFactory()  
+
+	
+  29.    
+
+	
+  30. server = TServer.TSimpleServer(processor, transport, tfactory, pfactory)  
+
+	
+  31.    
+
+	
+  32. # You could do one of these for a multithreaded server  
+
+	
+  33. #server = TServer.TThreadedServer(processor, transport, tfactory, pfactory)  
+
+	
+  34. #server = TServer.TThreadPoolServer(processor, transport, tfactory, pfactory)  
+
+	
+  35.    
+
+	
+  36. print 'Starting the server...'  
+
+	
+  37. server.serve()  
+
+	
+  38. print 'done.'  
+
+
+
+
+
+
+
+
+
+
+****
+
+
+
+
+****
+
+
+
+
+**五、编写客户端：**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**[php]** [view
+plain](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[copy](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[print](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[?](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  1. <?php  
+
+	
+  2. try{  
+
+	
+  3.    
+
+	
+  4.     $GLOBALS['THRIFT_ROOT'] = './php/src';   
+
+	
+  5.     require_once $GLOBALS['THRIFT_ROOT'].'/Thrift.php';  
+
+	
+  6.     require_once $GLOBALS['THRIFT_ROOT'].'/protocol/TBinaryProtocol.php';  
+
+	
+  7.     require_once $GLOBALS['THRIFT_ROOT'].'/transport/TSocket.php';  
+
+	
+  8.     require_once $GLOBALS['THRIFT_ROOT'].'/transport/THttpClient.php';  
+
+	
+  9.     require_once $GLOBALS['THRIFT_ROOT'].'/transport/TBufferedTransport.php';  
+
+	
+  10.     error_reporting(E_NONE);  
+
+	
+  11.     $GEN_DIR = './gen-php';  
+
+	
+  12.     require_once $GEN_DIR.'/helloworld/HelloWorld.php';  
+
+	
+  13.     error_reporting(E_ALL);  
+
+	
+  14.    
+
+	
+  15.     $socket = new TSocket('*.*.*.*', 9090);  
+
+	
+  16.     $transport = new TBufferedTransport($socket, 1024, 1024);  
+
+	
+  17.     $protocol = new TBinaryProtocol($transport);  
+
+	
+  18.     $client = new HelloWorldClient($protocol);  
+
+	
+  19.    
+
+	
+  20.     $transport->open();  
+
+	
+  21.    
+
+	
+  22.     $a = $client->ping('xyq ');  
+
+	
+  23.     echo $a;  
+
+	
+  24.    
+
+	
+  25.     $transport->close();  
+
+	
+  26.    
+
+	
+  27.     } catch (TException $tx) {  
+
+	
+  28.         print 'TException: '.$tx->getMessage()."/n";  
+
+	
+  29.     }  
+
+	
+  30.    
+
+	
+  31. ?>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+按上面的流程就可以写自己的thrift了，我使用py做服务端，用php做客户端，当然也可以使用c++来做服务端。
+
+
+
+
+
+
+
+
+
+
+
+
+
+**相关文章：**
+
+
+
+
+thrift 安装 [http://wiki.apache.org/thrift/ThriftInstallation](http://wiki.apache.org/thrift/ThriftInstallation)
+redis + thrift + mongodb 数据测试 [http://www.ys250.com/2010/09/02/redis-thrift-mongodb-test/](http://www.ys250.com/2010/09/02/redis-thrift-mongodb-test/)
+Thrift基本使用 [http://hi.baidu.com/infant/blog/item/01fa53436adc79189313c69e.html](http://hi.baidu.com/infant/blog/item/01fa53436adc79189313c69e.html)

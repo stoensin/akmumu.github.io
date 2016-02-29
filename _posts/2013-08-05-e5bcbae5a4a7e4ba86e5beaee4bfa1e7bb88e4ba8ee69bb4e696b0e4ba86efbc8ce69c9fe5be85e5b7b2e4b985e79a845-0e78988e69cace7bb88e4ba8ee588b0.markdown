@@ -1,0 +1,60 @@
+---
+author: admin
+comments: true
+date: 2013-08-05 06:42:12+00:00
+layout: post
+slug: '%e5%bc%ba%e5%a4%a7%e4%ba%86%e5%be%ae%e4%bf%a1%e7%bb%88%e4%ba%8e%e6%9b%b4%e6%96%b0%e4%ba%86%ef%bc%8c%e6%9c%9f%e5%be%85%e5%b7%b2%e4%b9%85%e7%9a%845-0%e7%89%88%e6%9c%ac%e7%bb%88%e4%ba%8e%e5%88%b0'
+title: 强大了微信终于更新了，期待已久的5.0版本终于到来，表情商店，扫条码，移动支付，公众号，语音识别
+wordpress_id: 201
+categories:
+- 天下杂侃
+tags:
+- 微信
+---
+
+微信今天更新了iphone的5.0版本，不愧是5.0啊，这么久的期待为我们带来了很多惊喜，无论你喜不喜欢新版，微信团队的努力都值得肯定，更何况功能更加强大呢，下面是从官网摘来的更新说明：
+
+发布日期：2013-08-05
+
+发布版本：微信 5.0 for iPhone [立即下载](http://weixin.qq.com/cgi-bin/download302?uin=&stype=&promote=&fr=www.baidu.com&lang=zh_CN&ADTAG=&url=ios) (或到手机App Store搜索“微信”)
+
+微信，超过3亿人使用，能够通过手机网络给好友发送语音、文字消息、表情、图片和视频，还可以分享照片到朋友圈。通过摇一摇、查看附近的人，你可以认识新的朋友。使用扫一扫，你可以扫描二维码、条码、图书和街景。你还可以在游戏中心玩游戏，使用微信支付，与公众号互动……
+微信在 iPhone、Android、Symbian、Windows Phone、BlackBerry 等手机平台上都可以使用，并提供有多种语言界面。
+
+iPhone 5.0 版本更新如下：
+
+**表情商店，有趣好玩的表情在这里**
+![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/6_1.zh_CN174682.jpg)![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/6_2.zh_CN16e6f3.jpg)
+
+**“扫一扫”，可以扫条码、图书和CD封面、街景，还可以翻译英文单词**
+![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/4_1.zh_CN16e6f3.jpg)![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/4_2.zh_CN16e6f3.png)
+
+**你可以在游戏中心，和朋友们一起玩游戏**
+![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/1_1.zh_CN16ecdd.png)![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/1_2.zh_CN173014.png)
+
+**绑定银行卡，在公众号、扫二维码、App中实现一键支付**
+![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/2_1.zh_CN174682.jpg)![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/2_2.zh_CN16e6f3.png)
+
+**新增收藏功能，可以收藏聊天、公众号、朋友圈的信息**
+![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/3_1.zh_CN16e6f3.jpg)![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/3_2.zh_CN16e6f3.png)
+
+**新增添加朋友的方式：“按住添加朋友”**
+![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/7_1.zh_CN16e6f3.png)![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/7_2.zh_CN16e6f3.png)
+
+**自主研发的语音识别技术，可直接在聊天中语音输入**
+![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/5_1.zh_CN16e6f3.png)![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/5_2.zh_CN16e6f3.png)
+
+**订阅号的消息被折叠起来，让你的消息列表更干净**
+![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/8_1.zh_CN16e6f3.png)![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/8_2.zh_CN16e6f3.png)
+
+**右划可以返回到聊天列表，双击左下角“微信”可以定位到最新一条未读消息**
+![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/9_1.zh_CN16e6f3.png)![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/9_2.zh_CN16e6f3.png)
+
+**双击文字消息，可查看全文**
+![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/10_1.zh_CN17312f.png)![](http://weixin.qq.com/zh_CN/htmledition/images/weixin/weixin_ios_5.0/10_2.zh_CN173130.png)
+
+
+
+发布版本：微信 5.0 for iPhone [立即下载](http://weixin.qq.com/cgi-bin/download302?uin=&stype=&promote=&fr=www.baidu.com&lang=zh_CN&ADTAG=&url=ios) (或到手机App Store搜索“微信”)
+如果您想了解更多详情,或给我们反馈,可以通过以下方式联系我们：
+官方网站：[http://weixin.qq.com](http://weixin.qq.com/)

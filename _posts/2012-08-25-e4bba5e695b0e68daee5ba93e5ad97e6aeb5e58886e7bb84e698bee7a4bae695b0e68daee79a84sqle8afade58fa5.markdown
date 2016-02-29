@@ -1,0 +1,66 @@
+---
+author: admin
+comments: true
+date: 2012-08-25 16:57:00+00:00
+layout: post
+slug: '%e4%bb%a5%e6%95%b0%e6%8d%ae%e5%ba%93%e5%ad%97%e6%ae%b5%e5%88%86%e7%bb%84%e6%98%be%e7%a4%ba%e6%95%b0%e6%8d%ae%e7%9a%84sql%e8%af%ad%e5%8f%a5'
+title: 以数据库字段分组显示数据的sql语句
+wordpress_id: 56
+categories:
+- MYSQL
+- PHP
+tags:
+- Mysql
+- php程序设计
+---
+
+
+
+    
+    <?php
+    $dsn = "mysql:host=localhost;dbname=group";
+    $db = new PDO($dsn, 'root', '');
+    $db->exec('set names utf8');
+    
+    $sql = "select conf_id from  `group` group by conf_id";
+    //$pre = $db->prepare($sql);
+    //$result_arr = array();
+    $pre = $db->query($sql);
+    $result_arr = $pre->fetchAll(PDO::FETCH_ASSOC);
+    
+    //print_r ($result_arr);
+    foreach ($result_arr as $v)
+    {
+    	echo $v[conf_id]."<br>";
+    	$vv = $v[conf_id];
+    	$re = array();
+    	$sql1 = "select * from `group` where conf_id = '$v[conf_id]' order by time";
+    	$sql2 = "select * from `group` where conf_id = '$v[conf_id]' order by time DESC";
+    	$rs1 = $db->query($sql1);
+    	$rs2 = $db->query($sql2);
+    	$re1[$vv] = $rs1->fetchAll(PDO::FETCH_ASSOC);
+    	$re2[$vv] = $rs2->fetchAll(PDO::FETCH_ASSOC);
+    	print_r($re1[$vv][0]);
+    	print_r($re2[$vv][0]);
+    }
+
+  
+
+有需求自己写的，我知道一定有更简单的方法。。。
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+

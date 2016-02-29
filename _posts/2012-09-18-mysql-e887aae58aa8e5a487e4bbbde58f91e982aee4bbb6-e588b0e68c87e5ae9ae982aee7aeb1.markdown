@@ -1,0 +1,347 @@
+---
+author: admin
+comments: true
+date: 2012-09-18 10:49:00+00:00
+layout: post
+slug: mysql-%e8%87%aa%e5%8a%a8%e5%a4%87%e4%bb%bd%e5%8f%91%e9%82%ae%e4%bb%b6-%e5%88%b0%e6%8c%87%e5%ae%9a%e9%82%ae%e7%ae%b1
+title: mysql 自动备份发邮件 到指定邮箱
+wordpress_id: 70
+categories:
+- MYSQL
+tags:
+- Mysql
+---
+
+
+
+
+
+首先 编写 导出的 命令
+
+
+
+
+使用了
+
+
+
+
+mysqladmin ping
+
+
+
+
+mysqldump
+
+
+
+
+
+
+
+然后是 添加附件到邮件中发送
+
+
+
+
+使用了对应的com
+
+
+
+
+
+
+
+最后 暂停 看情况
+
+
+
+
+
+
+
+参考：
+
+
+
+
+[http://hi.baidu.com/zd8695/blog/item/ae50b21c4b398a8087d6b6ac.html](http://hi.baidu.com/zd8695/blog/item/ae50b21c4b398a8087d6b6ac.html)
+
+
+
+
+见程序：
+
+
+
+
+@echo on  
+
+:: mysql 目录 以及对应的盘符 和当前bat文件所在的盘符 和路径  
+
+set MYSQL_HOME=H:wampbinmysqlmysql5.5.16bin  
+
+set MYSQL_DIR=H:  
+
+set EXECUTE_DIR=C:  
+
+set EXECUTE_HOME=C:UsersfartpigDesktop
+
+
+
+
+:: 邮箱 账号 密码  
+
+set EMAIL_ACCOUNT=******@126.com  
+
+set EMAIL_PASS=******
+
+
+
+
+  
+
+echo start
+
+
+
+
+
+
+
+
+
+
+echo save path
+
+
+
+
+echo %cd%  
+
+set CURRENT_DIR=%cd%
+
+
+
+
+echo export sql  
+
+%MYSQL_DIR%  
+
+cd %MYSQL_HOME%
+
+
+
+
+echo try mysql  
+
+mysqladmin ping
+
+
+
+
+mysqldump -u root -proot plane >plane.sql
+
+
+
+
+  
+
+echo send mail  
+
+%EXECUTE_DIR%  
+
+cd %CURRENT_DIR%  
+
+start %EXECUTE_HOME%mail.vbs %EMAIL_ACCOUNT% %EMAIL_PASS% %MYSQL_HOME%/plane.sql
+
+
+
+
+echo send success  
+
+pause
+
+
+
+
+
+
+
+相应的 对应的 mail.vbs
+
+
+
+
+
+
+
+function Send_mail(You_Account,You_Password,Send_Email,Send_Email2,Send_Topic,Send_Body,Send_Attachment)   
+
+'code by NetPatch Changed by ZD8695  
+
+'VBS发送邮件参数说明   
+
+'You_Account：你的邮件帐号   
+
+'You_Password:你的邮件密码   
+
+'Send_Email:   
+
+'主要邮件地址   
+
+'Send_Email2: 备用邮件地址   
+
+'Send_Topic:   
+
+'邮件主题   
+
+'Send_Body:   
+
+'邮件内容   
+
+'Send_Attachment:邮件附件   
+
+You_ID=Split(You_Account, "@", -1, vbTextCompare)   
+
+'帐号和服务器分离   
+
+MS_Space = "http://schemas.microsoft.com/cdo/configuration/"   
+
+'这个是必须要的，不过可以放心的事，不会通过微软发送邮件   
+
+Set Email = CreateObject("CDO.Message")   
+
+Email.From = You_Account   
+
+'这个一定要和发送邮件的帐号一样   
+
+Email.To = Send_Email   
+
+'主要邮件地址   
+
+If Send_Email2 <> "" Then   
+
+Email.CC = Send_Email2   
+
+'备用邮件地址   
+
+End If   
+
+Email.Subject = Send_Topic   
+
+'邮件主题   
+
+Email.Textbody = Send_Body   
+
+'邮件内容   
+
+If Send_Attachment <> "" Then   
+
+Email.AddAttachment Send_Attachment   
+
+'邮件附件   
+
+End If   
+
+With Email.Configuration.Fields   
+
+.Item(MS_Space&"sendusing") = 2   
+
+'发信端口   
+
+.Item(MS_Space&"smtpserver") = "smtp."&You_ID(1)   
+
+'SMTP服务器地址   
+
+.Item(MS_Space&"smtpserverport") = 25   
+
+'SMTP服务器端口   
+
+.Item(MS_Space&"smtpauthenticate") = 1   
+
+'cdobasec   
+
+.Item(MS_Space&"sendusername") = You_ID(0)   
+
+'你的邮件帐号   
+
+.Item(MS_Space&"sendpassword") = You_Password   
+
+'你的邮件密码   
+
+.Update   
+
+End With   
+
+Email.Send   
+
+'发送邮件   
+
+Set Email=Nothing   
+
+'关闭组件   
+
+Send_Mail=True   
+
+'如果没有任何错误信息，则表示发送成功,否则发送失败   
+
+If Err Then   
+
+Err.Clear   
+
+Send_Mail=False   
+
+End If   
+
+End Function
+
+
+
+
+  
+
+If Send_Mail(wscript.arguments(0), wscript.arguments(1),wscript.arguments(0),"","数据库plane备份","看附件",wscript.arguments(2))=True Then   
+
+Wscript.Echo "发送成功"   
+
+Else   
+
+Wscript.Echo "发送失败"   
+
+End If
+
+
+
+
+
+
+
+
+
+
+
+
+
+注： 使用可以修改相应的 注释中的内容 其中包括了四个参数 和两个 邮箱相关的
+
+
+
+
+bat的目录和盘符
+
+
+
+
+mail.vbs的目录和盘符
+
+
+
+
+
+
+
+以及最后你的发邮箱的 地址和密码 ， 也可以修改代码 发送到其他邮箱 注意 126的已经好用，不排除一些其他邮箱。。
+
+
+

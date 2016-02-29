@@ -1,0 +1,323 @@
+---
+author: admin
+comments: true
+date: 2012-12-28 06:24:00+00:00
+layout: post
+slug: mysql%e5%bc%80%e5%90%af%e6%85%a2%e6%9f%a5%e8%af%a2%e6%96%b9%e6%b3%95
+title: mysql开启慢查询方法
+wordpress_id: 144
+categories:
+- MYSQL
+tags:
+- Mysql
+---
+
+
+
+
+**1，配置开启  
+
+**
+
+
+
+
+Linux:
+
+
+
+
+在mysql配置文件my.cnf中增加
+
+
+
+
+log-slow-queries=/var/lib/mysql/slowquery.log (指定日志文件存放位置，可以为空，系统会给一个缺省的文件host_name-slow.log)  
+
+long_query_time=2 (记录超过的时间，默认为10s)  
+
+log-queries-not-using-indexes (log下来没有使用索引的query,可以根据情况决定是否开启)  
+
+log-long-format (如果设置了，所有没有使用索引的查询也将被记录)
+
+
+
+
+Windows:
+
+
+
+
+在my.ini的[mysqld]添加如下语句：  
+
+log-slow-queries = E:webmysqllogmysqlslowquery.log  
+
+long_query_time = 2(其他参数如上)
+
+
+
+
+
+
+
+**2,查看方式**
+
+
+
+
+Linux:
+
+
+
+
+使用mysql自带命令mysqldumpslow查看
+
+
+
+
+常用命令  
+
+-s ORDER what to sort by (t, at, l, al, r, ar etc), 'at’ is default  
+
+-t NUM just show the top n queries  
+
+-g PATTERN grep: only consider stmts that include this string
+
+
+
+
+eg:  
+
+s，是order的顺序，说明写的不够详细，俺用下来，包括看了代码，主要有 c,t,l,r和ac,at,al,ar，分别是按照query次数，时间，lock的时间和返回的记录数来排序，前面加了a的时倒序 -t，是top n的意思，即为返回前面多少条的数据 -g，后边可以写一个正则匹配模式，大小写不敏感的
+
+
+
+
+mysqldumpslow -s c -t 20 host-slow.log  
+
+mysqldumpslow -s r -t 20 host-slow.log  
+
+上述命令可以看出访问次数最多的20个sql语句和返回记录集最多的20个sql。
+
+
+
+
+mysqldumpslow -t 10 -s t -g “left join” host-slow.log这个是按照时间返回前10条里面含有左连接的sql语句。
+
+
+
+
+
+
+
+mysql慢查询日志对于跟踪有问题的查询非常有用,可以分析出当前程序里有很耗费资源的sql语句,那如何打开mysql的慢查询日志记录呢?  
+
+其实打开mysql的慢查询日志很简单,只需要在mysql的配置文件里(windows系统是my.ini,linux系统是my.cnf)的[mysqld]下面加上如下代码：
+
+
+
+
+log-slow-queries=/var/lib/mysql/slowquery.log  
+
+long_query_time=2
+
+
+
+
+  
+
+注:  
+
+log-slow-queries 设置把写在那里，为空的时候，系统会给慢查询日志赋予主机名，并被附加slow.log. /var/lib/mysql/slowquery.log为日志存放的文件的位置,一般这个目录要有mysql的运行帐号的可写权限,一般都将这个目录设置为mysql的数据存放目录
+
+
+
+
+long_query_time=2中的2表示查询超过两秒才记录.
+
+
+
+
+如果设置了参数log-long-format，那么所有没有使用索引的查询也将被记录。在文件my.cnf或my.ini中加入下面这一行可以记录这些查询
+
+
+
+
+这是一个有用的日志。它对于性能的影响不大（假设所有查询都很快），并且强调了那些最需要注意的查询（丢失了索引或索引没有得到最佳应用）
+
+
+
+
+# Time: 070927 8:08:52
+
+
+
+
+# User@Host: root[root] @ [192.168.0.20]
+
+
+
+
+# Query_time: 372 Lock_time: 136 Rows_sent: 152 Rows_examined: 263630  
+
+select id, name from manager where id in (66,10135);  
+
+这是慢查询日志中的一条，用了372秒，锁了136秒，返回152行，一共查了263630行
+
+
+
+
+如果日志内容很多，用眼睛一条一条去看会累死，mysql自带了分析的工具，使用方法如下：  
+
+命令行下，进入mysql/bin目录，输入mysqldumpslow –help或--help可以看到这个工具的参数，主要有  
+
+Usage: mysqldumpslow [ OPTS... ] [ LOGS... ]
+
+
+
+
+Parse and summarize the MySQL slow query log. Options are
+
+
+
+
+--verbose verbose
+
+
+
+
+--debug debug
+
+
+
+
+--help write this text to standard output
+
+
+
+
+-v verbose
+
+
+
+
+-d debug
+
+
+
+
+-s ORDER what to sort by (t, at, l, al, r, ar etc), 'at' is default
+
+
+
+
+-r reverse the sort order (largest last instead of first)
+
+
+
+
+-t NUM just show the top n queries
+
+
+
+
+-a don't abstract all numbers to N and strings to 'S'
+
+
+
+
+-n NUM abstract numbers with at least n digits within names
+
+
+
+
+-g PATTERN grep: only consider stmts that include this string
+
+
+
+
+-h HOSTNAME hostname of db server for *-slow.log filename (can be wildcard),
+
+
+
+
+default is '*', i.e. match all
+
+
+
+
+-i NAME name of server instance (if using mysql.server startup scrīpt)
+
+
+
+
+-l don't subtract lock time from total time  
+
+  
+
+-s，是order的顺序，说明写的不够详细，俺用下来，包括看了代码，主要有  
+
+c,t,l,r和ac,at,al,ar，分别是按照query次数，时间，lock的时间和返回的记录数来排序，前面加了a的时倒叙  
+
+-t，是top n的意思，即为返回前面多少条的数据  
+
+-g，后边可以写一个正则匹配模式，大小写不敏感的  
+
+  
+
+mysqldumpslow -s c -t 20 host-slow.log   
+
+mysqldumpslow -s r -t 20 host-slow.log   
+
+  
+
+上述命令可以看出访问次数最多的20个sql语句和返回记录集最多的20个sql。  
+
+mysqldumpslow -t 10 -s t -g “left join” host-slow.log   
+
+这个是按照时间返回前10条里面含有左连接的sql语句。
+
+
+
+
+  
+
+
+
+
+
+
+Windows:
+
+
+
+
+当你是第一次开启mysql的慢查询，会在你指定的目录下创建这个记录文件，本文就是mysqlslowquery.log，这个文件的内容大致如下(第一次开启MYSQL慢查询的情况下)  
+
+E:webmysqlbinmysqld, Version: 5.4.3-beta-community-log (MySQL Community Server (GPL)). started with:  
+
+TCP Port: 3306, Named Pipe: (null)  
+
+Time Id Command Argument
+
+
+
+
+可以通过如下的命令来查看慢查询的记录数：
+
+
+mysql> show global status like ‘%slow%’;  
+
++———————+——-+  
+
+| Variable_name | Value |  
+
++———————+——-+  
+
+| Slow_launch_threads | 0 |  
+
+| Slow_queries | 0 |  
+
++———————+——-+
+
+

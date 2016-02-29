@@ -1,0 +1,17 @@
+---
+author: admin
+comments: true
+date: 2013-08-07 01:54:44+00:00
+layout: post
+slug: 64%e4%bd%8dwin7%e4%bd%bf%e7%94%a8ghost%e5%81%9a%e7%b3%bb%e7%bb%9f%e9%87%8d%e5%90%af%e5%90%8e%e4%b8%8d%e5%87%ba%e7%8e%b0ghost%e8%8f%9c%e5%8d%95%e8%a7%a3%e5%86%b3
+title: 64位win7使用ghost做系统重启后不出现ghost菜单解决
+wordpress_id: 207
+categories:
+- 实用软件技巧
+tags:
+- 实用软件技巧
+---
+
+人都说做系统最好使用光盘，或者使用u盘都可以，而我为了图方便，每次都是直接从网上下载一个iso的镜像使用虚拟光驱打开autorun直接坐等大功告成，最近用了64位的win7，电脑慢了，又要做系统，下载后直接使用虚拟光驱打开，但悲剧的是，重启后并没有一键还原那样的ghost菜单，而是直接进入以前的win7了。
+
+经过不断尝试，最后的解决办法是，下载一个兼容性更强的onekey一键还原，不要用包里面的那个硬盘安装了，估计那个对32位有更好的支持。

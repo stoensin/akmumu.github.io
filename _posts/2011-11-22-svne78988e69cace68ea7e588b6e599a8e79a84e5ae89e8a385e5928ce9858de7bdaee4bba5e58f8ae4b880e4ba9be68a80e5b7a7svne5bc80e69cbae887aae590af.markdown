@@ -1,0 +1,133 @@
+---
+author: admin
+comments: true
+date: 2011-11-22 08:12:00+00:00
+layout: post
+slug: svn%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e5%99%a8%e7%9a%84%e5%ae%89%e8%a3%85%e5%92%8c%e9%85%8d%e7%bd%ae%e4%bb%a5%e5%8f%8a%e4%b8%80%e4%ba%9b%e6%8a%80%e5%b7%a7svn%e5%bc%80%e6%9c%ba%e8%87%aa%e5%90%af
+title: SVN版本控制器的安装和配置以及一些技巧svn开机自启动
+wordpress_id: 22
+categories:
+- PHP
+- 实用软件技巧
+tags:
+- php程序设计
+- 实用软件技巧
+---
+
+
+
+
+1，软件下载  
+
+下载Subversion服务器程序。  
+
+  
+
+到官方网站的下载二进制安装文件，来到二进制包下载部分，找到 Windows NT, 2000, XP and 2003部分，然后选择" this directory "，这样我们可以看到许多下载的内容，下载Subversion的Windows客户端TortoiseSVN。  
+
+  
+
+TortoiseSVN是扩展Windows Shell的一套工具，可以看作Windows资源管理器的插件，安装之后Windows就可以识别Subversion的工作目录。  
+
+官方网站是TortoiseSVN ，下载方式和前面的svn服务器类似，在Download页面的我们可以选择下载的版本。
+
+
+
+
+2，服务器和客户端安装  
+
+  
+
+服务器安装，直接运行svn-1.4.0-setup.exe ，根据提示安装即可，这样我们就有了一套服务器可以运行的环境。  
+
+  
+
+安装TortoiseSVN，同样直接运行TortoiseSVN-1.4.0.7501-win32-svn-1.4.0.msi按照提示安装即可，不过最后完成后会提示是否重启，其实重启只是使svn工作拷贝在windows中的特殊样式生效，与所有的实际功能无关，这里为了立刻看到好的效果，还是重新启动机器。若是不习惯英文还可以选择安装客户端语言汉化包“LanguagePack-1.4.5.10425-win32-zh_CN.exe”(也需下载)，安装后默认还是英文，需要在客户端工具中设置一下。  
+
+  
+
+此外，在编译器中也可以使用SVN插件来代替客户端工具，使开发起来更加方便。详细介绍请见Eclipse中SVN版本控制插件的安装和使用
+
+
+
+
+3，建立版本库（Repository）  
+
+  
+
+运行Subversion服务器需要首先要建立一个版本库（Repository），可以看作服务器上存放数据的数据库，在安装了Subversion服务器之后，可以直接运行，如：  
+
+  
+
+svnadmin create E:svndemorepository  
+
+  
+
+就会在目录E:svndemorepository下创建一个版本库。  
+
+  
+
+我们也可以使用TortoiseSVN图形化的完成这一步：
+
+
+
+
+任意建立一个文件夹，比如在d盘建立svn_server  
+
+在目录D:svn_server下"右键->TortoiseSVN->Create Repository here...“， 然后可以选择版本库模式， 这里使用默认即可， 然后就创建了一系列目录和文件。
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/0_1321949415KvC2.gif)
+
+
+
+
+5，运行独立服务器  
+
+  
+
+在任意目录下运行：  
+
+svnserve -d -r D:svn_server我们的服务器程序就已经启动了。注意不要关闭命令行窗口，关闭窗口也会把svnserve停止。为了方便，可以把svnserve作为服务，在2000下控制台窗口可以运行（xp也行），创建服务命令：  
+
+  
+
+
+
+
+
+
+sc create svnserver binPath= "svnserve --service -r D:svn_server" DisplayName= "subversion"
+
+
+
+
+
+depend= Tcpip start= auto
+
+
+
+
+如果加错了可以用：sc delete "subversion" 命令删除服务。  
+
+加好后可以在控制面板的服务选项中找到它，把它启动类型设为手动，然后启动一下看看有没有问题。  
+
+  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/0_1321949604uWss.gif)![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/0_1321949622z7I0.gif)
+
+
+
+
+这样就能自启动了啊，大家试试，我是成功了  
+
+  
+
+  
+
+
+
+
+

@@ -1,0 +1,23 @@
+---
+author: admin
+comments: true
+date: 2014-02-12 03:37:21+00:00
+layout: post
+slug: '%e6%81%a2%e5%a4%8dchrome%e6%89%93%e5%bc%80%e6%96%b0%e7%9a%84%e6%a0%87%e7%ad%be%e9%a1%b5%e7%9a%84%e6%96%b9%e6%b3%95'
+title: 恢复Chrome打开新的标签页的方法
+wordpress_id: 252
+categories:
+- 实用软件技巧
+---
+
+不知道什么版本开始Chrome的打开新的标签页变成这样了：
+
+
+
+[![1231](http://css88.b0.upaiyun.com/wp_res/2013/10/1231.png)](http://css88.b0.upaiyun.com/wp_res/2013/10/1231.png)
+
+在新标签页中加入了硕大的搜索框，并且在输入搜索内容的瞬间，光标居然会跳转到地址栏，好奇葩。原来安装的应用居然到收藏栏了，增加了个应用的按钮，非常不习惯；
+
+恢复Chrome打开新的标签页，可以试试地址栏敲入 about:flags ，打开 about:flags 页面后，ctrl+F搜索 **Instant Extended API** 能快速定位，只需将下面这个更改为**已停用**，并重启Chrome浏览器，哇，原来的界面了！
+
+[![QQ截图20140212113433](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/02/QQ截图20140212113433.png)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/02/QQ截图20140212113433.png)

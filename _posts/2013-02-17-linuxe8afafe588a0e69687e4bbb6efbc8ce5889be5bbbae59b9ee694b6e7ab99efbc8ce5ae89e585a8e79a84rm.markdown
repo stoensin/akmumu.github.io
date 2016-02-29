@@ -1,0 +1,74 @@
+---
+author: admin
+comments: true
+date: 2013-02-17 05:38:00+00:00
+layout: post
+slug: linux%e8%af%af%e5%88%a0%e6%96%87%e4%bb%b6%ef%bc%8c%e5%88%9b%e5%bb%ba%e5%9b%9e%e6%94%b6%e7%ab%99%ef%bc%8c%e5%ae%89%e5%85%a8%e7%9a%84rm
+title: linux误删文件，创建回收站，安全的rm
+wordpress_id: 161
+categories:
+- LINUX
+tags:
+- linux
+---
+
+
+一个不小心rm掉文件了吧？ 后悔莫及了吧！ 把这段代码加入你的home目录的.bashrc或者.zshrc就可以了
+
+
+
+
+  1. 
+### by 3haku.net
+  2. 
+function rm() {
+  3. 
+# garbage collect
+  4. 
+now=$(date +%s)
+  5. 
+for s in $(ls --indicator-style=none $HOME/.trash/) ;do
+  6. 
+dir_name=${s//_/-}
+  7. 
+dir_time=$(date +%s -d $dir_name)
+  8. 
+# if big than one month then delete
+  9. 
+if [[ 0 -eq dir_time || $(($now - $dir_time)) -gt 2592000 ]] ;then
+  10. 
+echo "Trash " $dir_name " has Gone "
+  11. 
+/bin/rm $s -rf
+  12. 
+fi
+  13. 
+done
+  14. 
+
+  15. 
+# add new folder
+  16. 
+prefix=$(date +%Y_%m_%d)
+  17. 
+hour=$(date +%H)
+  18. 
+mkdir -p $HOME/.trash/$prefix/$hour
+  19. 
+if [[ -z $1 ]] ;then
+  20. 
+echo 'Missing Args'
+  21. 
+return
+  22. 
+fi
+  23. 
+echo "Trashing "$1
+  24. 
+mv $1 $HOME/.trash/$prefix/$hour
+  25. 
+}
+
+工作原理： 在你的home目录会创建一个.trash文件夹 里面会按照删除时间 年-月-日/小时/ 进行归档已删除的文件 然后会删除一个月以前的文件夹 就是这样！
+
+

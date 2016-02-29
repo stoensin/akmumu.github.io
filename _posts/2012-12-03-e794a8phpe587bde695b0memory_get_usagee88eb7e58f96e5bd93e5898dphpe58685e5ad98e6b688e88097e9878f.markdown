@@ -1,0 +1,154 @@
+---
+author: admin
+comments: true
+date: 2012-12-03 10:48:00+00:00
+layout: post
+slug: '%e7%94%a8php%e5%87%bd%e6%95%b0memory_get_usage%e8%8e%b7%e5%8f%96%e5%bd%93%e5%89%8dphp%e5%86%85%e5%ad%98%e6%b6%88%e8%80%97%e9%87%8f'
+title: 用PHP函数memory_get_usage获取当前PHP内存消耗量
+wordpress_id: 127
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+用PHP函数memory_get_usage获取当前PHP内存消耗量：
+  
+
+PHP性能优化过程中避免不了需要获取PHP内存消耗，使用memory_get_usage()函数可获取当前的内存消耗情况，函数使用简单，下面介绍下memory_get_usage()函数的用法与实例。
+  
+
+  
+
+一，函数原型
+  
+
+int memory_get_usage ([ bool $real_usage = false ] )
+  
+
+  
+
+二，版本兼容
+  
+
+PHP 4 >= 4.3.2, PHP 5
+  
+
+  
+
+三，基础用法与实例
+  
+
+1，获取当前的内存消耗量
+  
+
+<?php
+  
+
+echo memory_get_usage();
+  
+
+$var = str_repeat("phpzixue.cn", 10000);
+  
+
+echo memory_get_usage();
+  
+
+unset($var);
+  
+
+echo memory_get_usage();
+  
+
+?>
+  
+
+分别输出：62328 122504 62416
+  
+
+说明：memory_get_usage()函数输出的数值为bytes单位
+  
+
+  
+
+2，格式化memory_get_usage()输出
+  
+
+<?php
+  
+
+function convert($size){
+  
+
+$unit=array('b','kb','mb','gb','tb','pb');
+  
+
+return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
+  
+
+}
+  
+
+echo convert(memory_get_usage(true));
+  
+
+?>
+  
+
+输出：256 kb
+  
+
+  
+
+3，自定义函数获取数组或变量值大小
+  
+
+<?php
+  
+
+function array_size($arr) {
+  
+
+ob_start();
+  
+
+print_r($arr);
+  
+
+$mem = ob_get_contents();
+  
+
+ob_end_clean();
+  
+
+$mem = preg_replace("/n +/", "", $mem);
+  
+
+$mem = strlen($mem);
+  
+
+return $mem;
+  
+
+}
+  
+
+$memEstimate = array_size($GLOBALS);
+  
+
+?>
+  
+
+可以看出，要想减少内存的占用，可以使用 PHP unset() 函数把不再需要使用的变量删除。类似的还有：PHP mysql_free_result() 函数，可以清空不再需要的查询数据库得到的结果集，这样也能得到更多可用内存。
+  
+
+  
+
+PHP memory_get_usage()还可以有个参数，$real_usage，其值为布尔值。默认为 FALSE，表示得到的内存使用量不包括该函数（PHP 内存管理器）占用的内存；当设置为 TRUE 时，得到的内存为包括该函数（PHP 内存管理器）占用的内存。
+  
+
+  
+
+所以在实际编程中，可以用PHP memory_get_usage()比较各个方法占用内存的高低，来选择使用哪种占用内存小的方法。
+

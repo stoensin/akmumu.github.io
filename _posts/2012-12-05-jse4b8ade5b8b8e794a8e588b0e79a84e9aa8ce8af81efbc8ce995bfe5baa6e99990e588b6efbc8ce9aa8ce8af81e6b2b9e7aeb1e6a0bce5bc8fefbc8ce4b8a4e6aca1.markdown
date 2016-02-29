@@ -1,0 +1,255 @@
+---
+author: admin
+comments: true
+date: 2012-12-05 10:44:00+00:00
+layout: post
+slug: js%e4%b8%ad%e5%b8%b8%e7%94%a8%e5%88%b0%e7%9a%84%e9%aa%8c%e8%af%81%ef%bc%8c%e9%95%bf%e5%ba%a6%e9%99%90%e5%88%b6%ef%bc%8c%e9%aa%8c%e8%af%81%e6%b2%b9%e7%ae%b1%e6%a0%bc%e5%bc%8f%ef%bc%8c%e4%b8%a4%e6%ac%a1
+title: js中常用到的验证，长度限制，验证油箱格式，两次输入密码是否相同
+wordpress_id: 130
+categories:
+- JS
+tags:
+- JS
+---
+
+
+
+. 长度限制  
+
+<script>  
+
+function test()  
+
+{  
+
+if(document.a.b.value.length>50)  
+
+{  
+
+alert("不能超过50个字符！");  
+
+document.a.b.focus();  
+
+return false;  
+
+}  
+
+}  
+
+</script>  
+
+<form name=a onsubmit="return test()">  
+
+<textarea name="b" cols="40" wrap="VIRTUAL" rows="6"></textarea>  
+
+<input type="submit" name="Submit" value="check">  
+
+</form>  
+
+2. 只能是汉字  
+
+<input onkeyup="value="/oblog/value.replace(/[^u4E00-u9FA5]/g,'')">  
+
+3." 只能是英文  
+
+<script language=javascript>  
+
+function onlyEng()  
+
+{  
+
+if(!(event.keyCode>=65&&event.keyCode<=90))  
+
+event.returnvalue=false;  
+
+}  
+
+</script>  
+
+<input onkeydown="onlyEng();">  
+
+4. 只能是数字  
+
+<script language=javascript>  
+
+function onlyNum()  
+
+{  
+
+if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))  
+
+//考虑小键盘上的数字键  
+
+event.returnvalue=false;  
+
+}  
+
+</script>  
+
+<input onkeydown="onlyNum();">  
+
+5. 只能是英文字符和数字  
+
+<input onkeyup="value="/oblog/value.replace(/[W]/g,"'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^d]/g,''))">  
+
+6. 验证油箱格式  
+
+<SCRIPT LANGUAGE=javascript RUNAT=Server>  
+
+function isEmail(strEmail) {  
+
+if (strEmail.search(/^w+((-w+)|(.w+))*@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+)*.[A-Za-z0-9]+$/) != -1)  
+
+return true;  
+
+else  
+
+alert("oh");  
+
+}  
+
+</SCRIPT>  
+
+<input type=text onblur=isEmail(this.value)>  
+
+7. 屏蔽关键字(这里屏蔽***和****)  
+
+<script language="javascript1.2">  
+
+function test() {  
+
+if((a.b.value.indexOf ("***") == 0)||(a.b.value.indexOf ("****") == 0)){  
+
+alert(":)");  
+
+a.b.focus();  
+
+return false;}  
+
+}  
+
+</script>  
+
+<form name=a onsubmit="return test()">  
+
+<input type=text name=b>  
+
+<input type="submit" name="Submit" value="check">  
+
+</form>  
+
+8. 两次输入密码是否相同  
+
+<FORM METHOD=POST ACTION="">  
+
+<input type="password" id="input1">  
+
+<input type="password" id="input2">  
+
+<input type="button" value="test" onclick="check()">  
+
+</FORM>  
+
+<script>  
+
+function check()  
+
+{  
+
+with(document.all){  
+
+if(input1.value!=input2.value)  
+
+{  
+
+alert("false")  
+
+input1.value = "";  
+
+input2.value = "";  
+
+}  
+
+else document.forms[0].submit();  
+
+}  
+
+}  
+
+</script>  
+
+路政管理系统应用：  
+
+//非空验证  
+
+function checkoname(){  
+
+var casename= document.all['caseInfo.casename'].value;  
+
+if(casename==""){  
+
+alert("案由不能为空！请输入执法机构");  
+
+casename.focus();  
+
+return false;  
+
+}  
+
+return true;  
+
+}  
+
+//机构简称非空验证  
+
+function checkcpunishbase(){  
+
+var cpunishbase=document.all['caseInfo.cpunishbase'].value;  
+
+  
+
+if(cpunishbase==""){  
+
+  
+
+alert("处罚依据不能为空！请输入机构简称");  
+
+  
+
+cpunishbase.focus();  
+
+  
+
+return false;  
+
+  
+
+}  
+
+  
+
+return true;  
+
+  
+
+}  
+
+  
+
+  
+
+  
+
+  
+
+$("#password_login").bind("keydown", function (e) {   
+
+if (e.which == 13) { // 获取Enter键值   
+
+$("#code_login").focus();  
+
+}   
+
+});
+
+

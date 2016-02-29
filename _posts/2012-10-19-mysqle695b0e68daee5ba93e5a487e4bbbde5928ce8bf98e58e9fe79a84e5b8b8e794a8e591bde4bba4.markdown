@@ -1,0 +1,82 @@
+---
+author: admin
+comments: true
+date: 2012-10-19 08:52:00+00:00
+layout: post
+slug: mysql%e6%95%b0%e6%8d%ae%e5%ba%93%e5%a4%87%e4%bb%bd%e5%92%8c%e8%bf%98%e5%8e%9f%e7%9a%84%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4
+title: mysql数据库备份和还原的常用命令
+wordpress_id: 98
+categories:
+- LINUX
+- MYSQL
+tags:
+- linux
+- Mysql
+---
+
+
+
+
+mysql查看表结构命令：
+
+
+
+
+1.show columns from tablename　| desc tablename  |  describe  tablename　//查看表字段
+
+
+
+
+2.show create table tablename　　//各个字段的设置信息
+
+
+
+
+mysql修改索引命令：
+
+
+
+
+1.alter table tablename add index (fields1,fields2....);
+
+
+
+
+2.alter table tablename drop index (fileds1,fields2....);
+
+
+
+
+============================================================
+
+
+
+
+1.show processlist; //查看当前正在进行的进程，对于有锁表等情况的排查很有用处。  
+
+2.show open tables;//显示当前已经被打开的表列表  
+
+3.mysqldump -hhostname -uusername -ppassword databasename > backupfile.sql//备份mysql数据库命令  
+
+4.mysqldump --add-drop-table -hhostsname -uusername -ppassword databasename > backupfile.sql//备份mysql数据库为带删除表的格式，能够让该备份覆盖已有数据库而不需要手动删除原有数据库  
+
+5.mysqldump -hhostname -uusername -ppassword databasename | gzip > backupfile.sql.gz//直接将mysql数据库压缩备份  
+
+6.mysqldump -hhostname -uusername -ppassword database1 database2 database3 > multifile.sql//同时备份多个mysql数据库  
+
+7.mysqldump -hhostname -uusername -ppassword database1 tablename1 tablename2 tablename3 > multifile.sql//同时备份mysql数据库某个（些）表  
+
+8.mysqldump --no-data --databases -hhostname -uusername -ppassword databasename1 databasename2 >struct2.sql//仅仅备份数据库的结构  
+
+9.mysqldump --all-databases -hhostname -uusername -ppassword > backup.sql//备份服务器上的所有数据  
+
+================================================  
+
+1.mysql -hhostname -uusername -ppassword databasename < backup.sql//还原mysql数据库的命令  
+
+2.gunzip < backup.sql | mysql -hhostname -uusername -ppassword databasename//还原压缩的mysql数据库  
+
+3.mysqldump -hhostname -uusername -ppassword databasename | mysql --host=*.*.*.* -C databasename;//将数据库转移到新的服务器
+
+
+

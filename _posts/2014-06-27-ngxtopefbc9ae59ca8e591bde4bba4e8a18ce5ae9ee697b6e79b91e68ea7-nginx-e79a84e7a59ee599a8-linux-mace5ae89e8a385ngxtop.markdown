@@ -1,0 +1,721 @@
+---
+author: admin
+comments: true
+date: 2014-06-27 02:27:20+00:00
+layout: post
+slug: ngxtop%ef%bc%9a%e5%9c%a8%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%ae%9e%e6%97%b6%e7%9b%91%e6%8e%a7-nginx-%e7%9a%84%e7%a5%9e%e5%99%a8-linux-mac%e5%ae%89%e8%a3%85ngxtop
+title: ngxtop：在命令行实时监控 Nginx 的神器 linux mac安装ngxtop
+wordpress_id: 287
+categories:
+- LINUX
+- mac
+- nginx
+---
+
+Nginx网站服务器在生产环境中[运行](http://xmodulo.com/2014/01/compile-install-nginx-web-server.html)的时候需要进行实时监控。实际上，诸如[Nagios](http://xmodulo.com/2013/12/monitor-common-services-nagios.html), Zabbix, Munin 的网络监控软件是支持 Nginx 监控的。
+
+如果你不需要以上软件提供的综合性报告或者长期数据统计功能，只是需要一种快速简便的办法去监控 Nginx 服务器的请求的话，我建议你采用一个叫 [ngxtop](https://github.com/lebinh/ngxtop) 的命令行工具。
+
+你马上就会发现 ngxtop 从界面和名称都借鉴了著名的top命令。ngxtop 是通过分析 Nginx 或者其他的日志文件，使用类似 top 命令的界面实时展示出来的。你可以说你知道的其他高端监控工具，但是在简洁这方面 ngxtop 无疑是最好的。简单就意味着不可替代。
+
+本指南中，我将介绍如何使用 ngxtop 实时监控 Nginx 网站服务器。tail -f  log思想
+
+
+### Linux 上安装 ngxtop
+
+
+首先在 Linux 系统中安装依赖库[pip](http://ask.xmodulo.com/install-pip-linux.html)（LCTT译注：ngxtop是用python编写的）。
+
+然后使用如下命令安装 ngxtop。
+
+
+
+
+
+
+
+
+
+
+
+
+<table >
+<tbody >
+<tr >
+
+<td data-settings="show" >
+
+
+
+
+
+1
+
+
+
+
+</td>
+
+<td >
+
+
+
+
+
+$ sudo pip install ngxtop
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+安装过程中可能要安装下面的
+
+安装setuptools
+
+wget https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg --no-check-certificate
+
+chmod +x setuptools-0.6c11-py2.7.egg
+
+sh setuptools-0.6c11-py2.7.egg
+
+安装pip
+
+https://pypi.python.org/packages/source/p/pip/pip-1.5.4.tar.gz#md5=834b2904f92d46aaa333267fb1c922bb
+
+tar xzvf pip-1.5.4.tar.gz
+
+cd pip-1.5.4
+
+python setup.py install
+
+安装ngxtop
+
+/usr/local/bin/pip install ngxtop
+
+直接通过ngxtop源码安装
+
+wget https://github.com/lebinh/ngxtop/archive/1c200d51fbae7824a30159714669146d6b214210.zip
+
+unzip ngxtop-1c200d51fbae7824a30159714669146d6b214210.zip
+
+cd ngxtop-1c200d51fbae7824a30159714669146d6b214210
+
+python setup.py install
+
+如果提示没有pyparsing的话，下载安装即可
+
+wget https://pypi.python.org/packages/source/p/pyparsing/pyparsing-2.0.1.zip
+
+unzip pyparsing-2.0.1.zip
+
+cd pyparsing-2.0.1
+
+python setup.py instal
+
+
+## mac下安装
+
+
+1：sudo easy_install pip
+
+Searching for pip
+Reading http://pypi.python.org/simple/pip/
+Best match: pip 1.5.6
+Downloading https://pypi.python.org/packages/source/p/pip/pip-1.5.6.tar.gz#md5=01026f87978932060cc86c1dc527903e
+Processing pip-1.5.6.tar.gz
+Running pip-1.5.6/setup.py -q bdist_egg --dist-dir /tmp/easy_install-b_qfo0/pip-1.5.6/egg-dist-tmp-e4s5RT
+warning: no files found matching 'pip/cacert.pem'
+warning: no files found matching '*.html' under directory 'docs'
+warning: no previously-included files matching '*.rst' found under directory 'docs/_build'
+no previously-included directories found matching 'docs/_build/_sources'
+Adding pip 1.5.6 to easy-install.pth file
+Installing pip script to /usr/local/bin
+Installing pip2.7 script to /usr/local/bin
+Installing pip2 script to /usr/local/bin
+
+Installed /Library/Python/2.7/site-packages/pip-1.5.6-py2.7.egg
+Processing dependencies for pip
+Finished processing dependencies for pip
+
+2：sudo easy_install ngxtop
+
+Searching for ngxtop
+Reading http://pypi.python.org/simple/ngxtop/
+Best match: ngxtop 0.0.2
+Downloading https://pypi.python.org/packages/source/n/ngxtop/ngxtop-0.0.2.tar.gz#md5=9758ff9c8163024a5a9b30df9fb6eedc
+Processing ngxtop-0.0.2.tar.gz
+Running ngxtop-0.0.2/setup.py -q bdist_egg --dist-dir /tmp/easy_install-PM9GWD/ngxtop-0.0.2/egg-dist-tmp-b4YKqT
+zip_safe flag not set; analyzing archive contents...
+Adding ngxtop 0.0.2 to easy-install.pth file
+Installing ngxtop script to /usr/local/bin
+
+Installed /Library/Python/2.7/site-packages/ngxtop-0.0.2-py2.7.egg
+Processing dependencies for ngxtop
+Searching for pyparsing
+Reading http://pypi.python.org/simple/pyparsing/
+Reading http://pyparsing.sourceforge.net/
+Reading http://pyparsing.wikispaces.com/
+Reading http://sourceforge.net/project/showfiles.php?group_id=97203
+Reading http://sourceforge.net/projects/pyparsing
+Best match: pyparsing 2.0.2
+Downloading https://pypi.python.org/packages/source/p/pyparsing/pyparsing-2.0.2.zip#md5=e0e49d73cfb9e79954b4a1c553dfae44
+Processing pyparsing-2.0.2.zip
+Running pyparsing-2.0.2/setup.py -q bdist_egg --dist-dir /tmp/easy_install-0zIQL_/pyparsing-2.0.2/egg-dist-tmp-OBF_vN
+zip_safe flag not set; analyzing archive contents...
+pyparsing: module MAY be using inspect.stack
+Adding pyparsing 2.0.2 to easy-install.pth file
+
+Installed /Library/Python/2.7/site-packages/pyparsing-2.0.2-py2.7.egg
+Searching for tabulate
+Reading http://pypi.python.org/simple/tabulate/
+Best match: tabulate 0.7.2
+Downloading https://pypi.python.org/packages/source/t/tabulate/tabulate-0.7.2.tar.gz#md5=77223d7dc7a650fae3c847e227b02558
+Processing tabulate-0.7.2.tar.gz
+Running tabulate-0.7.2/setup.py -q bdist_egg --dist-dir /tmp/easy_install-vXwPBG/tabulate-0.7.2/egg-dist-tmp-Tycglg
+zip_safe flag not set; analyzing archive contents...
+Adding tabulate 0.7.2 to easy-install.pth file
+
+Installed /Library/Python/2.7/site-packages/tabulate-0.7.2-py2.7.egg
+Searching for docopt
+Reading http://pypi.python.org/simple/docopt/
+Best match: docopt 0.6.2
+Downloading https://pypi.python.org/packages/source/d/docopt/docopt-0.6.2.tar.gz#md5=4bc74561b37fad5d3e7d037f82a4c3b1
+Processing docopt-0.6.2.tar.gz
+Running docopt-0.6.2/setup.py -q bdist_egg --dist-dir /tmp/easy_install-CBRTn7/docopt-0.6.2/egg-dist-tmp-Wrl_Jo
+zip_safe flag not set; analyzing archive contents...
+Adding docopt 0.6.2 to easy-install.pth file
+
+Installed /Library/Python/2.7/site-packages/docopt-0.6.2-py2.7.egg
+Finished processing dependencies for ngxtop
+
+
+
+
+
+
+
+
+
+## ** ngxtop 使用**
+
+
+基本使用方法如下：
+
+
+
+
+
+
+
+
+
+
+
+
+<table >
+<tbody >
+<tr >
+
+<td data-settings="show" >
+
+
+
+
+
+1
+
+
+
+
+2
+
+
+
+
+3
+
+
+
+
+</td>
+
+<td >
+
+
+
+
+
+ngxtop [options]
+
+
+
+
+ngxtop [options] (print|top|avg|sum) <var>
+
+
+
+
+ngxtop info
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+这里是一些通用选项。
+
+
+
+	
+  * **-l **: 指定日志文件的完整路径 (Nginx 或 Apache2)
+
+	
+  * **-f **: 日志格式
+
+	
+  * **–no-follow**: 处理当前已经写入的日志文件，而不是实时处理新添加到日志文件的日志
+
+	
+  * **-t **: 更新频率
+
+	
+  * **-n **: 显示行号
+
+	
+  * **-o **: 排序规则(默认是访问计数)
+
+	
+  * **-a …, –a …**: 添加表达式(一般是聚合表达式如： sum, avg, min, max 等)到输出中。
+
+	
+  * **-v**: 输出详细信息
+
+	
+  * **-i **: 只处理符合规则的记录
+
+
+以下是一些内置变量，他们的含义不言自明。
+
+	
+  * bodybytessend
+
+	
+  * http_referer
+
+	
+  * httpuseragent
+
+	
+  * remote_addr
+
+	
+  * remote_user
+
+	
+  * request
+
+	
+  * status
+
+	
+  * time_local
+
+
+
+
+### **远程实时分析**（这个很实用呦，不用每台server都安装ngxtop）
+
+
+sshpass -f pass.txt ssh 192.168.0.100 tail -f /var/log/nginx/nginx.log|ngxtop
+
+
+### 使用 ngxtop 监控 Nginx
+
+
+ngxtop 默认会从其配置文件 (/etc/nginx/nginx.conf) 中查找 Nginx 日志的地址。所以，监控 Nginx ，运行以下命令即可：
+
+
+
+
+
+
+
+
+
+
+
+
+<table >
+<tbody >
+<tr >
+
+<td data-settings="show" >
+
+
+
+
+
+1
+
+
+
+
+</td>
+
+<td >
+
+
+
+
+
+$ ngxtop
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+这将会列出10个 Nginx 服务，按请求数量排序。
+
+显示前20个最频繁的请求：
+
+
+
+
+
+
+
+
+
+
+
+
+<table >
+<tbody >
+<tr >
+
+<td data-settings="show" >
+
+
+
+
+
+1
+
+
+
+
+</td>
+
+<td >
+
+
+
+
+
+$ ngxtop -n 20
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+[![hhhh](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/hhhh.jpg)](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/hhhh.jpg)
+
+获取Nginx基本信息：
+
+
+
+
+
+
+
+
+
+
+
+
+<table >
+<tbody >
+<tr >
+
+<td data-settings="show" >
+
+
+
+
+
+1
+
+
+
+
+</td>
+
+<td >
+
+
+
+
+
+$ ngxtop info
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+[![gggg](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/gggg1.jpg)](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/gggg1.jpg)
+
+你可以自定义显示的变量，简单列出需要显示的变量。使用 “print” 命令显示自定义请求。
+
+
+
+
+
+
+
+
+
+
+
+
+<table >
+<tbody >
+<tr >
+
+<td data-settings="show" >
+
+
+
+
+
+1
+
+
+
+
+</td>
+
+<td >
+
+
+
+
+
+$ ngxtop print request http_user_agent remote_addr
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+[![0000](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/00001.jpg)](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/00001.jpg)
+
+显示请求最多的客户端IP地址
+
+
+
+
+
+
+
+
+
+
+
+
+<table >
+<tbody >
+<tr >
+
+<td data-settings="show" >
+
+
+
+
+
+1
+
+
+
+
+</td>
+
+<td >
+
+
+
+
+
+$ ngxtop top remote_addr
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+[![tttt](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/tttt.jpg)](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/tttt.jpg)
+
+显示状态码是404的请求
+
+
+
+
+
+
+
+
+
+
+
+
+<table >
+<tbody >
+<tr >
+
+<td data-settings="show" >
+
+
+
+
+
+1
+
+
+
+
+</td>
+
+<td >
+
+
+
+
+
+$ ngxtop -i 'status == 404' print request status
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+[![dddd](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/dddd.jpg)](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/dddd.jpg)
+
+除了Nginx，ngtop 还可以处理其他的日志文件，比如 Apache 的访问文件。使用以下命令监控 Apache 服务器:
+
+
+
+
+
+
+
+
+
+
+
+
+<table >
+<tbody >
+<tr >
+
+<td data-settings="show" >
+
+
+
+
+
+1
+
+
+
+
+</td>
+
+<td >
+
+
+
+
+
+$ tail -f /var/log/apache2/access.log | ngxtop -f common
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+

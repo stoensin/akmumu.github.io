@@ -1,0 +1,97 @@
+---
+author: admin
+comments: true
+date: 2011-07-29 08:29:00+00:00
+layout: post
+slug: '%e7%9c%9f%e6%ad%a3%e8%a7%a3%e5%86%b3%e9%80%8f%e6%98%8e%e5%9b%be%e7%89%87%ef%bc%8cpng%e5%9b%be%e7%89%87%e5%9c%a8ie6%e4%b8%80%e4%b8%8b%e6%97%a0%e6%b3%95%e9%80%8f%e6%98%8e%e7%9a%84%e5%ae%9e%e7%94%a8'
+title: 真正解决透明图片，png图片在ie6一下无法透明的实用方法
+wordpress_id: 15
+categories:
+- 前端美工设计
+tags:
+- 前端美工设计
+---
+
+
+
+
+[0.0.8a.js (未压缩版本, ~12Kb)](http://dillerdesign.com/experiment/DD_belatedPNG/DD_belatedPNG_0.0.8a.js)
+
+
+
+
+[0.0.8a-min.js (压缩版, ~7Kb)](http://dillerdesign.com/experiment/DD_belatedPNG/DD_belatedPNG_0.0.8a-min.js)
+
+
+
+
+首先下载这js、调用之即可
+
+
+
+
+之后在使用PNG的页面中引用代码
+
+
+
+
+<!–[if IE 6]>  
+
+<script type=”text/javascript” src=”下载下来的JS路径”></script>  
+
+<script>  
+
+DD_belatedPNG.fix(’CSS选择器, 应用类型’);  
+
+</script>  
+
+<![endif]–>
+
+
+
+
+引用函数是 DD_belatedPNG.fix() , 括号里分别填写应用PNG的CSS选择器（可使用ID选择器和类选择器）和应用类型（分为img和background两种）。
+
+
+
+
+如DD_belatedPNG.fix(’#box-one, img’) 或者 DD_belatedPNG.fix(’.header, background’) 等。
+
+
+
+
+这些可以简写成 DD_belatedPNG.fix(’#box-one, .header, img,background’); 。
+
+
+
+
+更多选择器的如 DD_belatedPNG.fix(’#box-one, .header,#footer,.box-two a:hover, img,background’); 等等。
+
+
+
+
+另外，为解决IE6下背景图闪烁，可以定义下html的CSS
+
+
+
+
+html {filter:expression(document.execCommand(”BackgroundImageCache”, false, true));}
+
+
+
+
+OK，就介绍这么多，期待大家来分享更多的应用方法！
+
+
+
+
+
+
+
+转来的，希望大家有更好的方法也分享一下，尤其png格式的图片还有24,32位之分
+
+
+
+
+
+

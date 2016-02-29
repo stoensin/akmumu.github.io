@@ -1,0 +1,30 @@
+---
+author: admin
+comments: true
+date: 2011-12-07 07:48:00+00:00
+layout: post
+slug: php%e5%90%89%e7%a5%a5%e7%89%a9-%e5%a4%a7%e8%b1%a1
+title: PHP吉祥物——大象
+wordpress_id: 23
+categories:
+- PHP
+- 天下杂侃
+- 生活琐碎
+tags:
+- php程序设计
+- 天下杂侃
+- 生活琐碎
+---
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/0_1323244208FXsf.gif)
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/0_1323244228lsSH.gif)
+
+
+

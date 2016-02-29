@@ -1,0 +1,43 @@
+---
+author: admin
+comments: true
+date: 2013-08-15 04:50:18+00:00
+layout: post
+slug: js%e5%9b%be%e5%83%8f%e6%98%a0%e5%b0%84%e7%9a%84%e5%ba%94%e7%94%a8%ef%bc%8c%e5%9c%a8%e4%b8%80%e4%b8%aa%e5%9b%be%e7%89%87%e7%82%b9%e5%87%bb%e6%88%96%e7%a7%bb%e5%8a%a8%e5%88%b0%e4%b8%8d%e5%90%8c%e4%bd%8d
+title: JS图像映射的应用，在一个图片点击或移动到不同位置有不同响应
+wordpress_id: 215
+categories:
+- JS
+---
+
+[![ying](http://akmumu-wordpress.stor.sinaapp.com/uploads/2013/08/ying.jpg)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2013/08/ying.jpg)
+
+使用上面的图片，命名为ying.jpg。
+
+代码如下：
+
+<html>
+<head>
+<script type="text/javascript">
+function writeText(txt)
+{
+document.getElementById("desc").innerHTML=txt
+}
+</script>
+</head>
+<body>
+<img src="ying.jpg" border="0" usemap="#planetmap" alt="Planets" />
+<map name="planetmap" id="planetmap">
+<area shape="rect" coords="38,80,95,118" onmouseover="writeText('起点坐标为(38,80)和终点坐标为(95,118)的红色矩形区域。')"
+href="#" target="_blank" alt="rect_red" />
+<area shape="rect" coords="38,210,95,248" onmouseover="writeText('起点坐标为(38,210)和终点坐标为(95,248)的绿色矩形区域。')"
+href="#" target="_blank" alt="rect_green" />
+<area shape="circle" coords="310,100,50" onmouseover="writeText('原点为(310,100)和半径为50的黄色圆形区域')"
+href="#" target="_blank" alt="circle_yellow" />
+<area shape="circle" coords="310,205,55" onmouseover="writeText('原点为(310,205和半径为55的紫色圆形区域')"
+href="#" target="_blank" alt="circle_purple" />
+</map>
+<p id="desc">
+</p>
+</body>
+</html>

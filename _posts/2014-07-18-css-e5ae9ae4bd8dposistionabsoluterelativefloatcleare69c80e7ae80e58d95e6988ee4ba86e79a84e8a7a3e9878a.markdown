@@ -1,0 +1,50 @@
+---
+author: admin
+comments: true
+date: 2014-07-18 15:06:56+00:00
+layout: post
+slug: css-%e5%ae%9a%e4%bd%8dposistionabsoluterelativefloatclear%e6%9c%80%e7%ae%80%e5%8d%95%e6%98%8e%e4%ba%86%e7%9a%84%e8%a7%a3%e9%87%8a
+title: CSS 定位posistion,absolute,relative,float,clear最简单明了的解释
+wordpress_id: 295
+categories:
+- css
+---
+
+一 概述
+CSS 有二种基本的定位机制：文档流、脱离文档流。
+除非指定元素定位属性，否则所有元素框都在文档流中定位。也就是说，文档流中的元素位置由元素在 X(HTML) 中的位置决定。
+
+二 CSS定位相关的两属性 position 和 float
+（1）position：定位时，使用 left，right，top，bottom 中至少一个值定位。
+
+值:
+static：正常文档流布局，默认值。
+relative(相对)：不脱离文档流，其“相对于”它在文档流中原位置进行垂直水平偏移，所有后序元素原位置不变，但可能覆盖后序元素，但不算层叠，不可通过[ z-index ](http://www.blogjava.net/algz/articles/c_zindex.html)属性定义。
+![](http://www.blogjava.net/images/blogjava_net/algz/ct_css_positioning_relative_example.gif)
+
+absolute(绝对)：脱离文档流，不占据空间，所有后序元素自动前移，绝对定位元素的起点位置相对于_最近已定位（只需指定一个position属性）祖先元素(从父元素开始搜索）以外边距后为起点（可存在内边距里,如图：![](http://www.blogjava.net/images/blogjava_net/algz/absolute.png)）_，如果元素没有已定位的祖先元素，那么它的位置相对于_最初的包含块（body)_。可多重层叠，通过[ z-index ](http://www.blogjava.net/algz/articles/c_zindex.html)属性定义。 定位后生成一个块级框，而不论原来它在文档流中是何种类型的框。
+文档流中其它元素的布局就像绝对定位的元素不存在一样：
+
+**![](http://www.blogjava.net/images/blogjava_net/algz/ct_css_positioning_absolute_example.gif)
+
+**（2）float：浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。由于浮动框脱离文档流，所以文档流中的其它元素块框表现得就像浮动框不存在一样。定位时，与margin与padding相关。
+![](http://www.blogjava.net/images/blogjava_net/algz/ct_css_positioning_floating_right_example.gif)![](http://www.blogjava.net/images/blogjava_net/algz/ct_css_positioning_floating_left_example.gif)![](http://www.blogjava.net/images/blogjava_net/algz/ct_css_positioning_floating_left_example_2.gif)
+
+（3）clear
+定义和用法
+clear 属性
+设置元素的侧面是否允许其他的浮动元素。
+说明
+clear 属性定义了元素的哪边上不允许出现浮动元素。在 CSS1 和 CSS2 中，这是通过自动为清除元素（即设置了 clear 属性的元素）增加上外边距实现的。
+在 CSS2.1 中，会在元素上外边距之上增加清除空间，而外边距本身并不改变。不论哪一种改变，最终结果都一样，如果声明为左边或右边清除，会使元素的上外边框边界刚好在该边上浮动元素的下外边距边界之下。
+值  描述
+left  在左侧不允许浮动元素。
+right  在右侧不允许浮动元素。
+both  在左右两侧均不允许浮动元素。
+none  默认值。允许浮动元素出现在两侧。
+
+图像的左侧和右侧均不允许出现浮动元素：img{float:left;clear:both;}
+
+![](http://www.blogjava.net/images/blogjava_net/algz/ct_css_positioning_floating_linebox.gif)
+![](http://www.blogjava.net/images/blogjava_net/algz/ct_css_positioning_floating_clear.gif)
+![](http://www.blogjava.net/images/blogjava_net/algz/ct_css_positioning_floating_clear_div.gif)

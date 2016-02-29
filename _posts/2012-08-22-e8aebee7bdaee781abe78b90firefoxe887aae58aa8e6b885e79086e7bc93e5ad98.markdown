@@ -1,0 +1,59 @@
+---
+author: admin
+comments: true
+date: 2012-08-22 02:10:00+00:00
+layout: post
+slug: '%e8%ae%be%e7%bd%ae%e7%81%ab%e7%8b%90firefox%e8%87%aa%e5%8a%a8%e6%b8%85%e7%90%86%e7%bc%93%e5%ad%98'
+title: 设置火狐firefox自动清理缓存
+wordpress_id: 52
+categories:
+- 实用软件技巧
+tags:
+- 实用软件技巧
+---
+
+
+
+
+
+**1.在firefox的地址栏上输入about:config回车**
+
+
+
+
+**2.找到browser.cache.check_doc_frequency选项，双击将3改成1保存即可。**
+
+
+
+
+**  
+
+**
+
+
+
+
+**那么这个选项每个值都是什么含义的。请看下面的解释：**
+
+
+
+
+**0: Once per session 每个进程一次 每次启动Firefox时检查**
+
+
+
+
+**1: Each time 【开发人员强烈建议开这个】每次访问此页时检查**
+
+
+
+
+**2: Never **
+
+
+
+
+**3: When appropriate/automatically **
+
+
+

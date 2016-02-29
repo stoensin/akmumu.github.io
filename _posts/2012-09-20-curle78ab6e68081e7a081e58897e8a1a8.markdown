@@ -1,0 +1,2178 @@
+---
+author: admin
+comments: true
+date: 2012-09-20 08:30:00+00:00
+layout: post
+slug: curl%e7%8a%b6%e6%80%81%e7%a0%81%e5%88%97%e8%a1%a8
+title: CURL状态码列表
+wordpress_id: 72
+categories:
+- PHP
+- 操作系统
+tags:
+- php程序设计
+- 操作系统相关
+---
+
+
+<table width="800" border="0" align="center" bgcolor="#9db6ca" cellpadding="1" cellspacing="1" >
+<tbody >
+<tr >
+
+<td bgcolor="#ffffff" colspan="3" valign="top" >
+
+
+**CURL状态码列表**
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#cfe2f3" valign="top" >
+
+
+状态码
+
+
+
+</td>
+
+<td bgcolor="#cfe2f3" valign="top" >
+
+
+状态原因
+
+
+
+</td>
+
+<td bgcolor="#cfe2f3" valign="top" >
+
+
+解释
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" valign="top" >
+
+
+0
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+正常访问
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+1
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+错误的协议
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+未支持的协议。此版cURL 不支持这一协议。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+2
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+初始化代码失败
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+初始化失败。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+3
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+URL格式不正确
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+URL 格式错误。语法不正确。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+4
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+请求协议错误
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+5
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+无法解析代理
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+无法解析代理。无法解析给定代理主机。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+6
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+无法解析主机地址
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+无法解析主机。无法解析给定的远程主机。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+7
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+无法连接到主机
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+无法连接到主机。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+8
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+远程服务器不可用
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+FTP 非正常的服务器应答。cURL 无法解析服务器发送的数据。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+9
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+访问资源错误
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+FTP 访问被拒绝。服务器拒绝登入或无法获取您想要的特定资源或目录。最有可  
+
+能的是您试图进入一个在此服务器上不存在的目录。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+11
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+FTP密码错误
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+FTP 非正常的PASS 回复。cURL 无法解析发送到PASS 请求的应答。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+13
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+结果错误
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+FTP 非正常的的PASV 应答，cURL 无法解析发送到PASV 请求的应答。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+14
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+FTP回应PASV命令
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+FTP 非正常的227格式。cURL 无法解析服务器发送的227行。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+15
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+内部故障
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+FTP 无法连接到主机。无法解析在227行中获取的主机IP。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+17
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+设置传输模式为二进制
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+FTP 无法设定为二进制传输。无法改变传输方式到二进制。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+18
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+文件传输短或大于预期
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+部分文件。只有部分文件被传输。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+19
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+RETR命令传输完成
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+FTP 不能下载/访问给定的文件， RETR (或类似)命令失败。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+21
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+命令成功完成
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+FTP quote 错误。quote 命令从服务器返回错误。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+22
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+返回正常
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+HTTP 找不到网页。找不到所请求的URL 或返回另一个HTTP 400或以上错误。  
+
+此返回代码只出现在使用了-f/--fail 选项以后。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+23
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+数据写入失败
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+写入错误。cURL 无法向本地文件系统或类似目的写入数据。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+25
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+无法启动上传
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+FTP 无法STOR 文件。服务器拒绝了用于FTP 上传的STOR 操作。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+26
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+回调错误
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+读错误。各类读取问题。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+27
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+内存分配请求失败
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+内存不足。内存分配请求失败。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+28
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+访问超时
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+操作超时。到达指定的超时期限条件。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+30
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+FTP端口错误
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+FTP PORT 失败。PORT 命令失败。并非所有的FTP 服务器支持PORT 命令，请  
+
+尝试使用被动(PASV)传输代替！
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+31
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+FTP错误
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+FTP 无法使用REST 命令。REST 命令失败。此命令用来恢复的FTP 传输。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+33
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+不支持请求
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+HTTP range 错误。range "命令"不起作用。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+34
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+内部发生错误
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+HTTP POST 错误。内部POST 请求产生错误。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+35
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+SSL/TLS握手失败
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+SSL 连接错误。SSL 握手失败。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+36
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+下载无法恢复
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+FTP 续传损坏。不能继续早些时候被中止的下载。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+37
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+文件权限错误
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+文件无法读取。无法打开文件。权限问题？
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+38
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+LDAP可没有约束力
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+LDAP 无法绑定。LDAP 绑定(bind)操作失败。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+39
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+LDAP搜索失败
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+LDAP 搜索失败。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+41
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+函数没有找到
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+功能无法找到。无法找到必要的LDAP 功能。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+42
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+中止的回调
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+由回调终止。应用程序告知cURL 终止运作。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+43
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+内部错误
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+内部错误。由一个不正确参数调用了功能。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+45
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+接口错误
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+接口错误。指定的外发接口无法使用。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+47
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+过多的重定向
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+过多的重定向。cURL 达到了跟随重定向设定的最大限额跟
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+48
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+无法识别选项
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+指定了未知TELNET 选项。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+49
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+TELNET格式错误
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+不合式的telnet 选项。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+51
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+远程服务器的SSL证书
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+peer 的SSL 证书或SSH 的MD5指纹没有确定。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+52
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+服务器无返回内容
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+服务器无任何应答，该情况在此处被认为是一个错误。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+53
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+加密引擎未找到
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+找不到SSL 加密引擎。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+54
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+设定默认SSL加密失败
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+无法将SSL 加密引擎设置为默认。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+55
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+无法发送网络数据
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+发送网络数据失败。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+56
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+衰竭接收网络数据
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+在接收网络数据时失败。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+57
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+58
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+本地客户端证书
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+本地证书有问题。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+59
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+无法使用密码
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+无法使用指定的SSL 密码。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+60
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+凭证无法验证
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+peer 证书无法被已知的CA 证书验证。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+61
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+无法识别的传输编码
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+无法辨识的传输编码。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+62
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+无效的LDAP URL
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+无效的LDAP URL。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+63
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+文件超过最大大小
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+超过最大文件尺寸。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+64
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+FTP失败
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+要求的FTP 的SSL 水平失败。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+65
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+倒带操作失败
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+发送此数据需要的回卷(rewind)失败。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+66
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+SSL引擎失败
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+初始化SSL 引擎失败。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+67
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+服务器拒绝登录
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+用户名、密码或类似的信息未被接受，cURL 登录失败。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+68
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+未找到文件
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+在TFTP 服务器上找不到文件。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+69
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+无权限
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+TFTP 服务器权限有问题。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+70
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+超出服务器磁盘空间
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+TFTP 服务器磁盘空间不足。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+71
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+非法TFTP操作
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+非法的TFTP 操作。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+72
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+未知TFTP传输的ID
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+未知TFTP 传输编号(ID)。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+73
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+文件已经存在
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+文件已存在(TFTP) 。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+74
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+错误TFTP服务器
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+无此用户(TFTP) 。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+75
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+字符转换失败
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+字符转换失败。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+76
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+必须记录回调
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+需要字符转换功能。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+77
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+CA证书权限
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+读SSL 证书出现问题(路径？访问权限？ ) 。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+78
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+URL中引用资源不存在
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+URL 中引用的资源不存在。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+79
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+错误发生在SSH会话
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+SSH 会话期间发生一个未知错误。
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+80
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+无法关闭SSL连接
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+未能关闭SSL 连接。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+81
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+服务未准备
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+
+
+</td>
+</tr>
+<tr bgcolor="#ebf5fc" >
+
+<td align="center" valign="top" >
+
+
+82
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+无法载入CRL文件
+
+
+
+</td>
+
+<td align="center" valign="top" >
+
+
+无法加载CRL 文件，丢失或格式不正确(在7.19.0版中增加) 。
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+83
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+发行人检查失败
+
+
+
+</td>
+
+<td bgcolor="#ffffff" align="center" valign="top" >
+
+
+签发检查失败(在7.19.0版中增加) 。
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+

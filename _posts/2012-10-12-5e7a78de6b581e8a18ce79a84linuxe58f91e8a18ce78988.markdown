@@ -1,0 +1,96 @@
+---
+author: admin
+comments: true
+date: 2012-10-12 08:52:00+00:00
+layout: post
+slug: 5%e7%a7%8d%e6%b5%81%e8%a1%8c%e7%9a%84linux%e5%8f%91%e8%a1%8c%e7%89%88
+title: 5种流行的Linux发行版
+wordpress_id: 90
+categories:
+- LINUX
+- 操作系统
+tags:
+- linux
+- 操作系统相关
+---
+
+
+
+
+本文译自 [iSystemAdmin](http://isystemadmin.com/) 的 《[5
+ popular Linux Distributions: Select your Linux of choice](http://isystemadmin.com/5-popular-linux-distributions-select-your-linux-of-choice)》。
+
+
+
+
+现如今，对于各种类型的用户（如桌面用户、服务器管理员、图形设计者等）而言Linux已经成为一种最流行的操作系统。Linux是免费且开源的，任何人都可以建立和编译它的源代码，并将它分发给别人。这就是为什么Linux会有很多个版本。现在，从嵌入式系统到超级计算机，Linux已经被用到了各种系统中。你甚至可以在你的手机上找到Linux的影子（Android）。Linux如此的受欢迎是因为其强大的安全性和稳定性。在这篇文章中，我们将讨论5种最流行的Linux变种版本。
+
+
+
+
+对我来说，要我来决定哪些发行版本是最好的版本实在很难…！在选择之前你要知道你是什么类型的用户。Linux针对每种不同的用户都有不同类型的版本与之对应。有些发行版具有强大的安全性和支持性（Redhat），有些是最好的服务器操作系统（CentOS, Redhat），有一些作为桌面版非常好（Open SuSe, Linux Mint, Ubuntu），有些只需要很少的系统资源并能运行在小型的硬件上（Puppy Linux）。如果你是一名安全分析师，Back Track对你来说是一个很好的渗透测试工具。
+
+
+
+
+**1、 Red Hat Enterprise Linux**：一个强大的服务器操作系统，拥有企业级的支持系统。
+
+
+
+
+[![5 popular Linux Distributions: Select your Linux of choice 2](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/blog_jobbole_22-150x150.jpg)](http://blog.jobbole.com/wp-content/uploads/2012/05/22.jpg)Red
+ Hat Enterprise Linux支持所有领先的硬件架构平台（具有跨平台的兼容性），并支撑10年以上升级和技术支持的生命周期。如果你认为升级、安全和支持非常重要，那么RedHat是最适合你的Linux发行版。RedHat拥有强大的资源管理系统，稳定的应用开发，集成的虚拟化操作（KVM），企业级的管理性能。RedHat是一个商业的操作系统，所以你必须支付一定的费用给RedHat基金。如需要了解更多关于功能特性的详细信息，你可以看这本[PDF](http://www.redhat.com/f/pdf/RHEL6_Features_and_Functions_4348507_1010_ma_web.pdf)书籍。
+
+
+
+
+**2、 Cent OS**：一个为专家级用户制定的操作平台
+
+
+
+
+[![5 popular Linux Distributions: Select your Linux of choice 3](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/blog_jobbole_31.png)](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/blog_jobbole_31.png)Cent
+ OS是一个社区企业级操作系统，其基础的架构与RedHat基本相同，只是license与RedHat不一样。Cent OS是一个免费且开源的发行版。如果你需要一个免费企业级的服务器版本，同时不需要技术支持，那么Cent OS对你来说是一个更好的解决方案。Cent OS具有非常好的社区支持，并有大量丰富的文档，这就是为什么它会变得日益流行起来的原因。当RedHat发布任何更新时，Cent OS也会同步更新，一般更新能够在72小时内提供。想要获得更多的信息并下载Cent OS DVD，请点击此[链接](http://www.centos.org/)。在这之后，如果你在安装Cent
+ OS到你系统中时需要任何帮助，你可以查看我们之前的文章[一步一步安装Cent OS操作系统](http://isystemadmin.com/step-by-step-installation-guide-of-centos-6-2)。
+
+
+
+
+**3、 Ubuntu**：一个简单但强大的操作系统，适合初级用户
+
+
+
+
+[![5 popular Linux Distributions: Select your Linux of choice 4](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/blog_jobbole_41.png)](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/blog_jobbole_41.png)安装简单，极棒的桌面界面，支持多种软件，还可以运行Windows软件，是初级用户的最佳选择。Ubuntu在互联网上有一个庞大的社区。在文档区，你可以找到各种问题和解决方案。Ubuntu是一个基于Debian发行版的系统，它既有桌面版也有服务器版。你可以使用Windows的安装方法来安装Ubuntu。Ubuntu的一个最好的特性是：你在其它操作系统中完成的事情，你能够在Ubuntu中用更快、更安全的方式完成。Ubuntu充满了各种免费的软件，你可以很容易地进行你的日常工作，例如创建文件，编辑图片，播放音乐和视频，用最流行的浏览器（Mozilla,
+ Chrome）浏览互联网等。同时，它还提供2GB的在线存储空间来存储你的重要文件、图片和视频等。Ubuntu有一个简易的安装过程，它也支持用CD/DVD启动系统，从而不会打断你当前的系统。如果想要下载Ubuntu，可以点击此[链接](http://www.ubuntu.com/download)。安装后，如果你需要任何帮助，你可以查看我们以前的文章[一步一步安装Ubuntu](http://isystemadmin.com/step-by-step-installation-guide-of-ubuntu-11-04-server)。
+
+
+
+
+**4、 SUSE Linux Enterprise Desktop**：一个很好的面向桌面的操作系统
+
+
+
+
+[![5 popular Linux Distributions: Select your Linux of choice 5](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/blog_jobbole_51-150x150.png)](http://blog.jobbole.com/wp-content/uploads/2012/05/51.png)SUSE
+ Linux Enterprise桌面系统是一个非常好的桌面操作系统，它拥有其它付费操作系统的所有功能。使用SUSE Linux Enterprise桌面系统，你可以将你的整体成本减少90%。它基于开源平台，安全、稳定，并且由Novel提供企业级的系统支持。SUSE Linux Enterprise桌面系统是目前最流行的可交互操作系统，它是为与Windows，UNIX，MAC和其它操作系统交互共存而设计。它支持各类文件格式，如MS Office格式，音频/视频格式等。目前SUSE团队为所有用户提供60天的试用期，你可以下载它来进行测试，看它是否真的适合你。有关详细功能信息和下载方法，你可以去这个[网站](http://www.suse.com/products/desktop/features)查询。
+
+
+
+
+**5、 Back Track**：安全专家的最佳选择
+
+
+
+
+[![5 popular Linux Distributions: Select your Linux of choice 6](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/blog_jobbole_6.jpg)](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/blog_jobbole_6.jpg)对于安全相关的测试，Back
+ Track是最佳选择。它具有非常多的内置工具和插件，可以用来测试网站和网络安全。Back Track是一个基于Debian的操作系统，它能提供一种渗透测试的方法模型，这种方法能够帮助安全专家在遇到黑客攻击时，能够提供一种原生环境的估计能力。有些时候我们会问，我被感染了吗？要得到答案，首先你要测试你的系统是否有任何安全漏洞，这时，Back Track就可以成为你的好帮手。Back Track有很好的社区支持，社区中包含很多指南。想获得更多的信息，你可以访问[Back
+ Track官方网站](http://www.backtrack-linux.org/)。
+
+
+
+
+有了上面的讨论，我想现在对你来说选择一个Linux平台变得更容易了。每个发布版都有自己的特别和功能。试着想想你最基本的需求是什么，然后去选择适合你的Linux风味吧。
+
+
+

@@ -1,0 +1,129 @@
+---
+author: admin
+comments: true
+date: 2013-02-20 05:51:00+00:00
+layout: post
+slug: javascript-%e8%af%ad%e8%a8%80%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86%e7%82%b9%e6%80%bb%e7%bb%93%ef%bc%88%e6%80%9d%e7%bb%b4%e5%af%bc%e5%9b%be%ef%bc%89
+title: JavaScript 语言基础知识点总结（思维导图）
+wordpress_id: 164
+categories:
+- JS
+tags:
+- JS
+---
+
+
+
+
+
+
+
+
+
+**温故而知新** ———— 最近温习了一遍Javascript 语言，故把一些基础、概念性的东西分享一下。
+
+
+
+
+
+(下面内容大都为条目、索引，是对知识点的概括，帮助梳理知识点，具体内容需要查阅资料)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table cellpadding="15" width="600" align="center" cellspacing="0" border="1" >
+<tbody >
+<tr >
+
+<td style="word-wrap:break-word" >**JavaScript 数组**  
+
+[![JavaScript-array ，JavaScript 数组](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/julying_com_JavaScript-array-86x150.gif)](http://julying.com/blog/uploadfile/2012/11/JavaScript-array.gif)
+</td>
+
+<td style="word-wrap:break-word" >**JavaScript 函数基础**  
+
+[![JavaScript-function-base](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/julying_com_JavaScript-function-base-85x150.gif)](http://julying.com/blog/uploadfile/2012/11/JavaScript-function-base.gif)
+</td>
+
+<td style="word-wrap:break-word" >**Javascript 运算符**  
+
+[![Javascript-operational-character](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/julying_com_Javascript-operational-character-34x150.gif)](http://julying.com/blog/uploadfile/2012/11/Javascript-operational-character.gif)
+</td>
+</tr>
+<tr >
+
+<td style="word-wrap:break-word" >**JavaScript 流程控制**  
+
+[![JavaScript-process-statement](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/julying_com_JavaScript-process-statement-61x150.gif)](http://julying.com/blog/uploadfile/2012/11/JavaScript-process-statement.gif)
+</td>
+
+<td style="word-wrap:break-word" >**JavaScript 正则表达式**  
+
+[![JavaScript-regular-expressions,JavaScript 正则表达式](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/julying_com_JavaScript-regular-expressions-61x150.gif)](http://julying.com/blog/uploadfile/2012/11/JavaScript-regular-expressions.gif)
+</td>
+
+<td style="word-wrap:break-word" >**JavaScript 字符串函数**  
+
+[![JavaScript-string-function](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/julying_com_JavaScript-string-function-64x150.gif)](http://julying.com/blog/uploadfile/2012/11/JavaScript-string-function.gif)
+</td>
+</tr>
+<tr >
+
+<td style="word-wrap:break-word" >**JavaScript 数据类型**  
+
+[![The-JavaScript-data-type,The-JavaScript 数据类型](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/julying_com_The-JavaScript-data-type-46x150.gif)](http://julying.com/blog/uploadfile/2012/11/The-JavaScript-data-type-1.gif)
+</td>
+
+<td style="word-wrap:break-word" >**JavaScript 变量**  
+
+[![The-JavaScript-variable](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/julying_com_The-JavaScript-variable-90x150.gif)](http://julying.com/blog/uploadfile/2012/11/The-JavaScript-variable.gif)
+</td>
+
+<td style="word-wrap:break-word" >**Window 对象**  
+
+[![Window-object,Window 对象](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/julying_com_Window-object-34x150.gif)](http://julying.com/blog/uploadfile/2012/11/Window-object.gif)
+</td>
+</tr>
+<tr >
+
+<td style="word-wrap:break-word" >**DOM 基本操作**  
+
+[![DOM-operation,DOM 基本操作](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/julying_com_DOM-operation-73x150.gif)](http://julying.com/blog/uploadfile/2012/11/DOM-operation.gif)
+</td>
+
+<td style="word-wrap:break-word" >
+</td>
+
+<td style="word-wrap:break-word" >
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+此条目是由 [王子墨](http://julying.com/blog/author/julying/) 发表在 [前端随笔](http://julying.com/blog/category/web-knowledge-essay/) 分类目录的。
+
+
+
+
+
+http://julying.com/blog/the-features-of-javascript-language-summary-maps/  
+
+
+
+
+

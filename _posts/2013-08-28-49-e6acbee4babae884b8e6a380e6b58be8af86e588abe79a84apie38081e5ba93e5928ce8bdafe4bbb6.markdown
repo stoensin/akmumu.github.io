@@ -1,0 +1,175 @@
+---
+author: admin
+comments: true
+date: 2013-08-28 07:29:15+00:00
+layout: post
+slug: 49-%e6%ac%be%e4%ba%ba%e8%84%b8%e6%a3%80%e6%b5%8b%e8%af%86%e5%88%ab%e7%9a%84api%e3%80%81%e5%ba%93%e5%92%8c%e8%bd%af%e4%bb%b6
+title: 49 款人脸检测/识别的API、库和软件
+wordpress_id: 228
+categories:
+- 天下杂侃
+tags:
+- 人脸识别
+---
+
+转自：[http://www.oschina.net/news/43358/49-face-detection-api?from=20130826](http://www.oschina.net/news/43358/49-face-detection-api?from=20130826)
+
+
+
+自从谷歌眼镜被推出以来，围绕人脸识别，出现了很多争议。我们相信，不管是不是通过智能眼镜，人脸识别将在人与人交往甚至人与物交互中开辟无数种可能性。
+
+为了帮助研究过程中探索人脸识别，我们列出以下人脸检测和识别API。希望有所帮助！
+
+![](http://static.oschina.net/uploads/img/201308/19113847_eVon.jpg)
+
+
+
+	
+  1. [Face Recognition ](https://www.mashape.com/lambda/face-recognition#%21documentation)- 拉姆达实验室斯蒂芬弄的。示例代码和图形演示点击[http://api.lambdal.com/docs，](http://api.lambdal.com/docs)我们的API提供了面部识别，面部检测，眼睛定位，鼻子定位，嘴巴定位，和性别分类。如果您有任何疑问，只需发一封邮件到[s@lambdal.com](mailto:s@lambdal.com)。
+
+	
+  2. [Face (Detection)](https://www.mashape.com/lambda/face#%21documentation) -  计算机视觉面部识别和面部检测。这是一个完美的face.com替代品。目前，我们有一个免费的API进行人脸检测。
+
+	
+  3. [Animetrics Face Recognition](https://www.mashape.com/animetrics/animetrics-face-recognition#%21documentation) -  Animetrics的人脸识别API可用于图片中的人脸检测。面部特征或“地标”的信息被返回作为图象上的坐标。 Animetrics人脸识别也会在三维坐标轴上侦测并返回脸部位置信息。
+
+	
+  4. [Skybiometry Face Detection and Recognition](https://www.mashape.com/skybiometry-1/skybiometry-face-detection-and-recognition#%21documentation)一个易于使用的人脸检测与识别的API。必须在您的SkyBiometry帐户中创建应用程序来使用它。（如果你还没有帐户，请先注册）。
+
+	
+  5. [ImageVision Face Detection](https://www.mashape.com/imagevision/face-detection-beta#%21documentation) -  测试版发布更好的人脸检测服务！ImageVision是一个计算机视觉公司改进技术，确定在任意的（数字）的图像中的人脸的位置和大小。
+
+	
+  6. [Face and scene recognition by Rekognition.com ](https://www.mashape.com/orbeus/face-and-scene-recognition-provided-by-rekognition-com#%21documentation)-  Face.com的替代品！快速，强大和可扩展的rekognition引擎可以做面部检测，采集，识别，场景理解！它可以自动训练使用Facebook上的图像和标签！
+
+	
+  7. [FaceRect -](https://www.mashape.com/apicloud/facerect#%21documentation)  FaceRect是一个功能强大且免费的API进行人脸检测，能够发现网页中的或者上传文件中特定图片上的脸部（包括正面和侧面），并能够在一张图片中找到多张人脸，生成的 JSON输出每个脸部的边界框。
+
+	
+  8. [Infatics Face Detection](https://www.mashape.com/nickponline/infatics-face-detection#%21documentation) -简单的[人脸检测](https://www.mashape.com/nickponline/infatics-face-detection#%21documentation)API。
+
+	
+  9. [OpenCV Face Recognizer ](http://docs.opencv.org/trunk/modules/contrib/doc/facerec/facerec_api.html) -基于OpenCV（开源计算机视觉库： [http://opencv.org ](http://opencv.org/)）是一个开源的BSD授权的库，其中包括数百个计算机视觉算法。
+
+	
+  10. [Libface ](http://www.oschina.net/p/libface)-  Libface库旨在使人脸识别技术应用于开源社区。这是用C++编写的，托管在  [Sourceforge上](http://sourceforge.net/projects/libface/)。这个库使用 [OpenCV](http://sourceforge.net/projects/opencvlibrary/) [2.0 ](http://sourceforge.net/projects/opencvlibrary/) ，目标是成为一个中间件，在人脸识别和检测时，开发人员不必包括任何OpenCV的代码。
+
+	
+  11. [Automatic naming of characters in video](http://www.robots.ox.ac.uk/~vgg/research/nface/) 用来是标记电视或电影每个帧中出现的人名。
+
+	
+  12. [CCV ](http://libccv.org/)-现代计算机视觉库。
+
+	
+  13. [OpenBR](http://www.oschina.net/p/openbr)-开源的生物特征识别。
+
+	
+  14. [Flandmark ](http://www.oschina.net/p/flandmark)-开源实现面部地标探测器。
+
+	
+  15. [计算机表情识别工具箱（CERT）](http://mplab.ucsd.edu/~marni/Projects/CERT.htm)-一个终端到终端的完全自动化的实时面部表情识别系统。
+
+	
+  16. [Nviso 3D facial imaging technology](http://www.nviso.ch/technology.html)-从面部表情分析人类的情感。比任何其他方法更直接和自动化。
+
+	
+  17. [FaceReader](http://www.noldus.com/human-behavior-research/products/facereader)-  FaceReader是世界上第一个能够自动分析面部表情的工具，使用户能够客观的评估一个人的情绪。
+
+	
+  18. [Affdex ](http://www.affectiva.com/affdex/#pane_overview)-  -  通过摄像头，Affdex从面部表情读取的人们的情绪状态，比如喜好和兴趣，使营销人员更快，更准确地洞察到消费者对品牌和媒体的回应。
+
+	
+  19. [Faceware](http://www.facewaretech.com/faceware-products/analyzer/) -  分析仪从视频中抓取一个演员的面部表现，生成用于在[Retargeter™ ](http://www.facewaretech.com/faceware-products/retargeter/)的IMPD文件  。它通过将用户在前端的简单输入和在后端的复杂的计算机视觉算法组合起来实现这一功能。
+
+	
+  20. [20.   Face detection in iOS](http://www.abdus.me/ios-programming-tips/how-to-detect-face-in-image-using-face-detection-api-in-ios/)-[在iOS中的人脸检测](http://www.abdus.me/ios-programming-tips/how-to-detect-face-in-image-using-face-detection-api-in-ios/)。
+
+	
+  21. [Face-Recognition-SDK](https://github.com/geopapyrus/face-recognition-sdk)-在您的应用程序添加面部识别。
+
+	
+  22. [Oddcast face detection API](http://www.abdus.me/ios-programming-tips/how-to-detect-face-in-image-using-face-detection-api-in-ios/)-这个人脸跟踪API允许Flash开发人员利用以前只在高端视频游戏中使用的高级技术。
+
+	
+  23. [BioID](https://www.bioid.com/)-世界上第一个基于摄像头的个人识别。
+
+	
+  24. [Betaface API](http://www.betafaceapi.com/)-人脸检测和识别。
+
+	
+  25. [Discrete Area Filters Face Detector](http://www.semanticvisiontech.com/)—可检测脸部15个点，4个部分，多张脸，或遮住的脸。
+
+	
+  26. [Face detection using Support Vector Machine](http://www.mathworks.com/matlabcentral/fileexchange/29834-face-detection-using-support-vector-machine-svm)-该程序是克隆MATLAB中的“人脸检测系统”，可以代替神经网络算法的[人脸检测](http://www.mathworks.com/matlabcentral/fileexchange/29834-face-detection-using-support-vector-machine-svm)，它是基于 SVG。
+
+	
+  27. [fdlib](http://www.oschina.net/p/fdlib) - 是一个 C / C + +  和  MATLAB的人脸检测库，可检测图像中的正脸。
+
+	
+  28. [Visage](http://sourceforge.net/projects/visage-hci/)-一个人机接口，旨在用脸部取代传统的鼠标。用一个摄像头，将脸部面相的运动变成鼠标指针的运动。如左/右眼睛闪烁产生左/右鼠标点击事件。
+
+	
+  29. [Face tracking Project](http://chenlab.ece.cornell.edu/projects/FaceTracking/)（卡耐基梅隆大学）–结合可变形模板和颜色匹配来跟踪脸部。
+
+	
+  30. [Real-time face detection program](http://www.cs.colostate.edu/evalfacerec/index.html)（[实时人脸检测程序](http://www.iis.fraunhofer.de/en/bf/bsy/download/shore.html)）-来自德国弗劳恩霍夫研究所IIS的演示。展示了用边缘定位匹配的面部跟踪和检测。
+
+	
+  31. [Evaluation of Face Recognition Algorithms](http://www.cs.colostate.edu/evalfacerec/index.html)-来自科罗拉多州立大学研究人员开发的人脸识别算法，它提供了一套标准的众所周知的算法，并建立实验协议。
+
+	
+  32. [Computer Vision Source Code](http://www.cs.cmu.edu/afs/cs/project/cil/ftp/html/v-source.html)-实用的图像处理代码集合。
+
+	
+  33. [Acsys biometrics SDK](http://www.acsysbiometrics.com/product_sdk.html)（[ACSYS生物识别SDK](http://www.acsysbiometrics.com/product_sdk.html) ）-允许第三方开发者用先进的面部生物识别技术来实现自己应用。
+
+	
+  34. [Cognitec SDK](http://www.cognitec-systems.de/products-sdk.htm)-为世界各地的企业和政府客户开发领先的人脸识别技术和应用。
+
+	
+  35. [KeyLemonFaceSDK](https://www.keylemon.com/keylemonfacesdk-overview/)-为主要的操作系统提供集成识别技术。
+
+	
+  36. FaceIT SDK
+
+	
+  37. [FaceSDK](http://www.luxand.com/facesdk/?utm_expid=4075614-16&utm_referrer=http%3A%2F%2Fwww.facedetection.com%2Ffacedetection%2Fsoftware.htm)- 人脸识别和基于面部的生物识别功能，易整合。
+
+	
+  38. [Verilook SDK](http://www.neurotechnology.com/vl_sdk.html)-–使用了VeriLook算法，该算法确保快速和可靠的面部识别。
+
+	
+  39. [Beyond Reality Face SDK](http://www.beyond-reality-face.com/sdk)-在视频流中的一张简单图片上，计算面部位置和3D角度。这些信息可以被用来将三维对象放置到图像上，或通过头部运动控制一个应用程序。
+
+	
+  40. [InSight SDK](http://www.thirdsight.co/insight/)-通过测量面部肌肉的运动，对人脸进行完全自动化分析，并将这些面部肌肉运动转化为七个普遍的面部表情。
+
+	
+  41. [Visage FaceDetect SDK](http://www.visagetechnologies.com/products/visagesdk/facedetect/)-以C++软件开发工具包的形式，包含了很多在静止图像中发现脸和五官的有用技术。
+
+	
+  42. [Microsoft Research Face SDK Beta](http://research.microsoft.com/en-us/projects/facesdk/)- 集成了微软研究团队最新的面部识别技术。
+
+	
+  43. [How To: Kinect for Windows SDK Face Recognition](http://channel9.msdn.com/coding4fun/kinect/How-To-Kinect-for-Windows-SDK-Face-Recognition-Series)
+
+	
+  44. [Bayometric FaceIt Face Recognition SDK](http://www.bayometric.com/products/Face-Recognition-SDK.htm)-结合了传统的面部皮肤生物识别技术。
+
+	
+  45. [FacePhi FaceRecognition SDK](http://www.facephi.com/index.php/en/products/sdk) –包含了一组.NET和Silverlight库
+
+	
+  46. [360Biometrics Face SDK](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=9&cad=rja&ved=0CJkBEBYwCA&url=http%3A%2F%2F360biometrics.com%2Fface-recognition.php&ei=0wnCUZrIOMqXiAK12IGIAg&usg=AFQjCNHIgP9E92cHzrCYzw816sfNaZz5xw&bvm=bv.48175248,d.cGE)-非常先进的脸部识别系统，用来将人脸图像嵌入或链接到已有的数据库中。
+
+	
+  47. [Hunter TrueID](http://www.huntersystemsgroup.com/Hunter-Facial-Recognition.html)
+
+	
+  48. [IMRSV](https://imrsv.com/)-现实世界中的实时感知计算软件，用一个基本的摄像头，就可以测量25英尺外，多达25人的性别，年龄，关注点，目光等信息。它也有一个REST API（应用编程接口）
+
+	
+  49. [Bob](http://idiap.github.io/bob/)-一个信号处理和机器学习工具箱，最初是由IDIAP研究所的生物识别技术团队在瑞士开发的  。
+
+
+还有哪些是这个名单上缺少的吗？如果有，请在评论中添加。

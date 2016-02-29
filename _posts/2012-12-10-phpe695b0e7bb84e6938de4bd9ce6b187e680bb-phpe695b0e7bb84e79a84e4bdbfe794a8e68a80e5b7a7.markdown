@@ -1,0 +1,1275 @@
+---
+author: admin
+comments: true
+date: 2012-12-10 03:22:00+00:00
+layout: post
+slug: php%e6%95%b0%e7%bb%84%e6%93%8d%e4%bd%9c%e6%b1%87%e6%80%bb-php%e6%95%b0%e7%bb%84%e7%9a%84%e4%bd%bf%e7%94%a8%e6%8a%80%e5%b7%a7
+title: PHP数组操作汇总 php数组的使用技巧
+wordpress_id: 135
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+对于Web编程来说，最重要的就是存取和读写数据了。存储方式可能有很多种，可以是字符串、数组、文件的形式等  
+
+详细出处参考：[http://www.jb51.net/article/27725.htm](http://www.jb51.net/article/27725.htm)
+
+
+
+
+
+
+
+数组，可以说是PHP的数据应用中较重要的一种方式。PHP的数组函数众多，下面是我学习的小结，借此记之，便于以后鉴之。   
+
+1. 数组定义   
+
+数组的定义使用 array()方式定义，可以定义空数组：   
+
+复制代码 代码如下:  
+
+<?php   
+
+$number = array(1,3,5,7,9);   
+
+//定义空数组   
+
+$result = array();   
+
+$color =array("red","blue","green");   
+
+//自定义键值   
+
+$language = (1=>"English",3=>"Chinese",5=>"Franch");   
+
+//定义二维数组   
+
+$two = array(   
+
+"color"=>array("red","blue"), //用逗号结尾   
+
+"week"=>array("Monday","Friday") //最后一句没有标点   
+
+)；   
+
+?>
+
+
+
+
+2. 创建数组   
+
+compact()   
+
+compact()函数——将一个或多个变量（包含数组）转换为数组：array compact ( mixed $varname [, mixed $... ] )。
+  
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$number = "1,3,5,7,9";   
+
+$string = "I'm PHPer";   
+
+$array = array("And","You?");   
+
+$newArray = compact("number","string","array");   
+
+print_r ($newArray);   
+
+?>
+
+
+
+
+compact()函数用于将两个或多个变量转换为数组，当然也包含数组变量。其参数是变量的名称而非带有$全名。相反的函数是extract()作用顾名思义就是将数组转换为单个的字符串，键值作为其字符串名称，数组值作为字符串的值。
+  
+
+运行结果:   
+
+复制代码 代码如下:  
+
+Array (   
+
+[number] => 1,3,5,7,9   
+
+[string] => I'm PHPer   
+
+[array] => Array ( [0] => And [1] => You? )   
+
+) 
+
+
+
+
+array_combine()   
+
+array_combine()——将两个数组重组成一个数组,一个作键值一个做的值：array array_combine ( array $keys , array $values )
+  
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$number = array("1","3","5","7","9");   
+
+$array = array("I","Am","A","PHP","er");   
+
+$newArray = array_combine($number,$array);   
+
+print_r ($newArray);   
+
+?>
+
+
+
+
+array_combine函数不多说了，谁看了都明白。   
+
+运行结果：   
+
+Array ( [1] => I [3] => Am [5] => A [7] => PHP [9] => er )   
+
+range()   
+
+range()函数——创建指定范围的数组：   
+
+复制代码 代码如下:<?PHP   
+
+$array1 = range(0,100,10);//0为起始值，100为结束值，10为步进值(默认步进值为1).   
+
+print_r($array1);   
+
+echo"<br />";   
+
+$array2 = range("A","Z");   
+
+print_r($array2);   
+
+echo "<br />";   
+
+$array3 = range("z","a");   
+
+print_r($array3);   
+
+?>
+
+
+
+
+array_fill()   
+
+array_fill()函数——填充数组函数：   
+
+复制代码 代码如下:<?PHP   
+
+$array = range(1,10);   
+
+$fillarray = range("a","d");   
+
+$arrayFilled = array_fill(0,5,$fillarray);//这里的$fillarray可以是字符串，如"test".   
+
+echo "<pre>";   
+
+print_r ($arrayFilled);   
+
+echo "</pre>";   
+
+$keys = array("string","2",9,"SDK","PK");   
+
+$array2 = array_fill_keys($keys,"testing");   
+
+echo "<pre>";   
+
+print_r ($array2);   
+
+echo "</pre>";   
+
+?>
+
+
+
+
+运行结果：   
+
+复制代码 代码如下:Array   
+
+(   
+
+[0] => Array   
+
+(   
+
+[0] => a   
+
+[1] => b   
+
+[2] => c   
+
+[3] => d   
+
+) 
+
+
+
+
+[1] => Array   
+
+(   
+
+[0] => a   
+
+[1] => b   
+
+[2] => c   
+
+[3] => d   
+
+) 
+
+
+
+
+[2] => Array   
+
+(   
+
+[0] => a   
+
+[1] => b   
+
+[2] => c   
+
+[3] => d   
+
+) 
+
+
+
+
+[3] => Array   
+
+(   
+
+[0] => a   
+
+[1] => b   
+
+[2] => c   
+
+[3] => d   
+
+) 
+
+
+
+
+[4] => Array   
+
+(   
+
+[0] => a   
+
+[1] => b   
+
+[2] => c   
+
+[3] => d   
+
+) 
+
+
+
+
+)   
+
+Array   
+
+(   
+
+[string] => testing   
+
+[2] => testing   
+
+[9] => testing   
+
+[SDK] => testing   
+
+[PK] => testing   
+
+) 
+
+
+
+
+3. 数组的遍历   
+
+foreach遍历   
+
+foreach (array_expression as $value){}   
+
+foreach (array_expression as $key => $value){}   
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$speed = array(50,120,180,240,380);   
+
+foreach($speed as $keys=>$values){   
+
+echo $keys."=>".$values."<br />";   
+
+}   
+
+?>
+
+
+
+
+运行结果：   
+
+0=>50   
+
+1=>120   
+
+2=>180   
+
+3=>240   
+
+4=>380   
+
+while循环遍历   
+
+while循环遍历一般结合list函数，以下是实例   
+
+复制代码 代码如下:<?PHP   
+
+$staff = array(   
+
+array("姓名","性别","年龄"),   
+
+array("小张","男",24),   
+
+array("小王","女",25),   
+
+array("小李","男",23)   
+
+);   
+
+echo "<table border=2>";   
+
+while(list($keys,$value) = each($staff)){   
+
+list($name,$sex,$age) = $value;   
+
+echo "<tr><td>$name</td><td>$sex</td><td>$age</td></tr>";   
+
+}   
+
+echo "</table>";   
+
+?>
+
+
+
+
+for循环遍历   
+
+复制代码 代码如下:<?PHP   
+
+$speed = range(0,220,20);   
+
+for($i =0;$i<count($speed);$i++) {   
+
+echo $speed[$i]." ";   
+
+}   
+
+?>
+
+
+
+
+运行结果：   
+
+0 20 40 60 80 100 120 140 160 180 200 220   
+
+4. 数组的指针操作   
+
+涉及函数包括reset、prev、end、next、current、each。   
+
+实例一：next 与 prev   
+
+复制代码 代码如下:<?PHP   
+
+$speed = range(0,220,20);   
+
+echo current($speed);//输出当前位置的值（在数组的开头位置）   
+
+$i = rand(1,11);   
+
+while($i--){   
+
+next($speed);//指针从当前位置向后移动一位   
+
+}   
+
+echo current($speed);//输出当前位置的值   
+
+echo "<br />";   
+
+echo prev($speed);//输出前一位置数组值   
+
+echo "<br />";   
+
+echo reset($speed);//重置数组的指针，将指针指向起始位置   
+
+echo "<br />";   
+
+echo end($speed);//输出最后位置的数组值   
+
+echo "<br />";   
+
+?>
+
+
+
+
+运行结果：   
+
+0220   
+
+200   
+
+0   
+
+220   
+
+实例二：each函数指针操作   
+
+复制代码 代码如下:<?PHP   
+
+$speed = range(0,200,40);   
+
+echo "each实现指针下移 <br />";   
+
+echo "0挡的速度是".current(each($speed))."<br />";   
+
+echo "1挡的速度是".current(each($speed))."<br />";   
+
+echo "2挡的速度是".current(each($speed))."<br />";   
+
+echo "3挡的速度是".current(each($speed))."<br />";   
+
+echo "4挡的速度是".current(each($speed))."<br />";   
+
+echo "5挡的速度是".current(each($speed))."<br />";   
+
+echo "使用each函数实现数组指针的移动，进行数组遍历 <br />";   
+
+reset($speed);//这里是将数组指针指向数组首   
+
+while(list($key,$value)=each($speed)){   
+
+echo $key."=>".$value."<br />";   
+
+}   
+
+?>
+
+
+
+
+运行结果：   
+
+复制代码 代码如下:each实现指针下移   
+
+0挡的速度是0   
+
+1挡的速度是40   
+
+2挡的速度是80   
+
+3挡的速度是120   
+
+4挡的速度是160   
+
+5挡的速度是200   
+
+使用each函数实现数组指针的移动，进行数组遍历   
+
+0=>0   
+
+1=>40   
+
+2=>80   
+
+3=>120   
+
+4=>160   
+
+5=>200   
+
+5. 数组的增添删改操作   
+
+增添数组成员   
+
+实例一：$num[] = value直接赋值追加到数组末尾：   
+
+[code]<?PHP   
+
+$num = array(1=>80,2=>120,3=>160);   
+
+echo "使用表达式添加数组成员<br />";   
+
+$num[]=240;   
+
+print_r($num);   
+
+?>
+
+
+
+
+运行结果：   
+
+使用表达式添加数组成员   
+
+Array ( [0] => 80 [1] => 120 [2] => 160 [3] => 240 )   
+
+实例二：array_pad函数，数组数组首尾选择性追加   
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$num = array(1=>80,2=>120,3=>160);   
+
+$num = array_pad($num,4,200);   
+
+echo "使用array_pad函数向数组尾部添加成员<br />";   
+
+print_r($num);   
+
+echo "<br />array_pad 还可以填充数组首部<br />";   
+
+$num = array_pad($num,-8,40);   
+
+print_r($num);   
+
+?>
+
+
+
+
+运行结果：   
+
+使用array_pad函数向数组尾部添加成员   
+
+Array ( [0] => 80 [1] => 120 [2] => 160 [3] => 200 )   
+
+array_pad 还可以填充数组首部   
+
+Array ( [0] => 40 [1] => 40 [2] => 40 [3] => 40 [4] => 80 [5] => 120 [6] => 160 [7] => 200 )
+  
+
+实例三：入栈操作追加（array_push）：   
+
+复制代码 代码如下:<?PHP   
+
+$num = array(1=>80,2=>120,3=>160);   
+
+array_push($num,200,240,280);//可以自己追加，直接加在数组结尾   
+
+print_r($num);   
+
+?>
+
+
+
+
+运行结果：   
+
+Array ( [1] => 80 [2] => 120 [3] => 160 [4] => 200 [5] => 240 [6] => 280 )   
+
+实例四：array_unshift()在开头添加数组成员   
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$num = array(1=>80,2=>120,3=>160);   
+
+array_unshift($num,0,40);//可以自己追加，直接加在数组结尾   
+
+print_r($num);   
+
+?>
+
+
+
+
+运行结果：   
+
+Array ( [0] => 0 [1] => 40 [2] => 80 [3] => 120 [4] => 160 )   
+
+注意：array_unshift()函数使用后数组的键值将会从0开始！   
+
+删减数组成员   
+
+实例一：unset()命令删除数组成员或数组：   
+
+复制代码 代码如下:<?PHP   
+
+$num = array_fill(0,5,rand(1,10));   
+
+print_r($num);   
+
+echo "<br />";   
+
+unset($num[4]);   
+
+print_r($num);   
+
+echo "<br />";   
+
+unset($num);   
+
+if(is_array){   
+
+echo "unset命令不能删除整个数组";   
+
+}else{   
+
+echo "unset命令可以删除数组";   
+
+}   
+
+?>
+
+
+
+
+运行结果：（运行出错及说明数组也被删除，不再存在）   
+
+Array ( [0] => 9 [1] => 9 [2] => 9 [3] => 9 [4] => 9 )   
+
+Array ( [0] => 9 [1] => 9 [2] => 9 [3] => 9 ) 
+
+
+
+
+Notice: Use of undefined constant is_array - assumed 'is_array' in H:wampwwwtestingeditorplustest.php on line 21
+  
+
+unset命令不能删除整个数组   
+
+实例二：array_splice()函数删除数组成员   
+
+复制代码 代码如下:<?php   
+
+$a=array("red", "green", "blue", "yellow");   
+
+count ($a); //得到4   
+
+array_splice($a,1,1); //删除第二个元素   
+
+count ($a); //得到3   
+
+echo $a[2]; //得到yellow   
+
+echo $a[1]; //得到blue   
+
+?>
+
+
+
+
+实例三：array_unique删除数组中的重复值：   
+
+复制代码 代码如下:  
+
+<?php   
+
+$a=array("red", "green", "blue", "yellow","blue","green");   
+
+$result = array_unique($a);   
+
+print_r($result);   
+
+?>
+
+
+
+
+详细出处参考：[http://www.jb51.net/article/27725.htm](http://www.jb51.net/article/27725.htm)
+
+
+
+
+
+
+
+运行结果：   
+
+Array ( [0] => red [1] => green [2] => blue [3] => yellow )   
+
+实例四：array_merge、array_merge_recursive合并数组   
+
+复制代码 代码如下:<?php   
+
+$array1 = array("r"=>"red",1,2,3,4);   
+
+$array2 = array("b"=>"blue",4=>5,6,7,8,9);   
+
+$array3 = array("r"=>"read",4=>10,2=>11);   
+
+$array4 = array(   
+
+array(4=>10),   
+
+array(7=>13)   
+
+);   
+
+$array5 = array(   
+
+array(4=>11),   
+
+array(6=>12)   
+
+);   
+
+$result = array_merge($array1,$array2,$array3,$array4,$array5);   
+
+echo "<pre>";   
+
+print_r($result);   
+
+echo "</pre>";   
+
+$result = array_merge_recursive($array1,$array2,$array3,$array4,$array5);   
+
+echo "<pre>";   
+
+print_r ($result);   
+
+echo "</pre>";   
+
+?>
+
+
+
+
+运行结果：   
+
+复制代码 代码如下:Array   
+
+(   
+
+[r] => read   
+
+[0] => 1   
+
+[1] => 2   
+
+[2] => 3   
+
+[3] => 4   
+
+[b] => blue   
+
+[4] => 5   
+
+[5] => 6   
+
+[6] => 7   
+
+[7] => 8   
+
+[8] => 9   
+
+[9] => 10   
+
+[10] => 11   
+
+[11] => Array   
+
+(   
+
+[4] => 10   
+
+) 
+
+
+
+
+[12] => Array   
+
+(   
+
+[7] => 13   
+
+) 
+
+
+
+
+[13] => Array   
+
+(   
+
+[4] => 11   
+
+) 
+
+
+
+
+[14] => Array   
+
+(   
+
+[6] => 12   
+
+) 
+
+
+
+
+)   
+
+Array   
+
+(   
+
+[r] => Array   
+
+(   
+
+[0] => red   
+
+[1] => read   
+
+) 
+
+
+
+
+[0] => 1   
+
+[1] => 2   
+
+[2] => 3   
+
+[3] => 4   
+
+[b] => blue   
+
+[4] => 5   
+
+[5] => 6   
+
+[6] => 7   
+
+[7] => 8   
+
+[8] => 9   
+
+[9] => 10   
+
+[10] => 11   
+
+[11] => Array   
+
+(   
+
+[4] => 10   
+
+) 
+
+
+
+
+[12] => Array   
+
+(   
+
+[7] => 13   
+
+) 
+
+
+
+
+[13] => Array   
+
+(   
+
+[4] => 11   
+
+) 
+
+
+
+
+[14] => Array   
+
+(   
+
+[6] => 12   
+
+) 
+
+
+
+
+) 
+
+
+
+
+注：1. array_merge的键名是数字的将重新建立索引；遇到相同的字符串键名时，后面的将覆盖前面的。 2. array_merge_recursive函数的作用是将相同字符串的键名单元整合成一个数组。
+  
+
+6. 数组的键值和值操作   
+
+实例一：in_array()检测数组中是否有某个值存在   
+
+复制代码 代码如下:  
+
+<?php   
+
+$array = range(0,9);   
+
+if(in_array(9,$array)){   
+
+echo "数组中存在";   
+
+}   
+
+?>
+
+
+
+
+运行结果：数组中存在   
+
+实例二：key()取得数组当前的键名：   
+
+复制代码 代码如下:  
+
+<?php   
+
+$array = range(0,9);   
+
+$num = rand(0,8);   
+
+while($num--)   
+
+next($array);   
+
+$key = key($array);   
+
+echo $key;   
+
+?>
+
+
+
+
+此实例结果为动态结果，范围（0-8），不做结果演示。   
+
+实例三：list()函数把数组中的值赋给指定变量：   
+
+复制代码 代码如下:<?PHP   
+
+$staff = array(   
+
+array("姓名","性别","年龄"),   
+
+array("小张","男",24),   
+
+array("小王","女",25),   
+
+array("小李","男",23)   
+
+);   
+
+echo "<table border=2>";   
+
+while(list($keys,$value) = each($staff)){   
+
+list($name,$sex,$age) = $value;   
+
+echo "<tr><td>$name</td><td>$sex</td><td>$age</td></tr>";   
+
+}   
+
+echo "</table>";   
+
+?>
+
+
+
+
+实例四：array_flip()交换数组的键值和值:   
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$array = array("red","blue","yellow","Black");   
+
+print_r($array);   
+
+echo "<br />";   
+
+$array = array_flip($array);   
+
+print_r($array);   
+
+?>
+
+
+
+
+运行结果：   
+
+Array ( [0] => red [1] => blue [2] => yellow [3] => Black )   
+
+Array ( [red] => 0 [blue] => 1 [yellow] => 2 [Black] => 3 )   
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$array = array("red","blue","yellow","Black");   
+
+$result = array_keys($array);   
+
+print_r($result);   
+
+echo "<br />";   
+
+$result = array_values($array);   
+
+print_r($result);   
+
+?>
+
+
+
+
+运行结果：   
+
+Array ( [0] => 0 [1] => 1 [2] => 2 [3] => 3 )   
+
+Array ( [0] => red [1] => blue [2] => yellow [3] => Black )   
+
+实例六：array_search()搜索数值:   
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$array = array("red","blue","yellow","Black");   
+
+$result = array_search("red",$array);   
+
+if(($result === NULL)){   
+
+echo "不存在数值red";   
+
+}else{   
+
+echo "存在数值 $result";   
+
+}   
+
+?>
+
+
+
+
+结果：存在数值 0   
+
+函数array_search()返回的值可能为false或0或NULL，所以在判断时注意要用"==="   
+
+7. 数组的排序   
+
+实例一：sort()、rsort()/asort()、arsort()对数组排序：   
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$array = array("b","c","d","a");   
+
+sort($array);//从低到高排序   
+
+print_r($array);   
+
+echo "<br />";   
+
+rsort($array);//逆向排序   
+
+print_r($array);   
+
+?>
+
+
+
+
+结果：   
+
+Array ( [0] => a [1] => b [2] => c [3] => d )   
+
+Array ( [0] => d [1] => c [2] => b [3] => a )   
+
+sort()、rsort()函数对数组进行从低到高的排序，返回结果为bool值；   
+
+asort()、arsort()函数是保留键值的排序，排序后键值不重新索引。   
+
+实例二：将数组顺序打乱——shuffle()函数：   
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$array = array("a","b","c","d");   
+
+shuffle($array);//从低到高排序   
+
+print_r($array);   
+
+?>
+
+
+
+
+结果为动态结果：   
+
+Array ( [0] => c [1] => a [2] => d [3] => b )   
+
+shuffle的结果有点随机的意味，每次刷新都不一样。   
+
+实例三：array_reverse()数组反向：   
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$array = array("d","b","a","c");   
+
+$array = array_reverse($array);//从低到高排序   
+
+print_r($array);   
+
+?>
+
+
+
+
+运行结果：   
+
+Array ( [0] => c [1] => a [2] => b [3] => d )   
+
+实例四：自然排序算法——natsort()和natcasesort();   
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$array = array("sort2","Sort5","sort1","sort4");   
+
+natsort($array);//从低到高排序   
+
+print_r($array);   
+
+echo "<br />";   
+
+natcasesort($array);   
+
+print_r($array);   
+
+?>
+
+
+
+
+结果：   
+
+Array ( [1] => Sort5 [2] => sort1 [0] => sort2 [3] => sort4 )   
+
+Array ( [2] => sort1 [0] => sort2 [3] => sort4 [1] => Sort5 )   
+
+natsort()、natcasesort()对数组进行自然排序，就是使用数字的正常排序算法。natcasesort会忽略大小写。   
+
+实例五：对数组进行键值排序ksort():   
+
+复制代码 代码如下:  
+
+<?PHP   
+
+$array = array(1=>"sort2",4=>"Sort5",2=>"sort1",3=>"sort4");   
+
+ksort($array);//从低到高排序   
+
+print_r($array);   
+
+?>
+
+
+
+
+结果：   
+
+Array ( [1] => sort2 [2] => sort1 [3] => sort4 [4] => Sort5 )   
+
+注意：ksort()函数重新建立了索引。   
+
+8. 数组的其他用法   
+
+复制代码 代码如下:  
+
+cout($array) --------统计数组的单元个数   
+
+　　array_diff($array1,$array2)----------统计数组之间的不同点，返回第一个数组中有而第二个数组中没有的。   
+
+　　array_diff_assoc($array1,$array2)---------同array_diff()，只是它对键值也比较   
+
+　　array_diff_key($array1,$array2)------------比较键值   
+
+　　array_product($array)-----------返回数组的所有数的乘积   
+
+　　array_sum($array)--------------所有数值的和   
+
+　　array_rand($array,$n)----------在$array数组中取出$n个数值，返回数组   
+
+　　array_intersect($array1,$array2)----------------取得两个数组的交集   
+
+　　array_intersect_assoc($array1,$array2)---------------在array_intersect 的基础上进行键值比较
+  
+
+　　array_intersect_key($array1,$array2)-----------------比较两个数组键值的交集 
+
+
+
+
+总结   
+
+数组的使用在PHP中至关重要，由于PHP没有指针，所以数组承担了很大的数据操作任务。学好数组，才能把PHP应用的得心应手，这里所列均是常用的PHP数组相关的函数及用法，欢迎一起学习！
+  
+
+详细出处参考：[http://www.jb51.net/article/27725.htm](http://www.jb51.net/article/27725.htm)
+
+
+

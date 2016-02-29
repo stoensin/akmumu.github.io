@@ -1,0 +1,817 @@
+---
+author: admin
+comments: true
+date: 2012-09-12 08:59:00+00:00
+layout: post
+slug: highcharts%e4%bd%bf%e7%94%a8%e6%8c%87%e5%8d%97%ef%bc%8c%e5%8f%af%e4%bd%bf%e7%94%a8%e6%bc%82%e4%ba%ae%e7%9a%84%e6%8c%89%e6%97%b6%e9%97%b4%e6%bb%9a%e5%8a%a8%e6%95%b0%e6%8d%ae%e5%9b%be%e8%a1%a8
+title: Highcharts使用指南，可使用漂亮的按时间滚动数据图表
+wordpress_id: 62
+categories:
+- PHP
+- 前端美工设计
+tags:
+- php程序设计
+- 前端美工设计
+---
+
+
+
+
+### 摘要
+
+
+
+
+Highcharts图表控件是目前使用最为广泛的图表控件。本文将从零开始逐步为你介绍Highcharts图表控件。通过本文，你将学会如何配置Highcharts以及动态生成Highchart图表。
+
+
+
+
+* * *
+
+
+
+
+
+
+
+### 目录
+
+
+
+
+
+
+  * 前言（Preface）
+  * 安装（Installation）
+  * 如何设置参数（How to set up the options）
+  * 预处理参数（Preprocess the options）
+  * 活动图（Live charts）
+
+
+
+* * *
+
+
+
+
+### 
+
+
+
+
+### 一、前言（Preface）
+
+
+
+
+**Highcharts**是一个非常流行，界面美观的纯**Javascript**图表库。它主要包括两个部分：Highcharts和Highstock。
+
+
+
+
+Highcharts可以为您的网站或Web应用程序提供直观，互动式的图表。目前支持线，样条，面积，areaspline，柱形图，条形图，饼图和散点图类型。
+
+
+
+
+Highstock可以为您方便地建立股票或一般的时间轴图表。它包括先进的导航选项，预设的日期范围，日期选择器，滚动和平移等等。
+
+
+
+
+如果想要了解更多Highcharts的信息，可以参考官网：[http://www.highcharts.com](http://www.highcharts.com/)。
+
+
+
+
+
+
+
+### 二、安装（Installation）
+
+
+
+
+**1.Highcharts沿用jQuery,MooTool以及Prototype等Javascript框架来处理基本的Javascript任务。**因此,在使用Highcharts之前，需要在页面头部引用这些脚本文件。如果你使用jQuery作为基本框架，那么你需要在页面头部同时引用jQuery和Hightcharts两个文件。如下：
+
+
+
+
+
+
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/highcharts.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+Highcharts(Highstock)已经内置了jQuery适配器(adapter)（注：可能是jQuery框架最流行的缘故），但是并没有内置MooTool等其他javascript框架的适配器(adapter)。因此，当我们使用MooTool等其他JS框架时，需要单独引用适配器(adapter)脚本文件。如下：
+
+
+
+
+
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/mootools/1.3.0/mootools-yui-compressed.js" type="text/javascript"></script>
+    <script src="/js/adapters/mootools-adapter.js" type="text/javascript"></script>
+    <script src="/js/highcharts.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+<blockquote>
+
+> 
+> 提示： 安装Highstock过程与上述相同，除了JavaScript文件名称是highstock.js而不是highcharts.js。
+> 
+> 
+</blockquote>
+
+
+
+
+
+
+
+**2.在您的网页头部的脚本标签，或在一个单独的js文件，添加JavaScript代码来初始化图表。**renderTo参数用来设置图表渲染的位置，一般来说是一个具有ID的DIV元素（参考第3步）。
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+    
+    <span style="color:#0000ff">var</span> chart1; <span style="color:#008000">//</span><span style="color:#008000"> 全局变量</span><span style="color:#008000">
+    </span>$(document).ready(<span style="color:#0000ff">function</span>() {
+          chart1 = <span style="color:#0000ff">new</span> Highcharts.Chart({
+             chart: {
+                renderTo: 'container',
+                type: 'bar'
+             },
+             title: {
+                text: 'Fruit Consumption'
+             },
+             xAxis: {
+                categories: ['Apples', 'Bananas', 'Oranges']
+             },
+             yAxis: {
+                title: {
+                   text: 'Fruit eaten'
+                }
+             },
+             series: [{
+                name: 'Jane',
+                data: [1, 0, 4]
+             }, {
+                name: 'John',
+                data: [5, 7, 3]
+             }]
+          });
+       });
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+
+
+
+
+  
+
+上述代码适用于使用jQuery作为基本框架的情况，$(document).ready()函数，表示在文档加载完成后进行相应处理。如果你使用MooTool等其他JS框架，需要使用相对应的代码来替代$(document).ready()函数。
+
+
+
+
+如果你想生成HighStock图表，有一个单独的构造方法调用Highcharts.StockChart。在这些图表中，数据源是一个典型的JavaScript数组数据。其来源可以是一个单独的JavaScript文件，或者是通过Ajax调用远程服务器提供的数据。
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+    
+    <span style="color:#0000ff">var</span> chart1; <span style="color:#008000">//</span><span style="color:#008000"> 全局变量</span><span style="color:#008000">
+    </span>$(document).ready(<span style="color:#0000ff">function</span>() {
+          chart1 = <span style="color:#0000ff">new</span> Highcharts.StockChart({
+             chart: {
+                renderTo: 'container'
+             },
+             rangeSelector: {
+                selected: 1
+             },
+             series: [{
+                name: 'USD to EUR',
+                data: usdtoeur <span style="color:#008000">//</span><span style="color:#008000"> 数组变量</span><span style="color:#008000">
+    </span>         }]
+          });
+       });
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+
+
+
+
+  
+
+**3.在页面中添加一个DIV元素，作为放置Highcharts图表的容器。**需要为其设置ID值，与第2步rendTo参数绑定。设置的宽度和高度将作为Highcharts图表的宽度和高度。
+
+
+
+
+
+
+    
+    <div id="container" style="width: 100%; height: 400px"></div>
+
+
+
+
+
+
+
+****
+
+
+
+
+**4.你可以通过Highcharts.setOptions方法为Highcharts图表设置一个全局的主题（可选的）。**下载包含有四个预定义的主题，如果你需要使用从这些主题，只需在
+ highcharts.js 后引用这些文件。比如：
+
+
+
+
+
+
+    
+    <script type="text/javascript" src="/js/themes/gray.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+### 三、如何设置参数（How to set up the options）
+
+
+
+
+
+
+
+Highcharts使用一个JavaScript对象结构来定义参数。选项的值可以是字符串和数字，数组，其他对象，甚至是函数。当您初始化使用新Highcharts.Chart的图表，options对象将作为第一个参数传递。  
+
+  
+
+如果你想在同一个页面上使用一组参数，可以定义一个选项对象（options object）来设置选项。更多内容参考#4预处理选项（Preprocessing the options）。
+
+
+
+
+
+
+
+### 四、预处理参数（Preprocess the options）
+
+
+
+
+
+
+
+了解配置对象（configuration object）的工作原理，以及如何用程序来实现，对于实现高效的Highcharts图表显得十分重要。下面将介绍JavaScript对象的基本知识点：
+
+
+
+
+
+
+
+
+
+  * 在上面的例子中,Highcharts options被定义为对象字面值（object literals）。通过这种方法来标记配置，我们可以的到一个清晰的，可读性强的，占用空间低的配置对象。下面这种复杂的代码对于C程序员来说可能比较熟悉：
+
+
+
+
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+    
+    <span style="color:#008000">//</span><span style="color:#008000"> 不良的风格</span><span style="color:#008000">
+    </span><span style="color:#0000ff">var</span> options = <span style="color:#0000ff">new</span> Object();
+    
+    options.chart = <span style="color:#0000ff">new</span> Object();
+    options.chart.renderTo = 'container';
+    options.chart.type = 'bar';
+    
+    options.series = <span style="color:#0000ff">new</span> Array();
+    options.series[0] = <span style="color:#0000ff">new</span> Object();
+    options.series[0].name = 'Jane';
+    options.series[0].data = <span style="color:#0000ff">new</span> Array(1, 0, 4);
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+
+
+
+
+
+
+
+对于JavaScript程序员来说，我们更喜欢使用下面的风格。需要注意的是，两种实现方式的结果是完全相同的。
+
+
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+    
+    <span style="color:#008000">//</span><span style="color:#008000"> 良好的风格</span><span style="color:#008000">
+    </span><span style="color:#0000ff">var</span> options = {
+        chart: {
+            renderTo: <span style="color:#800000">'</span><span style="color:#800000">container</span><span style="color:#800000">'</span>,
+            defaultSeriesType: <span style="color:#800000">'</span><span style="color:#800000">bar</span><span style="color:#800000">'</span>
+        },
+        series: [{
+            name: <span style="color:#800000">'</span><span style="color:#800000">Jane</span><span style="color:#800000">'</span>,
+            data: [<span style="color:#800080">1</span>, <span style="color:#800080">0</span>, <span style="color:#800080">4</span>]
+        }]
+    };
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  * 在创建命名的对象后，我们可以通过.操作符来扩展其成员。假设我们已经定义一个对象（见良好的风格代码）。下面代码代码将添加另一个series。请记住options.series是一个数组，因此我们可以使用push方法。
+
+
+
+
+
+
+
+
+
+
+
+    
+    options.series.push({
+        name: <span style="color:#800000">'</span><span style="color:#800000">John</span><span style="color:#800000">'</span>,
+        data: [<span style="color:#800080">3</span>, <span style="color:#800080">4</span>, <span style="color:#800080">2</span>]
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  * 另外一个可以排上用场的事实是，对于JavsScript对象来说，点符号（.）和方括号[]是等价的。所以，你可以通过名称来访问成员。这意味着： 
+
+
+
+
+
+
+
+
+
+
+
+    
+    options.renderTo
+
+
+
+
+
+
+
+
+
+
+等价于
+
+
+
+
+
+
+
+
+
+    
+    options[<span style="color:#800000">'</span><span style="color:#800000">renderTo</span><span style="color:#800000">'</span>]
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### 4.1 案例学习： preprocessing the data from CSV
+
+
+
+
+通过这个简单的例子，我们将学会如何配置基本的参数(options)，然后通过一个Ajax调用远程数据以及解析数据，最后通过合适的格式展现出来。在这个例子中，我们使用jQuery来处理Ajax请求。当然，你也可以使用MooTool或者Prototype来实现类似的功能。所有的代码在$(document).ready()函数中处理。你可以在[data-from-csv.htm](http://highcharts.com/studies/data-from-csv.htm)看到这个例子的效果。
+
+
+
+
+**(1)创建一个外部的仅包含数据的CSV文件（数据源）。**从下面数据文件中，我们可以看到第一行列出了类别的名称（类似于字段名）。后继的行的第一个位置列出了series name(比如：第二行的'John')，随后的位置列出相关的值(value)。在实际开发过程中，我们经常使用PHP或者其他服务器端编程语言（C#，java等)来创建这个文件的内容。或者你会选择其他的标记格式，比较的常见的如XML或者JSON（JSON相对XML更加轻巧）。在这些情况下，jQuery可以解析出数据对象本身。
+
+
+
+
+
+
+    
+    Categories,Apples,Pears,Oranges,Bananas
+    John,<span style="color:#800080">8</span>,<span style="color:#800080">4</span>,<span style="color:#800080">6</span>,<span style="color:#800080">5</span>
+    Jane,<span style="color:#800080">3</span>,<span style="color:#800080">4</span>,<span style="color:#800080">2</span>,<span style="color:#800080">3</span>
+    Joe,<span style="color:#800080">86</span>,<span style="color:#800080">76</span>,<span style="color:#800080">79</span>,<span style="color:#800080">77</span>
+    Janet,<span style="color:#800080">3</span>,<span style="color:#800080">16</span>,<span style="color:#800080">13</span>,<span style="color:#800080">15</span>
+
+
+
+
+
+
+
+**(2)定义基本的初始的参数。**注意到，我们为categorys和series对象创建了空数组（empty arrays），稍后我们可以为其添加数据。
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+    
+    <span style="color:#0000ff">var</span> options = {
+        chart: {
+            renderTo: <span style="color:#800000">'</span><span style="color:#800000">container</span><span style="color:#800000">'</span>,
+            defaultSeriesType: <span style="color:#800000">'</span><span style="color:#800000">column</span><span style="color:#800000">'</span>
+        },
+        title: {
+            text: <span style="color:#800000">'</span><span style="color:#800000">Fruit Consumption</span><span style="color:#800000">'</span>
+        },
+        xAxis: {
+            categories: []
+        },
+        yAxis: {
+            title: {
+                text: <span style="color:#800000">'</span><span style="color:#800000">Units</span><span style="color:#800000">'</span>
+            }
+        },
+        series: []
+    };
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+
+
+
+
+**（3）加载数据。**我们通过jQuery的.get方法来获取数据文件.csv的内容。在success回调函数中，我们解析请求返回的字符串，并将结果添加到参数对象（options object)的categories和series成员对象中，最后创建图表。请注意，我们不能在Ajax callback外创建图表，因为我们要等待服务器返回的数据（当请求成功后，返回数据，该过程是异步的）。
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+    
+    $.<span style="color:#0000ff">get</span>(<span style="color:#800000">'</span><span style="color:#800000">data.csv</span><span style="color:#800000">'</span>, function(data) {
+        <span style="color:#008000">//</span><span style="color:#008000"> Split the lines</span><span style="color:#008000">
+    </span> <span style="color:#0000ff">var</span> lines = data.split(<span style="color:#800000">'</span><span style="color:#800000">n</span><span style="color:#800000">'</span>);
+        
+        <span style="color:#008000">//</span><span style="color:#008000"> Iterate over the lines and add categories or series</span><span style="color:#008000">
+    </span>    $.each(lines, function(lineNo, line) {
+            <span style="color:#0000ff">var</span> items = line.split(<span style="color:#800000">'</span><span style="color:#800000">,</span><span style="color:#800000">'</span>);
+            
+            <span style="color:#008000">//</span><span style="color:#008000"> header line containes categories</span><span style="color:#008000">
+    </span> <span style="color:#0000ff">if</span> (lineNo == <span style="color:#800080">0</span>) {
+                $.each(items, function(itemNo, item) {
+                    <span style="color:#0000ff">if</span> (itemNo > <span style="color:#800080">0</span>) options.xAxis.categories.push(item);
+                });
+            }
+            
+            <span style="color:#008000">//</span><span style="color:#008000"> the rest of the lines contain data with their name in the first position</span><span style="color:#008000">
+    </span> <span style="color:#0000ff">else</span> {
+                <span style="color:#0000ff">var</span> series = {
+                    data: []
+                };
+                $.each(items, function(itemNo, item) {
+                    <span style="color:#0000ff">if</span> (itemNo == <span style="color:#800080">0</span>) {
+                        series.name = item;
+                    } <span style="color:#0000ff">else</span> {
+                        series.data.push(parseFloat(item));
+                    }
+                });
+                
+                options.series.push(series);
+        
+            }
+            
+        });
+        
+        <span style="color:#008000">//</span><span style="color:#008000"> Create the chart</span><span style="color:#008000">
+    </span> <span style="color:#0000ff">var</span> chart = <span style="color:#0000ff">new</span> Highcharts.Chart(options);
+    });
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+
+
+
+
+#### 4.2 加载XML数据
+
+
+
+
+从XML文件加载数据与加载CSV文件类似。**Highcharts不能处理预定义的XML数据（只能处理数组）。**因此，整个过程由你来编写XML数据，并为它定义一个解析函数。相对于CSV文件来说，XML的最大缺点是，它增加了一些标记数据（这也是选择JSON的缘故）。使用XML的好处在于，至少对于小量的数据来说，你不必要手动解析返回的数据。你可以使用jQuery现有的DOM解析能力来访问XML数。你可以在[data-from-xml.htm](http://highcharts.com/studies/data-from-xml.htm)看到实例，数据包含在[data.xml](http://highcharts.com/studies/data.xml)。
+
+
+
+
+
+
+
+### 五、活动图(Live Charts)
+
+
+
+
+尽管我们已经通过配置对象（configuration object）定义图表，然后选择性地预处理（optionally preprocessed），最后通过new Highcharts.Chart()初始化和渲染图表，我们仍然有机会通过API来改变图表。chart,axis,series以及point对象有许多方法，比如update,remove,addSeries,addPoints等等。完整的列表可以查看API参考（[the
+ API Reference](http://www.highcharts.com/ref)）下方法和属性。
+
+
+
+
+#### 5.1 案例学习：a live connection to the server
+
+
+
+
+下面的例子将展示怎样构建一个活动的图表（live chart）通过每一秒种从服务器检索的数据。首先，我们要建立自定义函数requestData，它开始在图表加载事件（load event）中调用，随后在Ajax回调函数success中调用。你可以在[live-server.htm](http://www.highcharts.com/studies/live-server.htm)中看到结果。
+
+
+
+
+**1.建立服务器。**在这个例子中，我们选择PHP作为服务器脚本语言返回包含时间（time）以及y值（y value）的javascript数组。下列为live-server-data.php文件的代码：
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+    
+    <span style="color:#008080"> 1</span> <?php
+    <span style="color:#008080"> 2</span> <span style="color:#008000">//</span><span style="color:#008000"> Set the JSON header</span><span style="color:#008000">
+    </span><span style="color:#008080"> 3</span> <span style="color:#008080">header</span>("Content-type: text/json");
+    <span style="color:#008080"> 4</span>
+    <span style="color:#008080"> 5</span> <span style="color:#008000">//</span><span style="color:#008000"> The x value is the current JavaScript time, which is the Unix time multiplied by 1000.</span><span style="color:#008000">
+    </span><span style="color:#008080"> 6</span> <span style="color:#800080">$x</span> = <span style="color:#008080">time</span>() * 1000;
+    <span style="color:#008080"> 7</span> <span style="color:#008000">//</span><span style="color:#008000"> The y value is a random number</span><span style="color:#008000">
+    </span><span style="color:#008080"> 8</span> <span style="color:#800080">$y</span> = <span style="color:#008080">rand</span>(0, 100);
+    <span style="color:#008080"> 9</span>
+    <span style="color:#008080">10</span> <span style="color:#008000">//</span><span style="color:#008000"> Create a PHP array and echo it as JSON</span><span style="color:#008000">
+    </span><span style="color:#008080">11</span> <span style="color:#800080">$ret</span> = <span style="color:#0000ff">array</span>(<span style="color:#800080">$x</span>, <span style="color:#800080">$y</span>);
+    <span style="color:#008080">12</span> <span style="color:#0000ff">echo</span> json_encode(<span style="color:#800080">$ret</span>);
+    <span style="color:#008080">13</span> ?>
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+
+
+
+
+**2.定义全局变量。**需要强调的是，这里必须定义chart全局变量，因为在document ready函数以及requestData函数均要访问。
+
+
+
+
+
+
+    
+    <span style="color:#008080">1</span> <span style="color:#0000ff">var</span> chart; <span style="color:#008000">//</span><span style="color:#008000"> global</span>
+
+
+
+
+
+
+
+**3.实现requestData函数。**在这个例子中使用jQuery中$.ajax函数来处理ajax事务（你也可以用其他ajax框架来替代）。当数据从服务器成功返回后，通过addPoint方法添加点。
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+    
+    <span style="color:#008080"> 1</span> <span style="color:#008000">/*</span><span style="color:#008000">*
+    </span><span style="color:#008080"> 2</span> <span style="color:#008000"> * Request data from the server, add it to the graph and set a timeout to request again
+    </span><span style="color:#008080"> 3</span> <span style="color:#008000">*/</span>
+    <span style="color:#008080"> 4</span> <span style="color:#0000ff">function</span> requestData() {
+    <span style="color:#008080"> 5</span>     $.ajax({
+    <span style="color:#008080"> 6</span>         url: 'live-server-data.php',
+    <span style="color:#008080"> 7</span>         success: <span style="color:#0000ff">function</span>(point) {
+    <span style="color:#008080"> 8</span> <span style="color:#0000ff">var</span> series = chart.series[0],
+    <span style="color:#008080"> 9</span>                 shift = series.data.length > 20; <span style="color:#008000">//</span><span style="color:#008000"> shift if the series is longer than 20</span><span style="color:#008000">
+    </span><span style="color:#008080">10</span>
+    <span style="color:#008080">11</span> <span style="color:#008000">//</span><span style="color:#008000"> add the point</span><span style="color:#008000">
+    </span><span style="color:#008080">12</span>             chart.series[0].addPoint(point, <span style="color:#0000ff">true</span>, shift);
+    <span style="color:#008080">13</span>
+    <span style="color:#008080">14</span> <span style="color:#008000">//</span><span style="color:#008000"> call it again after one second</span><span style="color:#008000">
+    </span><span style="color:#008080">15</span>             setTimeout(requestData, 1000);    
+    <span style="color:#008080">16</span>         },
+    <span style="color:#008080">17</span>         cache: <span style="color:#0000ff">false</span>
+    <span style="color:#008080">18</span>     });
+    <span style="color:#008080">19</span> }
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+
+
+
+
+**4.创建图表。**
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/liuhaorain/archive/2012/01/24/2311352.html)
+
+
+
+    
+    <span style="color:#008080"> 1</span> $(document).ready(<span style="color:#0000ff">function</span>() {
+    <span style="color:#008080"> 2</span>     chart = <span style="color:#0000ff">new</span> Highcharts.Chart({
+    <span style="color:#008080"> 3</span>         chart: {
+    <span style="color:#008080"> 4</span>             renderTo: 'container',
+    <span style="color:#008080"> 5</span>             defaultSeriesType: 'spline',
+    <span style="color:#008080"> 6</span>             events: {
+    <span style="color:#008080"> 7</span>                 load: requestData
+    <span style="color:#008080"> 8</span>             }
+    <span style="color:#008080"> 9</span>         },
+    <span style="color:#008080">10</span>         title: {
+    <span style="color:#008080">11</span>             text: 'Live random data'
+    <span style="color:#008080">12</span>         },
+    <span style="color:#008080">13</span>         xAxis: {
+    <span style="color:#008080">14</span>             type: 'datetime',
+    <span style="color:#008080">15</span>             tickPixelInterval: 150,
+    <span style="color:#008080">16</span>             maxZoom: 20 * 1000
+    <span style="color:#008080">17</span>         },
+    <span style="color:#008080">18</span>         yAxis: {
+    <span style="color:#008080">19</span>             minPadding: 0.2,
+    <span style="color:#008080">20</span>             maxPadding: 0.2,
+    <span style="color:#008080">21</span>             title: {
+    <span style="color:#008080">22</span>                 text: 'Value',
+    <span style="color:#008080">23</span>                 margin: 80
+    <span style="color:#008080">24</span>             }
+    <span style="color:#008080">25</span>         },
+    <span style="color:#008080">26</span>         series: [{
+    <span style="color:#008080">27</span>             name: 'Random data',
+    <span style="color:#008080">28</span>             data: []
+    <span style="color:#008080">29</span>         }]
+    <span style="color:#008080">30</span>     });        
+    <span style="color:#008080">31</span> });
+
+
+
+
+
+

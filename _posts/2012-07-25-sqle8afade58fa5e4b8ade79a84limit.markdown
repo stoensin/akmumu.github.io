@@ -1,0 +1,94 @@
+---
+author: admin
+comments: true
+date: 2012-07-25 03:52:00+00:00
+layout: post
+slug: sql%e8%af%ad%e5%8f%a5%e4%b8%ad%e7%9a%84limit
+title: sql语句中的limit
+wordpress_id: 39
+categories:
+- 实用软件技巧
+tags:
+- Mysql
+---
+
+
+
+MySQL limit查询优化的具体内容的介绍，我们大家都知道MySQL数据库的优化是相当重要的。其他最为常用也是最为需要优化的就是limit。MySQL的 limit给分页带来了极大的方便，但数据量一大的时候，limit的性能就急剧下降。
+
+
+同样是取10条数据  
+
+select * from table limit 10000,10   
+
+select * from table limit 0,10   
+
+就不是一个数量级别的。
+
+
+
+
+网上也很多关于limit的五条优化准则，都是翻译自MySQL手册，虽然正确但不实用。今天发现一篇文章写了些关于limit优化的，很不错。
+
+
+
+
+文中不是直接使用limit，而是首先获取到offset的id然后直接使用limit size来获取数据。根据他的数据，明显要好于直接使用limit。这里我具体使用数据分两种情况进行测试。(测试环境win2033 p4双核 (3GHZ) 4G内存MySQLlimit查询)
+
+
+
+
+1、offset比较小的时候  
+
+  
+
+select * from table limit 10,10   
+
+多次运行，时间保持在0.0004-0.0005之间
+
+
+
+
+Select * From table Where vid ＞=(   
+
+elect vid From table Order By vid limit 10,1 ) limit 10   
+
+多次运行，时间保持在0.0005-0.0006之间，主要是0.0006
+
+
+
+
+结论：偏移offset较小的时候，直接使用limit较优。这个显然是子查询的原因。  
+
+  
+
+2、offset大的时候
+
+
+
+
+select * from table limit 10000,10   
+
+多次运行，时间保持在0.0187左右
+
+
+
+
+Select * From table Where vid ＞=(   
+
+Select vid From table Order By vid limit 10000,1 ) limit 10   
+
+多次运行，时间保持在0.0061左右，只有前者的1/3。可以预计offset越大，后者越优。
+
+
+
+
+以后要注意改正自己的limit语句，优化一下MySQL了
+
+
+
+
+MySQL的优化是非常重要的。其他最常用也最需要优化的就是limit。MySQL的limit给分页带来了极大的方便，但数据量一大的时候，limit的性能就急剧下降。
+
+
+

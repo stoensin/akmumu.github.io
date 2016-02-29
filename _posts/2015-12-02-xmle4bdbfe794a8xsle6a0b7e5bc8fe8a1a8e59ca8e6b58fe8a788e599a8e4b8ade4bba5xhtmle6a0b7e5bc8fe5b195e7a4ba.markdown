@@ -1,0 +1,96 @@
+---
+author: admin
+comments: true
+date: 2015-12-02 07:54:33+00:00
+layout: post
+slug: xml%e4%bd%bf%e7%94%a8xsl%e6%a0%b7%e5%bc%8f%e8%a1%a8%e5%9c%a8%e6%b5%8f%e8%a7%88%e5%99%a8%e4%b8%ad%e4%bb%a5xhtml%e6%a0%b7%e5%bc%8f%e5%b1%95%e7%a4%ba
+title: XML使用XSL样式表在浏览器中以XHTML样式展示
+wordpress_id: 385
+categories:
+- 实用软件技巧
+tags:
+- xhtml
+- xml
+- xsl
+---
+
+从一个原始的 XML(cdcatalog.xml)文档开始
+
+    
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <catalog>
+      <cd>
+        <title>Empire Burlesque</title>
+        <uri>www.akmumu.com</uri>
+        <country>USA</country>
+        <company>Columbia</company>
+        <price>10.90</price>
+        <year>1985</year>
+      </cd>
+    .
+    .
+    .
+    </catalog>
+
+
+
+
+这时候使用浏览器访问xml文件，会以各浏览器的标准xml样式展示，有的时候我们需要以自己定义的样式预览，比如定义一个a标签，里面有xml的链接，并可以点击，这时候我们需要建立一个XSL（cdcatalog.xsl） 样式表文件如下：
+
+    
+    <?xml version="1.0" encoding="UTF-8"?> 
+    <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> 
+    <xsl:template match="/"> 
+    <html> 
+    <body> 
+    <h2>My CD Collection</h2> 
+    <table border="1"> 
+    <tr bgcolor="#9acd32">
+    <th align="left">title</th> 
+    <th align="left">url</th>
+    </tr>
+    <xsl:for-each select="catalog/cd"> 
+    <tr> 
+    <td><xsl:value-of select="title"/></td> 
+    <td>
+    <xsl:element name="a"> 
+    <xsl:attribute name="href"><xsl:value-of select=“uri”></xsl:value-of></xsl:attribute>
+    <xsl:attribute name="target">_blank</xsl:attribute>
+    <xsl:value-of select="uri"></xsl:value-of> 
+    </xsl:element>
+    </td> 
+    </tr> 
+    </xsl:for-each>
+    </table> 
+    </body>
+    </html>
+    </xsl:template> </xsl:stylesheet>
+
+
+
+
+这时候我们只需要向原xml文件增加一行
+`<?xml-stylesheet type="text/xsl" href="cdcatalog.xsl"?>`
+如：
+
+    
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <?xml-stylesheet type="text/xsl" href="cdcatalog.xsl"?>
+    <catalog>
+      <cd>
+        <title>Empire Burlesque</title>
+        <uri>www.akmumu.com</uri>
+        <country>USA</country>
+        <company>Columbia</company>
+        <price>10.90</price>
+        <year>1985</year>
+      </cd>
+    .
+    .
+    .
+    </catalog>
+
+
+
+
+再从浏览器访问xml文件，样式出现了，a链接可以直接点击。完毕！

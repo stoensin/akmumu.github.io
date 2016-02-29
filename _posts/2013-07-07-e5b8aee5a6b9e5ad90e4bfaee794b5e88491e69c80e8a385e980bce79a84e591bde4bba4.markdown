@@ -1,0 +1,17 @@
+---
+author: admin
+comments: true
+date: 2013-07-07 14:26:00+00:00
+layout: post
+slug: '%e5%b8%ae%e5%a6%b9%e5%ad%90%e4%bf%ae%e7%94%b5%e8%84%91%e6%9c%80%e8%a3%85%e9%80%bc%e7%9a%84%e5%91%bd%e4%bb%a4'
+title: 帮妹子修电脑最装逼的命令
+wordpress_id: 183
+categories:
+- 天下杂侃
+tags:
+- 天下杂侃
+---
+
+
+帮美女修电脑，第一步一定要打开命令行界面，然后输入cd回车，dir/w/s回车，看着满屏字符跑完，轻轻地说一句，我已经知道问题是什么了……
+

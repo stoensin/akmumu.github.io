@@ -1,0 +1,152 @@
+---
+author: admin
+comments: true
+date: 2014-01-24 02:46:46+00:00
+layout: post
+slug: php%e5%ae%9e%e7%8e%b0%e4%b8%8b%e8%bd%bd%e5%8a%9f%e8%83%bd%e7%9a%84%e4%bb%a3%e7%a0%81
+title: PHP实现下载功能的代码
+wordpress_id: 247
+categories:
+- PHP
+---
+
+PHP实现下载功能的代码，并实现安全下载，隐藏文件真实地址等，需要的朋友可以参考下
+
+
+
+
+
+
+
+
+
+
+wzskynet#163.com
+·php escapeshellcmd多字节编码漏洞
+·详细讲解PHP中缓存技术的应用
+·利用PHP V5开发多任务应用程序
+·详细解析 PHP 向 MySQL 发送数据过程
+·PHP实现静态发布的方法浅谈
+你一定会笑我“下载文件”如此简单都值得说？当然并不是想你想象的那么简单。例如你希望客户要填完一份表格，才可以下载某一文件，你第一个想法一定是用 “Redirect”的方法，先检查表格是否已经填写完毕和完整，然后就将网址指到该文件，这样客户才能下载，例如笔者编写的以下代码：
+
+
+复制代码代码如下:
+
+
+
+
+
+<?
+// 检查 FORM 是否全部填写完毕...
+if ($form_completed) {
+Header("Location: http://www.jb51.net/download/info_check.exe");
+exit;
+}
+?>
+
+
+或者是以下的情况：
+
+
+复制代码代码如下:
+
+
+
+
+
+<a href="http://www.yourwebl.com/users/download.php?id=124524">开始下载文件</a>
+
+
+这里利用了ID方式接收要下载文件的编号，然后用“Redirect”的方式连接到实际的网址。
+
+如果你想做一个关于“网上购物”的电子商务网站，考虑安全问题，你不想用户直接复制网址下载该文件，笔者建议你使用PHP直接读取该实际文件然后下载的方法去做。程序如下：
+
+
+复制代码代码如下:
+
+
+
+
+
+<?
+$file_name = "info_check.exe";
+$file_dir = "/public/www/download/";
+if (!file_exists($file_dir . $file_name)) { //检查文件是否存在
+echo "文件找不到";
+exit;
+} else {
+$file = fopen($file_dir . $file_name,"r"); // 打开文件
+// 输入文件标签
+Header("Content-type: application/octet-stream");
+Header("Accept-Ranges: bytes");
+Header("Accept-Length: ".filesize($file_dir . $file_name));
+Header("Content-Disposition: attachment; filename=" . $file_name);
+// 输出文件内容
+echo fread($file,filesize($file_dir . $file_name));
+fclose($file);
+exit;}
+?>
+
+
+而如果文件路径是“http”或者“ftp” 网址的话，则源代码会有少许改变，程序如下：
+
+
+复制代码代码如下:
+
+
+
+
+
+＜?
+$file_name = "info_check.exe";
+$file_dir = "http://www.jb51.net/";
+$file = @ fopen($file_dir . $file_name,"r");
+if (!$file) {
+echo "文件找不到";
+} else {
+Header("Content-type: application/octet-stream");
+Header("Content-Disposition: attachment; filename=" . $file_name);
+while (!feof ($file)) {
+echo fread($file,50000);
+}
+fclose ($file);
+}
+?＞
+
+
+这样就可以用PHP直接输出文件了。
+
+实现php文件安全下载！
+
+
+复制代码代码如下:
+
+
+
+
+
+public function downloads($name){
+$name_tmp = explode("_",$name);
+$type = $name_tmp[0];
+$file_time = explode(".",$name_tmp[3]);
+$file_time = $file_time[0];
+$file_date = date("Y/md",$file_time);
+$file_dir = SITE_PATH."/data/uploads/$type/$file_date/";
+
+if (!file_exists($file_dir.$name)){
+header("Content-type: text/html; charset=utf-8");
+echo "File not found!";
+exit;
+} else {
+$file = fopen($file_dir.$name,"r");
+Header("Content-type: application/octet-stream");
+Header("Accept-Ranges: bytes");
+Header("Accept-Length: ".filesize($file_dir . $name));
+Header("Content-Disposition: attachment; filename=".$name);
+echo fread($file, filesize($file_dir.$name));
+fclose($file);
+}
+}
+
+
+

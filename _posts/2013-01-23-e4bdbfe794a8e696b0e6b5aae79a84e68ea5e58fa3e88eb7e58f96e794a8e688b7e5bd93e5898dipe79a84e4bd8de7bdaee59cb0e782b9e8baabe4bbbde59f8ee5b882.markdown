@@ -1,0 +1,256 @@
+---
+author: admin
+comments: true
+date: 2013-01-23 08:06:00+00:00
+layout: post
+slug: '%e4%bd%bf%e7%94%a8%e6%96%b0%e6%b5%aa%e7%9a%84%e6%8e%a5%e5%8f%a3%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7%e5%bd%93%e5%89%8dip%e7%9a%84%e4%bd%8d%e7%bd%ae%e5%9c%b0%e7%82%b9%e8%ba%ab%e4%bb%bd%e5%9f%8e%e5%b8%82'
+title: 使用新浪的接口获取用户当前IP的位置地点身份城市地区
+wordpress_id: 154
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+首先，新浪的接口地址为http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js
+
+
+
+
+你可以试着直接在浏览器中输入，他就返回一个json串，下面是例子
+
+
+
+
+var remote_ip_info = {"ret":1,"start":"61.135.152.0","end":"61.135.152.255","country":"u4e2du56fd","province":"u5317u4eac","city":"u5317u4eac","district":"u6d77u6dc0","isp":"u8054u901a","type":"","desc":""};  
+
+
+
+
+
+
+可以看到，这不是一个严格的json串，他的前面有一个变量名，我们是不需要的，最后一个分号也是不能解析的，所以我们要处理一下，下面是我的方法
+
+
+
+    
+    //这里的$this->ip_arr就是那个接口地址，你可以自行定义
+    $ip=file_get_contents($this->ip_arr);
+    		$ip_arr = explode('=', $ip);
+    		$real_json = substr_replace($ip_arr[1],'',-1);
+    		$real_ip = json_decode($real_json,true);
+
+  
+
+最后获取的$real_ip就是一个数组了，类似我这个
+
+
+
+
+
+
+
+
+
+    
+    Array
+    <span id="line2"></span>(
+    <span id="line3"></span>    [ret] => 1
+    <span id="line4"></span>    [start] => 61.135.152.0
+    <span id="line5"></span>    [end] => 61.135.152.255
+    <span id="line6"></span>    [country] => 中国
+    <span id="line7"></span>    [province] => 北京
+    <span id="line8"></span>    [city] => 北京
+    <span id="line9"></span>    [district] => 海淀
+    <span id="line10"></span>    [isp] => 联通
+    <span id="line11"></span>    [type] => 
+    <span id="line12"></span>    [desc] => 
+    <span id="line13"></span>)
+
+
+当然像别的公司也有类似的接口
+
+
+
+
+
+另外在网上还看到如下的方法，大家可以参考
+
+
+
+
+
+
+
+补充一点：在网上找到另外一种方法：  
+
+代码如下：  
+
+$ip = $_SERVER['REMOTE_ADDR'];//这里的ip可以是你自定义的ip  
+
+$geoInfo = get_meta_tags(http://www.geobytes.com/IpLocator.htm?GetLocation&template=php3.txt&IpAddress=$ip);  
+
+/*  
+
+返回的数组信息如下，不过是英文版本的  
+
+Array   
+
+(   
+
+[known] => true //该IP地址是否可知，即是否有收录；   
+
+[locationcode] => CNGDGUAN //地址位置的代码，包含了国家、省份和城市；   
+
+[fips104] => CH //美国联邦信息处理标准的国家代码；   
+
+[iso2] => CN //iso2标准的国家代码；   
+
+[iso3] => CHN //iso标准的国家代码；   
+
+[ison] => 156 //用途未明   
+
+[internet] => CN //也是国家代码   
+
+[countryid] => 49 //国家ID；   
+
+[country] => China //国家名称；   
+
+[regionid] => 1361 //地区的id，即省份；   
+
+[region] => Guangdong //地区名称，即省份名称；   
+
+[regioncode] => GD //地区的代码或者缩写；   
+
+[adm1code] => CH30 //不清楚其含义；   
+
+[cityid] => 3539 //城市的ID；   
+
+[city] => Guangzhou //城市的名称；   
+
+[latitude] => 23.1170 //纬度；   
+
+[longitude] => 113.2500 //经度；   
+
+[timezone] => +08:00 //时区；   
+
+[certainty] => 78 //不清楚其含义；   
+
+)  
+
+*/
+
+
+
+
+
+
+
+
+
+
+  
+
+原文：http://www.phpall.cn/forum/read.php?tid=411
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+另外封装的一个方法（一个朋友提供）：   
+
+
+
+
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/xiaochaohuashengmi/archive/2010/07/06/1771892.html)
+
+
+
+
+function address_baidu($ip) {  
+
+$u = "";  
+
+$address = file_get_contents(" http://open.baidu.com/ipsearch/s?wd={$ip}&tn=baiduip");  
+
+preg_match('#来自：<b>(.+)</b>#Ui', 
+$address, $m);  
+
+return strval($m[1]);  
+
+}  
+
+function GetRemoteIp($default='127.0.0.1')  
+
+{  
+
+$ip_string = $_SERVER['HTTP_CLIENT_IP'].','.$_SERVER['HTTP_X_FORWARDED_FOR'].','.$_SERVER['REMOTE_ADDR'];  
+
+if ( preg_match ("/d+.d+.d+.d+/",$ip_string,
+$matches) )  
+
+{  
+
+return $matches[0];  
+
+}  
+
+return $default;  
+
+}  
+
+$ip = GetRemoteIp();  
+
+$addr = address_baidu($ip);
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/xiaochaohuashengmi/archive/2010/07/06/1771892.html)
+
+
+
+
+
+
+
+
+  
+
+以上这些出自[http://www.cnblogs.com/xiaochaohuashengmi/archive/2010/07/06/1771892.html](http://www.cnblogs.com/xiaochaohuashengmi/archive/2010/07/06/1771892.html)
+

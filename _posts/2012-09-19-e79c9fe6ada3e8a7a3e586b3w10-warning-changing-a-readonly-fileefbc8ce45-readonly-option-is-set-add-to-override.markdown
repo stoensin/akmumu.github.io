@@ -1,0 +1,32 @@
+---
+author: admin
+comments: true
+date: 2012-09-19 09:12:00+00:00
+layout: post
+slug: '%e7%9c%9f%e6%ad%a3%e8%a7%a3%e5%86%b3w10-warning-changing-a-readonly-file%ef%bc%8ce45-readonly-option-is-set-add-to-override'
+title: '真正解决W10: Warning: Changing a readonly file，E45: ''readonly'' option is set
+  (add ! to override)'
+wordpress_id: 71
+categories:
+- 操作系统
+tags:
+- 操作系统相关
+---
+
+大家在linux上编辑文件的时候，明明是使用的root登录的，
+
+可是这种至高无上的权限在按下i的时候被那串红色错误亵渎了
+
+W10: Warning: Changing a readonly file
+
+抱着试试看的态度更改了文件，保存的那一刻又被一串红色错误
+
+E45: 'readonly' option is set (add ! to override)深深的伤害了，
+
+
+# 先尝试使用wq！保存，如果还不行使用下面的办法
+
+
+这些错误往往是我们使用ssh时出现的，这个时候你只要将你使用的命令
+
+vim filename改为vi filename即可

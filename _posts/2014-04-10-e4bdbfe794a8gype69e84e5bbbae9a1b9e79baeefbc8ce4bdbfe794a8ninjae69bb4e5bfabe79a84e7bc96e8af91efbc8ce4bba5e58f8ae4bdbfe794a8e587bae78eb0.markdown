@@ -1,0 +1,259 @@
+---
+author: admin
+comments: true
+date: 2014-04-10 07:13:48+00:00
+layout: post
+slug: '%e4%bd%bf%e7%94%a8gyp%e6%9e%84%e5%bb%ba%e9%a1%b9%e7%9b%ae%ef%bc%8c%e4%bd%bf%e7%94%a8ninja%e6%9b%b4%e5%bf%ab%e7%9a%84%e7%bc%96%e8%af%91%ef%bc%8c%e4%bb%a5%e5%8f%8a%e4%bd%bf%e7%94%a8%e5%87%ba%e7%8e%b0'
+title: 使用gyp构建项目，使用ninja更快的编译，以及使用出现和解决的问题记录
+wordpress_id: 265
+categories:
+- 未分类
+tags:
+- chromium
+- gyp
+- ninja
+---
+
+GYP是什么
+
+[GYP](https://code.google.com/p/gyp/)是Generate Your Projects的缩写
+
+当构建项目的时候就要用到GYP了，尤其是当跨平台的项目时，用不同的平台看代码以及编译，不能每个都手动一个个的新建项目等，而且项目多了有很多预编译的宏，项目依赖等有可能遗忘导致各平台看到的代码和编译的结构有差别，gyp可以让你只写一个gyp文件在各平台生成不同的项目文件，比如在windows下生成.sln的文件，这个可以用vs打开一个项目空间，里面有你希望看到的各个项目。你可以查看代码并编译。
+
+在linux下生成ninja文件，使用ninja编译
+
+在mac下就可以生成xcode能打开.xcodeproj文件。
+
+而这些你只要写一个.gyp文件就可以了。而且使用ninja可以在各个平台上进行编译。速度更快。
+
+
+## GYP结构
+
+
+GYP的输入是.gyp和.gypi文件，.gypi文件是用于.gyp文件include使用的。.gyp文件就是符合特定格式的json文件。
+
+gyp文件中包含target，Visual C++下，gyp生成sln，target生成vcproj或vxcproj。
+
+如果你下载了chromium的源码，那么chromium中GYP结构是，通过命令行统一使用build/common.gypi的公共文件，工程的配置，选项的处理，编译选项的使用，都是在这个文件中配置，所有造成了这个文件超级大，129KB。生成一个总工程`all.gyp`，这个工程依赖于其他所有的工程，这个工程生成，所有工程都生成完成。而且有一个总工程也方便开发。
+
+可以向他的结构和写法学习，写出能够满足自己需求的gyp文件。
+
+
+## 定制生成工程
+
+
+现在默认GYP在Windows下生成Visual Studio 2010工程，但是使用2008的同学还是很多的，改变生成工程很简单。
+
+
+
+	
+  1. 使用环境变量，`GYP_MSVS_VERSION=2008`
+
+	
+  2. 使用命令行参数， `-G msvs_version=2008`
+
+
+不过编译最新的chromium还是使用vs2013
+
+GYP_MSVS_VERSION=2013
+
+set GYP_GENERATORS=msvs,ninja
+
+相关的版本可以填2005, 2008, 2010, 2005e, 2008e等，（支持的版本还是很多的，连express版本都有！）
+
+另外
+
+http://lqhnet.googlecode.com/svn/trunk/gyp.txt
+
+上述网址中讲述了很多关于gyp的实用例子，不错
+
+[gyp构建系统介绍](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/04/gyp构建系统介绍.doc) 还有下载这个文档阅读一下，就能够书写一般需求的gyp了。
+
+下面这些是我在使用过程中碰到的一些错误，以及解决方案，希望能够帮到大家
+
+
+## **错误和解决方案**
+
+
+1、Centos如果运行ninja出错
+
+解决libc.so.6: version `GLIBC_2.7' not found问题
+
+你可以参考
+
+[http://blog.csdn.net/cpplang/article/details/8462768#reply](http://blog.csdn.net/cpplang/article/details/8462768#reply)
+
+来升级glibc。
+
+[http://hi.baidu.com/756091339/item/83bf19820e5d61e8e596e0b7](http://hi.baidu.com/756091339/item/83bf19820e5d61e8e596e0b7)
+
+上面这个网址解决的问题更多
+
+如果不能成功，好吧，一般都会出现这样那样的错误，建议还是直接下载ninja的源码自己来编译
+
+[https://github.com/martine/ninja](https://github.com/martine/ninja)
+
+下载源码下来直接run ./bootstrap.py
+
+就可以编译你需要的ninja可执行文件，加入环境变量，记得删除之前你没有成功的ninja环境变量
+
+这样ninja就可以用了
+
+./ninja -h命令可以获取帮助
+
+2、
+
+如果运行ninja编译的时候，比如要生成一个静态库，生成。0文件之后发现失败了，报下面的错误
+
+ninja ar: illegal option -- T
+
+那么uname -r一下看看你的linux内核版本吧。可以升级的话快升级吧，我的直接换了一个3.多的就可以了，2.6的测试不成攻。如果不想升级，看下面更好的解决方案
+
+最新了解到
+
+在gyp生成的build.ninja文件中有如下
+
+rule alink
+
+command = rm -f $out && $ar rcs $out $in
+
+description = AR $out
+
+rule alink_thin
+
+command = rm -f $out && $ar rcsT $out $in
+
+description = AR $out
+
+当我们生成静态库的时候使用ar命令，默认在ninja文件中使用的上面的命令alink_thin而不是alink，区别在于一个是rcs一个是rcsT，这个T参数在我使用的centos低版本内核时候ar -h中根本没有T这个参数，而ubuntu中有这个参数
+
+
+
+明确说出这个是压缩了，都没有这个命令怎么可能成功。。我手动改了就行了。再有就是让ninja如何默认不使用alink_thin还不知道咋搞。待查。
+
+好，我找到了
+
+gyp/gyp/pylib/gyp/generator/ninja.py的1122行的alink_thin改成alink就可以了。就是说在linux上不压缩，直接使用alink即可，关于alink和alink的规则不变，如果改规则就不好了。好开心啊。。。擦
+
+[http://git.chromium.org/gitweb/?p=external/gyp.git;a=commitdiff;h=b3e6e5f9ac0c05993c7a38a7ddd68df8a80e6c47](http://git.chromium.org/gitweb/?p=external/gyp.git;a=commitdiff;h=b3e6e5f9ac0c05993c7a38a7ddd68df8a80e6c47)
+
+上面的链接是说比较了不同之处
+
+3、
+
+Ubuntu下
+
+编译提示x86_64-linux-gnu文件夹下bits下sched.h啥的
+
+我是把这个文件夹改名了，因为我在usr/include/bits也有这个文件，我需要的恰恰是后者。之后就好了
+
+后来又提示socket中 [__FDELT, __FDMASK](https://www.google.com.hk/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&ved=0CDkQFjAC&url=http://sourceware.org/ml/crossgcc/2001-06/msg00094.html&ei=jhwgU62FIKHniAeKp4GgDA&usg=AFQjCNG0xmHu8p_ajqtjrrP9Zj0l4nSH-A&sig2=JuugjHRl1Jko7z0uF4zLSg)
+
+没有被定义过，查了查，我先装个glibc试试，没错可以啦，哈哈
+
+Ubuntu下安装glibc   apt-get upgrade glibc
+
+4、
+
+编译的时候
+
+Threading support unavaliable: it has been explicitly disabled with BOOST_DISABLE_THREADS
+
+Gcc4.7以上会有这种问题
+
+[gcc 4.7 + 不能使用boost_thread的解决办法](http://blog.csdn.net/linuxchyu/article/details/12611193)
+
+在用gcc 4.7及以上的版本gcc编译boost_thread支持的程序时会提示：
+
+/usr/include/boost/config/requires_threads.hpp:29:4: error: #error "Threading support unavaliable: it has been explicitly disabled with BOOST_DISABLE_THREADS"
+
+这是因为boost是更具编译器的宏定义来判断gcc是否支持多线程，但是gcc 4.7及以上的版本使用的宏与老版本使用的宏不同，这样，boost自然就不能正确获取gcc支持多线程的宏，从而导致不能成功编译boost_thread支持的程序。解决办法是在/usr/include/boost/config/stdlib/libstdcpp3.hpp文件的：
+
+[cpp] [view plain](http://blog.csdn.net/linuxchyu/article/details/12611193#)[copy](http://blog.csdn.net/linuxchyu/article/details/12611193#)
+
+
+
+1 #ifdef __GLIBCXX__ // gcc 3.4 and greater:
+
+2 #  if defined(_GLIBCXX_HAVE_GTHR_DEFAULT) \
+
+3         || defined(_GLIBCXX__PTHREADS)
+改为：
+
+[cpp] [view plain](http://blog.csdn.net/linuxchyu/article/details/12611193#)[copy](http://blog.csdn.net/linuxchyu/article/details/12611193#)
+
+
+
+4 #  if defined(_GLIBCXX_HAVE_GTHR_DEFAULT) \
+
+5         || defined(_GLIBCXX__PTHREADS) \
+
+6     || defined(_GLIBCXX_HAS_GTHREADS)
+
+最后我是尝试重新安装boost解决的，看到他将上面的改成了
+
+#  if defined(_GLIBCXX_HAVE_GTHR_DEFAULT) \
+
+|| defined(_GLIBCXX__PTHREADS) \
+
+|| defined(_GLIBCXX_HAS_GTHREADS) \
+
+|| defined(_WIN32) \
+
+|| defined(_AIX)
+
+这样之后就没有那种错误了，我安装的是boost155
+
+[https://svn.boost.org/trac/boost/ticket/6165，](https://svn.boost.org/trac/boost/ticket/6165，)
+
+看这个吧
+
+如果还是不能，那么就重新安装一个boost吧
+
+[http://blog.chinaunix.net/uid-12226757-id-3427282.html](http://blog.chinaunix.net/uid-12226757-id-3427282.html)
+
+[http://www.open-abc.com/ccode-206.html](http://www.open-abc.com/ccode-206.html)
+
+5、
+
+如果ninja编译完了发现库文件很小，而有确定没有压缩，那么就是没有写相应的library，像下面这样写上你需要的库文件
+
+
+
+而不是下面这样
+
+
+
+这样在libraries里面不能写相对路径；
+
+Ya I stumbled upon this as well, and basically it's a gyp bug where it's not "relativizing" properly.
+
+出自https://github.com/TooTallNate/node-gyp/issues/49
+
+
+
+我理解为libraries直接写-lframecommon，这种即可，可以在lirary_dirs中直接找到，如果你的dirs里面找不到，就会报错了，你可以在dirs中写相对路径，
+
+'library_dirs':[
+
+'../../framework/framecommon/lib',
+
+],
+
+'libraries':[
+
+'-lframecommon',
+
+#'/home/zhangqinglong/xxxx/3.21/framework/framecommon/lib/libframecommon.a',
+
+],
+
+就想上面的libraries里面的两句其实是相等的，都可以完成功能。
+
+另外可以看一下下面这个
+
+https://groups.google.com/forum/#!topic/gyp-developer/bsXV9nA4uyg
+
+好了，下面是我整理的文档，排版乱，莫怪
+
+[GYP笔记](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/04/GYP笔记.doc)

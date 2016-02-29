@@ -1,0 +1,66 @@
+---
+author: admin
+comments: true
+date: 2015-06-02 02:33:05+00:00
+layout: post
+slug: github-https%e6%96%b9%e5%bc%8f%e5%85%8d%e5%af%86%e7%a0%81%e6%8f%90%e4%ba%a4%e4%bb%a3%e7%a0%81-%e5%9c%a8git-config-%e4%b8%ad%e6%b7%bb%e5%8a%a0%e7%94%a8%e6%88%b7%e5%90%8d%e5%af%86%e7%a0%81
+title: github https方式免密码提交代码 在git config 中添加用户名密码
+wordpress_id: 360
+categories:
+- LINUX
+- mac
+tags:
+- git
+---
+
+关于使用ssh的方式大家都应该知道了，官方有详细的文档
+
+下面说一下https克隆的方式免密码提交
+
+
+
+	
+  * 使用https的方式克隆代码
+
+    
+    git clone https://github.com/akmumu/google_hosts.git
+
+
+
+
+	
+  * 查看项目中的配置文件
+
+    
+    vim .git/config
+    
+    [core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        ignorecase = true
+        precomposeunicode = true
+    [remote "origin"]
+        url = https://github.com/akmumu/google_hosts.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+    [branch "master"]
+        remote = origin
+        merge = refs/heads/master
+
+
+
+
+	
+  * 修改remote中的url那行如下
+
+    
+    url = https://akmumu:123456@github.com/akmumu/google_hosts.git
+
+
+即[https://username:password@github.com/username/project.git](https://%5BuserName%5D:%5Bpassword%5D@github.com/%5Busername%5D/project.git) username就是你账号的个性地址
+
+
+
+
+

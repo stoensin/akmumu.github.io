@@ -1,0 +1,204 @@
+---
+author: admin
+comments: true
+date: 2012-05-26 02:24:00+00:00
+layout: post
+slug: smarty%e4%b8%ad%e5%88%a0%e9%99%a4%e7%bc%93%e5%ad%98%e7%9a%84%e6%96%b9%e6%b3%95
+title: smarty中删除缓存的方法
+wordpress_id: 30
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+
+同时,smarty也提供了一个清除缓存的function（实质是使缓存文件过期，并非删除缓存文件）
+
+
+
+
+我们发现可以使用：
+
+
+
+
+
+
+  1. function clear_cache($tpl_file = null, $cache_id = null, $compile_id = null, $exp_time = null)删除某个具体的模板。如主页，某条信息。
+  2. function clear_all_cache($exp_time = null)删除缓存目录下所有所有缓存信息。
+
+
+
+然而很多人，也包括我，一开始对怎么清理所有内容页(即show.php?id=1 .... 198 ....）的所有缓存文件产生了疑问。clear_cache()显然不适用，而clear_all_cache呢？似乎后者会把index.php等其它页面的缓存文件也清除。
+
+
+
+
+
+
+
+在这里提提大家，看到我对function clear_all_cache()划线部分的标注。 clear_all_cache是把缓存目录下的所有文件清理掉。所以如果我们把show.php?id=1....134...的缓存文件都放在一个show的目录下，在执行clear_all_cache的时候，先设置cache_dir的路径为show，似乎一切就可行了，而事实上也是这样。
+
+
+
+
+
+
+
+如我在项目中的一个使用：
+
+
+
+
+渲染模板到show目录下：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**[php]** [view
+ plain](http://blog.csdn.net/dengxingbo/article/details/5910590#)[copy](http://blog.csdn.net/dengxingbo/article/details/5910590#)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  1. 
+<?php
+  2. 
+header("HTTP/1.0 200 OK");
+  3. 
+require_once 'includes/common.php';
+  4. 
+
+  5. 
+$smarty = new CustomSmarty();
+  6. 
+$smarty->cache_dir = $smarty->cache_dir."/show";
+  7. 
+$smarty->caching = true;
+  8. 
+
+  9. 
+$key = $_GET['key'];
+  10. 
+
+  11. 
+if(!$smarty->is_cached('page.html',$key))
+  12. 
+{
+  13. 
+#code here
+  14. 
+}
+  15. 
+
+  16. 
+$smarty->display('page.html',$key);
+  17. 
+
+  18. 
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+清理show目录下的缓存：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**[php]** [view
+ plain](http://blog.csdn.net/dengxingbo/article/details/5910590#)[copy](http://blog.csdn.net/dengxingbo/article/details/5910590#)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  1. 
+<?php
+  2. 
+
+  3. 
+require_once dirname(__FILE__).'/../../includes/common.php';
+  4. 
+
+  5. 
+$smarty = new CustomSmarty();
+  6. 
+$smarty->caching = false;
+  7. 
+$smarty->cache_dir = $smarty->cache_dir."/show";
+  8. 
+$smarty->clear_all_cache();
+  9. 
+
+  10. 
+$smarty->assign("title","更新内容页缓存");
+  11. 
+$smarty->display("admin/recache/index.html");
+  12. 
+
+  13. 
+?>
+
+
+
+
+
+
+
+

@@ -1,0 +1,2383 @@
+---
+author: admin
+comments: true
+date: 2016-01-03 12:51:38+00:00
+layout: post
+slug: 2015%e5%b9%b4%e7%bb%88%e6%80%bb%e7%bb%93-%e6%9b%b4%e5%a4%a7%e7%9a%84%e5%8f%98%e5%8c%96
+title: 2015年终总结 更大的变化
+wordpress_id: 389
+categories:
+- 生活琐碎
+---
+
+## [![IMG_3865_Fotor](http://akmumu-wordpress.stor.sinaapp.com/uploads/2016/01/IMG_3865_Fotor.jpg)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2016/01/IMG_3865_Fotor.jpg)
+
+
+
+
+## 写在前面
+
+
+
+
+<blockquote>时间可以伸缩和折叠，唯独不能倒退。你的鹤发或许是我的童颜，而我一次呼吸能抵过你此生的岁月。</blockquote>
+
+
+这是电影星际穿越，他不止是描述了时间的各种变幻形式，也告诉了我们等到回忆的时候却发现当年的时光怎么那么快，处于其中的时候我们又是多么的舍得。
+
+2015年的节奏感更迅速，更不可开交，让我在看《一个勺子》这种电影的时候有点不习惯它的慢节奏。人往往想让时间过的更慢的时候，它反而过的更快。还好，我们都是年轻人，不太担心，可以让故事按照它的叙述顺序发展。
+
+
+## 本应2015
+
+
+去年许下的愿望，看看完成了么？
+
+
+
+	
+  1. 中华上下五千年，这本书不再提了，好像他已经找不到了。。。这本书是真的一个大呵呵。
+
+	
+  2. 音乐会已听，钢琴曲，但是发现太高雅了，有点没理解。
+
+	
+  3. 东北没能完成，这个冬天不适合出远门。
+
+	
+  4. 已完成一周的旅行。
+
+	
+  5. 房子装修完成。
+
+	
+  6. 上半年还真的在坚持锻炼一下，可是下半年因为生活和工作的原因就没能坚持，其实还是因为懒。
+
+	
+  7. 老梁故事汇也听了很久，不过最近也不太追了。
+
+	
+  8. 已完成去森林公园跑步。
+
+
+
+
+## 生活
+
+
+本来是有想法把工作放到前面，因为它越来越占用更大比例的时间，但是今年除了工作发生的变化太多了，有很多事都是一生中都值得纪念和关注的大事，所以还是这样。
+
+
+
+	
+  1. 装修，费劲巴拉两地跑，总算是造了一个简单的小窝，以后还会在这里倾注更多的精力。
+
+	
+  2. 买了烤箱，面包机，吃喝乐呵。
+
+	
+  3. 去奥林匹克森林公园跑步。
+
+	
+  4. 为老婆报考驾校。
+
+	
+  5. 去杭州玩。
+
+	
+  6. 给双方父母过生日。
+
+	
+  7. 取公积金和医保存折。
+
+	
+  8. 使用婚假去三亚和厦门旅行，三亚的空气简直让我现在也想逃过去。
+
+	
+  9. 参加一些同学的婚礼。
+
+	
+  10. 回廊坊发展计划实施并最后失败。
+
+	
+  11. 在北京增加一次挪窝，清河->万柳
+
+	
+  12. 在北京换了工作，感谢给机会的各位，为选择祈福。
+
+	
+  13. 看音乐会，哈哈，不得不说这次音乐会最大的收货就是知道了钢琴家都有自己配的翻页工程师来给乐谱翻页。
+
+	
+  14. 办理暂住证。
+
+	
+  15. 最大事件，老婆怀孕了，2016要为人父母喽。
+
+	
+  16. 购买空气净化器。
+
+	
+  17. 第一次翻译技术电子书《构建安全的PHP应用》，已经在豆瓣出售。
+
+	
+  18. 涂秘密花园，买哈根达斯。
+
+	
+  19. 第一次海淘，除了时间等的长，真实挺不错的体验，花更少的钱。
+
+	
+  20. 结婚一周年送给老婆丹尼尔惠灵顿的手表。
+
+	
+  21. 手环，百度送的，玩够了借出，最后又送给表弟。
+
+	
+  22. 购买电子称，希望他能督促我减肥，但是没。
+
+	
+  23. 买车，也算个大事，遗憾的是我并没有京牌，回家上牌的体验真是差啊，上了两天。
+
+	
+  24. 这一行是凑数的。
+
+
+
+
+## 工作
+
+
+今年工作三大变，变变变！
+
+
+
+	
+  1. 首先是先经历了几次出差，连带年会系列的。
+
+	
+  2. 多配了一个Mac转接头，让他更给力。
+
+	
+  3. 尝试在公司中排队工作居住证，但是等到最后也没排到。
+
+	
+  4. 中间有一次想要的工作转移，想要换个城市发展，但是因为诸多原因，最后虽然尝试了，但最后还是失败了，回到北京。
+
+	
+  5. 接下来就是换到现在的公司工作，选择的时候虽然很纠结，一旦命中，也就潜心修炼了。
+
+	
+  6. 从Ruby再次回到PHP，这次的工作主要是偏向服务端了。
+
+	
+  7. 从小公司的角度再次修炼自己。
+
+	
+  8. 也加一行凑数吧。
+
+
+
+
+## 2016之畅想
+
+
+
+
+
+	
+  1. 最大的一个就是我们要加一口人了，要热烈欢迎。
+
+	
+  2. 这回能否去东北？
+
+	
+  3. 运动，运动。
+
+	
+  4. 学习一下法语或者西班牙语。（用处？）
+
+	
+  5. 简单学习一下iOS。
+
+	
+  6. 去一次蒲黄榆夜市。
+
+	
+  7. 是否能去一下不老屯，估计不会去，因为我还没开始玩单反。
+
+	
+  8. 认识有趣的人，看美丽的风景。
+
+
+
+
+## 写在后面
+
+
+没想到有越来越多的人因为雾霾的原因逃离北京，而他们又不得不回来，只是暂时躲了躲，当然我的家乡在河北，比北京更甚。今年买了空净，买了口罩，天天都在等风来。元旦三天假，今天是最后一天了，本来说等一个好的天气出门，不料等来等去，等了个最差的一天，天啊！
+
+
+## 2015读书
+
+
+** **
+
+[![](http://img4.douban.com/mpic/s28074548.jpg)](http://book.douban.com/subject/26392016/)[![](http://img3.douban.com/mpic/s28070243.jpg)](http://book.douban.com/subject/26376603/)[![](http://img3.douban.com/mpic/s27466554.jpg)](http://book.douban.com/subject/25984204/)[![](http://img3.douban.com/mpic/s8511972.jpg)](http://book.douban.com/subject/7067934/)
+
+[![](http://img3.douban.com/mpic/s27294234.jpg)](http://book.douban.com/subject/25897333/)[![](http://img3.douban.com/mpic/s1993411.jpg)](http://book.douban.com/subject/1485224/)[![](http://img4.douban.com/mpic/s26542146.jpg)](http://book.douban.com/subject/24527845/)
+
+
+
+
+## **2015电影（119部）**
+
+
+总览展示 http://readingtaste.com/user/63985234/stat/movies
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[一个勺子 ](http://movie.douban.com/subject/25926267/)[可播放]
+
+
+
+
+   2015-12-27
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[解救吾先生 ](http://movie.douban.com/subject/25798448/)[可播放]
+
+
+
+
+   2015-12-21
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[万万没想到](http://movie.douban.com/subject/26320029/)
+
+
+
+
+   2015-12-14
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[蚁人 / Ant-Man ](http://movie.douban.com/subject/1866473/)[可播放]
+
+
+
+
+   2015-12-10
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[疯狂的麦克斯2 / Mad Max 2 ](http://movie.douban.com/subject/1292453/)[可播放]
+
+
+
+
+   2015-12-01
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[消失的凶手 ](http://movie.douban.com/subject/25778483/)[可播放]
+
+
+
+
+   2015-11-29
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[无敌幸运星 / 無敵幸運星 ](http://movie.douban.com/subject/1400668/)[可播放]
+
+
+
+
+   2015-11-23
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[碟中谍3 / Mission: Impossible III ](http://movie.douban.com/subject/1401533/)[可播放]
+
+
+
+
+   2015-11-20
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[九层妖塔 ](http://movie.douban.com/subject/24827406/)[可播放]
+
+
+
+
+   2015-11-15
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[明日世界 / Tomorrowland ](http://movie.douban.com/subject/6873042/)[可播放]
+
+
+
+
+   2015-11-15
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[烈日灼心 ](http://movie.douban.com/subject/24719063/)[可播放]
+
+
+
+
+   2015-11-13
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[囚室211 / Celda 211 ](http://movie.douban.com/subject/3103418/)[可播放]
+
+
+
+
+   2015-11-10
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[记忆碎片 / Memento ](http://movie.douban.com/subject/1304447/)[可播放]
+
+
+
+
+   2015-11-08
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[滚蛋吧！肿瘤君 ](http://movie.douban.com/subject/26289144/)[可播放]
+
+
+
+
+   2015-11-07
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[疯狂的麦克斯 / Mad Max](http://movie.douban.com/subject/1295670/)
+
+
+
+
+   2015-11-07
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[阿童木 / Astro Boy](http://movie.douban.com/subject/1917074/)
+
+
+
+
+   2015-11-03
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[澳门风云2 / 賭城風雲2 ](http://movie.douban.com/subject/25858785/)[可播放]
+
+
+
+
+   2015-11-01
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[碟中谍2 / Mission: Impossible II ](http://movie.douban.com/subject/1298525/)[可播放]
+
+
+
+
+   2015-11-01
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[道士下山 ](http://movie.douban.com/subject/24879839/)[可播放]
+
+
+
+
+   2015-10-25
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[饥饿游戏2：星火燎原 / The Hunger Games: Catching Fire ](http://movie.douban.com/subject/6874456/)[可播放]
+
+
+
+
+   2015-10-25
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[王朝的女人·杨贵妃 ](http://movie.douban.com/subject/5993138/)[可播放]
+
+
+
+
+   2015-10-25
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[夏洛特烦恼 ](http://movie.douban.com/subject/25964071/)[可播放]
+
+
+
+
+   2015-10-25
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[复仇者联盟2：奥创纪元 / Avengers: Age of Ultron ](http://movie.douban.com/subject/10741834/)[可播放]
+
+
+
+
+   2015-10-16
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[捉妖记 ](http://movie.douban.com/subject/25723907/)[可播放]
+
+
+
+
+   2015-10-11
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[碟中谍 / Mission: Impossible ](http://movie.douban.com/subject/1292484/)[可播放]
+
+
+
+
+   2015-10-08
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[港囧 ](http://movie.douban.com/subject/25710912/)[可播放]
+
+
+
+
+   2015-10-01
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[终结者3 / Terminator 3: Rise of the Machines ](http://movie.douban.com/subject/1305333/)[可播放]
+
+
+
+
+   2015-09-13
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[少年班 ](http://movie.douban.com/subject/26219652/)[可播放]
+
+
+
+
+   2015-09-08
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[终结者2 / Terminator 2: Judgment Day ](http://movie.douban.com/subject/1291844/)[可播放]
+
+
+
+
+   2015-09-02
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[终结者：创世纪 / Terminator Genisys ](http://movie.douban.com/subject/3338862/)[可播放]
+
+
+
+
+   2015-08-29
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[终结者 / The Terminator](http://movie.douban.com/subject/1300656/)
+
+
+
+
+   2015-08-28
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[月球 / Moon ](http://movie.douban.com/subject/3073124/)[可播放]
+
+
+
+
+   2015-08-24
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[饥饿游戏 / The Hunger Games ](http://movie.douban.com/subject/3592853/)[可播放]
+
+
+
+
+   2015-08-19
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[拆弹部队 / The Hurt Locker ](http://movie.douban.com/subject/2028645/)[可播放]
+
+
+
+
+   2015-08-05
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[雷神2：黑暗世界 / Thor: The Dark World ](http://movie.douban.com/subject/6560058/)[可播放]
+
+
+
+
+   2015-08-01
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[侏罗纪世界 / Jurassic World ](http://movie.douban.com/subject/10440138/)[可播放]
+
+
+
+
+   2015-07-30
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[美国队长2 / Captain America: The Winter Soldier ](http://movie.douban.com/subject/6390823/)[可播放]
+
+
+
+
+   2015-07-28
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[敢死队 / The Expendables ](http://movie.douban.com/subject/3279080/)[可播放]
+
+
+
+
+   2015-07-23
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[源代码 / Source Code ](http://movie.douban.com/subject/3075287/)[可播放]
+
+
+
+
+   2015-07-21
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[煎饼侠 ](http://movie.douban.com/subject/25895276/)[可播放]
+
+
+
+
+   2015-07-19
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[后会无期 ](http://movie.douban.com/subject/25805741/)[可播放]
+
+
+
+
+   2015-07-17
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[珠穆朗玛峰 / Everest ](http://movie.douban.com/subject/1463355/)[可播放]
+
+
+
+
+   2015-07-13
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[太阳泪 / Tears of the Sun ](http://movie.douban.com/subject/1307463/)[可播放]
+
+
+
+
+   2015-07-09
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[美国骗局 / American Hustle ](http://movie.douban.com/subject/6873657/)[可播放]
+
+
+
+
+   2015-07-08
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[我的个神啊 / PK](http://movie.douban.com/subject/10741643/)
+
+
+
+
+   2015-07-02
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[战狼 ](http://movie.douban.com/subject/24753810/)[可播放]
+
+
+
+
+   2015-06-30
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[盗梦空间 / Inception ](http://movie.douban.com/subject/3541415/)[可播放]
+
+
+
+
+   2015-06-29
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[星际迷航：暗黑无界 / Star Trek Into Darkness ](http://movie.douban.com/subject/3642843/)[可播放]
+
+
+
+
+   2015-06-27
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[复仇者联盟 / The Avengers ](http://movie.douban.com/subject/1866479/)[可播放]
+
+
+
+
+   2015-06-25
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[美国队长 / Captain America: The First Avenger ](http://movie.douban.com/subject/2138838/)[可播放]
+
+
+
+
+   2015-06-23
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[非常突然](http://movie.douban.com/subject/1299782/)
+
+
+
+
+   2015-06-16
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[侏罗纪公园2：失落的世界 / The Lost World: Jurassic Park ](http://movie.douban.com/subject/1293702/)[可播放]
+
+
+
+
+2015-06-14
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[侏罗纪公园 / Jurassic Park ](http://movie.douban.com/subject/1292523/)[可播放]
+
+
+
+
+   2015-06-14
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[王牌特工：特工学院 / Kingsman: The Secret Service](http://movie.douban.com/subject/24405378/)
+
+
+
+
+   2015-06-12
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[末日崩塌 / San Andreas ](http://movie.douban.com/subject/25786077/)[可播放]
+
+
+
+
+   2015-06-11
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[超能查派 / Chappie ](http://movie.douban.com/subject/6846893/)[可播放]
+
+
+
+
+   2015-06-09
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[七宗罪 / Se7en ](http://movie.douban.com/subject/1292223/)[可播放]
+
+
+
+
+   2015-06-03
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[雷神 / Thor ](http://movie.douban.com/subject/1866471/)[可播放]
+
+
+
+
+   2015-06-01
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[鸟人 / Birdman or (The Unexpected Virtue of Ignorance) ](http://movie.douban.com/subject/20438962/)[可播放]
+
+
+
+
+   2015-05-27
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[杀死信使 / Kill the Messenger ](http://movie.douban.com/subject/3036472/)[可播放]
+
+
+
+
+   2015-05-26
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[金刚狼2 / The Wolverine ](http://movie.douban.com/subject/3718424/)[可播放]
+
+
+
+
+   2015-05-18
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[速度与激情6 / Furious 6 ](http://movie.douban.com/subject/6537500/)[可播放]
+
+
+
+
+   2015-05-13
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[速度与激情5 / Fast Five ](http://movie.douban.com/subject/4286017/)[可播放]
+
+
+
+
+   2015-05-13
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[速度与激情4 / Fast & Furious ](http://movie.douban.com/subject/2132930/)[可播放]
+
+
+
+
+   2015-05-12
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[哆啦A梦：伴我同行 / STAND BY ME ドラえもん ](http://movie.douban.com/subject/25769362/)[可播放]
+
+
+
+
+   2015-05-10
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[乡村爱情变奏曲 ](http://movie.douban.com/subject/10793497/)[可播放]
+
+
+
+
+   2015-05-10
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[忠犬八公的故事 / Hachi: A Dog's Tale ](http://movie.douban.com/subject/3011091/)[可播放]
+
+
+
+
+   2015-05-04
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[冰雪奇缘 / Frozen ](http://movie.douban.com/subject/4202982/)[可播放]
+
+
+
+
+   2015-05-03
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[速度与激情3：东京漂移 / The Fast and the Furious: Tokyo Drift ](http://movie.douban.com/subject/1652618/)[可播放]
+
+
+
+
+   2015-04-27
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[速度与激情2 / 2 Fast 2 Furious ](http://movie.douban.com/subject/1307442/)[可播放]
+
+
+
+
+   2015-04-25
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[速度与激情 / The Fast and the Furious ](http://movie.douban.com/subject/1304899/)[可播放]
+
+
+
+
+   2015-04-25
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[霍比特人3：五军之战 / The Hobbit: The Battle of the Five Armies ](http://movie.douban.com/subject/2973079/)[可播放]
+
+
+
+
+   2015-04-23
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[安德的游戏 / Ender's Game ](http://movie.douban.com/subject/5323957/)[可播放]
+
+
+
+
+   2015-04-22
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[夜行者 / Nightcrawler](http://movie.douban.com/subject/25750969/)
+
+
+
+
+   2015-04-22
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[催眠大师 ](http://movie.douban.com/subject/24743711/)[可播放]
+
+
+
+
+   2015-04-21
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[速度与激情7 / Fast & Furious 7 ](http://movie.douban.com/subject/23761370/)[可播放]
+
+
+
+
+   2015-04-19
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[智取威虎山 ](http://movie.douban.com/subject/10807909/)[可播放]
+
+
+
+
+   2015-04-19
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[太平轮(上) ](http://movie.douban.com/subject/3078390/)[可播放]
+
+
+
+
+   2015-04-18
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[海洋之歌 / Song of the Sea](http://movie.douban.com/subject/11584019/)
+
+
+
+
+   2015-04-16
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[重返20岁 ](http://movie.douban.com/subject/25870084/)[可播放]
+
+
+
+
+   2015-04-16
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[微爱之渐入佳境 ](http://movie.douban.com/subject/24751757/)[可播放]
+
+
+
+
+   2015-04-15
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[爆裂鼓手 / Whiplash](http://movie.douban.com/subject/25773932/)
+
+
+
+
+   2015-04-13
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[叶问2：宗师传奇](http://movie.douban.com/subject/3578981/)
+
+
+
+
+   2015-04-03
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[叶问：终极一战 / 葉問：終極一戰 ](http://movie.douban.com/subject/10794042/)[可播放]
+
+
+
+
+   2015-04-03
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[叶问](http://movie.douban.com/subject/3041806/)
+
+
+
+
+   2015-04-02
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[别惹我 / Malavita ](http://movie.douban.com/subject/10766459/)[可播放]
+
+
+
+
+   2015-04-01
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[初恋红豆冰 / 初戀紅豆冰](http://movie.douban.com/subject/3745292/)
+
+
+
+
+   2015-03-27
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[浪客剑心：京都大火篇 / るろうに剣心 京都大火編](http://movie.douban.com/subject/24845115/)
+
+
+
+
+   2015-03-20
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[海啸奇迹 / Lo imposible ](http://movie.douban.com/subject/4832825/)[可播放]
+
+
+
+
+   2015-03-20
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[大逃杀 / バトル・ロワイアル](http://movie.douban.com/subject/1292444/)
+
+
+
+
+   2015-03-19
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[枪火 / 鎗火](http://movie.douban.com/subject/1300741/)
+
+
+
+
+   2015-03-19
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[木星上行 / Jupiter Ascending ](http://movie.douban.com/subject/5154799/)[可播放]
+
+
+
+
+   2015-03-15
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[匆匆那年 ](http://movie.douban.com/subject/25779218/)[可播放]
+
+
+
+
+   2015-03-12
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[十万个冷笑话 ](http://movie.douban.com/subject/25805054/)[可播放]
+
+
+
+
+   2015-03-06
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[超能陆战队 / Big Hero 6 ](http://movie.douban.com/subject/11026735/)[可播放]
+
+
+
+
+   2015-03-04
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[金蝉脱壳 / Escape Plan ](http://movie.douban.com/subject/3025447/)[可播放]
+
+
+
+
+   2015-03-03
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[北京爱情故事 ](http://movie.douban.com/subject/24736566/)[可播放]
+
+
+
+
+   2015-03-01
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[私人订制 ](http://movie.douban.com/subject/10605978/)[可播放]
+
+
+
+
+   2015-02-27
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[狼图腾 ](http://movie.douban.com/subject/3993588/)[可播放]
+
+
+
+
+   2015-02-23
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[狂怒 / Fury ](http://movie.douban.com/subject/23331914/)[可播放]
+
+
+
+
+   2015-02-21
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[空中营救 / Non-Stop ](http://movie.douban.com/subject/10598440/)[可播放]
+
+
+
+
+   2015-02-13
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[危险藏匿 / The Drop ](http://movie.douban.com/subject/4301659/)[可播放]
+
+
+
+
+   2015-02-12
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[一夜惊喜 ](http://movie.douban.com/subject/16475702/)[可播放]
+
+
+
+
+   2015-02-07
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[美姐](http://movie.douban.com/subject/10833919/)
+
+
+
+
+   2015-02-05
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[鸣梁海战 / 명량 ](http://movie.douban.com/subject/7065161/)[可播放]
+
+
+
+
+   2015-02-02
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[小乌龟是如何长大的 / Roald Dahl's Esio Trot](http://movie.douban.com/subject/25818840/)
+
+
+
+
+   2015-01-27
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[廊桥遗梦 / The Bridges of Madison County ](http://movie.douban.com/subject/1293929/)[可播放]
+
+
+
+
+   2015-01-25
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[骄傲 / Pride](http://movie.douban.com/subject/25740192/)
+
+
+
+
+   2015-01-23
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[乡村爱情小夜曲 ](http://movie.douban.com/subject/7053737/)[可播放]
+
+
+
+
+   2015-01-22
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[马达加斯加的企鹅 / Penguins of Madagascar ](http://movie.douban.com/subject/11810348/)[可播放]
+
+
+
+
+   2015-01-21
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[X战警：逆转未来 / X-Men: Days of Future Past ](http://movie.douban.com/subject/10485647/)[可播放]
+
+
+
+
+   2015-01-20
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[触不可及 / Intouchables](http://movie.douban.com/subject/6786002/)
+
+
+
+
+   2015-01-17
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[钢铁侠3 / Iron Man 3](http://movie.douban.com/subject/3231742/)
+
+
+
+
+   2015-01-17
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[X战警3：背水一战 / X-Men: The Last Stand ](http://movie.douban.com/subject/1401524/)[可播放]
+
+
+
+
+   2015-01-16
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[一个人的武林 ](http://movie.douban.com/subject/24695277/)[可播放]
+
+
+
+
+   2015-01-14
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[移动迷宫 / The Maze Runner ](http://movie.douban.com/subject/21349345/)[可播放]
+
+
+
+
+   2015-01-12
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[盂兰神功 / 盂蘭神功 ](http://movie.douban.com/subject/24522915/)[可播放]
+
+
+
+
+   2015-01-11
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[黄飞鸿之英雄有梦 ](http://movie.douban.com/subject/25444447/)[可播放]
+
+
+
+
+   2015-01-11
+
+
+
+
+
+	
+  * 
+
+
+
+
+
+[宝莱坞生死恋 / Devdas](http://movie.douban.com/subject/1306769/)
+
+
+
+
+   2015-01-06
+
+
+
+
+
+

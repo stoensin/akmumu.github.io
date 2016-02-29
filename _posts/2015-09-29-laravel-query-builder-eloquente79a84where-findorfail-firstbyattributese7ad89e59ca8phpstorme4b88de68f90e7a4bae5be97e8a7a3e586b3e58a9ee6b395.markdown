@@ -1,0 +1,141 @@
+---
+author: admin
+comments: true
+date: 2015-09-29 12:23:27+00:00
+layout: post
+slug: laravel-query-builder-eloquent%e7%9a%84where-findorfail-firstbyattributes%e7%ad%89%e5%9c%a8phpstorm%e4%b8%8d%e6%8f%90%e7%a4%ba%e5%be%97%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95
+title: Laravel Query Builder Eloquent的where, findOrFail, firstByAttributes等在Phpstorm不提示得解决办法
+wordpress_id: 380
+categories:
+- PHP
+- 实用软件技巧
+tags:
+- laravel
+- PHPstorm
+---
+
+**先看一张图**
+
+[![where](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/where.png)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/where.png)
+
+我们按照官方文档配好了环境，用起了最时尚的Laravel，在访问数据库的时候，我们用到的牛逼的Eloquent，如果你用的是phpstorm，你发现不能自动提示其中的方法，下面祝你一臂之力！
+
+**laravel-ide-helper**
+
+网上大把的搜到这货可以达到自动提示的效果，但是没那么容易成功，详细步骤如下：
+
+1. 在项目的composer.json中添加如下一行
+
+    
+    "require": {
+    
+    "barryvdh/laravel-ide-helper": ">=2.1.0",
+    
+    }
+
+
+2. 随手执行
+
+    
+    composer install
+    
+    composer update
+
+
+3. 添加service provider，打开项目config/app.php 于providers添加如下一行：
+
+    
+    'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+
+
+4. 随手执行
+
+    
+    php artisan ide-helper:generate
+
+
+5. 修改composer.json,添加一行
+
+    
+    "post-update-cmd": [
+    
+    "php artisan clear-compiled",
+    
+    "php artisan optimize",
+    
+    "php artisan ide-helper:generate"
+    
+    ]
+
+
+一般这样人家就告诉你可以自动提示了，其实并没有，继续往下看。。。
+
+6. 运行代码
+
+    
+    php artisan ide-helper:models
+
+
+提示后直接回车或者输入no。
+
+完成上面的步骤之后你会发现在根目录多了两个文件
+
+_ide_helper_models.php 和 _ide_helper.php
+
+看一下代码你会发现_ide_helper_models.php里已经封装了刚才我们没提示的代码，下一把我们把model改为继承此类即可，代码如下：
+
+    
+    class User extends \Eloquent
+
+
+好了，很清澈，你值得拥有
+
+[![DraggedImage](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/DraggedImage.png)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/DraggedImage.png)
+
+
+
+顺便转个无关的
+
+
+# ORM的where太弱之问题
+
+
+laravel的ORM使用的是Eloquent ORM。如果你要获取出Student表中female=1 并且 teacher_id为4 并且class_id为3的所有学生，你需要这么写：
+
+    
+    Student::where('female', 1)
+    ->where('teacher_id', 4)
+    ->where('class_id', 3)
+    ->get();
+
+
+
+
+## 解决办法：在基类中扩展一个multiwhere
+
+
+
+    
+    // 多where
+    public function scopeMultiwhere($query, $arr)
+    {
+        if (!is_array($arr)) {
+            return $query;
+        }
+    
+        foreach ($arr as $key => $value) {
+            $query = $query->where($key, $value);
+        }
+        return $query;
+    }
+
+
+
+
+    
+    Student::multiwhere([‘female’=>1, ’teacher_id’ => 4, ‘class_id’ => 3])->get();
+
+
+
+
+还有很多关于PHPstorm支持larval的，看[**https://confluence.jetbrains.com/display/PhpStorm/Laravel+Development+using+PhpStorm#LaravelDevelopmentusingPhpStorm-2.InstalltheLaravelIDEHelper**](https://confluence.jetbrains.com/display/PhpStorm/Laravel+Development+using+PhpStorm#LaravelDevelopmentusingPhpStorm-2.InstalltheLaravelIDEHelper)

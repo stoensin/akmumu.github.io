@@ -1,0 +1,529 @@
+---
+author: admin
+comments: true
+date: 2013-08-22 08:28:45+00:00
+layout: post
+slug: ajax-%e8%b7%a8%e5%9f%9f%e8%af%b7%e6%b1%82-jsonp%e7%9a%84%e4%bd%bf%e7%94%a8%ef%bc%8cphp%e5%ae%9e%e4%be%8b%e8%af%a6%e8%a7%a3
+title: AJAX 跨域请求 - JSONP的使用，PHP实例详解
+wordpress_id: 223
+categories:
+- JS
+- PHP
+tags:
+- ajax
+---
+
+今天一个项目中遇到增加验证码，我本有一个服务器上有一套完整的验证和生成验证码的逻辑，本想直接通过ajax访问次服务器验证就好了，尝试了很久没有成功，返回状态码200，但是数据一直是空，经过查询，原来ajax要特殊的格式才能支持跨域请求，而且要get方法。下面是详细介绍：
+
+克服同源限制更理想方法是在 Web 页面中插入动态脚本元素，该页面源指向其他域中的服务 URL 并且在自身脚本中获取数据。脚本加载时它开始执行。该方法是可行的，因为同源策略不阻止动态脚本插入，并且将脚本看作是从提供 Web 页面的域上加载的。但如果该脚本尝试从另一个域上加载文档，就不会成功。幸运的是，通过添加 JavaScript Object Notation (JSON) 可以改进该技术。
+
+**1、什么是JSONP？**
+
+
+
+要了解JSONP，不得不提一下JSON，那么什么是[JSON](http://www.json.org/) ？
+
+
+<blockquote>JSON is a subset of the object literal notation of JavaScript. Since JSON is a subset of JavaScript, it can be used in the language with no muss or fuss.</blockquote>
+
+
+JSONP(JSON with Padding)是一个非官方的协议，它允许在服务器端集成Script tags返回至客户端，通过javascript callback的形式实现跨域访问（这仅仅是JSONP简单的实现形式）。
+
+
+
+**2、JSONP有什么用？**
+
+由于同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，为了实现跨域请求，可以通过script标签实现跨域请求，然后在服务端输出JSON数据并执行回调函数，从而解决了跨域的数据请求。
+
+
+
+**3、如何使用JSONP？**
+
+下边这一DEMO实际上是JSONP的简单表现形式，在客户端声明回调函数之后，客户端通过script标签向服务器跨域请求数据，然后服务端返回相应的数据并动态执行回调函数。
+
+什么是jsonp格式呢？API原文：如果获取的数据文件存放在远程服务器上（域名不同，也就是跨域获取数据），则需要使用jsonp类型。使用这种类型的话，会创建一个查询字符串参数 callback=? ，这个参数会加在请求的URL后面。服务器端应当在JSON数据前加上回调函数名，以便完成一个有效的JSONP请求。意思就是远程服务端需要对返回的数据做下处理，根据客户端提交的callback的参数，返回一个callback(json)的数据，而客户端将会用script的方式处理返回数据，来对json数据做处理。JQuery.getJSON也同样支持jsonp的数据方式调用。
+
+首先看一下我这个例子：
+
+js代码
+
+[![QQ截图20130822161138](http://akmumu-wordpress.stor.sinaapp.com/uploads/2013/08/QQ截图20130822161138.png)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2013/08/QQ截图20130822161138.png)
+
+
+
+解释一下：这是一个经常见到的jquery的ajax写法，这里使用了jsonp的形式，注意其中一个参数jsonp：‘callback’,等进行ajax请求的时候会使用get方法?callback=jsonp1377158771666&_=1377159265083&code=asd，形如这样的querystring，这是非常有用的，因为他会传输到php页面。
+
+下面是php代码：
+
+[![QQ截图20130822161905](http://akmumu-wordpress.stor.sinaapp.com/uploads/2013/08/QQ截图20130822161905.png)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2013/08/QQ截图20130822161905.png)
+
+
+
+解释一下：注意输出部分，在前面增加了刚才传输过来的callback参数，这个时候他的值应该是jsonp1377158771666，这个是必须放在前面输出的，这样就会成功。而前面js得到的result就是这里$r的内容，他是一个json，就像平常使用ajax一样了。
+
+当然还有好多种写法，下面是转来的各种例子：
+
+HTML代码 （任一 ）：
+
+
+
+
+
+
+
+
+
+
+Html代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
+
+
+
+
+
+
+
+
+	
+  1. <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	
+  2. <script type="text/javascript">
+
+	
+  3.     function jsonpCallback(result) {
+
+	
+  4.         //alert(result);
+
+	
+  5.         for(var i in result) {
+
+	
+  6.             alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
+
+	
+  7.         }
+
+	
+  8.     }
+
+	
+  9.     var JSONP=document.createElement("script");
+
+	
+  10.     JSONP.type="text/javascript";
+
+	
+  11.     JSONP.src="http://crossdomain.com/services.php?callback=jsonpCallback";
+
+	
+  12.     document.getElementsByTagName("head")[0].appendChild(JSONP);
+
+	
+  13. </script>
+
+
+
+
+
+
+
+或者
+
+
+
+
+
+
+
+
+
+
+Html代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
+
+
+
+
+
+
+
+
+	
+  1. <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	
+  2. <script type="text/javascript">
+
+	
+  3.     function jsonpCallback(result) {
+
+	
+  4.         alert(result.a);
+
+	
+  5.         alert(result.b);
+
+	
+  6.         alert(result.c);
+
+	
+  7.         for(var i in result) {
+
+	
+  8.             alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
+
+	
+  9.         }
+
+	
+  10.     }
+
+	
+  11. </script>
+
+	
+  12. <script type="text/javascript" src="http://crossdomain.com/services.php?callback=jsonpCallback"></script>
+
+
+
+
+
+
+
+**JavaScript的链接，必须在function的下面。**
+
+
+
+服务端PHP代码 （services.php）：
+
+
+
+
+
+
+
+
+
+
+Php代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
+
+
+
+
+
+
+
+
+	
+  1. <?php
+
+	
+  2. 
+	
+  3. //服务端返回JSON数据
+
+	
+  4. $arr=array('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5);
+
+	
+  5. $result=json_encode($arr);
+
+	
+  6. //echo $_GET['callback'].'("Hello,World!")';
+
+	
+  7. //echo $_GET['callback']."($result)";
+
+	
+  8. //动态执行回调函数
+
+	
+  9. $callback=$_GET['callback'];
+
+	
+  10. echo $callback."($result)";
+
+
+
+
+
+
+
+如果将上述JS客户端代码用jQuery的方法来实现，也非常简单。
+
+
+
+**$.getJSON
+$.ajax
+$.get**
+
+
+
+客户端JS代码在jQuery中的实现方式1：
+
+
+
+
+
+
+
+
+
+
+Js代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
+
+
+
+
+
+
+
+
+	
+  1. <script type="text/javascript" src="jquery.js"></script>
+
+	
+  2. <script type="text/javascript">
+
+	
+  3.     $.getJSON("http://crossdomain.com/services.php?callback=?",
+
+	
+  4.     function(result) {
+
+	
+  5.         for(var i in result) {
+
+	
+  6.             alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
+
+	
+  7.         }
+
+	
+  8.     });
+
+	
+  9. </script>
+
+
+
+
+
+
+
+客户端JS代码在jQuery中的实现方式2：
+
+
+
+
+
+
+
+
+
+
+Js代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
+
+
+
+
+
+
+
+
+	
+  1. <script type="text/javascript" src="jquery.js"></script>
+
+	
+  2. <script type="text/javascript">
+
+	
+  3.     $.ajax({
+
+	
+  4.         url:"http://crossdomain.com/services.php",
+
+	
+  5.         dataType:'jsonp',
+
+	
+  6.         data:'',
+
+	
+  7.         jsonp:'callback',
+
+	
+  8.         success:function(result) {
+
+	
+  9.             for(var i in result) {
+
+	
+  10.                 alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
+
+	
+  11.             }
+
+	
+  12.         },
+
+	
+  13.         timeout:3000
+
+	
+  14.     });
+
+	
+  15. </script>
+
+
+
+
+
+
+
+客户端JS代码在jQuery中的实现方式3：
+
+
+
+
+
+
+
+
+
+
+Js代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
+
+
+
+
+
+
+
+
+	
+  1. <script type="text/javascript" src="jquery.js"></script>
+
+	
+  2. <script type="text/javascript">
+
+	
+  3.     $.get('http://crossdomain.com/services.php?callback=?', {name: encodeURIComponent('tester')}, function (json) { for(var i in json) alert(i+":"+json[i]); }, 'jsonp');
+
+	
+  4. </script>
+
+
+
+
+
+
+
+其中 jsonCallback 是客户端注册的，获取 跨域服务器 上的json数据 后，回调的函数。
+http://crossdomain.com/services.php?callback=jsonpCallback
+这个 url 是跨域服务 器取 json 数据的接口，参数为回调函数的名字，返回的格式为
+
+
+
+
+
+
+
+
+
+
+Js代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
+
+
+
+
+
+
+
+
+	
+  1. jsonpCallback({msg:'this is json data'})
+
+
+**Jsonp原理：**
+首先在客户端注册一个callback, 然后把callback的名字传给服务器。
+
+此时，服务器先生成 json 数据。
+然后以 javascript 语法的方式，生成一个function , function 名字就是传递上来的参数 jsonp.
+
+最后将 json 数据直接以入参的方式，放置到 function 中，这样就生成了一段 js 语法的文档，返回给客户端。
+
+客户端浏览器，解析script标签，并执行返回的 javascript 文档，此时数据作为参数，传入到了客户端预先定义好的 callback 函数里.（动态执行回调函数）
+<table cellpadding="0" cellspacing="0" border="0" >
+<tbody >
+<tr >
+
+<td >
+</td>
+</tr>
+</tbody>
+</table>
+**使用JSON的优点在于：**
+
+
+
+	
+  * 比XML轻了很多，没有那么多冗余的东西。
+
+	
+  * JSON也是具有很好的可读性的，但是通常返回的都是压缩过后的。不像XML这样的浏览器可以直接显示，浏览器对于JSON的格式化的显示就需要借助一些插件了。
+
+	
+  * 在JavaScript中处理JSON很简单。
+
+	
+  * 其他语言例如PHP对于JSON的支持也不错。
+
+
+**JSON也有一些劣势：**
+
+
+
+	
+  * JSON在服务端语言的支持不像XML那么广泛，不过JSON.org上提供很多语言的库。
+
+	
+  * 如果你使用eval()来解析的话，会容易出现安全问题。
+
+
+尽管如此，JSON的优点还是很明显的。他是Ajax数据交互的很理想的数据格式。
+
+
+
+**主要提示：**
+
+JSONP 是构建 mashup 的强大技术，但不幸的是，它并不是所有跨域通信需求的万灵药。它有一些缺陷，在提交开发资源之前必须认真考虑它们。
+
+
+
+第一，也是最重要的一点，没有关于 JSONP 调用的错误处理。如果动态脚本插入有效，就执行调用；如果无效，就静默失败。失败是没有任何提示的。例如，不能从服务器捕捉到 404 错误，也不能取消或重新开始请求。不过，等待一段时间还没有响应的话，就不用理它了。（未来的 jQuery 版本可能有终止 JSONP 请求的特性）。
+
+
+
+JSONP 的另一个主要缺陷是被不信任的服务使用时会很危险。因为 JSONP 服务返回打包在函数调用中的 JSON 响应，而函数调用是由浏览器执行的，这使宿主 Web 应用程序更容易受到各类攻击。如果打算使用 JSONP 服务，了解它能造成的威胁非常重要。
+
+
+
+
+
+关联：
+
+
+### [征服 Ajax 应用程序的安全威胁](http://justcoding.iteye.com/blog/1366109)
+
+
+
+
+### [防止伪造跨站请求](http://justcoding.iteye.com/blog/1164749)
+
+
+
+
+

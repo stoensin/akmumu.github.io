@@ -1,0 +1,168 @@
+---
+author: admin
+comments: true
+date: 2013-04-16 02:17:00+00:00
+layout: post
+slug: js-%e6%a1%86%e6%9e%b6-%ef%bc%9a%e5%90%8e%e5%8f%b0%e7%b3%bb%e7%bb%9f%e5%ae%8c%e6%95%b4%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88bui
+title: JS 框架 ：后台系统完整的解决方案BUI
+wordpress_id: 173
+categories:
+- JS
+- 前端美工设计
+tags:
+- JS
+- 前端美工设计
+---
+
+
+
+
+
+简介：
+
+
+
+
+
+在很久以前，自己还是开发的时候，最头疼的就是做前端的页面，往往被繁琐兼容性问题，不统一的交互和样式，难用的控件库所困扰。所有的解决方案，都是临时的，都是没有文档的。
+
+
+
+
+
+在前端领域混了几年，沉淀了很多东西，但是以前遇到的问题，让我决定哪一天做出一套打包好的东西，方便没有视觉、交互、前端的项目。
+
+
+
+
+
+今天我带来了这个前端UI库以及一个后台系统的解决方案，这里仅仅是开始，接下来的开源、维护、改进会持续进行。
+
+
+
+
+
+[![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_cnitblog_02192402-8a88d1064ac74c2fb3b1e3a7c444ef59.jpg)](http://www.builive.com/)
+
+
+
+
+## 
+DPL（html和css)
+
+
+
+
+
+Twiter 的 bootstrap 出来后确实是提供了很好地的一个处理前端基本元素的思路，我在bootstrap基础上处理了：
+
+
+
+
+
+1. ie6的兼容性问题（大部分）
+
+
+
+
+
+2.增强了表单应用
+
+
+
+
+
+3.增加了一些业务中遇到的场景
+
+
+
+
+
+[![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_cnitblog_02192419-4014c045910d49b4ab5e1dded400f6c3.jpg)](http://www.builive.com/base/index.php)
+
+
+
+
+## 
+控件库
+
+
+
+
+
+有感于jquery UI的不统一，Ext 的复杂，底层参考KISSY的UI实现，搭建了一套统一的UI库。用了才知道方便
+
+
+
+
+
+[![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_cnitblog_02192428-de4e1b40e99d42efa8dc4a48f2bb5cd9.jpg)](http://www.builive.com/demo/index.php)
+
+
+
+
+## 
+API
+
+
+
+
+
+由于提供的控件主要是为后台项目服务的，所以控件有一定的复杂度，如果在Demo不能满足你的需求的基础上你还想看具体实现的话，ext 的API模式你一定很熟悉
+
+
+
+
+
+[![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_cnitblog_02192440-acd13d27e2fb42148b89cc79c30a9b37.jpg)](http://www.builive.com/docs/index.html)
+
+
+
+
+## 
+APP
+
+
+
+
+
+其实上面提供的也只是样式和控件，对于大多数的有前端的团队而言都不是很麻烦的东西，打包好的应用才是最重要的，具体的文档都包含在里面。
+
+
+
+
+
+
+
+
+
+
+
+[![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_cnitblog_02192451-16ebc79f8dde4f9488c51095471415b5.jpg)](http://www.builive.com/apps/default/main.php#menu)
+
+
+
+
+
+
+
+
+
+
+
+网站地址：[http://www.builive.com](http://www.builive.com/)
+
+
+
+
+
+应用地址： [http://www.builive.com/apps/default/main.php](http://www.builive.com/apps/default/main.php#menu)
+
+
+
+
+
+应用下载地址：[http://www.builive.com/application/back.php](http://www.builive.com/application/back.php)
+
+
+

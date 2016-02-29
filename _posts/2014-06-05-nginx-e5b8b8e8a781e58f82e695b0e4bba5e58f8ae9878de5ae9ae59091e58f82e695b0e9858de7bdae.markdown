@@ -1,0 +1,167 @@
+---
+author: admin
+comments: true
+date: 2014-06-05 08:16:34+00:00
+layout: post
+slug: nginx-%e5%b8%b8%e8%a7%81%e5%8f%82%e6%95%b0%e4%bb%a5%e5%8f%8a%e9%87%8d%e5%ae%9a%e5%90%91%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae
+title: nginx 常见参数以及重定向参数配置
+wordpress_id: 276
+categories:
+- nginx
+---
+
+首先明白什么是301和302
+
+301的含义是“永久重定向”，而302的含义是“临时重定向”。
+
+302 重定向和网址劫持（URL hijacking）有什么关系呢？这要从搜索引擎如何处理302转向说起。从定义来说，从网址A做一个302重定向到网址B时，主机服务器的隐含意思是 网址A随时有可能改主意，重新显示本身的内容或转向其他的地方。大部分的搜索引擎在大部分情况下，当收到302重定向时，一般只要去抓取目标网址就可以 了，也就是说网址B。
+
+实际上如果搜索引擎在遇到302转向时，百分之百的都抓取目标网址B的话，就不用担心网址URL劫持了。
+
+问 题就在于，有的时候搜索引擎，尤其是Google，并不能总是抓取目标网址。为什么呢？比如说，有的时候A网址很短，但是它做了一个302重定向到B网 址，而B网址是一个很长的乱七八糟的URL网址，甚至还有可能包含一些问号之类的参数。很自然的，A网址更加用户友好，而B网址既难看，又不用户友好。这 时Google很有可能会仍然显示网址A。
+
+由于搜索引擎排名算法只是程序而不是人，在遇到302重定向的时候，并不能像人一样的去准确判定 哪一个网址更适当，这就造成了网址URL劫持的可能性。也就是说，一个不道德的人在他自己的网址A做一个302重定向到你的网址B，出于某种原因， Google搜索结果所显示的仍然是网址A，但是所用的网页内容却是你的网址B上的内容，这种情况就叫做网址URL劫持。你辛辛苦苦所写的内容就这样被别 人偷走了。
+
+其实302的跳转本身是没有错的，但因为被一些作弊者用多了，Google当然对这个就比较敏感了，毕竟Google面对的是如此海量的数据，你难道不怕被误杀吗？
+
+Google的官方内容一再强调用301来转移内容，况且，301和302在程序上的设置相差很小，既然如此，何必要冒险用302呢？
+
+那么就来看看nginx的配置代码吧。
+
+301跳转设置：
+
+server {
+listen 80;
+server_name xxx.com;
+rewrite ^/(.*) http://72xit.com/$1 permanent;
+access_log off;
+}
+
+302跳转设置：
+
+server {
+listen 80;
+server_name xxx.com;
+rewrite ^/(.*) http://72xit.com/$1 redirect;
+access_log off;
+}
+
+注意上面的permanent和redirect是不同的。
+
+下面是参数
+
+**nginx 各参数翻译，作用
+**
+
+**$arg_PARAMETER #这个变量包含GET请求中，如果有变量PARAMETER时的值。**
+
+**$args #这个变量等于请求行中(GET请求)的参数，例如foo=123&bar=blahblah;**
+
+**$binary_remote_addr #二进制的客户地址。**
+
+**$body_bytes_sent #响应时送出的body字节数数量。即使连接中断，这个数据也是精确的。**
+
+**$content_length #请求头中的Content-length字段。**
+
+**$content_type #请求头中的Content-Type字段。**
+
+**$cookie_COOKIE #cookie COOKIE变量的值**
+
+**$document_root #当前请求在root指令中指定的值。**
+
+**$document_uri #与$uri相同。**
+
+**$host #请求主机头字段，否则为服务器名称。**
+
+**$hostname #Set to the machine’s hostname as returned by gethostname**
+
+**$http_HEADER**
+
+**$is_args #如果有$args参数，这个变量等于”?”，否则等于”"，空值。**
+
+**$http_user_agent #客户端agent信息**
+
+**$http_cookie #客户端cookie信息**
+
+**$limit_rate #这个变量可以限制连接速率。**
+
+**$query_string #与$args相同。**
+
+**$request_body_file #客户端请求主体信息的临时文件名。**
+
+**$request_method #客户端请求的动作，通常为GET或POST。**
+
+**$remote_addr #客户端的IP地址。**
+
+**$remote_port #客户端的端口。**
+
+**$remote_user #已经经过Auth Basic Module验证的用户名。**
+
+**$request_completion #如果请求结束，设置为OK. 当请求未结束或如果该请求不是请求链串的最后一个时，为空(Empty)。**
+
+**$request_method #GET或POST**
+
+**$request_filename #当前请求的文件路径，由root或alias指令与URI请求生成。**
+
+**$request_uri #包含请求参数的原始URI，不包含主机名，如：”/foo/bar.php?arg=baz”。不能修改。**
+
+**$scheme #HTTP方法（如http，https）。**
+
+**$server_protocol #请求使用的协议，通常是HTTP/1.0或HTTP/1.1。**
+
+**$server_addr #服务器地址，在完成一次系统调用后可以确定这个值。**
+
+**$server_name #服务器名称。**
+
+**$server_port #请求到达服务器的端口号。**
+
+**$uri #不带请求参数的当前URI，$uri不包含主机名，如”/foo/bar.html”。该值有可能和$request_uri 不一致。$request_uri是浏览器发过来的值。该值是rewrite后的值。例如做了internal redirects后。**
+
+** **
+
+
+
+
+
+
+**今天在给某网站写rewrite重定向规则时，碰到了这个关于重定向的参数处理问题。默认的情况下，Nginx在进行rewrite后都会自动添加上旧地址中的参数部分，而这对于重定向到的新地址来说可能是多余。虽然这也不会对重定向的结果造成多少影响，但当你注意到新地址中包含有多余的“_?xxx=xxx_”时，心里总还是会觉得不爽。那么该如何来处理这部分的内容呢？看了下面两个简单的例子你就会明白了。**
+
+**例如：
+把_http://example.com/test.php?para=xxx_ 重定向到 _http://example.com/new
+_若按照默认的写法：rewrite ^/test.php(.*) /new permanent;
+重定向后的结果是：_http://example.com/new?para=xxx_
+如果改写成：rewrite ^/test.php(.*) /new? permanent;
+那结果就是：_http://example.com/new_**
+
+**所以，关键点就在于“？”这个尾缀。假如又想保留某个特定的参数，那又该如何呢？可以利用Nginx本身就带有的$arg_PARAMETER参数来实现。**
+
+**例如：
+把_http://example.com/test.php?para=xxx&p=xx_ 重写向到 _http://example.com/new?p=xx_
+可以写成：rewrite  ^/test.php   /new?p=$arg_p?  permanent;**
+
+**只求结果的朋友可以直接忽略前面的内容，看这里：**
+
+
+<blockquote>**rewrite  ^/test.php  /new  permanent;       //重写向带参数的地址**
+
+**rewrite  ^/test.php  /new?  permanent;      //重定向后不带参数**
+
+**rewrite  ^/test.php   /new?id=$arg_id?  permanent;    //重定向后带指定的参数**</blockquote>
+
+
+
+
+
+
+
+** **
+
+
+
+
+**permanent是永久重定向参数，根据需要去掉也可以，不过最好是带有。**
+
+
+
+
+**参考301重定向与302重定向的区别**

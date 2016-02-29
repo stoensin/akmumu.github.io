@@ -1,0 +1,388 @@
+---
+author: admin
+comments: true
+date: 2013-09-24 07:35:56+00:00
+layout: post
+slug: php%e6%96%87%e4%bb%b6%e7%ac%ac%e4%b8%80%e8%a1%8c%e6%9c%89%e5%a4%9a%e4%bd%99%e5%ad%97%e7%ac%a6%ef%bc%8ccss%e6%96%87%e4%bb%b6%e7%ac%ac%e4%b8%80%e8%a1%8c%e4%b8%8d%e8%b5%b7%e4%bd%9c%e7%94%a8%ef%bc%8cbom
+title: php文件第一行有多余字符，css文件第一行不起作用，bom头在作怪
+wordpress_id: 233
+categories:
+- PHP
+- 实用软件技巧
+---
+
+写php脚本的时候我们都会选择一个自己习惯的编辑器，在不得已的情况下我们不会去使用windows自带的文本文档去编辑的，但是用文本文档打开一个文件的速度要比打开重量级编辑器要快太多了，所以有时候我们在没开编辑器又要改文件的时候有时候会使用文本文档来操作。搞来搞去，发现运行总是出错，以前的解决办法就是把文件里的内容复制一份，新建一个文件copy进去，把以前的删除就ok，知道前面有个东西，不知道叫什么，原来它叫做bom头。
+
+    
+    <b>BOM —— Byte Order Mark，</b>中文名译作“<b>字节顺序标记</b>”。
+    BOM: Byte Order Mark
+    <a data-word="0" href="http://zhidao.baidu.com/search?word=UTF-8&fr=qb_search_exp&ie=utf8" target="_blank" rel="nofollow">UTF-8</a> BOM又叫<a data-word="0" href="http://zhidao.baidu.com/search?word=UTF-8&fr=qb_search_exp&ie=utf8" target="_blank" rel="nofollow">UTF-8</a> 签名,其实<a data-word="0" href="http://zhidao.baidu.com/search?word=UTF-8&fr=qb_search_exp&ie=utf8" target="_blank" rel="nofollow">UTF-8</a> 的BOM对UFT-8没有作用,是为了支援UTF-16,UTF-32才加上的BOM,BOM签名的意思就是告诉编辑器当前文件采用何种编码,方便编辑器识别,但是BOM虽然在编辑器中不显示,但是会产生输出,就像多了一个空行
+    
+    
+
+
+
+
+类似WINDOWS自带的记事本等软件，在保存一个以UTF-8编码的文件时，会在文件开始的地方插入三个不可见的字符（0xEF 0xBB 0xBF，即BOM）。它是一串隐藏的字符，用于让记事本等编辑器识别这个文件是否以UTF-8编码。对于一般的文件，这样并不会产生什么麻烦。但对于 PHP来说，BOM是个大麻烦。
+
+
+
+
+PHP并不会忽略BOM，所以在读取、包含或者引用这些文件时，会把BOM作为该文件开头正文的一部分。根据嵌入式语言的特点，这串字符将被直接执行（显示）出来。由此造成即使页面的 top padding 设置为0，也无法让整个网页紧贴浏览器顶部，因为在html一开头有这3个字符呢！
+
+
+
+
+
+
+window编辑器如果保存为utf8文件就会帮你加上BOM头，以告诉其他编辑器以utf8来显示字符。
+
+在utf-8编码文件中BOM在文件头部，占用三个字节，用来标示该文件属于utf-8编码，现在已经有很多软件识别bom头，但是还有些不能识别bom头，比如PHP就不能识别bom头，这也是用记事本编辑utf-8编码后执行就会出错的原因了。
+
+但是在网页上并不需要添加BOM头识别，因为网页上可以使用 head头 指定charset=utf8告诉浏览器用utf8来解释.但是你用window自动的编辑器，编辑,然后有显示在网页上这样就会显示出0xEF 0xBB 0xBF这3个字符。
+
+这样网页上就需要去除0xEF 0xBB 0xBF，可以使用editplus 选择不带BOM的编码，这样就可以去除了。
+
+BOM只有在WINDOWS下采用“记事本”存储为UTF-8时才会有，这个可以用WINHEX把开始的2个字节删掉。
+在dreamweaver里面编码设置里面可以设置是否带BOM,一般只要php输出的不是图片(GDI Stream），BOM都不会导致问题。
+GDI Stream如果开头有了额外的 字符就会显示为 红叉。
+
+也可以使用php脚本删之。下面贴一段网上的代码：
+
+<code>
+
+    
+    <?
+    //此文件用于快速测试UTF8编码的文件是不是加了BOM，并可自动移除
+    //By Bob Shen
+    
+    $basedir="."; //修改此行为需要检测的目录，点表示当前目录
+    $auto=1; //是否自动移除发现的BOM信息。1为是，0为否。
+    
+    //以下不用改动
+    
+    if ($dh = opendir($basedir)) {
+    while (($file = readdir($dh)) !== false) {
+    if ($file!='.' && $file!='..' && !is_dir($basedir."/".$file)) echo "filename: $file ".checkBOM("$basedir/$file")." <br>";
+    }
+    closedir($dh);
+    }
+    
+    function checkBOM ($filename) {
+    global $auto;
+    $contents=file_get_contents($filename);
+    $charset[1]=substr($contents, 0, 1);
+    $charset[2]=substr($contents, 1, 1);
+    $charset[3]=substr($contents, 2, 1);
+    if (ord($charset[1])==239 && ord($charset[2])==187 && ord($charset[3])==191) {
+    if ($auto==1) {
+    $rest=substr($contents, 3);
+    rewrite ($filename, $rest);
+    return ("<font color=red>BOM found, automatically removed.</font>");
+    } else {
+    return ("<font color=red>BOM found.</font>");
+    }
+    }
+    else return ("BOM Not Found.");
+    }
+    
+    function rewrite ($filename, $data) {
+    $filenum=fopen($filename,"w");
+    flock($filenum,LOCK_EX);
+    fwrite($filenum,$data);
+    fclose($filenum);
+    }
+
+
+</code>
+
+
+## 不同编码的字节顺序标记的表示
+
+
+
+
+
+
+
+
+<table >
+<tbody >
+<tr >
+
+
+
+编码
+
+
+
+
+
+表示 (十六进制)
+
+
+
+
+
+表示 (十进制)
+
+
+</tr>
+<tr >
+
+<td >
+
+
+[UTF-8](http://baike.baidu.com/view/25412.htm)
+
+</td>
+
+<td >
+
+
+EF BB BF
+
+</td>
+
+<td >
+
+
+239 187 191
+
+</td>
+</tr>
+<tr >
+
+<td >
+
+
+[UTF-16](http://baike.baidu.com/view/497266.htm)（大端序）
+
+</td>
+
+<td >
+
+
+FE FF
+
+</td>
+
+<td >
+
+
+254 255
+
+</td>
+</tr>
+<tr >
+
+<td >
+
+
+[UTF-16](http://baike.baidu.com/view/497266.htm)（小端序）
+
+</td>
+
+<td >
+
+
+FF FE
+
+</td>
+
+<td >
+
+
+255 254
+
+</td>
+</tr>
+<tr >
+
+<td >
+
+
+[UTF-32](http://baike.baidu.com/view/1453325.htm)（大端序）
+
+</td>
+
+<td >
+
+
+00 00 FE FF
+
+</td>
+
+<td >
+
+
+0 0 254 255
+
+</td>
+</tr>
+<tr >
+
+<td >
+
+
+[UTF-32](http://baike.baidu.com/view/1453325.htm)（小端序）
+
+</td>
+
+<td >
+
+
+FF FE 00 00
+
+</td>
+
+<td >
+
+
+255 254 0 0
+
+</td>
+</tr>
+<tr >
+
+<td >
+
+
+[UTF-7](http://baike.baidu.com/view/2132747.htm)
+
+</td>
+
+<td >
+
+
+2B 2F 76和以下的_一个_字节：[ 38 | 39 | 2B | 2F ]
+
+</td>
+
+<td >
+
+
+43 47 118和以下的_一个_字节：[ 56 | 57 | 43 | 47 ]
+
+</td>
+</tr>
+<tr >
+
+<td >
+
+
+en:UTF-1
+
+</td>
+
+<td >
+
+
+F7 64 4C
+
+</td>
+
+<td >
+
+
+247 100 76
+
+</td>
+</tr>
+<tr >
+
+<td >
+
+
+en:UTF-EBCDIC
+
+</td>
+
+<td >
+
+
+DD 73 66 73
+
+</td>
+
+<td >
+
+
+221 115 102 115
+
+</td>
+</tr>
+<tr >
+
+<td >
+
+
+en:Standard Compression Scheme for Unicode
+
+</td>
+
+<td >
+
+
+0E FE FF
+
+</td>
+
+<td >
+
+
+14 254 255
+
+</td>
+</tr>
+<tr >
+
+<td >
+
+
+en:BOCU-1
+
+</td>
+
+<td >
+
+
+FB EE 28_及可能跟随着_FF
+
+</td>
+
+<td >
+
+
+251 238 40_及可能跟随着_255
+
+</td>
+</tr>
+<tr >
+
+<td >
+
+
+GB-18030
+
+</td>
+
+<td >
+
+
+84 31 95 33
+
+</td>
+
+<td >
+
+
+132 49 149 51
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+

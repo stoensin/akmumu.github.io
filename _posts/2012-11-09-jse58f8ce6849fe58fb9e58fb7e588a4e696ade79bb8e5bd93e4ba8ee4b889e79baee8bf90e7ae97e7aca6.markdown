@@ -1,0 +1,87 @@
+---
+author: admin
+comments: true
+date: 2012-11-09 01:59:00+00:00
+layout: post
+slug: js%e5%8f%8c%e6%84%9f%e5%8f%b9%e5%8f%b7%e5%88%a4%e6%96%ad%e7%9b%b8%e5%bd%93%e4%ba%8e%e4%b8%89%e7%9b%ae%e8%bf%90%e7%ae%97%e7%ac%a6
+title: js双感叹号判断相当于三目运算符
+wordpress_id: 120
+categories:
+- JS
+tags:
+- JS
+---
+
+
+
+
+
+
+  * 
+
+
+
+
+
+
+
+
+
+
+
+
+var ret = !!document.getElementById
+
+
+
+
+等价于：
+
+
+
+
+
+var ret = document.getElementById ? true : false;
+
+
+
+
+当值是非空字符串和非零数字返回true，当值是空字符串、0或者null返回false。
+
+
+
+
+
+var a = " "; alert(!!a); //true  
+
+var a = "s"; alert(!!a); //true  
+
+var a = true; alert(!!a); //true  
+
+var a = 1; alert(!!a); //true  
+
+var a = -1; alert(!!a); //true  
+
+var a = -2; alert(!!a); //true  
+
+var a = 0; alert(!!a); //false  
+
+var a = ""; alert(!!a); //false  
+
+var a = false; alert(!!a); //false  
+
+var a = null; alert(!!a); //false
+
+
+
+
+
+
+
+
+
+
+
+
+
+

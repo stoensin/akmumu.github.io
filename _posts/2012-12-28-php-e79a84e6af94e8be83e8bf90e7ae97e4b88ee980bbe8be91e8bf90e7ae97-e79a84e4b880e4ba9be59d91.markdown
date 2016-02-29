@@ -1,0 +1,537 @@
+---
+author: admin
+comments: true
+date: 2012-12-28 08:05:00+00:00
+layout: post
+slug: php-%e7%9a%84%e6%af%94%e8%be%83%e8%bf%90%e7%ae%97%e4%b8%8e%e9%80%bb%e8%be%91%e8%bf%90%e7%ae%97-%e7%9a%84%e4%b8%80%e4%ba%9b%e5%9d%91
+title: PHP 的比较运算与逻辑运算 的一些坑
+wordpress_id: 145
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+1、以下值用 empty() 被判断为true：
+
+
+
+
+未赋值变量、未声明变量、0、"0"、""、false、null、空数组 array() 、对象的魔术方法 __get() 返回的值
+
+
+
+
+在低于 PHP5.0 的版本中，没有任何属性的对象也被 empty 判断为 true
+
+
+
+
+注意：empty() 只接受变量或变量的索引值或属性值，不能直接传入常量，也不能传入运算表达式，PHP 5.5 之后支持表达式
+
+
+
+
+
+
+
+2、被 isset() 判断为 false 的值：未赋值变量、未声明变量、null、__get() 返回的值,接受的参与 empty()一样，不能是常量和表达式.
+
+
+
+
+3、不同类型的数据比较
+
+
+
+
+如果有一个是 boolean 型或者 null， 转换成 boolean 比较,
+
+
+
+
+否则如果有一个是 number，转换成 number 比较，
+
+
+
+
+否则如果有一个是 string，转换成 string 比较
+
+
+
+
+object 类型总是大于 array 类型和标量类型，array 类型总是大于 标量类型
+
+
+
+
+
+
+
+注意这些比较结果：
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+     <span style="color:#0800">//</span><span style="color:#0800">0开头的数字字符串转数字时不会按八进制转换，而是简单地丢弃把 '0' 丢弃按数字进行比较，</span>
+    
+          123=='0123' <span style="color:#0800">//</span><span style="color:#0800">true</span>
+          "123"<"0124" <span style="color:#0800">//</span><span style="color:#0800">true，0开头的数字字符串直接按十进制数字比较，坑爹</span>
+    
+          "012" == 10 <span style="color:#0800">//</span><span style="color:#0800"> false</span>
+           012 == 10  <span style="color:#0800">//</span><span style="color:#0800"> true</span>
+           0x12 == 18  <span style="color:#0800">//</span><span style="color:#0800"> true</span>
+           "0x12" == 18 <span style="color:#0800">//</span><span style="color:#0800"> true</span>
+    <span style="color:#00ff">false</span> < <span style="color:#00ff">true</span>; <span style="color:#0800">//</span><span style="color:#0800">true</span>
+     2><span style="color:#00ff">true</span>; <span style="color:#0800">//</span><span style="color:#0800"> false</span>
+     2==<span style="color:#00ff">true</span>; <span style="color:#0800">//</span><span style="color:#0800"> true </span>
+    <span style="color:#00ff">null</span>==0; <span style="color:#0800">//</span><span style="color:#0800">true</span>
+    -1<0;<span style="color:#0800">//</span><span style="color:#0800">true</span>
+    -1<<span style="color:#00ff">null</span>;<span style="color:#0800">//</span><span style="color:#0800">false ,-1 转 bool 是true</span>
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+
+
+
+4、类型转换规则
+
+
+
+
+被 empty() 判断为 true 的值转换为 boolean 型得到 false ,反之，得到 true ( __get() 返回的值需按具体的值判断)
+
+
+
+
+被 empty() 判断为 true 的值转换成 number 得 0，非空的 array 转 number 得到1 ( __get() 返回的值需按具体的值判断)
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+    <span style="color:#00ff">class</span><span style="color:#000000"> Test{
+       </span><span style="color:#00ff">private</span> <span style="color:#80080">$k</span>=1<span style="color:#000000">;
+       </span><span style="color:#00ff">public</span> <span style="color:#00ff">function</span> __get(<span style="color:#80080">$propertyName</span><span style="color:#000000">){
+           </span><span style="color:#00ff">return</span> 123<span style="color:#000000">;
+       }
+    }
+    
+    </span><span style="color:#80080">$obj</span> = <span style="color:#00ff">new</span><span style="color:#000000"> Test();
+    </span><span style="color:#00ff">echo</span> json_encode(<span style="color:#00ff">empty</span>(<span style="color:#80080">$obj</span>->k)); <span style="color:#0800">//</span><span style="color:#0800">true</span>
+    <span style="color:#00ff">echo</span> json_encode(<span style="color:#00ff">isset</span>(<span style="color:#80080">$obj</span>->k)); <span style="color:#0800">//</span><span style="color:#0800">false</span>
+    <span style="color:#00ff">echo</span> json_encode((bool)(<span style="color:#80080">$obj</span>->k)); <span style="color:#0800">//</span><span style="color:#0800">true</span>
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+
+
+
+string 转 number 时截取左侧的数字字符串进行转换，如果没有则返回 0,
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+    <span style="color:#0800">//几个转字符串的值</span>
+
+
+
+    
+    (<span style="color:#00ff">string</span>)0 ; <span style="color:#0800">//</span><span style="color:#0800"> "0"</span>
+    (<span style="color:#00ff">string</span>)<span style="color:#00ff">true</span>; <span style="color:#0800">//</span><span style="color:#0800"> "1"</span>
+    (<span style="color:#00ff">string</span>)<span style="color:#00ff">false</span>; <span style="color:#0800">//</span><span style="color:#0800"> ""</span>
+    (<span style="color:#00ff">string</span>)<span style="color:#00ff">null</span>; <span style="color:#0800">//</span><span style="color:#0800"> ""</span>
+    (<span style="color:#00ff">string</span>)<span style="color:#00ff">array</span>(); <span style="color:#0800">//</span><span style="color:#0800"> "<span>Array</span>"</span>
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+数组可以直接进行字符串拼接操作但不能进行数学运算.
+
+
+
+
+object 类型转换成 boolean 总是 true， object 类型不能转换成 number 和 string ,因此也不能进行字符串拼接和数学运算
+
+
+
+
+标量转换成 array 的方式是将数组第一个元素设置成标量，返回该数组。
+
+
+
+
+标量转换成 object 得到一个 stdClass 类的实例，标量的值被赋给名为 scalar 的属性： Object( [scalar] => 234)
+
+
+
+
+array 转 object 得到一个 stdClass 类的实例，数组的 key 为实力的属性名。
+
+
+
+
+object 转 array 有点复杂：
+
+
+
+
+方法、静态属性、类常量被丢弃
+
+
+
+
+保护属性名称前面被被加上一个 "*"
+
+
+
+
+私有属性前面被加上类名（大小写与类名完全相同）
+
+
+
+
+例如一个由 object 转换来的 array 为：
+
+
+
+
+
+
+    
+    <span style="color:#00ff">Array</span>(    [*v] => 444    [bf] => 333    [bk] => 99977    [Ak] => 999    [*p] => 888    [a2] => 22)
+
+
+
+
+
+
+
+
+
+
+原对象中有： 
+
+
+
+
+public 属性 a2， protected 属性 v、p ，这些属性来自哪个类无法鉴别（被重写则取子类的属性）
+
+
+
+
+来自类 b 的 private 属性 f、k，(从数组 key 来看，以bf为例，无法判断他是属性名为bf，还是来自类b的私有属性f)
+
+
+
+
+来自类 A 的 private 属性 k 
+
+
+
+
+无法鉴别 b 和 A 哪个是子类哪个是父类(仅从 array 的key来看，也无法推断出原对象构造自哪个类)
+
+
+
+
+
+
+
+
+
+
+5、 逻辑运算总是返回 true 或 false (写多了 javascript 的人要注意),逻辑运算符优先级从高到低 为 &&、 ||、 and、 or ，逻辑运算符的短路效果可以使用语句中，但记住他们不会像 javascript 中那样返回一个 不是 boolean 类型的值，在表达式中使用要注意。
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+    <span style="color:#80080">$a</span> = 1<span style="color:#000000">;
+    </span><span style="color:#80080">$b</span>=0<span style="color:#000000">;
+    </span><span style="color:#80080">$b</span> and <span style="color:#80080">$a</span> = 100<span style="color:#000000">;
+    </span><span style="color:#00ff">echo</span> <span style="color:#80080">$a</span>; <span style="color:#0800">//</span><span style="color:#0800">1</span>
+    <span style="color:#80080">$b</span> || <span style="color:#80080">$a</span> = 200<span style="color:#000000">;
+    eacho </span><span style="color:#80080">$a</span>; <span style="color:#0800">//</span><span style="color:#0800">200</span>
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+
+
+
+
+
+
+6、switch 的比较不是 "===" 而是 "==" (在 javascript 中是 "===")
+
+
+
+
+
+
+
+7、 在 php4 中，object 之间的比较方式与 array 相同，在 php5 中 , object 类型间的 "==" 比较为 true的前 提是，他们属于同一个类的实例(当然还要进行属性的比较，这类似标量的"==="比较)，object 间的 "===" 比较为 true 的前提是他 们 就是同一个对象。
+
+
+
+
+
+
+
+**在 PHP4 中 ，不包括任何成员变量的对象 被 empty() 判断为 true**
+
+
+
+
+**字符串偏移 offset 取字符的 empty() 判定： 取对应 offset 的****字符进行**判断，在PHP5.4
+ 以前，使用索引从字符串中取字符时会先将索引进行取整，因此左侧不包含数字的字符串都被转换成0，PHP5.4之后，**不再对非整形格式的**字符串索引进行取整，因此判断为
+ true, 同理，isset() 判定为false. 如：
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+    <span style="color:#80080">$str</span> = 'ab0d'<span style="color:#000000">;
+    </span><span style="color:#00ff">empty</span>(<span style="color:#80080">$str</span>[0]); <span style="color:#0800">//</span><span style="color:#0800">false</span>
+    <span style="color:#00ff">empty</span>(<span style="color:#80080">$str</span>[0.5]); <span style="color:#0800">//</span><span style="color:#0800">false  索引被向下取整 为 0</span>
+    <span style="color:#00ff">empty</span>(<span style="color:#80080">$str</span>["0.5"]); <span style="color:#0800">//</span><span style="color:#0800">false 索引被向下取整 为 0，PHP5.4之后不取证，判定为 true </span>
+    <span style="color:#00ff">empty</span>(<span style="color:#80080">$str</span>[2]); <span style="color:#0800">//</span><span style="color:#0800">true ，取得的字符为 "0"</span>
+    <span style="color:#00ff">empty</span>(<span style="color:#80080">$str</span>["3"]); <span style="color:#0800">//</span><span style="color:#0800">false ，取得的字符为 "d"</span>
+    <span style="color:#00ff">empty</span>(<span style="color:#80080">$str</span>[4]); <span style="color:#0800">//</span><span style="color:#0800">true ,索引超出范围,notice 警告，但 empty() 会忽略警告</span>
+    <span style="color:#00ff">empty</span>(<span style="color:#80080">$str</span>['a']); <span style="color:#0800">//</span><span style="color:#0800"> false ,左侧不包含数字字符串索引 PHP5.4之前被处理为 $str[0]，PHP5.4之后，直接为判定 true </span>
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+
+
+
+**无论是“不等于”还是”==“ ，不要在 PHP 的跨类型数据比较中使用”传递性“：  
+
+**
+
+
+
+
+**$a == $b; //true**
+
+
+
+
+**$b == $c; //true**
+
+
+
+
+**并不能说明 ****$a == $c
+**为 true 
+
+
+
+
+
+
+
+数组的比较方法  
+
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+    <span style="color:#0800">//</span><span style="color:#0800"> 数组是用标准比较运算符这样比较的</span>
+    <span style="color:#00ff">function</span> standard_array_compare(<span style="color:#80080">$op1</span>, <span style="color:#80080">$op2</span><span style="color:#000000">)
+    {
+        </span><span style="color:#00ff">if</span> (<span style="color:#08080">count</span>(<span style="color:#80080">$op1</span>) < <span style="color:#08080">count</span>(<span style="color:#80080">$op2</span><span style="color:#000000">)) {
+            </span><span style="color:#00ff">return</span> -1; <span style="color:#0800">//</span><span style="color:#0800"> $op1 < $op2</span>
+        } <span style="color:#00ff">elseif</span> (<span style="color:#08080">count</span>(<span style="color:#80080">$op1</span>) > <span style="color:#08080">count</span>(<span style="color:#80080">$op2</span><span style="color:#000000">)) {
+            </span><span style="color:#00ff">return</span> 1; <span style="color:#0800">//</span><span style="color:#0800"> $op1 > $op2</span>
+    <span style="color:#000000">    }
+        </span><span style="color:#00ff">foreach</span> (<span style="color:#80080">$op1</span> <span style="color:#00ff">as</span> <span style="color:#80080">$key</span> => <span style="color:#80080">$val</span><span style="color:#000000">) {
+            </span><span style="color:#00ff">if</span> (!<span style="color:#08080">array_key_exists</span>(<span style="color:#80080">$key</span>, <span style="color:#80080">$op2</span><span style="color:#000000">)) {
+                </span><span style="color:#00ff">return</span> <span style="color:#00ff">null</span>; <span style="color:#0800">//</span><span style="color:#0800"> uncomparable</span>
+            } <span style="color:#00ff">elseif</span> (<span style="color:#80080">$val</span> < <span style="color:#80080">$op2</span>[<span style="color:#80080">$key</span><span style="color:#000000">]) {
+                </span><span style="color:#00ff">return</span> -1<span style="color:#000000">;
+            } </span><span style="color:#00ff">elseif</span> (<span style="color:#80080">$val</span> > <span style="color:#80080">$op2</span>[<span style="color:#80080">$key</span><span style="color:#000000">]) {
+                </span><span style="color:#00ff">return</span> 1<span style="color:#000000">;
+            }
+        }
+        </span><span style="color:#00ff">return</span> 0; <span style="color:#0800">//</span><span style="color:#0800"> $op1 == $op2</span>
+    }
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8、三元运算符 ?: ，跟其他大多数编程语言不一样，PHP 的三元运算符是左结合的！
+
+
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+     <span style="color:#80080">$arg</span> = 'T'<span style="color:#000000">;    
+        </span><span style="color:#80080">$vehicle</span> = ( ( <span style="color:#80080">$arg</span> == 'B' ) ? 'bus' :<span style="color:#000000">    
+                     ( </span><span style="color:#80080">$arg</span> == 'A' ) ? 'airplane' :<span style="color:#000000">   
+                     ( </span><span style="color:#80080">$arg</span> == 'T' ) ? 'train' :<span style="color:#000000">    
+                     ( </span><span style="color:#80080">$arg</span> == 'C' ) ? 'car' :<span style="color:#000000">    
+                     ( </span><span style="color:#80080">$arg</span> == 'H' ) ? 'horse' :    
+                     'feet'<span style="color:#000000"> );    
+        </span><span style="color:#00ff">echo</span> <span style="color:#80080">$vehicle</span>;   <span style="color:#0800">//</span><span style="color:#0800">horse</span>
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+三元运算表达式被划分为
+
+
+
+
+
+
+    
+    ( <span style="color:#80080">$arg</span> == 'B' ) ? 'bus' : ( <span style="color:#80080">$arg</span> == 'A'<span style="color:#000000"> ) 
+                                        </span>? 'airplane' : ( <span style="color:#80080">$arg</span> == 'T'<span style="color:#000000"> ) 
+                                                                 </span>? 'train' : ( <span style="color:#80080">$arg</span> == 'C'<span style="color:#000000"> )
+                                                                                   </span>? 'car' : ( <span style="color:#80080">$arg</span> == 'H'<span style="color:#000000"> )
+                                                                                                        </span>? 'horse' : 'feet' ;  
+
+
+
+
+
+

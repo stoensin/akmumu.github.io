@@ -1,0 +1,196 @@
+---
+author: admin
+comments: true
+date: 2012-11-07 07:51:00+00:00
+layout: post
+slug: shell%e8%af%ad%e6%b3%95%e9%94%99%e8%af%af-%e5%8f%98%e9%87%8f%e4%b8%8e%e7%a9%ba%e6%a0%bc-too-many-arguments
+title: 'Shell语法错误----变量与空格[: too many arguments'
+wordpress_id: 117
+categories:
+- LINUX
+tags:
+- linux
+---
+
+
+
+
+
+我们先来看一段脚本
+
+
+
+
+
+
+
+
+
+
+
+ret="Peter Anne"
+
+
+
+
+
+if [ $ret == "Peter Anne" ]; then
+
+
+
+
+
+echo "pass"
+
+
+
+
+
+else
+
+
+
+
+
+echo "failed"
+
+
+
+
+
+fi
+
+
+
+
+
+
+
+
+
+
+
+程序上看，这段代码的逻辑和写法都是没有错误的。但是其实，实际执行结果将会是：
+
+
+
+
+
+run.sh:  [: too many arguments（参数过多）
+
+
+
+
+
+failed
+
+
+
+
+
+
+
+
+
+
+
+大致的意思是说，if 后面所跟着的参数过多了，我们可以看见这句if语句
+
+
+
+
+
+if [ $ret == "Peter Anne" ];
+
+
+
+
+
+它的参数分别为 [，$ret， ==，"Peter Anne"，]，一共5个参数。（”[“也是被当作参数，这就是为什么”[“一定要有空格的缘故，详细可以查看Linux的书籍）
+
+
+
+
+
+
+
+
+
+
+
+如果正常5个参数，是没有问题的，但是问题出在了$ret变量里。
+
+
+
+
+
+其实，在Linux系统中的真实解析方式，其实是：
+
+
+
+
+
+if [ Peter Anne == "Peter Anne" ]，参数则分为：
+
+
+
+
+
+[，Peter，Anne， ==，"Peter Anne"，]，一共6个参数。
+
+
+
+
+
+
+
+
+
+
+
+所以上述代码，其实应该改写成($ret变为"$ret")：
+
+
+
+
+
+ret="Peter Anne"
+
+
+
+
+
+if [ "$ret" == "Peter Anne" ]; then（参数则为5个）
+
+
+
+
+
+echo "pass"
+
+
+
+
+
+else
+
+
+
+
+
+echo "failed"
+
+
+
+
+
+fi
+
+
+
+
+
+这种写法才是正确的。
+
+
+

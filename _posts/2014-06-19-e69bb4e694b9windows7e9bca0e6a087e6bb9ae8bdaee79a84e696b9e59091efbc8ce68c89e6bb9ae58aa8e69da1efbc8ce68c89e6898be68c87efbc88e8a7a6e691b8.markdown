@@ -1,0 +1,35 @@
+---
+author: akmumu
+comments: true
+date: 2014-06-19 03:30:51+00:00
+layout: post
+slug: '%e6%9b%b4%e6%94%b9windows7%e9%bc%a0%e6%a0%87%e6%bb%9a%e8%bd%ae%e7%9a%84%e6%96%b9%e5%90%91%ef%bc%8c%e6%8c%89%e6%bb%9a%e5%8a%a8%e6%9d%a1%ef%bc%8c%e6%8c%89%e6%89%8b%e6%8c%87%ef%bc%88%e8%a7%a6%e6%91%b8'
+title: 更改windows7鼠标滚轮的方向，按滚动条，按手指（触摸屏操作模式），跟mac一样，在windows中使用mac鼠标模式
+wordpress_id: 280
+categories:
+- mac
+---
+
+
+
+用惯mac的鼠标，把windows鼠标也改成mac的自然滚动
+
+如何更改windows鼠标滚轮的方向，按滚动条，按手指（触摸屏操作模式），跟mac一样，以win7为例
+
+计算机-右键-管理-系统工具-设备管理器-鼠标和其他指针设备-（或者控制面板，硬件，设备，鼠标）打开鼠标的属性-详细信息-属性-设备实例路径
+
+
+
+
+
+[![111](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/06/111.jpg)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/06/111.jpg)
+
+
+
+这个别关，看着这个值
+
+开始，regedit 打开[注册表](http://biancheng.dnbcw.info/zhucebiao/)  HKEY_LOCAL_MACHINE \ SYSTEM - CurrentControlSet \ Enum \ ??? \ ??? \ ??? \ Device Parameters 找到 FlipFlopWheel字段 默认0，修改成1就变成了mac模式 ???对应 设备实例路径（上面的值）
+
+[![2222](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/06/2222.jpg)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/06/2222.jpg)
+
+好了，重启下。就好了。恭喜

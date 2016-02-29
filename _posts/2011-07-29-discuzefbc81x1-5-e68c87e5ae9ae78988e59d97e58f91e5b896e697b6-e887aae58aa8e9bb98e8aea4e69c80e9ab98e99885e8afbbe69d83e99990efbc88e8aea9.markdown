@@ -1,0 +1,186 @@
+---
+author: admin
+comments: true
+date: 2011-07-29 08:17:00+00:00
+layout: post
+slug: discuz%ef%bc%81x1-5-%e6%8c%87%e5%ae%9a%e7%89%88%e5%9d%97%e5%8f%91%e5%b8%96%e6%97%b6-%e8%87%aa%e5%8a%a8%e9%bb%98%e8%ae%a4%e6%9c%80%e9%ab%98%e9%98%85%e8%af%bb%e6%9d%83%e9%99%90%ef%bc%88%e8%ae%a9
+title: discuz！X1.5 指定版块发帖时 自动默认最高阅读权限（让您的秘密版块只有vip可见）
+wordpress_id: 14
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+有时候站里一些特殊版块 ，比如我那个站，里面有几个版块需要发帖的时候，想让只有vip才能看到，或者只有楼主和管理员可见，而其他人只能看到列表而看不到内容，这就用到一下代码了  
+
+  
+
+**修改文件：**/template/default/forum/post.htm  
+
+记事本打开这个文件 找到
+
+
+
+
+
+
+* <!--{if $_G['group']['allowsetreadperm']}-->  
+
+
+* <p class="mbn">{lang readperm}:</p>  
+
+
+* <p class="mbn">  
+
+
+* <em class="ftid">  
+
+
+* <select name="readperm" id="readperm" class="ps" style="width:90px">  
+
+
+* <option value="">{lang unlimited}</option>  
+
+
+* <!--{loop $_G['cache']['groupreadaccess'] $val}-->  
+
+
+* <option value="$val[readaccess]" title="{lang readperm}: $val[readaccess]"{if $thread['readperm'] == $val[readaccess]} selected="selected"{/if}>$val[grouptitle]</option>  
+
+
+* <!--{/loop}-->  
+
+
+* <option value="255">{lang highest_right}</option>  
+
+
+* </select>  
+
+
+* </em>  
+
+
+* <img src="{IMGDIR}/faq.gif" alt="Tip" class="mtn vm" style="margin: 0;" onmouseover="showTip(this)" tip="{lang post_select_usergroup_readacces}" /></a>  
+
+
+* </p>  
+
+
+* <!--{/if}-->
+
+
+改成
+
+
+
+* 
+
+
+
+
+
+
+
+  1. <!--{if $_G['fid'] == 39 }-->  
+
+
+  2. <p class="mbn">{lang readperm}:</p>  
+
+
+  3. <p class="mbn">  
+
+
+  4. <em class="ftid">  
+
+
+  5. <select name="readperm" id="readperm" class="ps" style="width:90px">  
+
+
+  6. <option value="255">{lang highest_right}</option>  
+
+
+  7. </select>  
+
+
+  8. </em>  
+
+
+  9. <img src="{IMGDIR}/faq.gif" alt="Tip" class="mtn vm" style="margin: 0;" onmouseover="showTip(this)" tip="{lang post_select_usergroup_readacces}" /></a>  
+
+
+  10. </p>  
+
+
+  11. <!--{elseif $_G['group']['allowsetreadperm']}-->  
+
+
+  12. <p class="mbn">{lang readperm}:</p>  
+
+
+  13. <p class="mbn">  
+
+
+  14. <em class="ftid">  
+
+
+  15. <select name="readperm" id="readperm" class="ps" style="width:90px">  
+
+
+  16. <option value="">{lang unlimited}</option>  
+
+
+  17. <!--{loop $_G['cache']['groupreadaccess'] $val}-->  
+
+
+  18. <option value="$val[readaccess]" title="{lang readperm}: $val[readaccess]"{if $thread['readperm'] == $val[readaccess]} selected="selected"{/if}>$val[grouptitle]</option>  
+
+
+  19. <!--{/loop}-->  
+
+
+  20. <option value="255">{lang highest_right}</option>  
+
+
+  21. </select>  
+
+
+  22. </em>  
+
+
+  23. <img src="{IMGDIR}/faq.gif" alt="Tip" class="mtn vm" style="margin: 0;" onmouseover="showTip(this)" tip="{lang post_select_usergroup_readacces}" /></a>  
+
+
+  24. </p>  
+
+
+  25. <!--{/if}-->
+
+
+
+
+
+
+
+
+* 
+
+
+即可，PS：替换后的第一行代码中39需要更换为目标版块的fid怎么知道fid号？当前版块的地址中比如：[http://www.discuz.net/forumdisplay.php?fid=2](http://www.discuz.net/forumdisplay.php?fid=2)组后fid=后的那个数字 就是当前版块fid号这样就行了，其中value对应的就是阅读权限，比如255，而{lang highest_right}代表了最高权限四个字，其他大家自己参悟喽
+
+
+
+
+
+
+
+
+
+
+
+
+
+

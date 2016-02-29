@@ -1,0 +1,144 @@
+---
+author: admin
+comments: true
+date: 2012-11-22 09:03:00+00:00
+layout: post
+slug: '%e5%88%86%e4%ba%ab-6-%e6%ac%be%e7%bb%9a%e4%b8%bd%e7%9a%84-js-%e5%8a%a0%e8%bd%bd%e5%8a%a8%e7%94%bb%e5%92%8c%e8%bf%9b%e5%ba%a6%e6%9d%a1%e6%8f%92%e4%bb%b6'
+title: 分享 6 款绚丽的 JS 加载动画和进度条插件
+wordpress_id: 125
+categories:
+- JS
+- 前端美工设计
+tags:
+- JS
+- 前端美工设计
+---
+
+
+
+
+随着我们网站复杂度的增加，很多时候需要用户去等待一些比较耗时的操作，在等待的过程中，如果能有一些比较人性化的加载动画或者进度条提示用户当前执行的状态，那就能大大提升网站的用户体验度。下面给大家分享一些绚丽的JS动画加载和进度条插件，希望大家会喜欢。
+
+
+
+
+### 1、Spin.js
+
+
+
+
+可以自定义加载动画的长度、宽度、粗细、速度等参数，非常灵活。
+
+
+
+
+[在线演示](http://demo.itivy.com/fgnass-spin.js/index.html) /[源码下载](http://www.oschina.net/p/spinjs)
+
+
+
+
+[![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/static_oschina_13081023_dza7.jpg)](http://demo.itivy.com/fgnass-spin.js/index.html)
+
+
+
+
+### 2、3款CSS3 Loading动画
+
+
+
+
+3款基于CSS3的动画加载效果
+
+
+
+
+[在线演示](http://demo.itivy.com/css3-loading-1/index.html)
+
+
+
+
+[![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/static_oschina_13081023_xDSJ.gif)](http://demo.itivy.com/css3-loading-1/index.html)
+
+
+
+
+### 3、Percentage Loader
+
+
+
+
+一款轻量的 jQuery 进度条插件，以百分比的形式呈现加载进度，同时显示已加载的内容大小。
+
+
+
+
+[在线演示](http://demo.itivy.com/jquery.percentageloader/demo.html) /[源码下载](https://bitbucket.org/Better2Web/jquery.percentageloader/downloads)
+
+
+
+
+[![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/static_oschina_13081023_MCwu.jpg)](http://demo.itivy.com/jquery.percentageloader/demo.html)
+
+
+
+
+### 4、jQuery Progress Bar
+
+
+
+
+[在线演示](http://www.webappers.com/progressBar/) / [
+源码下载](http://www.webappers.com/progressBar/)
+
+
+
+
+[![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/static_oschina_13081024_qLXk.jpg)](http://www.webappers.com/progressBar/)
+
+
+
+
+### 5、Animated jQuery Progressbar Plugin
+
+
+
+
+该jQuery插件可以显示当前的加载进度以及剩余时间。
+
+
+
+
+[在线演示](http://demo.itivy.com/animated-jquery-progressbar/index.html) /[源码下载](http://www.script-tutorials.com/demos/129/source.zip)
+
+
+
+
+[![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/static_oschina_13081024_E75M.jpg)](http://demo.itivy.com/animated-jquery-progressbar/index.html)
+
+
+
+
+### 6、Progressbar
+
+
+
+
+这是基于 jQuery UI 的进度条插件，可以通过 jQuery UI 的主题功能定制外观。
+
+
+
+
+[在线演示](http://jqueryui.com/demos/progressbar/#animated) /[源码下载](http://jqueryui.com/demos/progressbar/#animated)
+
+
+
+
+[![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/static_oschina_13081024_y0EO.jpg)](http://jqueryui.com/demos/progressbar/#animated)
+
+
+
+
+原文：http://www.cnblogs.com/shihao/archive/2012/11/13/2767955.html
+
+
+

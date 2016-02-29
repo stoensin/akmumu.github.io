@@ -1,0 +1,1646 @@
+---
+author: admin
+comments: true
+date: 2012-10-12 03:12:00+00:00
+layout: post
+slug: '%e6%9c%80%e5%b0%8f%e7%9a%84linux%e7%b3%bb%e7%bb%9f%e5%88%b6%e4%bd%9c%e8%bf%87%e7%a8%8b%e8%af%a6%e8%a7%a3%ef%bc%88%e8%bd%ac%ef%bc%89'
+title: 最小的Linux系统制作过程详解（转）
+wordpress_id: 89
+categories:
+- LINUX
+- 操作系统
+tags:
+- linux
+- 操作系统相关
+---
+
+
+
+
+
+一,什么是BabyLinux   
+
+二,为什么要做这样一个linux   
+
+三,什么人适合读这篇文档   
+
+四,应该具备的知识   
+
+五,linux系统引导过程简介   
+
+六,编译内核   
+
+七,编译busybox   
+
+八,制作根文件系统   
+
+九,制作ramdisk映象文件   
+
+十,内核与busybox的整合   
+
+十一,安装测试和内容调整   
+
+十二,babylinux中的BUG   
+
+十三,接下来要做的事情   
+
+十四,参考文献   
+
+  
+
+一,什么是BabyLinux   
+
+  
+
+BabyLinux不是一个完整的发行版,他是利用原有的一套完整的linux系统的内核原代码和编译工具,利用busybox内建的强大功能,在一张软盘上做的一个很小的linux系统.他具备一个linux系统的基本特征,支持linux系统最常用的一百多个命令,支持多种文件系统,支持网络等等,你可以把他当做一张linux起动盘和修复盘来用,你也可以把他当做一个静态路由的路由器软件,当然,你也可以把他当做一个linux玩具,向你的朋友炫耀 linux可以做的多么小.我把他叫做BabyLinux因为他很小巧,小的很可爱,像一个刚刚出生的小baby.   
+
+  
+
+二,为什么要作这样一个linux   
+
+  
+
+先说说我一开始的想法,当我一开始接触linux的时候,看到书上说,linux通常安装只需要60M左右的空间,但是我发现装在我硬盘上的Redhat 6.0确要占据好几百M的空间.为什么我的linux这么大呢? 后来我发现,装在我机器上的那么多东西只有不到30%是我平时常用的,还有30%是我极少用到的,另外的40%基本上是不用的.于是,我和大多数初学者一样,开始抱怨,为什么linux不能做的精简一点呢?于是,我萌发了自己裁减系统的想法.可惜那个时候我还没有听说过有LFS和Debain.等到我积累了足够的linux知识后,我开始制作这样一个小系统.   
+
+制作这样一个小系统最大的意义在于,你可以通过制作系统了解linux的启动过程,学会ramdisk的使用,让你在短时间内学到更多的linux知识. 当然,你会得到很大的乐趣.这个项目只是做一个具有基本特征的linux系统,如果你想自己做一个具有完整功能的linux,请阅读Linux From Scratch (LFS)文档.   
+
+  
+
+三,什么人适合读这篇文档   
+
+  
+
+如果你是一个linux爱好者,并且很想了解linux的启动过程和系统的基本结构,而且是一个喜欢动手研究小玩意的人,那么这个文档可以满足你的需求. 如果你仅仅是用linux来做一些普通的日常工作,而不在乎你的linux到底怎么工作,那么这份文档也许不太适合你.另外,如果你是linux爱好者, 但是目前还是一个刚刚入门的newbi,我建议你先把linux命令学好.不过我想我会尽可能的把这份文档写详细一些,如果你有足够的毅力,或许一个 newbi也能成功做一个babylinux.或者,你遇到一件很不巧的事情,比如你的老婆来例假了,你的这个周末就泡汤了,那么阅读这篇文档并做一个 linux小玩具可以打发你的时间.   
+
+  
+
+四,应该具备的知识   
+
+  
+
+在做一个babylinux之前,你应当已经会应用linux最常用的命令.并且至少有一次成功编译并安装系统内核的经历,会通过编译源代码来安装软件. 如果你具备了这些条件,那么做这样一个小系统会很顺利,如果你还没有掌握这些知识,你可能会遇到一些困难.但是只要有毅力,也可以成功.你不需要具备编程的知识,因为我的目标是:让具有中等以上linux水平的爱好者可以通过阅读文档轻松完成这个项目.关于一张软盘上的linux还有一个很著名的 linux叫LOAP (Linux On A   
+
+Floppy) 但是他是由比较专业的人员需要编写很多程序完成的.而且没有关于他制作过程的文档.   
+
+  
+
+五,linux系统引导过程简介   
+
+  
+
+首先,主板的BIOS会读取硬盘的主引导记录(MBR),MBR中存放的是一段很小的程序,他的功能是从硬盘读取操作系统核心文件并运行,因为这个小程序太小了,因此通常这个小程序不具备直接引导系统内核的能力,他先去引导另一个稍微大一点的小程序,再由这个大一点的小程序去引导系统内核.在linux系统中这样的小程序有LILO和GRUB.在这个项目中,我决定用LILO来做系统引导程序.在软盘上启动linux系统的过程和在硬盘上启动的过程相似.   
+
+  
+
+Linux系统内核被引导程序装入内核并运行后,linux内核会检测系统中的各种硬件.并做好各种硬件的初始化工作,使他们在系统正式运行后能正常工作.之后内核做的最后一个工作是运行   
+
+/sbin 下的init程序,init是英文单词initialization(初始化)的简称,init程序的工作是读取/etc/inittab文件中描述的指令,对系统的各种软硬件环境做最初化设定.最后运行mingetty等待用户输入用户名登录系统.所有的工作就这么简单,虽然linux启动的时候有很多内容,看上去十分高深,但是都不过是对这个过程的扩充.明白了这个道理,你可以写一些脚本程序让他在系统启动的特定时间运行完成任务.事实上系统内核并不关心/sbin下的init是不是真的init,只要是放在/sbin下名叫init的可执行程序他都可以执行.可以做以下实验:   
+
+  
+
+编写一个非常简单的C程序:   
+
+  
+
+main()   
+
+{   
+
+printf(“hello,world!n”);   
+
+}   
+
+  
+
+保存后以init.c保存他,并用gcc编译.   
+
+#gcc –-static -o init init.c   
+
+这里的--static 参数告诉gcc把这个程序静态联接,这样这个程序不倚赖任何库就能运行.把编译好的init程序拷贝到/sbin下,备份好原来的那个.重新启动系统最后系统的输出结果是: hello,world!   
+
+然后停在那里.做这个实验以前先确定你知道如何把系统恢复到原来的状态,有一个简单的方法,在内核启动前给他加上init=参数,比如你原先的init被你改成了init.bak 只要在启动的时候给内核加上init=/sbin/init.bak就可以用原来的init程序启动系统.   
+
+做完以上实验,就明白了内核和init程序之间的关系.此外,init程序不一定是一个二进制可执行程序,他可以是一个bash脚本,一个指向另一个程序的联接,他的位置也并不一定要在/sbin下,只要在启动内核时,给内核加上init参数就能被运行,比如,开始时给内核加上init= /bin/bash参数,内核在最后一步就直接运行bash给出提示符,不用登录系统就可以输入命令了.其功能类似单用户模式启动系统. /sbin/init 程序只是内核默认运行的第一个程序.   
+
+  
+
+六,编译一个linux系统内核   
+
+  
+
+1,编译前的规划和准备   
+
+  
+
+在编译内核前,请先确定你的需求,把你的需求罗列成一张详细的表格.你需要让内核支持什么硬件,支持多少种分区类型和文件系统,支持哪些网卡,支持哪些网络协议.等等.请尽可能详细的罗列这些内容,但是你也不要太贪心,因为你所有能利用的空间只有1440K,如果你编译出一个大于1440K或很接近这个数字的内核,你的这个项目就不能完成了,你已经没有空间再放ramdisk映象文件,除非你原意再多出一张软盘,做一个两张软盘的小linux系统.对于声卡驱动之类,我劝你还是放弃吧,因为一个声卡驱动也许只让你的内核增大了十多K,但是你有了一个声卡驱动就务必要有一个播放器吧,否则声卡驱动就没有意义,可一个播放器的大小可不是一张软盘可以装得下的.在我先前制作的babylinux内核有900多K,其中,文件系统部分站了大部分,因为我的目标是把他做成一个系统修复盘.因此我在内核中编译7种文件系统的支持,每减少一个文件系统就可以减小几十甚至200多K的内核大小.越是复杂,越是安全的文件系统,其支持模块也越大,比如在linux下FAT模块只有32K,VFAT只有17K,但是ext3的模块就有86K,JFS达到216K, reiserfs模块是224K,可以想像,编译一个支持7个文件系统的900多K的内核,文件系统部分就占了600K以上的空间,所以如果某一个文件系统是你根本不用的,那么还是不要编译进内核把,这样至少可以省下100多K的空间.对于其他的驱动,比如网卡,通常大小只有8,9K,最大的也不过10多 K,因此可以把常用的网卡芯片的驱动都编译进去.另外如果你想让你的babylinux支持U盘,那么scsi的驱动模块也是不可小看的,他通常要接近 150K,因为U盘是被当做scsi设备来驱动的.另外你还需要让你的内核支持即插即用,这些都是不小的空间开销,我的建议是你放弃一两个你不用的文件系统.总之,你最后编译出来的内核大小最好不要超过900K,否则你在busybox里只能编译进去很少的命令.   
+
+  
+
+在我编译的busybox中,我编译进去120多个命令,基本上把busybox支持的命令都包括进去了.加上小系统所必需的文件系统目录,/dev下的设备文件,以及/etc下几个必需的配置文件,做成ramdisk压缩后的大小是440多K, 加上900K左右的内核刚好可以放入一张1440K软盘,请注意,你应该留下至少50K的空间,因为我们要在软盘上创建一个ext2文件系统,而文件系统本生需要占据大概25K的磁盘空间.另外lilo的引导文件boot.b的大小是5.7K,还有装上lilo后自动产生的map文件也要10多K的空间, map文件的具体大小由内核安装的实际大小决定,通常不会超过30K.   
+
+综上所述,请遵循下面的公式:   
+
+  
+
+内核大小+文件系统压缩印象文件+50K <= 1440K   
+
+  
+
+另外一点需要说明的是:以上所罗列的文件系统模块大小是察看我现在使用的Redhat 9 的   
+
+/lib/modules下的模块文件得到的,实际编译进内核大小会小一点,因为我们用make bzImage   
+
+在内核源代码目录树下生成的内核是经过压缩过的.   
+
+  
+
+如果你对以上说的内容不太明白也没有关系,我会在下面的内容中做详细的说明.   
+
+  
+
+2,必需编译进内核的内容   
+
+  
+
+首先,我们制作的这个小系统是基于一张软盘的,因此,你的内核必需支持软盘.另外对IDE硬盘和cdrom的支持也是不可少的,否则做出来的 babylinux就没有实用价值,因为他不能访问硬盘和光盘上的内容这样的linux虽然可以做的更小,但是制造一个完全没有用的东西是浪费时间.其他的包括framebuffer等,如果你需要支持在字符界面下以高分辨率显示,以看到更多的屏幕内容,那么就必需把framebuffer支持编译进内核,此外在高分辨率下使用的8x8字体也必需编译进去.否则即使你给内核传递了vga= 参数,内核会因为没有可用的小字体而自动转跳到低分辨率模式下,这是以前困扰我好几天想不明白的事情,后来通过反复试验才明白原来是缺少字体的文体.这里我先大致提一下需要注意的事情.在下一小节具体编译时,我会继续就某些细节问题说明.   
+
+  
+
+3,关于内核的版本   
+
+  
+
+我是在Redhat 9 linux系统下打造的babylinux小系统.使用的是Redhat 9 自带的2.4.20版的内核.   
+
+为什么我不用最新的2.6的内核?   
+
+一开始我也企图用最新的内核,但是通过试验我发现,在用最新的2.6.9内核的情况下,我编译一个all-no的(即所有内容都选N,不支持任何硬件,只有一个最基本的内核)最小化内核就要460K左右,如果我在这个基础上再加入几种文件系统和必要的驱动,那么内核的大小就不能装下一张1440K   
+
+的软盘,而我用2.4.20的内核编译一个最小化的内核只需要217K,的大小.如果优化了gcc参数他还能再小些.这样我就立即省下了200多K的空间,在平时,200多K的内容微不足道,但是在babylinux里,这个数目是整个空间的 1/7,相当于一个reiserfs文件系统模块的大小.当然,我也尝试了2.2以及更老的内核,但是他们缺少我需要的东西,因此最后权衡下来用2.4的内核是比较合理的.如果你用的是2.6内核的FC系统,那么最好还是去下载一个2.4版的内核,www.kernel.org 有各个时期的内核可以下载.   
+
+  
+
+4, 内核的配置   
+
+  
+
+如果你对linux内核的配置和编译已经很熟悉了,请跳过这一段,直接看busybox的编译.   
+
+  
+
+以root身份登录系统   
+
+进入/usr/src/linux目录   
+
+[root@gucuiwen root]# cd /usr/src/linux   
+
+如果你下载了一个2.4版本的内核,为了避免麻烦,请将他拷贝到/usr/src下,然后接压缩,再做一个指向他的名为linux的链接.虽然这并不是必需的,但是根据我以往的经验,如果我把linux源代码放在其他目录下解开并编译,偶然会有一些莫名其妙的小问题发生.   
+
+  
+
+#cp linux-2.4.20.bz2 /usr/src/   
+
+#cd /usr/src   
+
+#tar xfvj linux-2.4.20.bz2   
+
+如果是tar.gz格式,可以这样解开   
+
+#tar xfvz linux-2.4.20.tar.gz   
+
+为了方便,做一个到目录linux-2.4.20的连接:   
+
+#ln -s linux-2.4.20 linux   
+
+进入linux源代码目录:   
+
+#cd linux   
+
+清理源代码树:   
+
+#make mrproper   
+
+运行配置程序:   
+
+#make xconfig   
+
+  
+
+code maturity level options   
+
+先选择N,当我们配置好常规的东西,要加入framebuffer支持时再将这一项选择Y,因为在2.4.20中,framebuffer支持尚属于实验性代码.如果不在code maturity level options选择为Y,将不能配置framebuffer.   
+
+  
+
+Loadable module support   
+
+选择N,为了简化系统的制作,我在这个项目中不选择可加载内核模块的支持.   
+
+  
+
+processor type and features   
+
+  
+
+processor family 中选择你需要的CPU类型,如果你想让老至386,新到P4的CPU都能运行babaylinux那么请选择386CPU,否则请按自己的实际情况选择.   
+
+  
+
+其他选项都选择N.这些在babylinux中都是不需要的.   
+
+  
+
+General setup   
+
+networking support 选择Y   
+
+PCI support 选择Y 除非你不用PCI设备,不过一般人都是需要的,因为现在网卡大部分是PCI的.   
+
+  
+
+System V ipc 选择Y   
+
+systrl support选择Y   
+
+kernel support for ELF 选择Y   
+
+其余内容都可以选择N,如果有特殊需求,比如的网卡是ISA的,那么请将相应的内容选上.但是不能贪心,时刻牢记,我们能利用的空间只有 1440K ,内核的大小绝不能超过 900K,任何不必要的东西都应该从内核中去除.   
+
+  
+
+memory technology devices (MTD)   
+
+Parallel port support   
+
+Plug and Play configuration   
+
+以上三个大项中的所有内容选择N   
+
+  
+
+block devices   
+
+  
+
+Normal floppy disk support   
+
+Loopback device support   
+
+RAM disk support   
+
+initial RAM disk (initrd) support   
+
+Per partition statics in /proc/partitions   
+
+  
+
+以上几项选择Y,其余全部选择N.   
+
+  
+
+这里的选项比较重要,我想重点说明一下.对于软盘的支持,那是不必说的,那是必备的.   
+
+loopback device 即回环设备,我们平时用命令   
+
+  
+
+#mount -o loop somecd.ISO /mnt/cdrom   
+
+  
+
+挂装光盘映象文件,或者其他文件系统映象文件时就用到了内核中的loopback 模块,如果没有编译进这个模块,你将不能用上面的命令挂装光盘映象和文件系统映象.   
+
+个人认为这个功能是非常重要的,所以编译了进去.   
+
+  
+
+RAM disk support 即内存磁盘(比较贴切的说法是虚拟磁盘,即拨出一部分内存当做磁盘用).这是制作babylinux项目中的核心内容,由于一张软盘的空间有限, babylinux的根文件系统是用gzip压缩法高度压缩的,在运行时,将解压缩后的文件拷贝到一个RAM disk运行,所以在运行时,你在根文件系统上的所有操作实际上是在内存上进行的.但是在形式上和在真正的磁盘上运行一样.只不过放在RAM disk上的所有内容会在系统关机后全部消失.   
+
+不仅在运行babylinux时用到ramdisk,我们在制作压缩的根文件系统时也要用到ramdisk,学习ramdisk的使用是做一个babylinux的重要目的之一. 在linux中,还支持另外一种虚拟磁盘,叫做shm,   
+
+(shared memory),这种虚拟磁盘机制比ramdisk更加先进,ramdisk的大小是固定的,由编译内核时候的default ram disk size 决定.默认为4096K(4M),也可以在内核装载前加上ramdisk_size=参数来决定他的大小,但是系统一旦启动,ramdisk的大小是不能改变的,而shm的大小却动态的改变.默认情况下为物理内存的一半,当系统需要更多内存的时,他就自动缩小.系统内存富余时,他自动增大,这样可以充分灵活的利用内存空间,shm通常用来作为系统的磁盘高速缓存,存放系统运行中的临时文件等.redaht 的linux在默认情况下都有shm的支持,可以用mount和df察看他的挂装点和大小,如下命令:   
+
+  
+
+[root@gucuiwen linux]# mount   
+
+/dev/hda1 on / type ext3 (rw)   
+
+none on /proc type proc (rw)   
+
+usbdevfs on /proc/bus/usb type usbdevfs (rw)   
+
+none on /dev/pts type devpts (rw,gid=5,mode=620)   
+
+/dev/hda6 on /home type ext3 (rw)   
+
+/dev/hda5 on /oracle type ext3 (rw)   
+
+none on /dev/shm type tmpfs (rw)   
+
+/dev/hda7 on /var type ext3 (rw)   
+
+  
+
+[root@gucuiwen linux]# df -h   
+
+文件系统 容量 已用 可用 已用% 挂载点   
+
+/dev/hda1 2.9G 2.7G 26M 100% /   
+
+/dev/hda6 3.8G 1.8G 1.8G 50% /home   
+
+/dev/hda5 5.7G 677M 4.8G 13% /oracle   
+
+none 125M 0 125M 0% /dev/shm   
+
+/dev/hda7 711M 91M 584M 14% /var   
+
+  
+
+虽然shm有这么多的优点,我还是选择了ramdisk,因为ramdisk可以很方便地在系统启动的时候加载,而shm却没那么容易,下面就来讲一下关于内核启动时加载ramdisk映象的相关内容.   
+
+  
+
+initial RAM disk (initrd) support   
+
+即初始化ramdisk支持,这个选项让内核有能力在内核加载阶段就能装入RAMDISK,并运行其中的内容,否则只能在系统运行阶段用ramdisk ,我们平时在编译了一个新内核后,如果你的根文件系统用的是ext3,而你没有把ext3编译进内核,而只作为一个模块编译了,那么就需要用 mkinitrd命令做一个initrd (initializtion ramdisk),这个ramdisk里放了ext3的模块,这样内核在加载根文件系统前就能正确识别ext3文件系统.否则,内核加载的最后一步就会出现kernel panic cant not find init .... 的错误.   
+
+  
+
+在babylinux项目中,这个选项是必需的,这里的作用是把解压的根文件系统映象装入ramdisk.   
+
+  
+
+Per partition statics in /proc/partitions   
+
+这个选项不是必需的,但是我发现如果我不把这个功能编译进内核,那么当我在挂装文件系统的时候会有些小问题,比如我不能以简写的挂装命令来挂装文件系统. 我不确定到底是不是这个选项的关系,但是把这个选项编译进内核只增大一点点内核空间,所以为了避免麻烦,我把他编译了进去.   
+
+  
+
+Multi-device support (RAID and LVM)   
+
+Cryptography support (CryptoAPI)   
+
+这两个大项全部选择N,因为在个人用PC上,及少牵涉到这两项,如果你真的有RAID设备或者LVM,那么就自己摸索着配置一下吧.   
+
+  
+
+Networking options   
+
+  
+
+这一大项中,只需要把下列项目编译进内核:   
+
+Packet socket :mmapped IO   
+
+TCP/IP networking   
+
+  
+
+对于IP:advanced router这项,如果你想重点把babylinux用做静态路由软件,那么把这项编译进去,而对于network packet filtering (replaces ipchains)这一项,没有必要编译进去了,因为busybox没有提供iptables工具来设置包过滤防火墙.同样,unix domain sockets这项也不必选择,只有运行X的情况下才需要选这项.   
+
+  
+
+Telephony Support 选择N   
+
+  
+
+ATA/IDE/MFM/RLL support   
+
+选择Y,然后下面的'IDE,ATA and ATAPI Block Devices'按钮就被激活   
+
+  
+
+下面几项请选择Y,其余都可以是N.   
+
+Enhanced IDE/MFM/RLL disk/cdrom/tape/floppy support   
+
+Include IDE/ATA-2 DISK support   
+
+Auto-Geometry Resizing support   
+
+Include IDE/ATA CDROM support   
+
+  
+
+如果你的内核要运行在一台很老的pentium或486上,请把CMD640 chipset bugfix/support编译进去,因为那时候主板的CMD640 IDE控制芯片大多有莫名其妙的BUG,把这项编译进去会修复这个bug.   
+
+  
+
+下面几个大项:   
+
+SCSI support   
+
+Fusion MPT device support   
+
+IEEE 1394(FireWire) support   
+
+I2O device support   
+
+全部选择N,这里可能有你想要的好东西,比如1394接口驱动,但是在babylinux上意义不大,而且我们的空间只有1440K.   
+
+  
+
+下面一个大项:   
+
+Network device support   
+
+选择Y,这样就可以支持网卡了,其余都选择N.然后点Ethernet(10 or 100 Mbit)按钮选择你需要的网卡驱动,你可以把最常见的几种Reltek8139,NE2000,3COM等网卡编译进内核.虽然网卡的驱动通常都很小, 但是不要太贪心,选2~3个就足够了,否则你的内核就会一下子多出几十K.在我先前编译的babylinux内核中,我把via-rhine网卡编译了进去,是因为我打造babylinux的机器上只有一块那个芯片的网卡.   
+
+  
+
+如果你发现你需要的网卡是灰色的,不能点,那么先确定他上一级的选项已经点了,比如你想选NE2000的网卡,就必需先选择ELSA,VLB,PCI and on board controllers.如果还不能点,那么请确定是否已经把PCI的支持选项选上了,(在Geneal setup)里.没有PCI的支持,PCI的网卡将不能选.   
+
+  
+
+可能你是个有钱人,在自己的PC上用千兆网卡,那么请在千兆网卡那一栏选择.   
+
+  
+
+接下来几个大项:   
+
+Amateur Radio support   
+
+IrDA (infrared) support   
+
+ISDN subsystem   
+
+Old CD-ROM drivers (not SCSI,not IDE)   
+
+Input core support   
+
+全部选择N.   
+
+  
+
+接下来的Charcter devices是很重要的一项,他和Bloack devices一样重要,我将重点讲述.   
+
+除了Virtual terminal和Support for console on terminal两项,其他全选N.   
+
+  
+
+Virtual terminal 即虚拟终端,这是一般linux必备选项.否则你的linux启动后,在屏幕看不到任何东西.另外还负责键盘输入信息等等.只有在某些嵌入式linux应用场合才会不要这个选项,因为这些linux通常都不用操作.   
+
+  
+
+Support for console on terminal   
+
+在虚拟终端上的控制台.他支持在终端上各种信息的输出,这也是必备的.   
+
+  
+
+接下来的几个大项:   
+
+Multimedia devices   
+
+Crypto Hardware support   
+
+全部选择N.   
+
+  
+
+再接下来的那部分File sytems可是重头戏喔.   
+
+这部分不用我太罗嗦了吧,自己需要支持什么就选什么.   
+
+但是其中有三个是你必需选的:   
+
+/proc file system support 缺了他,很多命令和软件就不能运行.   
+
+Second extended fs support BabyLinux的基本文件系统.   
+
+ISO 9660 CDROM filesytem support 除非你不想用光盘.   
+
+另外,诸如磁盘限额(Quota support),Reiserfs的DEBUG模式(Enable reiserfs debug mode)   
+
+等就不用编译进去了.这些东西意义不大,确要无端的增大内核大小.请牢记一点:编译出来的内核大小不要超过900K.   
+
+  
+
+Tip:是不是看的很累啊,我写得更累,别急,内核配置部分马上要好了.   
+
+  
+
+最后一个Console drivers   
+
+这是支持linux在字符模式下高分辨率显示的内核模块.前面三个全部选择Y,   
+
+Frame-buffer support按钮是灰色的不能选,别急,回到第一个大选项:   
+
+Code maturity level options 选择Y,就可以激活这个按钮了.   
+
+  
+
+下面几个选项需要选择Y:   
+
+Support for framebuffer devices   
+
+VESA VGA graphics console   
+
+你也可以选择其他的显卡驱动,比如nVidia的,但是VESA和VGA是通用性最好的,只要不是几十年前的黑白显卡(我只听说过,没见过),都兼容VESA和VGA,因此,为了制作好的BabyLinux的通用性,请选择这个驱动.   
+
+  
+
+Support only 8 pixels wide fonts   
+
+这个一定要选,否当你给内核传递vga=788参数,让linux在字符界面下高分辨率显示的时候,系统会因为找不到合适的小字体而返回到低分辨率模式.   
+
+  
+
+好了!所有内核的配置工作到这里就全部完成了,剩下的几个大项全部选N就行了.   
+
+保存后退出,配置程序会自动生成一个隐藏的配置文件.config   
+
+  
+
+下面是我配置好的.config文件内容.如果你懒的自己去配置,那么直接把这个.config拷贝到你的源代码目录下就能直接用了.(已经去掉了#开头的注释行)   
+
+CONFIG_X86=y   
+
+CONFIG_UID16=y   
+
+CONFIG_EXPERIMENTAL=y   
+
+CONFIG_M586=y   
+
+CONFIG_X86_WP_WORKS_OK=y   
+
+CONFIG_X86_INVLPG=y   
+
+CONFIG_X86_CMPXCHG=y   
+
+CONFIG_X86_XADD=y   
+
+CONFIG_X86_BSWAP=y   
+
+CONFIG_X86_POPAD_OK=y   
+
+CONFIG_RWSEM_XCHGADD_ALGORITHM=y   
+
+CONFIG_X86_L1_CACHE_SHIFT=5   
+
+CONFIG_X86_USE_STRING_486=y   
+
+CONFIG_X86_ALIGNMENT_16=y   
+
+CONFIG_X86_PPRO_FENCE=y   
+
+CONFIG_NOHIGHMEM=y   
+
+CONFIG_NET=y   
+
+CONFIG_PCI=y   
+
+CONFIG_PCI_GODIRECT=y   
+
+CONFIG_PCI_DIRECT=y   
+
+CONFIG_SYSVIPC=y   
+
+CONFIG_SYSCTL=y   
+
+CONFIG_KCORE_ELF=y   
+
+CONFIG_BINFMT_ELF=y   
+
+CONFIG_BLK_DEV_FD=y   
+
+CONFIG_BLK_DEV_LOOP=y   
+
+CONFIG_BLK_DEV_RAM=y   
+
+CONFIG_BLK_DEV_RAM_SIZE=4096   
+
+CONFIG_BLK_DEV_INITRD=y   
+
+CONFIG_PACKET=y   
+
+CONFIG_INET=y   
+
+CONFIG_IP_MULTICAST=y   
+
+CONFIG_IDE=y   
+
+CONFIG_BLK_DEV_IDE=y   
+
+CONFIG_BLK_DEV_IDEDISK=y   
+
+CONFIG_IDEDISK_MULTI_MODE=y   
+
+CONFIG_BLK_DEV_IDECD=y   
+
+CONFIG_BLK_DEV_IDE_MODES=y   
+
+CONFIG_NETDEVICES=y   
+
+CONFIG_NET_ETHERNET=y   
+
+CONFIG_INPUT_MOUSEDEV_SCREEN_X=1024   
+
+CONFIG_INPUT_MOUSEDEV_SCREEN_Y=768   
+
+CONFIG_VT=y   
+
+CONFIG_VT_CONSOLE=y   
+
+CONFIG_REISERFS_FS=y   
+
+CONFIG_EXT3_FS=y   
+
+CONFIG_JBD=y   
+
+CONFIG_FAT_FS=y   
+
+CONFIG_VFAT_FS=y   
+
+CONFIG_RAMFS=y   
+
+CONFIG_ISO9660_FS=y   
+
+CONFIG_JFS_FS=y   
+
+CONFIG_NTFS_FS=y   
+
+CONFIG_PROC_FS=y   
+
+CONFIG_EXT2_FS=y   
+
+CONFIG_MSDOS_PARTITION=y   
+
+CONFIG_NLS=y   
+
+CONFIG_NLS_DEFAULT="iso8859-1"   
+
+CONFIG_VGA_CONSOLE=y   
+
+CONFIG_VIDEO_SELECT=y   
+
+CONFIG_VIDEO_IGNORE_BAD_MODE=y   
+
+CONFIG_FB=y   
+
+CONFIG_DUMMY_CONSOLE=y   
+
+CONFIG_FB_VESA=y   
+
+CONFIG_VIDEO_SELECT=y   
+
+CONFIG_FBCON_CFB8=y   
+
+CONFIG_FBCON_CFB16=y   
+
+CONFIG_FBCON_CFB24=y   
+
+CONFIG_FBCON_CFB32=y   
+
+CONFIG_FBCON_FONTWIDTH8_ONLY=y   
+
+CONFIG_FONT_8x8=y   
+
+CONFIG_FONT_8x16=y   
+
+  
+
+5,编译内核   
+
+#make dep   
+
+#make bzImage   
+
+  
+
+下面是最后编译结果:   
+
+Boot sector 512 bytes.   
+
+Setup is 4733 bytes.   
+
+System is 845 kB   
+
+make[1]: Leaving directory `/usr/src/linux-2.4.20-8/arch/i386/boot'   
+
+  
+
+我用上面的配置得到了一个845k的内核.   
+
+编译好的内核放在/usr/src/linux-2.4.20-8/arch/i386/boot下.将他拷贝在一个安全的地方备用.   
+
+  
+
+建立一个专放babylinux材料的目录   
+
+#mkdir /babylinux   
+
+建立一个做babylinux根文件系统的目录   
+
+#mkdir /babylinux/rootfs   
+
+备份内核   
+
+#cp /usr/src/linux-2.4.20-8/arch/i386/boot/bzImage /babylinux/
+
+
+
+
+
+
+
+
+
+
+
+七,编译busybox   
+
+  
+
+1,busybox简介   
+
+  
+
+busybox是一个集成了一百多个最常用linux命令和工具的软件,他甚至还集成了一个http服务器和一个telnet服务器,而所有这一切功能却只有区区1M左右的大小.我们平时用的那些linux命令就好比是分力式的电子元件,而busybox就好比是一个集成电路,把常用的工具和命令集成压缩在一个可执行文件里,功能基本不变,而大小却小很多倍,在嵌入式linux应用中,busybox有非常广的应用,另外,大多数linux发行版的安装程序中都有busybox的身影,安装linux的时候案ctrl+alt+F2就能得到一个控制台,而这个控制台中的所有命令都是指向busybox的链接.   
+
+Busybox的小身材大作用的特性,给制作一张软盘的linux带来了及大方便.   
+
+  
+
+2,busybox的用法   
+
+  
+
+可以这样用busybox   
+
+#busybox ls   
+
+他的功能就相当运行ls命令   
+
+最常用的用法是建立指向busybox的链接,不同的链接名完成不同的功能.   
+
+#ln -s busybox ls   
+
+#ln -s busybox rm   
+
+#ln -s busybox mkdir   
+
+  
+
+然后分别运行这三个链接:   
+
+#./ls   
+
+#./rm   
+
+#./mkdir   
+
+  
+
+就可以分别完成了ls rm 和mkdir命令的功能.虽然他们都指向同一个可执行程序busybox   
+
+但是只要链接名不同,完成的功能就不同,busybox就是这么的神奇.   
+
+很多linux网站都提供busybox的源代码下载.目前版本是busybox1.0正式版.   
+
+  
+
+3,配置busybox   
+
+  
+
+busybox的配置程序和linux内核菜单配置方式简直一模一样.熟悉用make menuconfig方式配置linux内核的朋友很容易上手.   
+
+  
+
+#cp busybox-1.00.tar.gz /babylinux   
+
+#cd /babylinux   
+
+#tar xvfz busybox-1.00.tar.gz   
+
+#cd busybox-1.00   
+
+#make menuconfig   
+
+  
+
+下面是需要编译进busybox的功能选项,其他的可以根据需要自选,但是同样不要太贪心.   
+
+General Configuration应该选的选项   
+
+Show verbose applet usage messages   
+
+Runtime SUID/SGID configuration via /etc/busybox.conf   
+
+  
+
+Build Options   
+
+Build BusyBox as a static binary (no shared libs)   
+
+这个选项是一定要选择的,这样才能把busybox编译成静态链接的可执行文件,运行时才独立于其他函数库.否则必需要其他库文件才能运行,在单一个linux内核不能使他正常工作.   
+
+  
+
+Installation Options   
+
+Don't use /usr   
+
+这个选项也一定要选,否则make install 后busybox将安装在原系统的/usr下,这将覆盖掉系统原有的命令.选择这个选项后,make install后会在busybox目录下生成一个叫_install的目录,里面有busybox和指向他的链接.   
+
+  
+
+其他选项都是一些linux基本命令选项,自己需要哪些命令就编译进去,一般用默认的就可以了.   
+
+  
+
+配置好后退出并保存.   
+
+  
+
+4,编译并安装busybox   
+
+  
+
+#make   
+
+#make install   
+
+  
+
+编译好后在busybox目录下生成子目录_install,里面的内容:   
+
+drwxr-xr-x 2 root root 4096 11月 24 15:28 bin   
+
+lrwxrwxrwx 1 root root 11 11月 24 15:28 linuxrc -> bin/busybox   
+
+drwxr-xr-x 2 root root 4096 11月 24 15:28 sbin   
+
+其中可执行文件busybox在bin目录下,其他的都是指向他的符号链接.   
+
+我编译出来的busybox可执行文件是935K,加上符号链接,整个_install目录是952K.加上845K的内核不是已经超过1440K了吗?别担心,我们将对整个根文件系统做大幅度的压缩.   
+
+  
+
+八,制作根文件系统   
+
+  
+
+1,基本目录结构   
+
+  
+
+#cd /babylinux/rootfs   
+
+#mkdir etc usr var tmp proc home root dev   
+
+其中etc,proc和dev是一定要建的,bin和sbin不用建,因为busybox中已经有了.   
+
+其他的可以象征性的建几个就可以了.   
+
+  
+
+拷贝busybox   
+
+#cp -R /babylinux/busybox-1.00/_install/* /babylinux/rootfs/   
+
+  
+
+2,建立设备文件名   
+
+  
+
+#cd /babylinux/rootfs/dev   
+
+你可以用mknod手工建立,也可以直接从原系统的/dev目录下拷贝过来.   
+
+  
+
+手工建立的方法:   
+
+#ls -l /dev/console   
+
+crw------- 1 root root 5, 1 11月 30 09:02 /dev/console   
+
+这样就查看到了console设备的主设备号是5,辅设备号是1,是一个标记为C的字符设备.   
+
+于是,我们可以用mknod建立一个同样的设备文件:   
+
+  
+
+#mknod console c 5 1   
+
+  
+
+但是手工方法建立太麻烦了,通常直接从/dev下把需要的设备文件拷贝过来.   
+
+这些设备文件是特殊文件,在拷贝时一定要加上-R参数才能拷贝.   
+
+  
+
+#cp -R /dev/console ./   
+
+#cp -R /dev/null ./   
+
+#cp -R /dev/zero ./   
+
+...   
+
+  
+
+以下是我认为需要的设备名:   
+
+cdrom fd0 hda14 hda4 hdb11 hdb19 hdc hdc16 hdc6 hdd13 hdd3 loop2 ram2   
+
+console fd0H1440 hda15 hda5 hdb12 hdb2 hdc1 hdc17 hdc7 hdd14 hdd4 loop3 tty0   
+
+fb hda hda16 hda6 hdb13 hdb3 hdc10 hdc18 hdc8 hdd15 hdd5 loop4 tty1   
+
+fb0 hda1 hda17 hda7 hdb14 hdb4 hdc11 hdc19 hdd hdd16 hdd6 loop5 tty2   
+
+fb1 hda10 hda18 hda8 hdb15 hdb5 hdc12 hdc2 hdd1 hdd17 hdd7 null tty3   
+
+fb2 hda11 hda19 hdb hdb16 hdb6 hdc13 hdc3 hdd10 hdd18 hdd8 ram tty4   
+
+fb3 hda12 hda2 hdb1 hdb17 hdb7 hdc14 hdc4 hdd11 hdd19 initctl ram0 tty5   
+
+fb4 hda13 hda3 hdb10 hdb18 hdb8 hdc15 hdc5 hdd12 hdd2 loop1 ram1 zero   
+
+  
+
+其中,fd0,hda,ram,ram1,tty1,null,zero,loop1,fb0,fb等是必备的.   
+
+**其它**的hda,hda1,hdb等可以根据实际需要决定.但是上表中的选择是比较合理的,即能满足大部分的需要,有没有不用的设备浪费空间.注意,千万不要把/dev下的设备全拷贝过来,那将产生大约420K的/dev目录,这对babylinux来说太大了.   
+
+  
+
+3,建立etc目录下的配置文件   
+
+  
+
+busybox.conf group inittab motd passwd resolv.conf shadow-   
+
+fstab init.d issue mtab profile shadow   
+
+  
+
+其中init.d是一个目录,从busybox-1.00源代码目录下拷贝过来.   
+
+  
+
+#cp -R /babylinux/busybox-1.00/examples/bootflopyp/etc/init.d /babylinux/rootfs/etc/   
+
+  
+
+busybox.conf是一个空文件.   
+
+其他文件的内容如下:   
+
+  
+
+fstab   
+
+/dev/fd0 / ext2 defaults 0 0   
+
+none /proc proc defaults 0 0   
+
+/dev/cdrom /mnt/cdrom udf,iso9660 noauto,owner,kudzu,ro 0 0   
+
+/dev/fd0 /mnt/floppy auto noauto,owner,kudzu 0 0   
+
+group   
+
+root:x:0:root   
+
+inittab   
+
+::sysinit:/etc/init.d/rcS   
+
+  
+
+::askfirst:/bin/sh   
+
+tty2::respawn:/bin/getty 38400 tty2   
+
+tty3::respawn:/bin/getty 38400 tty3   
+
+tty4::respawn:/bin/getty 38400 tty4   
+
+  
+
+# Stuff to do when restarting the init process   
+
+::restart:/bin/init   
+
+  
+
+# Stuff to do before rebooting   
+
+::ctrlaltdel:/bin/reboot   
+
+::shutdown:/bin/umount -a -r   
+
+::shutdown:/bin/swapoff -a   
+
+  
+
+issue   
+
+Baby Linux release 0.1   
+
+  
+
+motd   
+
+  
+
+mtab   
+
+  
+
+passwd   
+
+root::0:0:root:/root:/bin/ash   
+
+profile   
+
+# /etc/profile: system-wide .profile file for the Bourne shells   
+
+  
+
+echo   
+
+echo   
+
+export PS1="[u@h w]$"   
+
+echo "Done"   
+
+alias ll='ls -l'   
+
+alias du='du -h'   
+
+alias df='df -h'   
+
+alias rm='rm -i'   
+
+echo   
+
+  
+
+resolv.conf   
+
+nameserver 202.96.209.5   
+
+nameserver 202.96.209.6   
+
+shadow   
+
+root:$1$$adltAB9Sr/MSKqylIvSJT/:12705:0:99999:7:::   
+
+shadow-   
+
+root:$1$DWU.tenP$B7ANiXoGoiZMwJR6Ih8810:12705:0:99999:7:::   
+
+其中有很多是从原系统的/etc下拷贝过来修改的,如果你是一个具有中等以上水平的linux爱好者,那么应该一看就明白了,当然,你也可以根据自己的需要修改这些文件.其中最重要的是fstab和inittab,busybox内建的init程序用到的inittab文件的语法和一般的不一样,不能直接把原系统/etc下inittab文件拷贝过来.可以把busybox-1.00目录下的示例文件拷贝过来修改用.具体请看busybox的文档. busybox的init也可以不用inittab.但是在我制作babylinux过程中有一个非常奇怪的bug.所有/sbin下的busybox链接在做成压缩的根文件系统,解压后都不能正常运行,显示找不到该命令.只有当我在/bin下做这些链接时才能运行.具体原因还不太清除,所以你需要做下面的工作:   
+
+  
+
+#cd /babylinux/rootfs/sbin   
+
+#ls   
+
+chroot getty ifconfig losetup pivot_root reboot swapoff sysctl   
+
+fdisk halt init mkswap poweroff route swapon telnetd   
+
+查看到sbin下有上述链接   
+
+  
+
+转到bin下   
+
+#cd /babylinux/rootfs/bin   
+
+重新做这些链接:   
+
+#ln -s busybox chroot   
+
+#ln -s busybox getty   
+
+#ln -s busybox ifconfig   
+
+...   
+
+  
+
+  
+
+然后把sbin下的链接删除,以节省空间   
+
+#rm -rf /babylinux/rootfs/sbin/*   
+
+  
+
+再把原先inittab中所有的sbin改成bin   
+
+  
+
+init.d下的文件:   
+
+rcS   
+
+请确保这个文件是可执行的,否则请改成可执行的:   
+
+#chmod u+x rcS   
+
+  
+
+rcS的内容:   
+
+#! /bin/sh   
+
+mount -o remount,rw /   
+
+  
+
+/bin/mount -a   
+
+>/etc/mtab   
+
+echo   
+
+echo   
+
+echo   
+
+echo   
+
+echo -en "ttWelcom to \033[0;32mBabyLinux\033][0;39mn"   
+
+echo -en "\033][0;36mn"   
+
+echo   
+
+echo -en "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ttn"   
+
+echo -en "+ This is a tiny linux system based on a floppy.It contains ttn"   
+
+echo -en "+ more than 100 basic Linux commands and tools.The kernel of ttn"   
+
+echo -en "+ this tiny system support all kinds of normal filesystems. ttn"   
+
+echo -en "+ linux ext2,ext3,jfs,reiserfs and windows fat,vfat,ntfs][readonly]ttn"   
+
+echo -en "+ is supported! So it is a powerful small system you can use it ttn"   
+
+echo -en "+ as a linux and windows rescue disk.Beside this,the kernel alsottn"   
+
+echo -en "+ contains the drivers of Reltek8139,NE2000,via-rhine ethernetttn"   
+
+echo -en "+ adpater. you can configure the IPaddress and netmask with toolsttn"   
+
+echo -en "+ 'ifconfig' and config the default gateway with command 'route'. ttn"   
+
+echo -en "+ Is there anything else? Haha,this is a telnet server build-inttn"   
+
+echo -en "+ you can type 'telnetd' to startd it and thus your friends canttn"   
+
+echo -en "+ logon to your system to help you solve the problem.ttn"   
+
+echo -en "+ \033[0;32mAll these great features are powered by BusyBox 1.0\033][0;36mttn"   
+
+echo -en "+ This is a free system tool developed by GuCuiwen.ttn"   
+
+echo -en "+ RUN YOUR OWN RISK of using it ! if you have any problem pleasettn"   
+
+echo -en "+ mailto : win2linux@163.com Enjoy!!ttn"   
+
+echo -en "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ttn"   
+
+echo -en "\033][0;39mn"   
+
+hostname BabyLinux   
+
+可以自己作相应的修改.   
+
+以上是babylinux根文件系统的所有内容,他的总大小应该在1M左右.   
+
+][root@gucuiwen baby]# du -hs   
+
+1.1M .   
+
+  
+
+九,制作ramdisk映象文件   
+
+  
+
+  
+
+babylinux根文件系统所有东西都放在/babylinux/rootfs下,我们将利用ramdisk把这些内容做成ramdisk映象文件并压缩他.   
+
+  
+
+以下主要是ramdisk的用法,看完以下内容,你应当学会ramdisk的使用.   
+
+  
+
+[root@gucuiwen babylinux]# dd if=/dev/zero of=/dev/ram1   
+
+dd: 正在写入 ‘/dev/ram1’: 设备上没有空间   
+
+读入了 8193+0 个块   
+
+输出了 8192+0 个块   
+
+  
+
+zero是一个特殊的设备,表示全部为0的字符块.上面这条命令的意思是把系统的第一个ramdisk用全部为0的数据填充,因为ramdisk默认大小为4M,因此当读满8192个块(每块512字节)后,显示'设备上没空间'.这很正常,/dev/ram1已经被填充满了.   
+
+如果指定块的大小:   
+
+  
+
+[root@gucuiwen babylinux]# dd if=/dev/zero of=/dev/ram1 bs=1M count=4   
+
+读入了 4+0 个块   
+
+输出了 4+0 个块   
+
+  
+
+不会有错误提示,这里演示了dd的一般用法,接下来还要频繁用到dd命令.   
+
+  
+
+在/dev下有很多ramdisk设备,ram1,ram2,ram3....   
+
+一般用第一个就可以了.   
+
+  
+
+填充后,ram1就有可空间,可以在这个空间上创见一个文件系统:   
+
+[root@gucuiwen babylinux]# mkfs.ext2 -m0 /dev/ram1   
+
+mke2fs 1.32 (09-Nov-2002)   
+
+Filesystem label=   
+
+OS type: Linux   
+
+Block size=1024 (log=0)   
+
+Fragment size=1024 (log=0)   
+
+1024 inodes, 4096 blocks   
+
+0 blocks (0.00%) reserved for the super user   
+
+First data block=1   
+
+1 block group   
+
+8192 blocks per group, 8192 fragments per group   
+
+1024 inodes per group   
+
+  
+
+Writing inode tables: done   
+
+Writing superblocks and filesystem accounting information: done   
+
+  
+
+This filesystem will be automatically checked every 37 mounts or   
+
+180 days, whichever comes first. Use tune2fs -c or -i to override.   
+
+  
+
+将ram1挂装到文件系统中:   
+
+先建立一个挂装点:   
+
+#mkdir /mnt/ram   
+
+挂上ram1:   
+
+#mount /dev/ram1 /mnt/ram   
+
+将先前做好的babylinux根文件系统拷贝到ram1上.   
+
+#cp -R /babylinux/rootfs/* /mnt/ram   
+
+  
+
+做完以上几步,你应就白了ramdisk设备的含义,他是和hda1,hdb1,一样的块设备,用mount挂到文件系统下后就可以访问,往里放东西,但是所有的东西在内存上.关机将丢失所有东西.   
+
+  
+
+拷贝好babylinux根文件系统后卸载ram1:   
+
+#umount /dev/ram1   
+
+这时,虽然不能通过/mnt/ram这个挂装点访问ram1中的内容了,但是他却切切实实得在内存中存在.   
+
+  
+
+  
+
+  
+
+  
+
+再用dd把这个ram1以映象方式取出来:   
+
+  
+
+[root@gucuiwen babylinux]# dd if=/dev/ram1 of=/babylinux/ramdisk.img   
+
+读入了 8192+0 个块   
+
+输出了 8192+0 个块   
+
+  
+
+验证一下取出来的内容:   
+
+[root@gucuiwen babylinux]# file ramdisk.img   
+
+ramdisk.img: Linux rev 1.0 ext2 filesystem data   
+
+  
+
+他是一个ext2 文件系统,类似一个ISO光盘映象文件.   
+
+因次,我们可以用loop设备来把他重新挂装到文件系统里:   
+
+  
+
+[root@gucuiwen babylinux]# mount -o loop ramdisk.img /mnt/ram/   
+
+  
+
+为了方便,我仍旧把他挂在/mnt/ram下,因此,在先前一定要把/dev/ram1 umount掉   
+
+  
+
+查看/mnt/ram下的内容,他应该和/babylinux/rootfs下的一模一样,否则就是出错了:   
+
+[root@gucuiwen babylinux]# ls /mnt/ram   
+
+bin dev etc home lost+found mnt proc root sbin tmp usr var   
+
+  
+
+这样,我们就得到了一个ramdisk根文件系统映象:ramdisk.img   
+
+把他umount掉:   
+
+#umount /mnt/ram   
+
+  
+
+如果是第一次接触ramdisk,你可能对上述的内容很迷惑,如果这样,请反复阅读和理解上面的内容,自己多动手做几次试验,就可以理解.   
+
+  
+
+压缩ramdisk.img印象文件:   
+
+[root@gucuiwen babylinux]# gzip -v9 ramdisk.img   
+
+ramdisk.img: 87.9% -- replaced with ramdisk.img.gz   
+
+  
+
+查看压缩后的大小:   
+
+[root@gucuiwen babylinux]# ls -lh ramdisk.img.gz   
+
+-rw-r--r-- 1 root root 495K 11月 30 11:32 ramdisk.img.gz   
+
+  
+
+我得到的压缩ramdisk映象文件安是495K. 加上内核的845K,是1340K   
+
+符合公式:   
+
+  
+
+内核大小+文件系统压缩印象文件+50K <= 1440K   
+
+  
+
+如果你做出来的kernel和ramdisk.img.gz太大了,请重新制作kernel或ramdisk.img.gz,在其中做一些取舍,如果你的 kernel和ramdisk.img.gz太小了,那么可以再往里面添加一些内容,使你的babylinux功能更强.   
+
+  
+
+  
+
+十,内核与busybox的整合   
+
+  
+
+准备一张完好的空白软盘   
+
+  
+
+创建一个比内核大小略大的文件系统:   
+
+比如内核大小是845K,那么我我创见一个920K的文件系统:   
+
+#mkfs.ext2 -m0 /dev/fd0 920   
+
+  
+
+如果空间允许,还可以再大一些,但是必需保证   
+
+1440K-文件系统大小>=ramdisk.img.gz的大小.   
+
+  
+
+挂上软盘   
+
+#mount /dev/fd0   
+
+将内核拷贝到软盘:   
+
+#cp /babylinux/bzImage /mnt/floppy/   
+
+将lilo引导文件安boot.b 拷贝到软盘   
+
+#cp /boot/boot.b /mnt/floppy   
+
+  
+
+新建一个lilo.conf 配置文件:   
+
+  
+
+prompt   
+
+timeout=60   
+
+default=linux   
+
+boot=/dev/fd0   
+
+map=/mnt/floppy/map   
+
+install=/mnt/floppy/boot.b   
+
+linear   
+
+  
+
+image=/mnt/floppy/bzImage   
+
+label=linux   
+
+read-only   
+
+vga=788   
+
+root=/dev/fd0   
+
+append="load_ramdisk=1 ramdisk_start=940"   
+
+  
+
+vga=788表示让内核支持字符界面的高分辨率显示,你可以改成vga=ask,这样可以在启动的时候选择分辨率.   
+
+  
+
+红色一行是关键,load_ramdisk=1告诉内核在启动的时候转载压缩的ramdisk印象文件,   
+
+ramdisk_start=940 告诉内核从软盘的第940K的地方去寻找并装载压缩的ramdisk印象文件.   
+
+  
+
+关于ramdisk的用法和更多参数请查看linux0内核文档/usr/src/linux/Documents/ramdisk.txt   
+
+  
+
+接下来再用dd命令把ramdisk.img.gz装到软盘上.   
+
+  
+
+#dd if=/babylinux/ramdisk.img.gz of=/dev/fd0 bs=1k seek=940   
+
+  
+
+这里的seek=940 表示把ramdisk.img.gz装到软盘的第940K开始的地方.   
+
+  
+
+详细内容请看dd的联机文档 man dd   
+
+  
+
+为什么要从940k开始呢?   
+
+因为刚才作了一个920K的文件系统.我把他装在文件系统20K以后的地方.   
+
+当然,如果你的空间十分紧张,连这20K都不舍得浪费,那么可以这样:   
+
+  
+
+#dd if=/babylinux/ramdisk.img.gz of=/dev/fd0 bs=1k seek=921   
+
+  
+
+当然,别忘记修改lilo.conf文件. ramdisk_start=921   
+
+  
+
+接下来装lilo引导程序就大功告成了.   
+
+  
+
+#lilo -C lilo.conf   
+
+  
+
+如果你的磁盘上还有一点点空余空间,那么可以把lilo.conf也拷贝上去,以备将来使用.   
+
+#cp lilo.conf /mnt/floppy   
+
+  
+
+#umount /dev/fd0   
+
+  
+
+  
+
+整个工程已经完成了,你可以重新启动机器,设置电脑从软盘启动.看看有没有成功.   
+
+  
+
+  
+
+  
+
+十一,安装测试和内容调整   
+
+  
+
+如果在整合内核和ramdisk映象过程中,出现磁盘空间不够的情况,请重新编译内核和busybox   
+
+可以根据实际需要,调整内核和busybox,比如你要内核支持很多东西,但是只需要一个支持50个命令的busybox,那么可以自己做相应调整.   
+
+  
+
+十二,babylinux中的BUG   
+
+  
+
+有些命令的输出结果会有偏差,比如用 busybox的df 看磁盘使用情况,和实际的不一样.   
+
+  
+
+十三,接下来要做的事情   
+
+  
+
+做一个基于64M U盘的linux小系统.   
+
+计划支持如下特征:   
+
+  
+
+a.软盘babylinux的所有功能   
+
+b.图形界面的支持.   
+
+c.一个轻量级的窗口管理器(window maker)   
+
+d.网络的支持,   
+
+e.至少一个图形web浏览器,可以上网.   
+
+f.一个音乐播放器和一个视频播放器.   
+
+g.支持中文的显示和输入.   
+
+h.可以修改配置并保存数据   
+
+  
+
+我还计划做一个live CD,但是目前已经有很多live CD了,而且都做的非常好.   
+
+但是我会自己做一个作为学习linux的一种手段.如果有时间,可能写一个做U盘linux和live CD   
+
+的**教程**.但是,我想不会写的和这个文档一样详细了,我的时间有限.可能大概讲一下原理和步骤.有经验的linux爱好者应该可以通过阅读文档完成制作.   
+
+  
+
+十四,参考文献   
+
+  
+
+<Pocket Linux Guide>
+
+
+

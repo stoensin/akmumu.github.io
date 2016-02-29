@@ -1,0 +1,94 @@
+---
+author: admin
+comments: true
+date: 2011-07-29 08:10:00+00:00
+layout: post
+slug: discuz7%e4%bb%a5%e4%b8%8a%e8%ae%a9%e7%bd%ae%e9%a1%b6%e7%94%a8%e6%88%b7%e5%8f%91%e5%b8%96%e6%97%b6%e6%9d%83%e9%99%90%e9%bb%98%e8%ae%a4%e4%b8%ba255
+title: Discuz!7以上让置顶用户发帖时权限默认为255
+wordpress_id: 13
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+**修改文件：**templates/default/post.htm  
+
+记事本打开这个文件 找到 
+
+
+
+
+
+
+
+
+
+
+
+
+  1. <input type="text" name="readperm" value="$thread[readperm]" class="txt" tabindex="1" />
+
+
+
+
+
+
+
+
+
+改为 
+
+
+
+
+
+
+
+
+
+
+
+
+  1. <input type="text" name="readperm"{if $fid == 2 || $fid == 3 } value="255" readonly="readonly" {else} value="$thread[readperm]" {/if}class="txt" tabindex="1" />
+
+
+
+
+
+
+
+
+
+
+保存覆盖回去 更新缓存即可。  
+
+  
+
+
+
+* * *
+
+
+  
+
+**说明：**这里里面的$fid == 2 这个2为您要设置为默认255的版块fid号  
+
+如果有多个 就用 || 分开 这个是php[运算符](http://www.discuz.net/search.php?mod=my&source=adlink&q=运算符) 意思是**"或"**  
+
+  
+
+怎么知道fid号？当前版块的地址中  
+
+比如：[http://www.discuz.net/forumdisplay.php?fid=2](http://www.discuz.net/forumdisplay.php?fid=2)  
+
+组后fid=后的那个数字 就是当前版块fid号  
+
+  
+
+貌似1.5没有这代码，请看我另一篇博文
+
+

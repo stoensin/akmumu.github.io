@@ -1,0 +1,62 @@
+---
+author: admin
+comments: true
+date: 2014-09-16 15:43:58+00:00
+layout: post
+slug: github%e6%b7%bb%e5%8a%a0ssh-key%e4%b9%8b%e5%90%8epush%e8%bf%98%e8%a6%81%e8%be%93%e5%85%a5%e8%b4%a6%e5%8f%b7%e5%af%86%e7%a0%81%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95
+title: github添加ssh key之后push还要输入账号密码的解决方法
+wordpress_id: 308
+categories:
+- 实用软件技巧
+tags:
+- git
+---
+
+加添ssh keys的方法网上一搜很多,但是push的时候还是要输入账号密码,
+
+是因为clone的时候用的是https而没有用ssh的方法
+
+只需要克隆的时候在github上选择ssh(clone的地址下面有)
+
+
+
+
+
+
+
+
+
+
+
+### SSH clone URL
+
+
+
+
+
+
+
+You can clone with [HTTPS](https://github.com/akmumu/retina-data#),[SSH](https://github.com/akmumu/retina-data#), or [Subversion](https://github.com/akmumu/retina-data#).
+
+
+
+
+
+[ Download ZIP](https://github.com/akmumu/retina-data/archive/master.zip)
+
+
+像这种,点击ssh,克隆这个地址即可,如果是已经克隆好的只需要改config就可以
+
+vim .git/config
+
+像下面改url
+
+[remote "origin"]
+url = git@github.com:akmumu/retina-data.git
+
+
+
+
+
+
+

@@ -1,0 +1,1081 @@
+---
+author: admin
+comments: true
+date: 2011-01-11 13:16:00+00:00
+layout: post
+slug: thinkphp%e5%af%b9%e4%ba%8e%e6%95%b0%e6%8d%ae%e5%ba%93%e7%9a%84%e5%85%b3%e8%81%94%e6%93%8d%e4%bd%9c%e5%ae%9e%e4%be%8b%ef%bc%88%e5%ae%8c%e7%be%8e%e6%94%b6%e8%97%8f%ef%bc%89
+title: ThinkPHP对于数据库的关联操作+实例（完美收藏）
+wordpress_id: 6
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+关联查询有自动关联查询和手动关联查询两种用法，先看自动关联查询，对于模型的关联关系不复杂的情况下可以直接使用。
+
+
+
+
+$User = D("User");
+
+
+
+
+$user = $User->xfind(1);
+
+
+
+
+和普通的find方法不同，区别只是多了一个x，但是查询的结果却不同，因为查询结果已经自动加上了关联数据。
+
+
+
+
+输出$user结果可能是类似于下面的数据：
+
+
+
+
+array(
+
+
+
+
+'id' => 1,
+
+
+
+
+'account'=> 'ThinkPHP',
+
+
+
+
+'password' => 'name',
+
+
+
+
+'Profile' => array(
+
+
+
+
+'email' =>'liu21st@gmail.com',
+
+
+
+
+'nickname' =>'流年',
+
+
+
+
+),
+
+
+
+
+)
+
+
+
+
+我们可以看到，用户的关联数据已经被映射到数据对象的属性里面了。其中Profile就是关联定义的mapping_name属性。
+
+
+
+
+如果我们按照下面的凡事定义了as_fields属性的话，
+
+
+
+
+protected $_link = array(
+
+
+
+
+'profile'=>array(
+
+
+
+
+'mapping_type' =>HAS_ONE,
+
+
+
+
+'class_name'=>'Profile',
+
+
+
+
+'foreign_key'=>'userId',
+
+
+
+
+'as_fields'=>'email,nickname',
+
+
+
+
+),
+
+
+
+
+);
+
+
+
+
+查询的结果就变成了下面的结果
+
+
+
+
+array(
+
+
+
+
+'id' => 1,
+
+
+
+
+'account'=> 'ThinkPHP',
+
+
+
+
+'password' => 'name',
+
+
+
+
+'email' =>'liu21st@gmail.com',
+
+
+
+
+'nickname' =>'流年',
+
+
+
+
+)
+
+
+
+
+email和nickname两个字段已经作为user数据对象的字段来显示了。
+
+
+
+
+如果关联数据的字段名和当前数据对象的字段有冲突的话，怎么解决呢？
+
+
+
+
+我们可以用下面的方式来变化下定义：
+
+
+
+
+'as_fields'=>'email,nickname:username',
+
+
+
+
+表示关联表的nickname字段映射成当前数据对象的username字段。
+
+
+
+
+除了使用xfind方法外，我们还可以使用连贯方法来控制是否需要获取关联数据。
+
+
+
+
+$User = D("User");
+
+
+
+
+$user = $User->relation(true)->find(1);
+
+
+
+
+上面的写法和使用xfind方法是等效的。
+
+
+
+
+还有一种方法是直接在模型里面定义是否需要自动获取关联数据。
+
+
+
+
+class UserModel extends Model
+
+
+
+
+{
+
+
+
+
+protected $autoReadRelations = TRUE;
+
+
+
+
+}
+
+
+
+
+这样定义了autoReadRelations属性之后，即使你用find查询，系统也会自动查询关联数据。
+
+
+
+
+自动关联查询会把所有定义的关联数据都查询出来，有时候我们并不希望这样，就可以采用手动关联查询的方式。例如：
+
+
+
+
+$User = D("User");
+
+
+
+
+$user = $User->find(1);
+
+
+
+
+$user = $User->getRelation($user,'Profile');
+
+
+
+
+这样就只会获取关联名称为Profile的关联数据。如果使用：
+
+
+
+
+$user = $User->getRelation($user);
+
+
+
+
+这样就会获取User模型查询结果的所有关联数据。
+
+
+
+
+**注意：**
+
+
+
+
+1.0.5beta版本之前，getRelation方法的第二个参数必须是数组，包含
+
+
+
+
+$relation['type'] 和 $relation['name']
+
+
+
+
+1.0.5beta版本之后，getRelation方法的第二个参数是个字符串，也就代表了之前的relation['name']，而$relation['type']是自动定位的。
+
+
+
+
+关联查询一样可以支持findAll方法，如果要查询多个数据，并同时获取相应的关联数据，可以改成：
+
+
+
+
+$User = D("User");
+
+
+
+
+$list = $User->xFindAll();
+
+
+
+
+或者
+
+
+
+
+$User = D("User");
+
+
+
+
+$list = $User->findAll();
+
+
+
+
+$list = $User->getRelations($user,'Profile');
+
+
+
+
+注意这里使用的是getRelations 而不是getRelation方法了。
+
+
+
+
+关联查询在定义和操作方面都有点复杂，官方建议对于一对一关联采用视图模型进行查询操作，而且定义也比较直观。
+
+
+
+
+====================================================
+
+
+
+
+
+
+
+下面我们以一个实例来讲述关联操作的简单用法，由于关联操作定义复杂，这里只是讲述一般的情况。我们以用户表为核心，来描述如何使用表的关联操作。假设存在如下的关联情况：  
+每个用户有一个档案表是HAS_ONE关联；  
+每个用户属于一个部门是BELONGS_TO关联；  
+每个用户有多张银行卡是HAS_MANY关联；  
+每个用户可能属于多个项目组，每个项目组也有多个用户是MANY_TO_MANY关联。
+
+
+
+
+我们首先来创建数据表，以MySQL为例：
+
+
+
+
+// 部门表
+
+
+
+
+CREATE TABLE `think_dept` (
+
+
+
+
+`id` smallint(3) NOT NULL auto_increment,
+
+
+
+
+`name` varchar(50) NOT NULL,
+
+
+
+
+PRIMARY KEY (`id`)
+
+
+
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
+
+
+
+
+// 用户表
+
+
+
+
+CREATE TABLE `think_user` (
+
+
+
+
+`id` mediumint(6) NOT NULL auto_increment,
+
+
+
+
+`name` varchar(25) NOT NULL,
+
+
+
+
+`dept_id` smallint(3) NOT NULL,
+
+
+
+
+PRIMARY KEY (`id`)
+
+
+
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
+
+
+
+
+// 用户档案表
+
+
+
+
+CREATE TABLE `think_profile` (
+
+
+
+
+`id` mediumint(6) NOT NULL auto_increment,
+
+
+
+
+`user_id` mediumint(6) NOT NULL,
+
+
+
+
+`email` varchar(255) NOT NULL,
+
+
+
+
+`nickname` varchar(50) NOT NULL,
+
+
+
+
+PRIMARY KEY (`id`)
+
+
+
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
+
+
+
+
+// 银行卡表
+
+
+
+
+CREATE TABLE `think_card` (
+
+
+
+
+`id` mediumint(6) NOT NULL auto_increment,
+
+
+
+
+`user_id` mediumint(6) NOT NULL,
+
+
+
+
+`card` varchar(25) character set latin1 NOT NULL,
+
+
+
+
+PRIMARY KEY (`id`)
+
+
+
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
+
+
+
+
+// 项目组表
+
+
+
+
+CREATE TABLE `think_group` (
+
+
+
+
+`id` mediumint(6) NOT NULL auto_increment,
+
+
+
+
+`name` varchar(50) NOT NULL,
+
+
+
+
+PRIMARY KEY (`id`)
+
+
+
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
+
+
+
+
+// 用户-项目组表
+
+
+
+
+CREATE TABLE `think_user_group` (
+
+
+
+
+`id` mediumint(6) NOT NULL auto_increment,
+
+
+
+
+`group_id` mediumint(5) NOT NULL,
+
+
+
+
+`user_id` mediumint(5) NOT NULL,
+
+
+
+
+PRIMARY KEY (`id`)
+
+
+
+
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+下面我们分别来给数据表定义对应的模型，这里关键是用户模型的定义，因为我们以用户表为核心来定义和使用关联，所以其他模型中无需再定义关联关系。
+
+
+
+
+class UserModel extends RelationModel
+
+
+
+
+{
+
+
+
+
+protected $_link = array(
+
+
+
+
+'Profile'=>HAS_ONE,
+
+
+
+
+'Dept'=>BELONGS_TO,
+
+
+
+
+'Card'=>HAS_MANY,
+
+
+
+
+'Group'=>MANY_TO_MANY,
+
+
+
+
+);
+
+
+
+
+}
+
+
+
+
+上面的关联定义，我们采用了最简洁的定义方式，也就是所有规则都按照系统的默认规则进行。这些规则包括主键、外键、表名的规范。完整的关联定义可以写成：
+
+
+
+
+class UserModel extends Model
+
+
+
+
+{
+
+
+
+
+protected $_link = array(
+
+
+
+
+'Profile'=>array(
+
+
+
+
+'mapping_type'=>HAS_ONE,
+
+
+
+
+'mapping_name'=>'Profile',
+
+
+
+
+'class_name'=>'Profile',
+
+
+
+
+'foreign_key'=>'user_id',
+
+
+
+
+),
+
+
+
+
+'Dept'=> array(
+
+
+
+
+'mapping_type'=> BELONGS_TO,
+
+
+
+
+'mapping_name'=>'Dept',
+
+
+
+
+'class_name'=>'Dept',
+
+
+
+
+'foreign_key'=>'dept_id',
+
+
+
+
+),
+
+
+
+
+'Card'=> array(
+
+
+
+
+'mapping_type'=> HAS_MANY,
+
+
+
+
+'mapping_name'=>'Card',
+
+
+
+
+'class_name'=>'Card',
+
+
+
+
+'foreign_key'=>'user_id',
+
+
+
+
+),
+
+
+
+
+'Group'=> array(
+
+
+
+
+'mapping_type'=> MANY_TO_MANY,
+
+
+
+
+'mapping_name'=>'Group',
+
+
+
+
+'class_name'=>'Group',
+
+
+
+
+'foreign_key'=>'user_id',
+
+
+
+
+'relation_foreign_key'=>'group_id',
+
+
+
+
+'relation_table'=>'think_user_group',
+
+
+
+
+),
+
+
+
+
+);
+
+
+
+
+}
+
+
+
+
+如果要给关联定义增加可选的属性，则必须采用完整定义的方式。
+
+
+
+
+其中Profile Dept Card Group 分别是其他几个模型的名称，定义如下：
+
+
+
+
+class ProfileModel extends Model {}
+
+
+
+
+class DeptModel extends Model {}
+
+
+
+
+class CardModel extends Model {}
+
+
+
+
+class GroupModel extends Model {}
+
+
+
+
+因为我们以用户表为核心来读取关联，所以用户和项目组的中间表 默认的规则必须是 user_group
+
+
+
+
+也就是我们上面创建的think_user_group表，如果你的中间表的名称不是这个规则，需要定义relation_table属性。
+
+
+
+
+为了演示的方便，我们首先给部门表和项目组表增加一些数据：
+
+
+
+
+INSERT INTO `think_dept` (`id`, `name`) VALUES (1, '开发部'),(2, '销售部') ,(3, '财务部');
+
+
+
+
+INSERT INTO `think_group` (`id`, `name`) VALUES (1, '项目组1′),(2, '项目组2′) ,(3, '项目组3′);
+
+
+
+
+接下来首先演示关联写入，我们创建一个IndexAction用于演示操作，记得在项目配置文件里面定义好数据库的连接信息。
+
+
+
+
+在IndexAction的index操作方法里面添加
+
+
+
+
+$User = D("User");
+
+
+
+
+$User->name = 'thinkphp';
+
+
+
+
+$User->dept_id = 1;
+
+
+
+
+$User->Profile = array(
+
+
+
+
+'email' =>'liu21st@gmail.com',
+
+
+
+
+'nickname' =>'流年',
+
+
+
+
+);
+
+
+
+
+$User->Card = array(
+
+
+
+
+array('id'=>1.'card'=>'12345678′),
+
+
+
+
+array('id'=>2,'card'=>'88888888′),
+
+
+
+
+);
+
+
+
+
+$User->Group = array(
+
+
+
+
+array('id'=>1),
+
+
+
+
+array('id'=>2),
+
+
+
+
+);
+
+
+
+
+$User->add(",true);
+
+
+
+
+在执行User模型的add方法的同时，我们已经写入了think_profile、think_card和think_user_group三个表的数据，BELONGS_TO关联关系是不会自动写入的。
+
+
+
+
+如果我们在模型里面设置了autoAddRelations属性为True的话，使用
+
+
+
+
+$User->add();
+
+
+
+
+方法即可同时进行关联写入。
+
+
+
+
+为了验证关联数据是否已经写入，我们现在来使用关联查询把相关的数据查出来。
+
+
+
+
+$user = $User->relation(true)->find(1);
+
+
+
+
+Dump($user);
+
+
+
+
+可以看到输出的结果，把User模型关联的数据都显示出来了。如果我们只希望获取某个关联数据，可以使用
+
+
+
+
+$user = $User->relation('Profile')->find(1);
+
+
+
+
+表示只是获取关联的用户档案数据。
+
+
+
+
+数据集的查询也可以支持关联查询，使用
+
+
+
+
+$user = $User->relation(true)->findAll();
+
+
+
+
+能够显示出完整的含有关联数据的数据集。
+
+
+
+
+我们再来更新关联数据
+
+
+
+
+$user['id'] = 1;
+
+
+
+
+$user['name'] = 'tp';
+
+
+
+
+$user['Profile']['email'] = 'thinkphp@qq.com';
+
+
+
+
+$user['Card'] = array(
+
+
+
+
+array('id'=>1,'card'=>'66666666′),
+
+
+
+
+array('id'=>2,'card'=>'77777777′),
+
+
+
+
+);
+
+
+
+
+$user['Group'] = array(
+
+
+
+
+array('id'=>1),
+
+
+
+
+array('id'=>3),
+
+
+
+
+);
+
+
+
+
+**$User->save($user,'id=1′,true);**
+
+
+
+
+注意关联更新的时候一定要包含主键数据。
+
+
+
+
+关联删除
+
+
+
+
+$User->deleteById(2,true);
+
+
+
+
+
+

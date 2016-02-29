@@ -1,0 +1,46 @@
+---
+author: admin
+comments: true
+date: 2012-11-08 10:18:00+00:00
+layout: post
+slug: html%e4%b8%adsmarty%e4%b8%ad%e7%9a%84if%e8%af%ad%e5%8f%a5%e6%9d%a1%e4%bb%b6%e4%bf%ae%e9%a5%b0%e8%af%8deq%e7%9b%b8%e7%ad%89ne%e3%80%81neq%e4%b8%8d%e7%9b%b8%e7%ad%89%ef%bc%8cgt%e5%a4%a7%e4%ba%8e
+title: HTML中Smarty中的if语句条件修饰词eq相等ne、neq不相等，gt大于，lt小于
+wordpress_id: 119
+categories:
+- 前端美工设计
+tags:
+- 前端美工设计
+---
+
+
+
+
+
+
+
+Smarty 中的 if 语句和 [
+php](http://www.haogongju.net/tag/php) 中的 if 语句一样灵活易用，并增加了几个特性以适宜[模板](http://www.haogongju.net/tag/模板)[引擎](http://www.haogongju.net/tag/引擎). if
+[必须](http://www.haogongju.net/tag/必须)于 /if 成对出现.
+[可以](http://www.haogongju.net/tag/可以)使用 else 和 elseif 子句. 可以使用以下条件修饰词：eq、ne、neq、gt、lt、lte、le、gte、ge、is even、is odd、is not even、is not odd、not、mod、[div](http://www.haogongju.net/tag/div)
+ by、even by、odd by、==、!=、>、<、<=、>=. 使用这些修饰词时必须和变量或常量用空格格开。
+
+
+
+
+想[问问](http://www.haogongju.net/tag/问问):eq、ne、neq、gt、lt、lte、le、gte、ge、is even、is odd、is not even、is not odd、not、mod、div by、even by、odd by都是什么意思啊？
+
+
+
+
+[英文](http://www.haogongju.net/tag/英文)看不懂？那我用[中文](http://www.haogongju.net/tag/中文)[解释](http://www.haogongju.net/tag/解释)一下。
+
+
+
+
+equal : 相等、not equal：不等于、greater than：大于、less than：小于、less than or equal：小于等于、great than or equal：大于等于、is even：是偶数、is odd：是奇数、is not even：不是偶数、is not odd：不是奇数、not：非、mod：取余、div by：被。。。除。
+
+
+
+
+
+

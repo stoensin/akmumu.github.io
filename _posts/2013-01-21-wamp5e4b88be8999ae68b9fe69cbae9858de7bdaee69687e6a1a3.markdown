@@ -1,0 +1,84 @@
+---
+author: admin
+comments: true
+date: 2013-01-21 07:23:00+00:00
+layout: post
+slug: wamp5%e4%b8%8b%e8%99%9a%e6%8b%9f%e6%9c%ba%e9%85%8d%e7%bd%ae%e6%96%87%e6%a1%a3
+title: wamp5下虚拟机配置文档
+wordpress_id: 152
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+Wamp下，虚拟机配置分为三个步骤，实例如下：  
+
+1.修改Hosts文件  
+
+C:WINDOWSsystem32driversetcHosts  
+
+127.0.0.1 dz1.test.com  
+
+2.编辑wampbinapacheApache2.2.11confextrahttpd-vhosts.conf文件，在文件底部加入以下代码  
+
+<VirtualHost *:80>  
+
+ServerName dz1.test.com  
+
+ServerAlias dz1.test.com  
+
+DocumentRoot "e:/wamp/www/dz1"  
+
+
+
+</VirtualHost>
+
+
+
+
+另外加上这句以后，如果没有下面这句的记得加上，不然打localhost打不开最好再加上
+
+
+
+
+<VirtualHost *:80>  
+
+ServerName localhost  
+
+ServerAlias localhost  
+
+DocumentRoot "D:/wamp/www"  
+
+</VirtualHost>  
+
+
+
+
+3.编辑E:wampbinapacheApache2.2.11confhttpd.conf文件，在文件底部加入以下代码  
+
+注：不加此代码会报403错误  
+
+打开配置文件httpd.conf，并去掉#Include 0conf/extra/httpd-vhosts.conf前面的#号！！  
+
+<Directory "e:/wamp/www/dz1">  
+
+Options Indexes FollowSymLinks  
+
+AllowOverride all  
+
+Order Allow,Deny  
+
+Allow from all  
+
+</Directory>  
+
+重启Apache，然后测试dz1.test.com,就可以了。  
+
+。。。。。。。。。。。。。。。。  
+
+注意红色加粗的部分，必须相同，且文件存在
+
+

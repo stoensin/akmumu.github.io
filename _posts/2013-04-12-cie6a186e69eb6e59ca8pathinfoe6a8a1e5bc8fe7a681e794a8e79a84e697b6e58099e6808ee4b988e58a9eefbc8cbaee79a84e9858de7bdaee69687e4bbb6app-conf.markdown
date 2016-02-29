@@ -1,0 +1,298 @@
+---
+author: admin
+comments: true
+date: 2013-04-12 03:22:00+00:00
+layout: post
+slug: ci%e6%a1%86%e6%9e%b6%e5%9c%a8pathinfo%e6%a8%a1%e5%bc%8f%e7%a6%81%e7%94%a8%e7%9a%84%e6%97%b6%e5%80%99%e6%80%8e%e4%b9%88%e5%8a%9e%ef%bc%8cbae%e7%9a%84%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6app-conf
+title: ci框架在pathinfo模式禁用的时候怎么办，BAE的配置文件app.conf
+wordpress_id: 172
+categories:
+- PHP
+- 实用软件技巧
+tags:
+- php程序设计
+- 实用软件技巧
+---
+
+
+
+
+
+ci框架是个不错的框架，但是他采用路径格式的访问方式，但是bae禁用了这种方式，当然他也是有道理的，以后可能在其他地方也遇到这种情况，那么只好采用url 重写的方法。
+
+
+
+
+
+<table style="" >
+<tbody id="conf-list" >
+<tr >
+
+<td style="margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:0px; padding-top:0px; padding-right:5px; padding-bottom:0px; padding-left:5px; text-align:center; height:31px; line-height:31px" class="c" >
+url
+</td>
+
+<td style="margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:0px; padding-top:0px; padding-right:5px; padding-bottom:0px; padding-left:5px; text-align:center; height:31px; line-height:31px" class="c" >
+^/index.php(.*)
+</td>
+
+<td style="margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:0px; padding-top:0px; padding-right:5px; padding-bottom:0px; padding-left:5px; text-align:center; height:31px; line-height:31px" class="c" >
+/index.php?$1
+</td>
+</tr>
+</tbody>
+</table>
+如上所述即可达到效果，下面是从bae技术博客转来的app.conf使用方法，大家也可以直接去看
+
+
+
+
+
+http://godbae.duapp.com/?p=44  
+
+
+
+
+
+
+
+BAE环境中，每个应用对应一个配置文件app.conf，很多开发者在初次接触BAE的时候，对如何使用app.conf比较困惑，本文对app.conf做一个基本的介绍。
+
+
+
+
+
+
+
+
+
+
+## 
+**1.
+ BAE环境中HTTP请求的处理流程**
+
+
+
+
+
+****要理解app.conf的作用，首先要理解HTTP请求在BAE环境中是如何被处理的。
+
+
+
+
+
+
+  * 
+WEB请求首先到达前端 WEB proxy，WEB proxy负责将请求转发给后端的某一个WEB server。（注意，后端可能会有多个WEB server来处理应用的请求）
+  * 
+请求到达后端 WEB server后，WEB server 根据 app.conf进行一些特定的处理，所以说**app.conf主要是用来控制后端WEB
+ server的处理逻辑的**。app.conf的作用比较多，其中主要的功能是实现URL rewrite。
+  * 
+URL rewrite 完成后，原始的URL被改写， WEB server能根据改写后的URL识别出请求类型，
+  * 
+对于静态请求，例如图片、模板、CSS文件、JS文件等，WEB server直接处理
+  * 
+对于动态请求，例如PHP脚本、Python脚本等，WEB server进一步将其转发给后端的 Runtime去处理。
+  * 
+后端Runtime根据请求，找到对应的处理脚本，例如index.php，执行脚本，并将处理结果返回给浏览器。
+
+
+
+## 
+**2.
+ 用app.conf实现URL rewrite**
+
+
+
+
+
+
+  * 
+如何使用app.conf ，请先参看[BAE配置文件](http://developer.baidu.com/wiki/index.php?title=docs/cplat/rt/manage/conf)
+  * 
+关于 URL rewrite，可以参考[URL
+ rewrite](http://baike.baidu.com/view/2673841.htm)
+  * 
+app.conf 采用的是 YAML格式，参考[YAML](http://www.yaml.org/)
+  * 
+app.conf中，每条规则包括“规则类型”、“规则”和“执行”三个部分，“规则类型”中最重要的是“url”类型， 用来实现URL rewrite。 “规则”指定了URL匹配模式，“执行”指定了URL rewrite的结果； 若某个URL匹配了这个模式，则按照“执行” 对URL进行rewrite。
+  * 
+规则是按顺序匹配的，一旦匹配上，就不往下继续匹配了。
+  * 
+“规则”和“执行”部分支持正则表达式，但使用的是LUA格式的正则表达式，详细的语法后面会介绍。
+
+
+
+## 
+**3.
+ 你在设计app.conf 时要考虑的东西**
+
+
+
+
+
+
+  * 
+如何设计你的应用的URL的表现形式
+  * 
+如何将URL请求路由到你的动态处理脚本
+  * 
+区分动态请求和静态请求。对于静态请求，最好让后端WEB server直接处理，这样可以提高性能。
+
+
+
+## 
+**4.
+ 你在设计动态脚本时要考虑的东西**
+
+
+
+
+
+
+  * 
+URL被重写了，有些情况下，需要知道原始URL的信息，可以通过环境变量**REQUEST_URI**来获取
+
+
+
+## 
+**5.
+ 示例**
+
+
+
+
+
+
+  * 
+示例一
+
+
+
+
+![](http://b.hiphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=7f4d0cb60b7b020808c93fe452e283ee/1c950a7b02087bf41b9a73faf3d3572c11dfcfaa.jpg?referer=e76f7a430d338744c5d21a4c2968&x=.jpg)
+
+
+
+
+
+如图所示，假设你开发了一个应用，希望把所有的静态文件，都放在应用的 /static 目录下，其它所有的URL，都统一转发给 index.php处理。
+
+
+
+
+
+示例图中有两条规则，第一条规则，用来处理静态文件；第二条规则，用来处理动态脚本；  
+
+规则是按顺序匹配的，一旦匹配上，就不往下继续匹配了
+
+
+
+
+
+**(.*)**是正则表达式里面的分组方式，例如URL为 http://xxx.duapp.com/static/f1.jpg
+ ，那么 (.*) 匹配的是 f1.jpg， **$1** 表示第一个
+ (.*) 匹配的内容，这里只有一个，那就是 f1.jpg；
+
+
+
+
+
+示例图中，有两个URL请求，
+
+
+
+
+
+第一个是 http://xxx.duapp.com/aaa/bbb， 经WEB proxy转发后到达WEB server，WEB server根据app.conf 规则进行匹配，匹配到第二条规则，从而将其改写为  http://xxx.duapp.com/index.php， WEB server判断这是一个动态请求，继续向后转发给PHP runtime处理；PHP runtime找到应用目录下的index.php进行处理，并将结果返回给前端。
+
+
+
+
+
+第二个是 http://xxx.duapp.com/static/xxx.jpg， 经WEB proxy转发后到达WEB server，WEB server根据app.conf 规则进行匹配，匹配到第一条规则，从而将其改写为  http://xxx.duapp.com/static/xxx.jpg（改写后的URL与原始的URL是一样的）， WEB server判断这是一个静态请求，则自己到应用目录下的static子目录中，找到 xxx.jpg，将其内容返回给前端。
+
+
+
+
+
+**6.
+ app.conf 所用的正则表达式语法简介**
+
+
+
+
+## 
+BAE
+ rewrite 采用的是 Lua 正则的规则。唯一不同在于将 Lua 正则的转义符号 % 替换成大家所熟悉的 
+
+
+
+
+## 
+可使用[BAE规则检查器](http://baehelper.duapp.com/baeconf.html)来检查你的规则
+
+
+
+
+
+
+  * 
+**x** 
+  (这里 x 是指其不是这些转义字符 ^$().[]*+-? 之一) — 其代表了这个字符本身.
+  * 
+**.** 代表任何字符
+  * 
+***** 与普通正则一致，贪婪匹配，即{0,}
+  * 
+**+** 与普通正则一致，贪婪匹配，即{1,}
+  * 
+**-** 非贪婪匹配，即
+ *?
+  * 
+**?** 与普通正则一致，贪婪匹配，即{0,1}
+  * 
+**n** n
+ 为1到9之间的数字，用于表示捕获的分组，类似与 1
+  * 
+**^** 当在正则表达式开头时，表示匹配字符串起始位置，否则视为普通字符^
+  * 
+**$** 当在正则表达式结尾时，表示匹配字符串结束位置，否则视为普通字符$
+  * 
+**a** 代表任何字母.
+ 即[a-zA-Z]
+  * 
+**c** 代表任何的控制字符暂不支持
+  * 
+**d** 代表任何的数字字符.
+ 即[0-9] 或 d
+  * 
+**l** 代表所有的小写字母.
+ 即[a-z]
+  * 
+**p** 代表所有的标点符号字符暂不支持
+  * 
+**s** 代表所有空格,tab
+ 字符
+  * 
+**u** 代表所有的大写字母.
+ 即[A-Z]
+  * 
+**w** 代表所有的字母数字.
+ 即[a-zA-Z0-9] 或 w
+  * 
+**x** 代表16进制数字，类似于
+ x，后面需要紧跟两位16进制数字
+  * 
+**z** 代表字符值是
+ 0 的字符. 注意:值为0 的字符是无法正常表达的在表达式中,如果你要使用他,请使用 z暂不支持
+  * 
+**x** (x是任何非字母和数字的字符)代表字符
+ x. 这是一种标准的方式来代表应用转义字符. 任何标点符号字符(即使不是转义字符) 在其前面添加一个  可以用来表示其自己 例如 \ 表示  , $ 表示 $
+  * 
+**[set]** 代表一个字符集合.
+ 如果要表达一个范围集合,在范围开始的字符和结尾的字符之间使用 – , 例如要表达 3,4,5,6 这个集合 可以用 [3456] ,也可以用 [3-6] .上面提到的 x 也可以用到集合中. 例如, [w_] 表达所有的字母和数字加一个下划线
+  * 
+**[^set]** 表达所有不出现在集合内的
+
+

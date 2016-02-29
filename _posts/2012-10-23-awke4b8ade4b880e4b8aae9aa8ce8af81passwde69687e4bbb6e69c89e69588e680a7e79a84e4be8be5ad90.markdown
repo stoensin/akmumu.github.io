@@ -1,0 +1,27 @@
+---
+author: admin
+comments: true
+date: 2012-10-23 02:45:00+00:00
+layout: post
+slug: awk%e4%b8%ad%e4%b8%80%e4%b8%aa%e9%aa%8c%e8%af%81passwd%e6%96%87%e4%bb%b6%e6%9c%89%e6%95%88%e6%80%a7%e7%9a%84%e4%be%8b%e5%ad%90
+title: awk中一个验证passwd文件有效性的例子
+wordpress_id: 103
+categories:
+- LINUX
+tags:
+- linux
+---
+
+
+
+cat /etc/passwd | awk -F: '  
+
+NF !=7{  
+
+printf("line %d,not have 7fields:%sn",NR,$0)}  
+
+$1 !~ /[A-Za-z0-9]/{printf("line %d,no alpha and num userid:%d: %sn",NR,NR,$0)}  
+
+$2 == "*" {printf("line %d,no pass :%sn",NR,$0)}'
+
+

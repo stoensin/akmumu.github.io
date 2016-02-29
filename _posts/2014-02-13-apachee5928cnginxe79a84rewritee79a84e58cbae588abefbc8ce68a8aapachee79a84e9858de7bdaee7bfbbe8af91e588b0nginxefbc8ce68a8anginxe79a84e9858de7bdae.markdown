@@ -1,0 +1,157 @@
+---
+author: admin
+comments: true
+date: 2014-02-13 09:39:54+00:00
+layout: post
+slug: apache%e5%92%8cnginx%e7%9a%84rewrite%e7%9a%84%e5%8c%ba%e5%88%ab%ef%bc%8c%e6%8a%8aapache%e7%9a%84%e9%85%8d%e7%bd%ae%e7%bf%bb%e8%af%91%e5%88%b0nginx%ef%bc%8c%e6%8a%8anginx%e7%9a%84%e9%85%8d%e7%bd%ae
+title: apache和nginx的rewrite的区别，把apache的配置翻译到nginx，把nginx的配置翻译到apache
+wordpress_id: 255
+categories:
+- Apache
+---
+
+Nginx与Apache的Rewrite规则的区别
+1. Nginx Rewrite规则相关指令
+
+Nginx Rewrite规则相关指令有if、rewrite、set、return、break等，其中rewrite是最关键的指令。一个简单的Nginx Rewrite规则语法如下:
+
+
+
+rewrite ^/b/(.*)\.html /play.php?video=$1 break;
+
+
+
+如果加上if语句，示例如下：
+if (!-f $request_filename)
+
+{ rewrite ^/img/(.*)$ /site/$host/images/$1 last;      }
+
+2. Nginx与Apache的Rewrite规则实例对比
+
+简单的Nginx和Apache 重写规则区别不大，基本上能够完全兼容。
+Apache Rewrite 规则：
+
+
+
+RewriteRule ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 [L]
+
+RewriteRule ^/ceshi/$ /zl/ceshi.php [L]
+
+RewriteRule ^/(mianshi)_([a-zA-Z]+)/$ /zl/index.php?name=$1_$2 [L] RewriteRule ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 [L]
+
+
+
+Nginx Rewrite 规则：
+
+rewrite ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 last;
+
+rewrite ^/ceshi/$ /zl/ceshi.php last;
+
+rewrite ^/(mianshi)_([a-zA-Z]+)/$ /zl/index.php?name=$1_$2 last;
+
+rewrite ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 last;
+
+不难发现Apache的Rewrite规则改为Nginx的Rewrite规则挺简单的，如果改完规则，使用"nginx -t"命令检查发现nginx.conf配置文件有语法错误，那么可以尝试给条件加上引号。例如一下的Nginx Rewrite规则会报语法错误：
+
+rewrite  ^/([0-9]{5}).html$ /x.jsp?id=$1  last;加上引号就正确了：
+
+rewrite  “^/([0-9]{5}).html$” /x.jsp?id=$1  last;
+
+
+
+Apache与Nginx的Rewrite规则在URL跳转时有细微的区别：
+
+Apache Rewrite 规则：
+RewriteRule  ^/html/tagindex/([a-zA-Z]+)/.*$ /$1/ [R=301,L]
+Nginx Rewrite 规则：
+
+rewrite  ^/html/tagindex/([a-zA-Z]+)/.*$ http://$host/$1/  permanent;
+以上示例中，我们注意到，Nginx Rewrite 规则的置换串中增加了“http://$host”，这是在Nginx中要求的。
+
+另外，Apache与Nginx的Rewrite规则在变量名称方面也有区别，例如：
+Apache Rewrite 规则：
+
+RewriteRule ^/user/login/$ /user/login.php?login=1&forward=http://%{HTTP_HOST}  [L]
+
+Nginx Rewrite 规则：
+
+rewrite  ^/user/login/$ /user/login.php?login=1&forward=http://$host  last;
+Apache与Nginx Rewrite 规则的一些功能相同或类似的指令、标记对应关系：
+Apache的RewriteCond指令对应Nginx的if指令；
+Apache的RewriteRule指令对应Nginx的rewrite指令；
+Apache的[R]标记对应Nginx的redirect标记；
+Apache的[P]标记对应Nginx的last标记；
+Apache的[R,L]标记对应Nginx的redirect标记；
+Apache的[P,L]标记对应Nginx的last标记；
+Apache的[PT,L]标记对应Nginx的last标记；
+
+允许指定的域名访问本站，其他域名一律跳转到http://www.aaa.com：
+Apache Rewrite 规则：
+
+RewriteCond %{HTTP_HOST}    ^(.*?)\.domain\.com$
+
+RewriteCond %{HTTP_HOST}    !^qita\.domain\.com$ RewriteCond %{DOCUMENT_ROOT}/market/%1/index.htm -f
+
+RewriteRule ^/wu/$ /market/%1/index.htm [L]
+
+Nginx的if指令不支持嵌套，也不支持AND、OR等多条件匹配，相比于Apache的RewriteCond，显得麻烦一些，但是，我们可以通过下一页的Nginx配置写法来实现这个示例：
+Nginx Rewrite 规则：
+if ($host ~* ^(.*?)\.domain\.com$)
+
+{
+
+set $var_wupin_city $1;
+
+set $var_wupin ‘1′;
+
+}
+
+
+
+if ($host ~* ^qita\.domain\.com$)
+
+{
+
+set $var_wupin ‘0′;
+
+}
+
+
+
+if (!-f $document_root/market/$var_wupin_city/index.htm)
+
+{
+
+set $var_wupin ‘0′;
+
+}
+
+
+
+if($var_wupin ~ ‘1′)
+
+{
+
+rewrite ^/wu/$ /market/$var_wupin_city/index.htm last;
+
+}
+
+
+
+备注学习：
+
+
+rewrite ^/serach/(.*).html  http://www.xxx.com/search.action?keywords=$1 last;
+
+
+
+
+访问http://www.xxx.com/search/mp3.html，浏览器url重定向为http://www.xxx.com/search.action?keywords=mp3
+
+
+
+
+
+
+
+转自[http://www.cnblogs.com/wangjiafang/archive/2013/02/22/2921825.html](http://www.cnblogs.com/wangjiafang/archive/2013/02/22/2921825.html)

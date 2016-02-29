@@ -1,0 +1,19 @@
+---
+author: admin
+comments: true
+date: 2012-07-09 02:33:00+00:00
+layout: post
+slug: '%e6%96%b9%e6%b3%95%e4%b8%80%e5%ae%9a%e8%a6%81%e8%bf%94%e5%9b%9e%e5%80%bc%ef%bc%8c%e4%b8%8d%e8%a6%81%e5%bf%98%e8%ae%b0return'
+title: 方法一定要返回值，不要忘记return
+wordpress_id: 35
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+写方法的时候一定要记得有返回值
+
+

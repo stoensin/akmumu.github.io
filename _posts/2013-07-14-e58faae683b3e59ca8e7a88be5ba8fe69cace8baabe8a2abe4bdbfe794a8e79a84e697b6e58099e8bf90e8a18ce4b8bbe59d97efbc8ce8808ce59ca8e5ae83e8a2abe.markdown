@@ -1,0 +1,80 @@
+---
+author: admin
+comments: true
+date: 2013-07-14 06:52:00+00:00
+layout: post
+slug: '%e5%8f%aa%e6%83%b3%e5%9c%a8%e7%a8%8b%e5%ba%8f%e6%9c%ac%e8%ba%ab%e8%a2%ab%e4%bd%bf%e7%94%a8%e7%9a%84%e6%97%b6%e5%80%99%e8%bf%90%e8%a1%8c%e4%b8%bb%e5%9d%97%ef%bc%8c%e8%80%8c%e5%9c%a8%e5%ae%83%e8%a2%abe'
+title: 只想在程序本身被使用的时候运行主块，而在它被别的模块输入的时候不运行主块
+wordpress_id: 184
+categories:
+- Python
+tags:
+- python
+---
+
+
+
+
+## 使用模块的__name__
+
+
+
+
+例8.2 使用模块的__name__
+
+
+
+
+`#!/usr/bin/python  
+
+# Filename: using_name.py`  
+
+  
+
+`if ``__name__ == ``'__main__'``:`  
+
+` print ``'This program is being run by itself'`  
+
+`else``:`  
+
+` print ``'I am being imported from another module'`
+
+
+
+
+（源文件：[code/using_name.py](http://sebug.net/paper/python/code/using_name.py)）
+
+
+
+
+## 输出
+
+
+
+
+`$ python using_name.py  
+
+This program is being run by itself  
+
+  
+
+$ python  
+
+>>> import using_name  
+
+I am being imported from another module  
+
+>>>`
+
+
+
+
+## 它如何工作
+
+
+
+
+每个Python模块都有它的`__name__`，如果它是`'__main__'`，这说明这个模块被用户单独运行，我们可以进行相应的恰当操作。
+
+
+

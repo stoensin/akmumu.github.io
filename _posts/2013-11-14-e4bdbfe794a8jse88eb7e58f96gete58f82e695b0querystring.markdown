@@ -1,0 +1,703 @@
+---
+author: admin
+comments: true
+date: 2013-11-14 07:42:35+00:00
+layout: post
+slug: '%e4%bd%bf%e7%94%a8js%e8%8e%b7%e5%8f%96get%e5%8f%82%e6%95%b0querystring'
+title: 使用js获取GET参数QueryString
+wordpress_id: 237
+categories:
+- JS
+---
+
+转自：[http://www.cnblogs.com/sunnycoder/archive/2010/02/28/1674998.html](http://www.cnblogs.com/sunnycoder/archive/2010/02/28/1674998.html)
+
+从网上看到一些使用js获取QueryString的方法，但用起来不是很理想，所以决定自己写一个。主要原理是使用正则表达式匹配location.search中的字符串。
+
+三个主要方法：
+<table cellpadding="0" cellspacing="0" border="1" >
+<tbody >
+<tr >
+
+<td width="158" valign="top" >**方法**
+</td>
+
+<td width="499" valign="top" >**说明**
+</td>
+</tr>
+<tr >
+
+<td width="158" valign="top" >getQueryString
+</td>
+
+<td width="499" valign="top" >获取QueryString的数组。
+
+例如路径QueryStringDemo.html?id=5&type=1&flag=0
+
+调用后返回["id=5", "type=1", "flag=0"]
+</td>
+</tr>
+<tr >
+
+<td width="158" valign="top" >getQueryStringByName
+</td>
+
+<td width="499" valign="top" >根据QueryString参数名称获取值
+</td>
+</tr>
+<tr >
+
+<td width="158" valign="top" >getQueryStringByIndex
+</td>
+
+<td width="499" valign="top" >根据QueryString参数索引获取值
+</td>
+</tr>
+</tbody>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="1" >
+<tbody >
+<tr >
+
+<td width="657" valign="top" >
+
+
+//获取QueryString的数组
+
+
+
+
+function getQueryString(){
+
+
+
+
+     var result = location.search.match(new RegExp("[\?\&][^\?\&]+=[^\?\&]+","g"));
+
+
+
+
+     if(result == null){
+
+
+
+
+         return "";
+
+
+
+
+     }
+
+
+
+
+     for(var i = 0; i < result.length; i++){
+
+
+
+
+         result[i] = result[i].substring(1);
+
+
+
+
+     }
+
+
+
+
+     return result;
+
+
+
+
+}
+
+
+
+
+//根据QueryString参数名称获取值
+
+
+
+
+function getQueryStringByName(name){
+
+
+
+
+     var result = location.search.match(new RegExp("[\?\&]" + name+ "=([^\&]+)","i"));
+
+
+
+
+     if(result == null || result.length < 1){
+
+
+
+
+         return "";
+
+
+
+
+     }
+
+
+
+
+     return result[1];
+
+
+
+
+}
+
+
+
+
+//根据QueryString参数索引获取值
+
+
+
+
+function getQueryStringByIndex(index){
+
+
+
+
+     if(index == null){
+
+
+
+
+         return "";
+
+
+
+
+     }
+
+
+
+
+     var queryStringList = getQueryString();
+
+
+
+
+     if (index >= queryStringList.length){
+
+
+
+
+         return "";
+
+
+
+
+     }
+
+
+
+
+     var result = queryStringList[index];
+
+
+
+
+     var startIndex = result.indexOf("=") + 1;
+
+
+
+
+     result = result.substring(startIndex);
+
+
+
+
+     return result;
+
+
+}
+</td>
+</tr>
+</tbody>
+</table>
+测试页面路径：QueryStringDemo.html?id=5&type=1&flag=0
+
+页面加载时：
+
+
+
+在QueryString's name后的文本框中输入要获取的QueryString的名称获取相应的值：
+
+
+
+在QueryString's index后的文本框中输入要获取的QueryString的索引获取相应的值（索引从0开始）：
+
+
+
+这样就可以在页面中方便的获取QueryString的值了。最后附上测试页面QueryStringDemo.html的源代码：
+<table cellpadding="0" cellspacing="0" border="1" >
+<tbody >
+<tr >
+
+<td width="657" valign="top" >
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+
+
+
+
+<head>
+
+
+
+
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+
+
+
+<title>QueryString获取</title>
+
+
+
+
+<!--script type="text/javascript" src="CommonFiles/sunnycoder.js"></script-->
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+     //获取QueryString的数组
+
+
+
+
+     function getQueryString(){
+
+
+
+
+         var result = location.search.match(new RegExp("[\?\&][^\?\&]+=[^\?\&]+","g"));
+
+
+
+
+         for(var i = 0; i < result.length; i++){
+
+
+
+
+              result[i] = result[i].substring(1);
+
+
+
+
+         }
+
+
+
+
+         return result;
+
+
+
+
+     }
+
+
+
+
+     //根据QueryString参数名称获取值
+
+
+
+
+     function getQueryStringByName(name){
+
+
+
+
+         var result = location.search.match(new RegExp("[\?\&]" + name+ "=([^\&]+)","i"));
+
+
+
+
+         if(result == null || result.length < 1){
+
+
+
+
+              return "";
+
+
+
+
+         }
+
+
+
+
+         return result[1];
+
+
+
+
+     }
+
+
+
+
+     //根据QueryString参数索引获取值
+
+
+
+
+     function getQueryStringByIndex(index){
+
+
+
+
+         if(index == null){
+
+
+
+
+              return "";
+
+
+
+
+         }
+
+
+
+
+         var queryStringList = getQueryString();
+
+
+
+
+         if (index >= queryStringList.length){
+
+
+
+
+              return "";
+
+
+
+
+         }
+
+
+
+
+         var result = queryStringList[index];
+
+
+
+
+         var startIndex = result.indexOf("=") + 1;
+
+
+
+
+         result = result.substring(startIndex);
+
+
+
+
+         return result;
+
+
+
+
+     }
+
+
+
+
+     //绑定当控件高亮选中时，点击“回车键”时执行的操作
+
+
+
+
+     //control：要绑定事件的控件
+
+
+
+
+     //func：要执行的方法
+
+
+
+
+     function bindEnterEvent(control, func){
+
+
+
+
+         control.onkeypress = function(){
+
+
+
+
+              if (event.keyCode == 13){
+
+
+
+
+                   func();
+
+
+
+
+              }
+
+
+
+
+         }
+
+
+
+
+     }
+
+
+
+
+     //根据输入的QueryString名称获取值
+
+
+
+
+     function getByName(){
+
+
+
+
+         var name = document.getElementById("txtQueryStringName").value;
+
+
+
+
+         document.getElementById("txtResult").innerHTML = getQueryStringByName(name);
+
+
+
+
+     }
+
+
+
+
+     //根据输入的QueryString的索引获取值
+
+
+
+
+     function getByIndex(){
+
+
+
+
+         var index = document.getElementById("txtQueryStringIndex").value;
+
+
+
+
+         document.getElementById("txtResult").innerHTML = getQueryStringByIndex(index);
+
+
+
+
+     }
+
+
+
+
+</script>
+
+
+
+
+</head>
+
+
+
+
+
+
+
+<body>
+
+
+
+
+
+
+
+<div>
+
+
+
+
+     <span>QueryString : </span><span id="queryString"></span>
+
+
+
+
+</div>
+
+
+
+
+<div>
+
+
+
+
+     <span>QueryString's name :&nbsp;</span>
+
+
+
+
+     <input id="txtQueryStringName" name="txtQueryStringName" type="text" />
+
+
+
+
+     <input name="btnGetByName" type="button" value="获取" onclick="getByName()" />
+
+
+
+
+</div>
+
+
+
+
+<div>
+
+
+
+
+     <span>QueryString's index : </span>
+
+
+
+
+     <input id="txtQueryStringIndex" name="txtQueryStringIndex" type="text" />
+
+
+
+
+     <input name="btnGetByIndex" type="button" value="获取" onclick="getByIndex()" />
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<div>
+
+
+
+
+     <span>结果 ：</span><span id="txtResult"></span>
+
+
+
+
+</div>
+
+
+
+
+<!--页面加载时执行的操作-->
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+     //显示所有QueryString
+
+
+
+
+     document.getElementById("queryString").innerHTML = getQueryString();
+
+
+
+
+     //为txtQueryStringName绑定回车事件
+
+
+
+
+     bindEnterEvent(txtQueryStringName, getByName);
+
+
+
+
+     //为txtQueryStringIndex绑定回车事件
+
+
+
+
+     bindEnterEvent(txtQueryStringIndex, getByIndex);
+
+
+
+
+</script>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+</html>
+
+
+
+</td>
+</tr>
+</tbody>
+</table>

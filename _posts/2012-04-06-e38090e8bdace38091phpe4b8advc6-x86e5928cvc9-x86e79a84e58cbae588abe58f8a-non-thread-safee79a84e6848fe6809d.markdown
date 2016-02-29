@@ -1,0 +1,89 @@
+---
+author: admin
+comments: true
+date: 2012-04-06 13:15:00+00:00
+layout: post
+slug: '%e3%80%90%e8%bd%ac%e3%80%91php%e4%b8%advc6-x86%e5%92%8cvc9-x86%e7%9a%84%e5%8c%ba%e5%88%ab%e5%8f%8a-non-thread-safe%e7%9a%84%e6%84%8f%e6%80%9d'
+title: 【转】PHP中VC6 X86和VC9 X86的区别及 Non Thread Safe的意思
+wordpress_id: 24
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+<table style="table-layout:fixed; width:100%" >
+<tbody >
+<tr >
+
+<td >
+
+
+
+
+
+PHP现在推出5.3.0版本了，不过下载的时候有几个不同版本选择。那就是VC6 X86和VC9 X86。  
+
+首先我来解答:  
+
+  
+
+**VC6是什么？**  
+
+VC6就是legacy Visual Studio 6 compiler，就是使用这个编译器编译的。  
+
+  
+
+**VC9是什么？**  
+
+VC9就是the Visual Studio 2008 compiler，就是用微软的VS编辑器编译的。  
+
+  
+
+那我们如何选择下载哪个版本的PHP呢？  
+
+  
+
+**如果你是在windows下使用Apache+PHP的，请选择VC6版本；  
+
+如果你是在windows下使用IIS+PHP的，请选择VC9版本；**  
+
+  
+
+  
+
+那**Non Thread Safe是什么？**  
+
+Non Thread Safe就是非线程安全；  
+
+  
+
+  
+
+**Thread Safe 是什么?**  
+
+Thread Safe 是线程安全；  
+
+  
+
+官方并不建议你将Non Thread Safe 应用于生产环境，所以我们选择Thread Safe 版本的PHP来使用。  
+
+  
+
+php下载页面：[http://windows.php.net/download/](http://windows.php.net/download/)  
+
+
+
+
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+  
+
+

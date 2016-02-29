@@ -1,0 +1,56 @@
+---
+author: admin
+comments: true
+date: 2013-09-23 10:10:15+00:00
+layout: post
+slug: php%e8%af%bb%e5%8f%96%e6%96%87%e4%bb%b6%e6%9c%ab%e5%b0%ben%e8%a1%8c%e6%9c%89%e6%95%88%e5%8a%9e%e6%b3%95
+title: php读取文件末尾n行有效办法
+wordpress_id: 232
+categories:
+- PHP
+---
+
+小文件几兆以内大小，都可以通过file()函数，将文件按行读入数组，在用array_pop取得最后一行，就可以了。
+但是对于很大的文本文件来说，机器内存不够大，或者php本身memory_limit有限制，这个办法就不适用了，即使强行不限制，效率也是非常低的。
+没有办法了吗？当然有，不过没有现成的函数了，需要自己动手了。
+这里需要用到文件指针，学过C的应该知道指针式个嘛玩意，通俗的讲吧，PHP中通过fopen打开一个文件，这时候还没有读取文件，这时候指向的是文件开头，指针位置也就是0，当你通过fgets或者fgetc从文件中读取内容的时候，你读多少，指针也相应往前进多少，这也是
+while(!feof($fp)){
+$data.=fgets($fp,4096);
+}
+得以实现的原理，即fgets是从当前指针位置向后读取指定长度的字符串，直到遇见换行符为止。
+
+那么可不可以控制指针的位置到倒数第N行位置呢？很遗憾，没有，但是可以将指针直接移动到末尾，并倒退N个位置，通过fseek()函数。
+
+我们先将指针移动到末尾，并向后倒退2个位置，通过fgetc读取一个字符，判断这个字符是不是"\n"也就是换行符，如果不是换行符，那么继续倒退一个位置再次判断，直到我们倒退到上一行的结尾换行符为止，直接使用fgets将一整行都取出来即可。这里面用到两个while循环，外层循环控制需要取得的行数，内层循环控制fseek动作。
+
+
+<blockquote>/**
+* 取文件最后$n行
+* @param string $filename 文件路径
+* @param int $n 最后几行
+* @return mixed false表示有错误，成功则返回字符串
+*/
+function FileLastLines($filename,$n){
+if(!$fp=fopen($filename,'r')){
+echo "打开文件失败，请检查文件路径是否正确，路径和文件名不要包含中文";
+return false;
+}
+$pos=-2;
+$eof="";
+$str="";
+while($n>0){
+while($eof!="\n"){
+if(!fseek($fp,$pos,SEEK_END)){
+$eof=fgetc($fp);
+$pos--;
+}else{
+break;
+}
+}
+$str.=fgets($fp);
+$eof="";
+$n--;
+}
+return $str;
+}
+echo nl2br(FileLastLines('sss.txt',4));</blockquote>

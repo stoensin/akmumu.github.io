@@ -1,0 +1,398 @@
+---
+author: admin
+comments: true
+date: 2012-09-18 10:37:00+00:00
+layout: post
+slug: mysql%e6%95%b0%e6%8d%ae%e5%ba%93%e9%9b%86%e7%be%a4%e9%85%8d%e7%bd%ae
+title: MySQL数据库集群配置
+wordpress_id: 67
+categories:
+- MYSQL
+tags:
+- Mysql
+---
+
+
+
+
+收藏，以备使用
+
+
+
+
+
+
+
+此文章主要向大家讲述的是对MySQL数据库集群进行正确配置的实际操作步骤，以及对其概念的讲述，如果你对其相关的实际操作有兴趣了解的话，以下的文章将会给你提供相关的知识。　　
+  
+
+一、介绍   
+
+这篇文档旨在介绍如何安装配置基于2台服务器的MySQL数据库集群。并且实现任意一台服务器出现问题或宕机时MySQL依然能够继续运行。   
+
+注意！   
+
+虽然这是基于2台服务器的MySQL集群，但也必须有额外的第三台服务器作为管理节点，但这台服务器可以在集群启动完成后关闭。同时需要注意的是 并不推荐在集群启动完成后关闭作为管理节点的服务器。尽管理论上可以建立基于只有2台服务器的MySQL集群，但是这样的架构，一旦一台服务器宕机之后集 群就无法继续正常工作了，这样也就失去了集群的意义了。出于这个原因，就需要有第三台服务器作为管理节点运行。
+  
+
+另外，可能很多朋友都没有3台服务器的实际环境，可以考虑在VMWare或其他虚拟机中进行实验。   
+
+下面假设这3台服务的情况：   
+
+Server1: mysql1.vmtest.net 192.168.0.1   
+
+Server2: mysql2.vmtest.net 192.168.0.2   
+
+Server3: mysql3.vmtest.net 192.168.0.3   
+
+Servers1和Server2作为实际配MySQL数据库集群的服务器。对于作为管理节点的Server3则要求较低，只需对Server3的系 统进行很小的调整并且无需安装MySQL，Server3可以使用一台配置较低的计算机并且可以在Server3同时运行其他服务。
+  
+
+  
+
+二、在Server1和Server2上安装MySQL   
+
+注意：必须是max版本的MySQL，Standard版本不支持集群部署！   
+
+以下步骤需要在Server1和Server2上各做一次 
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+    <span style="color:#008080"> 1</span> # <span style="color:#0000ff">mv</span> mysql-max-<span style="color:#800080">4.1</span>.<span style="color:#800080">9</span>-pc-linux-gnu-i686.<span style="color:#0000ff">tar</span>.gz /usr/local/    
+    <span style="color:#008080"> 2</span> # cd /usr/local/    
+    <span style="color:#008080"> 3</span> <span style="color:#000000"># groupadd mysql    
+    </span><span style="color:#008080"> 4</span> # useradd -<span style="color:#000000">g mysql mysql    
+    </span><span style="color:#008080"> 5</span> # <span style="color:#0000ff">tar</span> -zxvf mysql-max-<span style="color:#800080">4.1</span>.<span style="color:#800080">9</span>-pc-linux-gnu-i686.<span style="color:#0000ff">tar</span><span style="color:#000000">.gz    
+    </span><span style="color:#008080"> 6</span> # <span style="color:#0000ff">rm</span> -f mysql-max-<span style="color:#800080">4.1</span>.<span style="color:#800080">9</span>-pc-linux-gnu-i686.<span style="color:#0000ff">tar</span><span style="color:#000000">.gz    
+    </span><span style="color:#008080"> 7</span> # <span style="color:#0000ff">mv</span> mysql-max-<span style="color:#800080">4.1</span>.<span style="color:#800080">9</span>-pc-linux-gnu-<span style="color:#000000">i686 mysql    
+    </span><span style="color:#008080"> 8</span> <span style="color:#000000"># cd mysql    
+    </span><span style="color:#008080"> 9</span> # scripts/mysql_install_db --user=<span style="color:#000000">mysql    
+    </span><span style="color:#008080">10</span> # <span style="color:#0000ff">chown</span> -<span style="color:#000000">R root .    
+    </span><span style="color:#008080">11</span> # <span style="color:#0000ff">chown</span> -<span style="color:#000000">R mysql data    
+    </span><span style="color:#008080">12</span> # <span style="color:#0000ff">chgrp</span> -<span style="color:#000000">R mysql .    
+    </span><span style="color:#008080">13</span> # <span style="color:#0000ff">cp</span> support-files/mysql.server /etc/rc.d/init.d/<span style="color:#000000">mysqld    
+    </span><span style="color:#008080">14</span> # <span style="color:#0000ff">chmod</span> +x /etc/rc.d/init.d/<span style="color:#000000">mysqld    
+    </span><span style="color:#008080">15</span> # chkconfig --add mysqld  
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+此时不要启动MySQL！ 
+
+
+
+
+  
+
+三、安装并配置管理节点服务器(Server3)   
+
+作为管理节点服务器，Server3需要ndb_mgm和ndb_mgmd两个文件：   
+
+从http://www.mysql.com上下载mysql-max-4.1.9-pc-linux-gnu-i686.tar.gz 
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+    <span style="color:#008080"> 1</span> # <span style="color:#0000ff">mkdir</span> /usr/src/mysql-<span style="color:#000000">mgm    
+    </span><span style="color:#008080"> 2</span> # cd /usr/src/mysql-<span style="color:#000000">mgm    
+    </span><span style="color:#008080"> 3</span> # <span style="color:#0000ff">tar</span> -zxvf mysql-max-<span style="color:#800080">4.1</span>.<span style="color:#800080">9</span>-pc-linux-gnu-i686.<span style="color:#0000ff">tar</span><span style="color:#000000">.gz    
+    </span><span style="color:#008080"> 4</span> # <span style="color:#0000ff">rm</span> mysql-max-<span style="color:#800080">4.1</span>.<span style="color:#800080">9</span>-pc-linux-gnu-i686.<span style="color:#0000ff">tar</span><span style="color:#000000">.gz    
+    </span><span style="color:#008080"> 5</span> # cd mysql-max-<span style="color:#800080">4.1</span>.<span style="color:#800080">9</span>-pc-linux-gnu-<span style="color:#000000">i686    
+    </span><span style="color:#008080"> 6</span> # <span style="color:#0000ff">mv</span> bin/<span style="color:#000000">ndb_mgm .    
+    </span><span style="color:#008080"> 7</span> # <span style="color:#0000ff">mv</span> bin/<span style="color:#000000">ndb_mgmd .    
+    </span><span style="color:#008080"> 8</span> # <span style="color:#0000ff">chmod</span> +x ndb_mg*    
+    <span style="color:#008080"> 9</span> # <span style="color:#0000ff">mv</span> ndb_mg* /usr/bin/    
+    <span style="color:#008080">10</span> # cd    # <span style="color:#0000ff">rm</span> -rf /usr/src/mysql-mgm  
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+在开始为这台管理节点服务器建立配置文件： 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <span style="color:#008080">1</span> # <span style="color:#0000ff">mkdir</span> /var/lib/mysql-<span style="color:#000000">cluster    
+    </span><span style="color:#008080">2</span> # cd /var/lib/mysql-<span style="color:#000000">cluster    
+    </span><span style="color:#008080">3</span> # vi config.ini 
+
+
+
+
+
+
+
+在config.ini中添加如下内容： 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+    <span style="color:#ff0000">[</span><span style="color:#ff0000">NDBD DEFAULT</span><span style="color:#ff0000">]</span><span style="color:#000000"> 
+    
+    NoOfReplicas</span><span style="color:#808080">=</span><span style="color:#800000; font-weight:bold">2</span>
+    <span style="color:#ff0000">[</span><span style="color:#ff0000">MYSQLD DEFAULT</span><span style="color:#ff0000">]</span>
+    <span style="color:#ff0000">[</span><span style="color:#ff0000">NDB_MGMD DEFAULT</span><span style="color:#ff0000">]</span>
+    <span style="color:#ff0000">[</span><span style="color:#ff0000">TCP DEFAULT</span><span style="color:#ff0000">]</span><span style="color:#000000">    
+    # Managment Server   
+    
+    </span><span style="color:#ff0000">[</span><span style="color:#ff0000">NDB_MGMD</span><span style="color:#ff0000">]</span><span style="color:#000000">   　　
+    
+    HostName</span><span style="color:#808080">=</span><span style="color:#800000; font-weight:bold">192.168</span>.<span style="color:#800000; font-weight:bold">0.3</span><span style="color:#000000"> #管理节点服务器Server3的IP地址 
+    # Storage Engines   
+    
+    </span><span style="color:#ff0000">[</span><span style="color:#ff0000">NDBD</span><span style="color:#ff0000">]</span><span style="color:#000000">   
+    
+    HostName</span><span style="color:#808080">=</span><span style="color:#800000; font-weight:bold">192.168</span>.<span style="color:#800000; font-weight:bold">0.1</span><span style="color:#000000"> #MySQL数据库集群Server1的IP地址    
+    DataDir</span><span style="color:#808080">=</span> <span style="color:#808080">/</span><span style="color:#ff00ff">var</span><span style="color:#808080">/</span>lib<span style="color:#808080">/</span>mysql<span style="color:#808080">-</span><span style="color:#000000">cluster   
+    
+    </span><span style="color:#ff0000">[</span><span style="color:#ff0000">NDBD</span><span style="color:#ff0000">]</span><span style="color:#000000">   
+    
+    HostName</span><span style="color:#808080">=</span><span style="color:#800000; font-weight:bold">192.168</span>.<span style="color:#800000; font-weight:bold">0.2</span><span style="color:#000000"> #MySQL数据库集群Server2的IP地址    
+    DataDir</span><span style="color:#808080">=/</span><span style="color:#ff00ff">var</span><span style="color:#808080">/</span>lib<span style="color:#808080">/</span>mysql<span style="color:#808080">-</span>cluster   　　 
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+
+
+
+以下2个[MYSQLD]可以填写Server1和Server2的主机名。   
+
+但为了能够更快的更换集群中的服务器，推荐留空，否则更换服务器后必须对这个配置进行更改。 
+
+
+
+
+
+
+    
+    <span style="color:#ff0000">[</span><span style="color:#ff0000">MYSQLD</span><span style="color:#ff0000">]</span>
+    <span style="color:#ff0000">[</span><span style="color:#ff0000">MYSQLD</span><span style="color:#ff0000">]</span> 
+
+
+
+
+
+
+
+保存退出后，启动管理节点服务器Server3： 
+
+
+
+
+# ndb_mgmd 　　   
+
+启动管理节点后应该注意，这只是管理节点服务，并不是管理终端。因而你看不到任何关于启动后的输出信息。   
+
+  
+
+四、配置集群服务器并启动MySQL   
+
+在Server1和Server2中都需要进行如下改动： 
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+    <span style="color:#008080"> 1</span> # vi /etc/<span style="color:#000000">my.cnf   
+    </span><span style="color:#008080"> 2</span>
+    <span style="color:#008080"> 3</span> <span style="color:#000000">[mysqld]   
+    </span><span style="color:#008080"> 4</span>
+    <span style="color:#008080"> 5</span> <span style="color:#000000">ndbcluster   
+    </span><span style="color:#008080"> 6</span>
+    <span style="color:#008080"> 7</span> ndb-connectstring=<span style="color:#800080">192.168</span>.<span style="color:#800080">0.3</span><span style="color:#000000"> #Server3的IP地址    
+    </span><span style="color:#008080"> 8</span> <span style="color:#000000">[mysql_cluster]   
+    </span><span style="color:#008080"> 9</span>
+    <span style="color:#008080">10</span> ndb-connectstring=<span style="color:#800080">192.168</span>.<span style="color:#800080">0.3</span> #Server3的IP地址 
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+保存退出后，建立数据目录并启动MySQL： 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <span style="color:#008080">1</span> # <span style="color:#0000ff">mkdir</span> /var/lib/mysql-<span style="color:#000000">cluster    
+    </span><span style="color:#008080">2</span> # cd /var/lib/mysql-<span style="color:#000000">cluster    
+    </span><span style="color:#008080">3</span> # /usr/local/mysql/bin/ndbd --<span style="color:#000000">initial    
+    </span><span style="color:#008080">4</span> # /etc/rc.d/init.d/mysqld start  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+可以把/usr/local/mysql/bin/ndbd加到/etc/rc.local中实现开机启动。   
+
+注意：只有在第一次启动ndbd时或者对Server3的config.ini进行改动后才需要使用--initial参数！   
+
+  
+
+五、检查工作状态   
+
+回到管理节点服务器Server3上，并启动管理终端：   
+
+# /usr/bin/ndb_mgm 　　键入show命令查看当前工作状态：（下面是一个状态输出示例）   
+
+[root@mysql3 root]# /usr/bin/ndb_mgm -- NDB Cluster -- Management Client -- ndb_mgm> show Connected to Management Server at: localhost:1186 Cluster Configuration [ndbd(NDB)] 2 node(s) id=2 @192.168.0.1 (Version: 4.1.9, Nodegroup: 0, Master) id=3 @192.168.0.2
+ (Version: 4.1.9, Nodegroup: 0) [ndb_mgmd(MGM)] 1 node(s) id=1 @192.168.0.3 (Version: 4.1.9) [mysqld(API)] 2 node(s) id=4 (Version: 4.1.9) id=5 (Version: 4.1.9) ndb_mgm>
+  
+
+如果上面没有问题，现在开始测试MySQL：   
+
+注意，这篇文档对于MySQL并没有设置root密码，推荐你自己设置Server1和Server2的MySQL root密码。   
+
+在Server1中：   
+
+# /usr/local/mysql/bin/mysql -u root -p > use test; > CREATE TABLE ctest (i INT) ENGINE=NDBCLUSTER; > INSERT INTO ctest () VALUES (1); > SELECT * FROM ctest; 　　应该可以看到1 row returned信息（返回数值1）。
+  
+
+如果上述正常，则换到Server2上重复上面的测试，观察效果。如果成功，则在Server2中执行INSERT再换回到Server1观察是否工作正常。 
+  
+
+如果都没有问题，那么恭喜成功！   
+
+  
+
+六、破坏性测试   
+
+将Server1或Server2的网线拔掉，观察另外一台MySQL数据库集群服务器工作是否正常（可以使用SELECT查询测试）。测试完毕后，重新插入网线即可。
+  
+
+如果你接触不到物理服务器，也就是说不能拔掉网线，那也可以这样测试：   
+
+在Server1或Server2上：   
+
+# ps aux | grep ndbd 　　将会看到所有ndbd进程信息：   
+
+root 5578 0.0 0.3 6220 1964 ? S 03:14 0:00 ndbd   
+
+root 5579 0.0 20.4 492072 102828 ? R 03:14 0:04 ndbd   
+
+root 23532 0.0 0.1 3680 684 pts/1 S 07:59 0:00 grep ndbd 　　   
+
+然后杀掉一个ndbd进程以达到破坏MySQL集群服务器的目的：   
+
+# kill -9 5578 5579 　　   
+
+之后在另一台集群服务器上使用SELECT查询测试。并且在管理节点服务器的管理终端中执行show命令会看到被破坏的那台服务器的状态。   
+
+测试完成后，只需要重新启动被破坏服务器的ndbd进程即可：   
+
+# ndbd 　　注意！前面说过了，此时是不用加--inital参数的！   
+
+至此，MySQL数据库集群就配置完成了！
+
+
+
+
+
+

@@ -1,0 +1,796 @@
+---
+author: admin
+comments: true
+date: 2012-09-27 02:02:00+00:00
+layout: post
+slug: linux%e4%b8%adfedora%e5%ae%89%e8%a3%85memcached%e8%bd%ac%e8%bd%bd%e4%b8%8e%e6%80%bb%e7%bb%93
+title: linux中fedora安装memcached转载与总结
+wordpress_id: 80
+categories:
+- LINUX
+- MYSQL
+- 实用软件技巧
+- 操作系统
+- 海量数据处理
+tags:
+- linux
+- Mysql
+- 实用软件技巧
+- 操作系统相关
+- 海量数据处理
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Danga Interactive 开发 memcached的目的是创建一个内存缓存系统来处理其网站LiveJournal.com的巨大流量。每天超过2000万的页面访问量给LiveJournal的数据库施加了巨大的压力，因此Danga的[Brad
+ Fitzpatrick](http://write.blog.csdn.net/postedit#resources) 便着手设计了memcached。memcached不仅减少了网站数据库的负载，还成为如今世界上大多数高流量网站所使用的缓存解决方案。
+
+
+
+
+本文首先全面概述 memcached，然后指导您安装memcached以及在开发环境中构建它。我还将介绍memcached客户机命令（总共有9个）并展示如何在标准和高级memcached操作中使用它们。最后，我将提供一些使用memcached命令测量缓存的性能和效率的技巧。
+
+
+
+
+如何将 
+memcached 融入到您的环境中？
+
+
+
+
+在开始安装和使用 using memcached之前，我们需要了解如何将memcached融入到您的环境中。虽然在任何地方都可以使用memcached，但我发现需要在数据库层中执行几个经常性查询时，memcached往往能发挥最大的效用。我经常会在数据库和应用服务器之间设置一系列memcached实例，并采用一种简单的模式来读取和写入这些服务器。图1可以帮助您了解如何设置应用程序体系结构：
+
+
+
+
+  
+
+图 
+1.使用 memcached的示例应用程序体系结构  
+
+
+
+
+
+
+体系结构相当容易理解。我建立了一个 Web 层，其中包括一些Apache实例。下一层是应用程序本身。这一层通常运行于Apache
+ Tomcat或其他开源应用服务器之上。再下面一层是配置memcached实例的地方—即应用服务器与数据库服务器之间。在使用这种配置时，需要采用稍微不同的方式来执行数据库的读取和写入操作。
+
+
+
+
+读取
+
+
+
+
+我执行读取操作的顺序是从 Web 层获取请求（需要执行一次数据库查询）并检查之前在缓存中存储的查询结果。如果我找到所需的值，则返回它。如果未找到，则执行查询并将结果存储在缓存中，然后再将结果返回给Web层。
+
+
+
+
+写入
+
+
+
+
+将数据写入到数据库中时，首先需要执行数据库写入操作，然后将之前缓存的任何受此写入操作影响的结果设定为无效。此过程有助于防止缓存和数据库之间出现数据不一致性。
+
+
+
+
+
+
+
+
+
+
+  
+
+下面安装memcached
+
+
+
+
+装memcached首先需要安装安装libevent
+
+
+
+
+如果是centos可以yum安装
+
+
+<table align="center" class="   " >
+<tbody >
+<tr >
+
+<td style="background:rgb(221,237,251)" valign="middle" >
+
+
+# yum install libevent-devel
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+或者自己下载tar包
+
+
+
+
+清单 
+1. 生成和安装 libevent
+
+
+<table class="   " >
+<tbody >
+<tr >
+
+<td valign="middle" >
+
+
+cd libevent-1.4.11-stable/
+
+
+
+
+./configure 
+
+
+
+
+make 
+
+
+
+
+make install
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+接续安装memcached
+
+
+
+
+memcached
+
+
+
+
+从 [Danga Interactive](http://write.blog.csdn.net/postedit#resources) 获取memcached源文件，仍然选择最新的分发版。在撰写本文时，其最新版本是1.4.0。将tar.gz解压到方便的位置，并执行清单2中的命令：
+
+
+
+
+  
+
+清单 
+2. 生成和安装 memcached
+
+
+<table class="   " >
+<tbody >
+<tr >
+
+<td valign="top" >
+
+
+cd memcached-1.4.0/
+
+
+
+
+./configure 
+
+
+
+
+make 
+
+
+
+
+make install
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+完成这些步骤之后，您应该安装了一个 memcached 
+工作副本，并且可以使用它了。让我们进行简单介绍，然后使用它。
+
+
+
+
+
+
+
+安装完后启动memcached并分配32m内存（32为使用内存数，可按自身情况修改）
+<table align="center" class="    " >
+<tbody >
+<tr >
+
+<td style="background:rgb(221,237,251)" valign="middle" >
+
+
+/usr/local/memcached/bin/memcached -d -m 32 -l 127.0.0.1 -p 11211 -u root
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+  
+
+
+
+
+
+
+将memcached加入启动项
+<table align="center" class="   " >
+<tbody >
+<tr >
+
+<td style="background:rgb(221,237,251)" valign="middle" >
+
+
+# vi /etc/rc.d/rc.local
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+  
+
+
+
+
+
+
+按键盘上的 
+i 开始编辑
+
+
+
+
+在最后加入
+<table align="center" class="   " >
+<tbody >
+<tr >
+
+<td style="background:rgb(221,237,251)" valign="middle" >
+
+
+/usr/local/memcached/bin/memcached -d -m 32 -l 127.0.0.1 -p 11211 -u root
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+  
+
+
+
+
+
+
+按Esc键，再输入
+
+
+
+
+：wq
+
+
+
+
+保存退出
+
+
+
+
+如果需要，可以reboot一下，不过不用reboot应该已经生效~
+
+
+
+
+
+
+
+您将使用一个简单的 telnet客户机连接到memcached服务器。
+
+
+
+
+大多数操作系统都提供了内置的 telnet 客户机，但如果您使用的是基于Windows的操作系统，则需要下载第三方客户机。我推荐使用[PuTTy](http://write.blog.csdn.net/postedit#resources)。
+
+
+
+
+安装了 telnet 客户机之后，执行清单4中的命令：
+
+
+
+
+  
+
+清单 
+4. 连接到 memcached
+
+
+
+
+
+<table class="   " >
+<tbody >
+<tr >
+
+<td valign="middle" >
+
+
+telnet localhost 11211
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+如果一切正常，则应该得到一个 telnet 响应，它会指示Connected to localhost（已经连接到localhost）。如果未获得此响应，则应该返回之前的步骤并确保libevent和memcached的源文件都已成功生成。
+
+
+
+
+$ telnet localhost 11211
+
+
+
+
+Trying 127.0.0.1...
+
+
+
+
+Connected to localhost.
+
+
+
+
+Escape character is '^]'.
+
+
+
+
+在这里你就可以使用memcached的命令了get，set，stats等
+
+
+
+
+
+
+
+如果telnet不成出现not command那证明telenet服务没安装，按照下面安装
+
+
+
+
+Telnet服务的配置步骤如下:
+
+
+
+
+一、安装telnet软件包(通常要两个）
+
+
+
+
+1、 telnet-client (或telnet)，这个软件包提供的是telnet客户端程序；
+
+
+
+
+2、 telnet-server，这个软件包提供的是telnet服务器端程序；
+
+
+
+
+安装之前先检测是否这些软件包已安装，方法如下：
+
+
+
+
+[root@wljs root]#rpm –q telnet或[root@wljs root]#rpm–q
+ telnet-client
+
+
+
+
+[root@wljs root]#rpm –q telnet-server
+
+
+
+
+如果没有检测到软件包，需要进行安装
+
+
+
+
+[fedora启动telnet服务](http://www.blogjava.net/fanjs2000/archive/2012/06/04/379915.html)
+
+
+
+
+在win7上安装了SecurityCRT,登录VMWARE Fedora时候登录超时，检查了win7下的ip地址以及vm中fedora中ip地址，确认是在同一个局域网下，可能是没有启动telnet服务。
+
+
+
+
+一、linux下查询telnet是否安装：
+
+
+
+
+[root@localhost ~]# rpm -qa | grep telnet  
+
+telnet-0.17-38.fc7  
+
+已安装。
+
+
+
+
+二、查询telnet-server 驱动是否已经安装  
+
+[root@localhost ~]# ypm -qa | grep telnet-server
+
+
+
+
+[root@localhost ~]#
+
+
+
+
+发现未安装server
+
+
+
+
+三、安装telnet-server  
+
+[root@localhost ~]#yum -y install telnet-server  
+
+之后
+
+
+
+
+[root@localhost ~]# yum -qa |grep telnet-server  
+
+telnet-server-0.17-38.fc7
+
+
+
+
+安装完毕
+
+
+
+
+四、vim /etc/xinetd.d/telnet启用telnet
+
+
+
+
+修改disable = no
+
+
+
+
+保存
+
+
+
+
+五、vim /etc/sysconfig/selinux禁用本地策略应用设置
+
+
+
+
+修改SElinux = disabled
+
+
+
+
+保存
+
+
+
+
+六、启动xinetd服务
+
+
+
+
+[root@localhost ~]# service xinetd restart
+
+
+
+
+七、关闭防火墙
+
+
+
+
+[root@localhost ~]# iptables -F
+
+
+
+
+另：
+
+
+
+
+7.1、[root@localhost ~]#setup
+
+
+
+
+选择firewall configuration，使能或者禁用防火墙，也可以
+
+
+
+
+[root@localhost ~]# system-config-securitylevel-tui 
+进行配置
+
+
+
+
+7.2、永久配置方式：
+
+
+
+
+[root@localhost ~]#chkconfig iptables off  
+
+7.3、当即生效：
+
+
+
+
+[root@localhost ~]#service iptables stop
+
+
+
+
+八、通过SecurityCRT telnet linux，OK
+
+
+
+
+九、使能root 登录权限
+
+
+
+
+[root@localhost ~]# vim /etc/pam.d/login
+
+
+
+
+修改：
+
+
+
+
+#auth [user_unknown=ignore success=ok ignore=ignore default=bad] pam_securetty.so
+
+
+
+
+保存后退出。
+
+
+
+
+
+
+
+
+
+
+
+
+
+下面将memcached命令的参数罗伦如下，摘录自网友文章内容：
+
+
+
+
+# /usr/local/bin/memcached -d -m 200 -u root -l 192.168.1.91 -p 12301 -c 1000 -P /tmp/memcached.pid  
+
+相关解释如下：  
+
+-d选项是启动一个守护进程，  
+
+-m是分配给Memcache使用的内存数量，单位是MB，这里是200MB  
+
+-u是运行Memcache的用户，如果当前为 root 的话，需要使用此参数指定用户。  
+
+-l是监听的服务器IP地址，如果有多个地址的话，我这里指定了服务器的IP地址192.168.1.91  
+
+-p是设置Memcache监听的端口，我这里设置了12301，最好是1024以上的端口  
+
+-c选项是最大运行的并发连接数，默认是1024，这里设置了256  
+
+-P是设置保存Memcache的pid文件，我这里是保存在 /tmp/memcached.pid  
+
+停止Memcache进程：  
+
+# kill `cat /tmp/memcached.pid`  
+
+也可以启动多个守护进程，但是端口不能重复
+
+
+
+
+-------------------------------
+
+
+
+
+一开始说的“-d”参数需要进行进一步的解释
+
+
+
+
+-d install 安装memcached
+
+
+
+
+-d uninstall 卸载memcached
+
+
+
+
+-d start 启动memcached服务
+
+
+
+
+-d restart 重启memcached服务
+
+
+
+
+-d stop 停止memcached服务
+
+
+
+
+-d shutdown 停止memcached服务
+
+
+
+
+  
+
+
+
+
+
+
+-------------------------------
+
+
+
+
+附加功能：
+
+
+
+
+1、查看启动的memcache服务：
+
+
+
+
+netstat -lp | grep memcached
+
+
+
+
+2、查看memcache的进程号（根据进程号，可以结束memcache服务：“kill -9 进程号”）
+
+
+
+
+ps -ef | grep memcached 
+
+
+
+
+
+
+
+
+
+
+
+参考地址[http://www.ibm.com/developerworks/cn/java/j-memcached1/#resources](http://www.ibm.com/developerworks/cn/java/j-memcached1/#resources)
+
+
+

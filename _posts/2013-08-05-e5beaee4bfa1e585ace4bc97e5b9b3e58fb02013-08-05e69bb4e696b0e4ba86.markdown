@@ -1,0 +1,57 @@
+---
+author: admin
+comments: true
+date: 2013-08-05 06:47:44+00:00
+layout: post
+slug: '%e5%be%ae%e4%bf%a1%e5%85%ac%e4%bc%97%e5%b9%b3%e5%8f%b02013-08-05%e6%9b%b4%e6%96%b0%e4%ba%86'
+title: 微信公众平台2013.08.05更新了
+wordpress_id: 202
+categories:
+- 天下杂侃
+- 开放平台
+tags:
+- 微信
+---
+
+下面是摘自官网的说明
+
+
+#### 1. 运营主体为组织，可选择成为服务号或者订阅号。
+
+
+运营主体为组织，可在新注册的时候选择成为服务号或者订阅号。之前注册的公众号，默认为订阅号，可升级为服务号。
+
+![](https://res.wx.qq.com/mpres/htmledition/images/mp-update-33/mp-update-33-1177db0.png)
+
+
+#### 2. 服务号可以申请自定义菜单。
+
+
+![](https://res.wx.qq.com/mpres/htmledition/images/mp-update-33/mp-update-33-2175c39.png)
+
+
+#### 3. 使用QQ登录的公众号，可以升级为邮箱登录。
+
+
+![](https://res.wx.qq.com/mpres/htmledition/images/mp-update-33/mp-update-33-3177db0.png)
+
+
+#### 4. 使用邮箱登录的公众号，可以修改登录邮箱。
+
+
+![](https://res.wx.qq.com/mpres/htmledition/images/mp-update-33/mp-update-33-4-1177db0.png)
+
+
+#### 5. 编辑图文消息可选填作者。
+
+
+![](https://res.wx.qq.com/mpres/htmledition/images/mp-update-33/mp-update-33-5175c39.png)
+
+
+#### 6. 群发消息可以同步到腾讯微博。
+
+
+![](https://res.wx.qq.com/mpres/htmledition/images/mp-update-33/mp-update-33-6175c39.png)
+
+微信团队
+2013年8月5日

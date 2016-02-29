@@ -1,0 +1,54 @@
+---
+author: admin
+comments: true
+date: 2014-08-15 14:50:08+00:00
+layout: post
+slug: ubuntu14-04%e5%ae%89%e8%a3%85%e6%90%9c%e7%8b%97%e8%be%93%e5%85%a5%e6%b3%95
+title: ubuntu14.04安装搜狗输入法
+wordpress_id: 301
+categories:
+- LINUX
+- 实用软件技巧
+- 未分类
+tags:
+- ubuntu
+---
+
+一,从官网下载并安装
+
+是多少位就安装多少位的,14.04双击就能安装成功,安装完毕注销一下,这个时候还是不能用,往下看
+
+下载地址:http://pinyin.sogou.com/linux/?r=pinyin
+
+二,点击设置->语言支持,提示更新把他更新掉,注销,然后在下面选择键盘输入方式系统fcitx
+
+[![2014-08-15 22:43:11 的屏幕截图](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/08/2014-08-15-224311-的屏幕截图.png)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/08/2014-08-15-224311-的屏幕截图.png)
+
+
+
+注销,应该就是搜狗输入法了,如果还不行,看下面.
+
+三,
+
+执行下面的命令
+
+    
+    im-config
+
+
+这时出现一个对话框，点击确定，出来一个可以选的,选fcitx,然后有一个对话框，点击Yes，
+
+注销掉再看,还不行?看下面
+
+四,
+
+运行命令
+
+    
+    fcitx-config-gtk3
+    点击对话框左下角的（+）按钮，弹出另一个对话框如上图所示。对勾去掉,找到搜狗即可.
+    
+    以上四步应该是可以了..
+
+
+

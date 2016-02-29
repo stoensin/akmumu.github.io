@@ -1,0 +1,277 @@
+---
+author: admin
+comments: true
+date: 2013-01-21 10:11:00+00:00
+layout: post
+slug: '%e4%b8%80%e4%b8%aa%e7%99%bb%e9%99%86%e5%ae%89%e5%85%a8%e7%9a%84%e5%87%bd%e6%95%b0php-mysql_real_escape_string-%e5%87%bd%e6%95%b0'
+title: 一个登陆安全的函数PHP mysql_real_escape_string() 函数
+wordpress_id: 153
+categories:
+- MYSQL
+- PHP
+tags:
+- Mysql
+- php程序设计
+---
+
+
+
+
+众所周知，我们现在访问大部分网站都需要我们登陆之后才能够获得更多的资源，所以开发网站的时候第一个想到的功能莫过于登陆与注册，其中登陆的时候就涉及的安全问题了，比如你的后台，是不希望大家都去登陆的，所以我们开通了几个账号，但是如果限制做的不好，就会被人利用，其中有一个函数就是限制这方面的。
+
+
+
+
+  
+
+
+
+
+
+
+引用手册上的例子：
+
+
+
+
+
+
+
+
+
+
+## 定义和用法
+
+
+
+
+mysql_real_escape_string() 函数转义 SQL 语句中使用的字符串中的特殊字符。
+
+
+
+
+下列字符受影响：
+
+
+
+
+
+
+  * x00 
+  * n 
+  * r 
+  *   * ' 
+  * "
+  * x1a 
+
+
+
+如果成功，则该函数返回被转义的字符串。如果失败，则返回 false。
+
+
+
+
+### 语法
+
+
+
+    
+    mysql_real_escape_string(string,connection)
+
+
+<table class="dataintable " >
+<tbody >
+<tr >
+参数
+描述
+</tr>
+<tr >
+
+<td >string
+</td>
+
+<td >必需。规定要转义的字符串。
+</td>
+</tr>
+<tr >
+
+<td >connection
+</td>
+
+<td >可选。规定 MySQL 连接。如果未规定，则使用上一个连接。
+</td>
+</tr>
+</tbody>
+</table>
+
+
+### 说明
+
+
+
+
+本函数将 _string_ 中的特殊字符转义，并考虑到连接的当前字符集，因此可以安全用于 [
+mysql_query()](http://www.w3school.com.cn/php/func_mysql_query.asp)。
+
+
+
+
+
+
+
+
+
+
+## 提示和注释
+
+
+
+
+提示：可使用本函数来预防数据库攻击。
+
+
+
+
+
+
+
+
+
+
+## 例子
+
+
+
+
+### 例子 1
+
+
+
+    
+    <?php
+    $con = mysql_connect("localhost", "hello", "321");
+    if (!$con)
+      {
+      die('Could not connect: ' . mysql_error());
+      }
+    
+    // 获得用户名和密码的代码
+    
+    // 转义用户名和密码，以便在 SQL 中使用
+    $user = <code>mysql_real_escape_string($user)</code>;
+    $pwd = <code>mysql_real_escape_string($pwd)</code>;
+    
+    $sql = "SELECT * FROM users WHERE
+    user='" . $user . "' AND password='" . $pwd . "'"
+    
+    // 更多代码
+    
+    mysql_close($con);
+    ?>
+
+
+
+
+### 例子 2
+
+
+
+
+数据库攻击。本例演示如果我们不对用户名和密码应用 mysql_real_escape_string() 函数会发生什么：
+
+
+
+    
+    <?php
+    $con = mysql_connect("localhost", "hello", "321");
+    if (!$con)
+      {
+      die('Could not connect: ' . mysql_error());
+      }
+    
+    $sql = "SELECT * FROM users
+    WHERE user='{$_POST['user']}'
+    AND password='{$_POST['pwd']}'";
+    mysql_query($sql);
+    
+    // 不检查用户名和密码
+    // 可以是用户输入的任何内容，比如：
+    $_POST['user'] = 'john';
+    $_POST['pwd'] = "' OR ''='";
+    
+    // 一些代码...
+    
+    mysql_close($con);
+    ?>
+
+
+
+
+那么 SQL 查询会成为这样：
+
+
+
+    
+    SELECT * FROM users
+    WHERE user='john' AND password='' OR ''=''
+
+
+
+
+这意味着任何用户无需输入合法的密码即可登陆。
+
+
+
+
+### 例子 3
+
+
+
+
+预防数据库攻击的正确做法：
+
+
+
+    
+    <?php
+    function check_input($value)
+    {
+    // 去除斜杠
+    if (get_magic_quotes_gpc())
+      {
+      $value = <code>stripslashes($value)</code>;
+      }
+    // 如果不是数字则加引号
+    if (!is_numeric($value))
+      {
+      $value = "'" . <code>mysql_real_escape_string($value)</code> . "'";
+      }
+    return $value;
+    }
+    
+    $con = mysql_connect("localhost", "hello", "321");
+    if (!$con)
+      {
+      die('Could not connect: ' . mysql_error());
+      }
+    
+    // 进行安全的 SQL
+    $user = check_input($_POST['user']);
+    $pwd = check_input($_POST['pwd']);
+    $sql = "SELECT * FROM users WHERE
+    user=$user AND password=$pwd";
+    
+    mysql_query($sql);
+    
+    mysql_close($con);
+    ?>
+
+
+
+
+
+文档上说的很清楚，只需要记住这个函数的名字叫做mysql_real_escape_string()就可以了
+
+
+
+

@@ -1,0 +1,21 @@
+---
+author: admin
+comments: true
+date: 2013-09-23 01:46:34+00:00
+layout: post
+slug: '%e5%9c%a8%e7%ba%bf%e7%ae%a1%e7%90%86%e7%9b%91%e6%8e%a7%e4%bd%a0%e7%9a%84memcache%ef%bc%8cweb%e5%b7%a5%e5%85%b7memadmin'
+title: 在线管理监控你的memcache，web工具memadmin
+wordpress_id: 231
+categories:
+- PHP
+tags:
+- memcache
+---
+
+这个工具可以满足日常大部分管理操作
+
+[http://www.junopen.com/memadmin/](http://www.junopen.com/memadmin/)其中有使用截图和介绍
+
+[https://github.com/junstor/memadmin](https://github.com/junstor/memadmin) 下载地址
+
+

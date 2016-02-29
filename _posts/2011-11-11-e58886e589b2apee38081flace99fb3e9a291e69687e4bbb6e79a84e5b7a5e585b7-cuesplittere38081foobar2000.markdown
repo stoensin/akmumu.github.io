@@ -1,0 +1,255 @@
+---
+author: admin
+comments: true
+date: 2011-11-11 01:57:00+00:00
+layout: post
+slug: '%e5%88%86%e5%89%b2ape%e3%80%81flac%e9%9f%b3%e9%a2%91%e6%96%87%e4%bb%b6%e7%9a%84%e5%b7%a5%e5%85%b7-cuesplitter%e3%80%81foobar2000'
+title: 分割APE、FLAC音频文件的工具---CUESplitter、Foobar2000
+wordpress_id: 18
+categories:
+- 实用软件技巧
+tags:
+- 实用软件技巧
+---
+
+
+
+
+[cuesplitter_setup.exe]() 1.2MB
+
+
+
+
+[foobar2000_0.9.4.5.exe ]()1.6MB
+
+
+
+
+[MAC_401b2.exe ]()1.2MB  
+
+**链接分别是：   
+
+CUESplitter 1.0  
+
+Foobar 2000 0.9.4.5  
+
+****Monkey's Audio 4.01 beta2  
+
+  
+
+都为最新版本！  
+
+  
+
+上面是ed2k链接，本人做源，有兴趣的朋友可以直接从这里下。（提前要装[电驴](http://board.verycd.com/t473644.html)）  
+
+**  
+
+往往从网上下的ape格式音乐是一个大的ape文件+几k的cue文件，但是有时候只喜欢专辑里面的一两首，其余的不喜欢听，又占用着宝贵的硬盘空间怎么办？  
+
+有了下面两个家伙就不用愁了：  
+
+CUESplitter   
+
+Foobar2000  
+
+  
+
+Foobar2000 的大名我就不用多说了，大家都知道。分割方法见下图：  
+
+  
+
+
+
+
+
+
+[](http://hiphotos.baidu.com/junhuoku/pic/item/4b7d563f60fe70c97c1e7108.jpg)
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/hiphotos_baidu_2eee3251da775213377abe14.jpg)
+
+
+
+
+  
+
+  
+
+注意：要选择cue文件  
+
+foobar2000 分割后是wav格式，是一种未经压缩的音频格式，体积稍大。  
+
+  
+
+**下面重点介绍CUESplitter：**  
+
+首先到主页下载----http://www.medieval.it/content/blogsection/6/66/ 选择 第三项 Medieval CUE Splitter ，下载后安装，默认界面语言是英文，如果不习惯可以 选择 language--简体中文 。  
+
+  
+
+然后下载安装大名鼎鼎的 
+Monkey's Audio （因为 cue splitter要用到）  
+
+http://www.monkeysaudio.com/download.html  
+
+  
+
+方法： 文件---打开cue文件  
+
+  
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/hiphotos_baidu_297a0e543f6024143b2935f4.jpg)
+
+
+  
+
+
+
+
+配置--常规--将输出文件置在该文件夹下（选择分割后文件的位置）  
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/hiphotos_baidu_74a5b72ab1c9c4335243c1f3.jpg)
+
+
+  
+
+注意看哦，还支持winamp播放器  
+
+  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/i238_photobucket_72d51ffe.jpg)  
+
+  
+
+如图所示，点击修改，弹出 修改文件名规则 对话框，在这里设置自己喜欢的显示方式。不过我一直使用默认。  
+
+
+
+
+
+
+
+
+
+  
+
+好了，就这么简单。赶快下来试试吧。  
+
+这些是最基本的使用介绍，CUESplitter还有批处理功能，有兴趣的话自己研究吧 :-)  
+
+  
+
+**CUESplitter 分割后的ape音质不但没有损毁，反而有一些提升（虽然人耳根本听不出来）。这里我说一下，用foobar2000分割成wav，然后用monkey's audio 转换成ape对原ape音质有一定程度的损毁（虽然人耳也听不出来）。所以我推荐大家还是用 CUESplitter。**  
+
+  
+
+补充一点小经验：  
+
+  
+
+按照默认设置分割ape文件后，得到的每一个歌曲名字前面会有01、02、03等依次的序列号，比如01 蔡琴 你的眼神、02 蔡琴 恰似你的温柔，有的朋友可能会不喜欢这样，想名字直接显示 蔡琴 你的眼神、蔡琴 恰似你的温柔，解决方法如下图所示：  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/hiphotos_baidu_9101b3ada4ca99024a36d643.jpg)
+
+
+  
+
+
+
+
+
+
+
+选择 [%n][%a]%t 和 [%a]%t 效果区别如下：  
+
+  
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/i238_photobucket_Snap2.jpg)
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/i238_photobucket_Snap1-1.jpg)
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

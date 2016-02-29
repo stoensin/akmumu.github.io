@@ -1,0 +1,64 @@
+---
+author: admin
+comments: true
+date: 2011-03-27 12:37:00+00:00
+layout: post
+slug: '%e9%97%aa%e7%94%b5%e9%97%aa%e7%83%81%e8%83%8c%e6%99%af%e7%89%b9%e6%95%88'
+title: 闪电闪烁背景特效
+wordpress_id: 7
+categories:
+- 前端美工设计
+tags:
+- 前端美工设计
+---
+
+
+
+
+[http://www.51tmb.com/jscode/20.html](http://www.51tmb.com/jscode/20.html)点击预览
+
+
+
+
+
+
+
+闪电闪烁背景特效。复制下面代码保存为html文档，然后用浏览器打开即可预览效果。代码如下：
+
+
+
+
+<html>  
+<head>  
+<title>闪电闪烁背景特效---网页特效---我要淘模板网|www.51tmb.com|</title>  
+</head><body>  
+<!--将以下代码加入HTML的<Body></Body>之间-->  
+<script LANGUAGE="JavaScript">  
+function blinkOn(){  
+theWin.document.bgColor = "000000"  
+nTimes++  
+JSCTimeOutID = window.setTimeout("blinkOff()",50);  
+}  
+function blinkOff(){  
+theWin.document.bgColor = "FFFFFF"  
+if (nTimes < 3)  
+JSCTimeOutID = window.setTimeout("blinkOn()",50);  
+else theWin.history.go(0)  
+}  
+function blinkit(aWin)  
+{  
+nTimes = 0  
+theWin = aWin  
+JSCTimeOutID = window.setTimeout("blinkOn()",50);  
+}  
+</script>  
+  
+<form>  
+<div align="center"><center><p><input TYPE="BUTTON" VALUE="让暴风雨来的更猛烈些吧!" onClick="blinkit(self)">   
+</p>  
+</center></div>  
+</form>  
+</body></html>
+
+
+

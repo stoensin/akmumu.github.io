@@ -1,0 +1,224 @@
+---
+author: admin
+comments: true
+date: 2012-10-12 10:09:00+00:00
+layout: post
+slug: fedora151617-%e5%90%af%e5%8a%a8sshd%e6%9c%8d%e5%8a%a1
+title: Fedora15/16/17 启动sshd服务
+wordpress_id: 94
+categories:
+- LINUX
+- 操作系统
+tags:
+- linux
+- 操作系统相关
+---
+
+
+
+
+**Fedora15/16/17启动sshd服务：**
+
+
+
+
+1、先确认是否已安装ssh服务：
+
+
+
+
+[root@localhost ~]# rpm -qa | grep openssh-server
+
+
+
+
+　openssh-server-5.3p1-19.fc12.i686 
+（这行表示已安装）
+
+
+
+
+若未安装ssh服务，可输入：
+
+
+
+
+#yum install openssh-server 
+
+
+
+
+进行安装
+
+
+
+
+  
+
+
+
+
+
+
+2、修改配置文件
+
+
+
+
+#vi /etc/ssh/sshd_config
+
+
+
+
+　#Port 22 监听的端口号，默认是22，可以自定义。
+
+
+
+
+　　#Protocol 2 支持的协议，默认就好，不用修改
+
+
+
+
+　　#PermitRootLogin yes 是否允许root直接登录，最好设置为no
+
+
+
+
+#MMaxAuthTries 6 最大登录数，默认是6，建议设置为3，防止别人密码穷举。
+
+
+
+
+3、查看sshd状态：
+
+
+
+
+#service sshd status
+
+
+
+
+**5) 如果开启了防火墙, 我们需要允许TCP协议的22端口通过.  
+
+  
+
+　　[root@localhost ~]# iptables -I INPUT -p tcp --dport 22 -j ACCEPT  
+
+  
+
+　　6) 如果想让ssh服务开机就运行, 需要使用# ntsysv命令打开开机服务选项卡. 选中sshd后按"OK".  
+
+  
+
+　　[root@localhost ~]# ntsysv**
+
+
+
+
+由于Fedora 15/16使用systemd服务，
+
+
+
+
+1、启动SSH服务与上面有些不同
+
+
+
+
+# systemctl start sshd.service
+
+
+
+
+或者 #service sshd start  
+
+
+
+
+
+
+也可以用 restart 和 stop控制sshd服务
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+2、设置系统启动时开启服务
+
+
+
+
+# systemctl enable sshd.service
+
+
+
+
+  
+
+
+
+
+
+
+3、同样也需开启防火墙22端口
+
+
+
+
+#iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+
+
+
+也可以将上述参数加入防火墙配置中：
+
+
+
+
+#vi /etc/sysconfig/iptables
+
+
+
+
+加入：-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+
+
+
+
+保存后重启iptables即可
+
+
+
+
+重启防火墙，这里有两种方式重启防火墙 　　a) 重启后生效  
+
+　　开启： chkconfig iptables on  
+
+　　关闭： chkconfig iptables off 　　b) 即时生效，重启后失效  
+
+　　开启： service iptables start  
+
+　　关闭： service iptables stop 　　再次从客户端访问，成功！
+
+
+
+
+
+
+
+详情可以查阅 [
+iptables的用法](http://blog.163.com/jackswu@yeah/blog/static/1406291232012511104940/)
+
+
+

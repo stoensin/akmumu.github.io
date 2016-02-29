@@ -1,0 +1,4102 @@
+---
+author: admin
+comments: true
+date: 2012-08-20 07:11:00+00:00
+layout: post
+slug: html%e7%89%b9%e6%ae%8a%e7%ac%a6%e5%8f%b7%e5%af%b9%e7%85%a7%e8%a1%a8
+title: HTML特殊符号对照表
+wordpress_id: 51
+categories:
+- 前端美工设计
+tags:
+- 前端美工设计
+---
+
+
+
+
+
+<table cellpadding="2" cellspacing="1" align="center" border="0" bgcolor="#e1e1e1" >
+<tbody >
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+特殊符号
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+命名实体
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+十进制编码
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+特殊符号
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+命名实体
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+十进制编码
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Α
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Alpha;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#913;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Β
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Beta; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#914; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Γ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Gamma; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#915; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Δ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Delta;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#916;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Ε
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Epsilon;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#917;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Ζ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Zeta;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#918;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Η
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Eta;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#919;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Θ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Theta;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#920;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Ι
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Iota;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#921;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Κ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Kappa;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#922;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Λ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Lambda;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#923;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Μ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Mu;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#924;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Ν
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Nu;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#925;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Ξ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Xi;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#926;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Ο
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Omicron;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#927;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Π
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Pi;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#928;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Ρ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Rho;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#929;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Σ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Sigma;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#931;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Τ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Tau;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#932;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Υ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Upsilon;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#933;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Φ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Phi;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#934;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Χ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Chi;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#935;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+Ψ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Psi;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#936;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+Ω
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Omega;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#937;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+α
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&alpha;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#945;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+β
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&beta;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#946;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+γ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&gamma;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#947;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+δ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&delta;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#948;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+ε
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&epsilon;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#949;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+ζ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&zeta;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#950;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+η
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&eta;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#951;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+θ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&theta;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#952;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+ι
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&iota;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#953;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+κ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&kappa;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#954;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+λ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&lambda;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#955;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+μ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&mu;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#956;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+ν
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&nu;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#957;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+ξ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&xi;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#958;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+ο
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&omicron;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#959;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+π
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&pi;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#960;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+ρ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&rho;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#961;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+ς
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&sigmaf;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#962; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+σ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&sigma; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#963; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+τ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&tau; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#964; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+υ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&upsilon; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#965; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+φ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&phi; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#966; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+χ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&chi; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#967; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+ψ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&psi; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#968; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+ω 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&omega; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#969; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+ϑ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&thetasym; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#977; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+ϒ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&upsih; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#978; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+ϖ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&piv; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#982; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+• 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&bull; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8226; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+… 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&hellip; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8230; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+′ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&prime; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8242; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+″ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&Prime; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8243; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+‾ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&oline; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8254; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+⁄ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&frasl; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8260; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+℘ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&weierp; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8472; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+ℑ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&image; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8465; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+ℜ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&real; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8476; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+™ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&trade; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8482; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+ℵ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&alefsym; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8501; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+← 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&larr; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8592; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+↑ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&uarr; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8593; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+→ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&rarr; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8594; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+↓ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&darr; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8595; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+↔ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&harr; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8596; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+↵ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&crarr; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8629; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+⇐ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&lArr; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8656; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+⇑ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&uArr; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8657; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+⇒ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&rArr; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8658; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+⇓ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&dArr; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8659; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+⇔ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&hArr; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8660; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+∀ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&forall; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8704; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+∂ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&part; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8706; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+∃ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&exist; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8707; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+∅ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&empty; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8709; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+∇ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&nabla; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8711; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+∈ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&isin; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8712; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+∉ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&notin; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8713; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+∋ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&ni; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8715; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+∏ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&prod; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8719; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+∑ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&sum; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8722; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+− 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&minus; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8722; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+∗ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&lowast; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8727; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+√ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&radic; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8730; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+∝ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&prop; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8733; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+∞ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&infin; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8734; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+∠ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&ang; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8736; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+∧ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&and; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8869; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+∨ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&or; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8870; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+∩ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&cap; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8745; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+∪ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&cup; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8746; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+∫ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&int; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8747; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+∴ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&there4; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8756; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+∼
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&sim; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8764; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+≅ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&cong; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8773; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+≈ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&asymp; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8773; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+≠ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&ne; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8800; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+≡ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&equiv; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8801; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+≤ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&le; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8804; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+≥ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&ge; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8805; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+⊂ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&sub; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8834; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+⊃ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&sup; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8835; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+⊄ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&nsub; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8836; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+⊆ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&sube; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8838; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+⊇ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&supe; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8839; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+⊕ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&oplus; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8853; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+⊗ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&otimes; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8855; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+⊥ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&perp; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8869; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+⋅ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&sdot; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8901; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+⌈ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&lceil; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8968; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+⌉ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&rceil; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8969; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+⌊ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&lfloor; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#8970; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+⌋ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&rfloor; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#8971; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+◊ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&loz; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#9674; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+♠ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&spades; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#9824; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+♣ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&clubs; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#9827; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+♥ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&hearts; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#9829; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+♦ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&diams; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#9830; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&nbsp; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#160; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+¡ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&iexcl; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#161; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+¢ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&cent; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#162; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+£ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&pound; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#163; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+¤ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&curren; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#164; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+¥ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&yen; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#165; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+¦ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&brvbar; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#166; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+§ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&sect; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#167; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+¨ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&uml; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#168; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+© 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&copy; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#169; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+ª 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&ordf; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#170; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+« 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&laquo; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#171; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+¬ 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&not; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#172; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+­
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&shy; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#173; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+® 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&reg; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#174; 
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+¯
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&macr;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#175;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+°
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&deg;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+d&#176;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+± 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&plusmn; 
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#177; 
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+²
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&sup2;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#178;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+³
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&sup3;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#179;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+´
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&acute;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+&#180;
+
+
+
+</td>
+</tr>
+<tr >
+
+<td bgcolor="#e9f8e7" width="109" height="28" >
+
+
+µ
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+
+
+&micro;
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="128" >
+
+
+&#181;
+
+
+
+</td>
+
+<td bgcolor="#e9f8e7" width="109" >
+
+
+
+
+</td>
+
+<td bgcolor="#f4fbf3" width="139" >
+</td>
+
+<td bgcolor="#f4fbf3" width="129" >
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+

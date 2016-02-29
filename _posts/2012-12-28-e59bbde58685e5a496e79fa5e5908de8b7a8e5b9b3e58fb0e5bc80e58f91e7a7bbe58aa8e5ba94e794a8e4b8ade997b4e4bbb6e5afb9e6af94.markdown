@@ -1,0 +1,17 @@
+---
+author: admin
+comments: true
+date: 2012-12-28 05:51:00+00:00
+layout: post
+slug: '%e5%9b%bd%e5%86%85%e5%a4%96%e7%9f%a5%e5%90%8d%e8%b7%a8%e5%b9%b3%e5%8f%b0%e5%bc%80%e5%8f%91%e7%a7%bb%e5%8a%a8%e5%ba%94%e7%94%a8%e4%b8%ad%e9%97%b4%e4%bb%b6%e5%af%b9%e6%af%94'
+title: 国内外知名跨平台开发移动应用中间件对比
+wordpress_id: 143
+categories:
+- 实用软件技巧
+tags:
+- 实用软件技巧
+---
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/img_my_1356674219_7936.jpg)
+

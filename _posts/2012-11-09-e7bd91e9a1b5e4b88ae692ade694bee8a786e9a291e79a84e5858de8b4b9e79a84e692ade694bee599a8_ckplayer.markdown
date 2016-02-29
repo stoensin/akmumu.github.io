@@ -1,0 +1,281 @@
+---
+author: admin
+comments: true
+date: 2012-11-09 04:06:00+00:00
+layout: post
+slug: '%e7%bd%91%e9%a1%b5%e4%b8%8a%e6%92%ad%e6%94%be%e8%a7%86%e9%a2%91%e7%9a%84%e5%85%8d%e8%b4%b9%e7%9a%84%e6%92%ad%e6%94%be%e5%99%a8_ckplayer'
+title: 网页上播放视频的免费的播放器_CKPlayer
+wordpress_id: 123
+categories:
+- JS
+- 前端美工设计
+tags:
+- JS
+- 前端美工设计
+---
+
+
+
+
+今天在工作的过程中遇到一个功能：在网页中加入视频播放器，类似于我们经常看到的[优酷](http://www.youku.com/),[爱奇艺](http://www.iqiyi.com/)等视频网站的功能。
+
+
+
+
+ckplayer（官网：[http://www.ckplayer.com/](http://www.ckplayer.com/)）是一款在网页上播放视频的免费的播放器，功能强大，体积小巧，使用起来随心所欲。
+
+
+
+
+![](http://images.cnblogs.com/cnblogs_com/hongten/422905/r_QQ%e6%88%aa%e5%9b%be20121031114022.png)
+
+
+
+
+![](http://images.cnblogs.com/cnblogs_com/hongten/422905/r_QQ%e6%88%aa%e5%9b%be20121031114154.png)
+
+
+
+
+注意上面的红色框：请注意：播放器上的任何元素都可以换成您自己的！（在开发过程中，你回发现ckplayer的注释写的是很完全的，这个值得赞一下....）
+
+
+
+
+不管这么多了，先来看看效果图吧：
+
+
+
+
+1.这是播放前的广告
+
+
+
+
+![](http://images.cnblogs.com/cnblogs_com/hongten/422905/r_%e6%9c%aa%e5%91%bd%e5%90%8d.jpg)
+
+
+
+
+2.这是播放的视频
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_cnblogs_r_1.jpg)
+
+
+
+
+3.暂停界面
+
+
+
+
+![](http://images.cnblogs.com/cnblogs_com/hongten/422905/r_QQ%e6%88%aa%e5%9b%be2120121031114154.png)
+
+
+
+
+4.调整功能界面
+
+
+
+
+![](http://images.cnblogs.com/cnblogs_com/hongten/422905/r_QQ%e6%88%aa%e5%9b%be20121031194606.png)
+
+
+
+
+5.分享功能界面
+
+
+
+
+![](http://images.cnblogs.com/cnblogs_com/hongten/422905/r_QQ%e6%88%aa%e5%9b%be20121031194623.png)
+
+
+
+
+6.关灯功能界面
+
+
+
+
+![](http://images.cnblogs.com/cnblogs_com/hongten/422905/r_QQ%e6%88%aa%e5%9b%be20121031194646.png)
+
+
+
+
+看到这里，你是不是也想动手试试，做出自己的网页播放器。
+
+
+
+
+开始动手：
+
+
+
+
+==================================================================================
+
+
+
+
+前期准备：
+
+
+
+
+1.下载ckplayer，这里下载 推荐完整版
+
+
+
+
+下载地址：[http://www.ckplayer.com/bbs/forum.php?mod=viewthread&tid=423](http://www.ckplayer.com/bbs/forum.php?mod=viewthread&tid=423)
+
+
+
+
+下载完成后，解压缩：
+
+
+
+
+![](http://images.cnblogs.com/cnblogs_com/hongten/422905/r_QQ%e6%88%aa%e5%9b%be20121031200225.png)
+
+
+
+
+我们只需要下面红色部分文件：
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_cnblogs_r_23.jpg)
+
+
+
+
+2.项目结构：
+
+
+
+
+![](http://images.cnblogs.com/cnblogs_com/hongten/422905/r_QQ%e6%88%aa%e5%9b%be20121031194933.png)
+
+
+
+
+3.在一个html页面中加入这些代码：
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/hongten/archive/2012/10/31/javascript_ckplayer.html)
+
+
+
+    
+    <span style="color:rgb(0,128,128)"> 1</span> <span style="color:rgb(0,0,255)"><</span><span style="color:rgb(128,0,0)">div </span><span style="color:rgb(255,0,0)">id</span><span style="color:rgb(0,0,255)">="flashcontent"</span><span style="color:rgb(0,0,255)">></</span><span style="color:rgb(128,0,0)">div</span><span style="color:rgb(0,0,255)">></span>
+    <span style="color:rgb(0,128,128)"> 2</span> <span style="color:rgb(0,0,255)"><</span><span style="color:rgb(128,0,0)">div </span><span style="color:rgb(255,0,0)">id</span><span style="color:rgb(0,0,255)">="video"</span><span style="color:rgb(255,0,0)"> style</span><span style="color:rgb(0,0,255)">="position:relative;z-index: 100;width:600px;height:400px;"</span><span style="color:rgb(0,0,255)">><</span><span style="color:rgb(128,0,0)">div </span><span style="color:rgb(255,0,0)">id</span><span style="color:rgb(0,0,255)">="a1"</span><span style="color:rgb(0,0,255)">></</span><span style="color:rgb(128,0,0)">div</span><span style="color:rgb(0,0,255)">></</span><span style="color:rgb(128,0,0)">div</span><span style="color:rgb(0,0,255)">></span>
+    <span style="color:rgb(0,128,128)"> 3</span> <span style="color:rgb(0,0,255)"><</span><span style="color:rgb(128,0,0)">script </span><span style="color:rgb(255,0,0)">type</span><span style="color:rgb(0,0,255)">="text/javascript"</span><span style="color:rgb(255,0,0)"> src</span><span style="color:rgb(0,0,255)">="ckplayer/ckplayer.js"</span><span style="color:rgb(255,0,0)"> charset</span><span style="color:rgb(0,0,255)">="UTF-8"</span><span style="color:rgb(0,0,255)">></</span><span style="color:rgb(128,0,0)">script</span><span style="color:rgb(0,0,255)">></span>
+    <span style="color:rgb(0,128,128)"> 4</span> <span style="color:rgb(0,0,255)"><</span><span style="color:rgb(128,0,0)">script </span><span style="color:rgb(255,0,0)">type</span><span style="color:rgb(0,0,255)">="text/javascript"</span><span style="color:rgb(255,0,0)"> src</span><span style="color:rgb(0,0,255)">="js/offlights.js"</span><span style="color:rgb(255,0,0)"> charset</span><span style="color:rgb(0,0,255)">="UTF-8"</span><span style="color:rgb(0,0,255)">></</span><span style="color:rgb(128,0,0)">script</span><span style="color:rgb(0,0,255)">></span>
+    <span style="color:rgb(0,128,128)"> 5</span> <span style="color:rgb(0,0,255)"><</span><span style="color:rgb(128,0,0)">script </span><span style="color:rgb(255,0,0)">type</span><span style="color:rgb(0,0,255)">="text/javascript"</span><span style="color:rgb(0,0,255)">></span>
+    <span style="color:rgb(0,128,128)"> 6</span> <span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">以下为调用播放器的标准代码</span>
+    <span style="color:rgb(0,128,128)"> 7</span> <span style="color:rgb(0,0,255); background-color:rgb(245,245,245)">var</span><span style="background-color:rgb(245,245,245)"> flashvars</span><span style="background-color:rgb(245,245,245)">=</span><span style="background-color:rgb(245,245,245)">{
+    </span><span style="color:rgb(0,128,128)"> 8</span> <span style="background-color:rgb(245,245,245)">      f:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">http://movie.ks.js.cn/flv/2011/11/8-1.flv</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">视频地址</span>
+    <span style="color:rgb(0,128,128)"> 9</span> <span style="background-color:rgb(245,245,245)">      a:</span><span style="background-color:rgb(245,245,245)">''</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">调用时的参数，只有当s>0的时候有效</span>
+    <span style="color:rgb(0,128,128)">10</span> <span style="background-color:rgb(245,245,245)">      s:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">0</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">调用方式，0=普通方法（f=视频地址），1=网址形式,2=xml形式，3=swf形式(s>0时f=网址，配合a来完成对地址的组装)</span>
+    <span style="color:rgb(0,128,128)">11</span> <span style="background-color:rgb(245,245,245)">      c:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">0</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">是否读取文本配置,0不是，1是</span>
+    <span style="color:rgb(0,128,128)">12</span> <span style="background-color:rgb(245,245,245)">      x:</span><span style="background-color:rgb(245,245,245)">''</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">调用xml风格路径，为空的话将使用ckplayer.js的配置</span>
+    <span style="color:rgb(0,128,128)">13</span> <span style="background-color:rgb(245,245,245)">      i:</span><span style="background-color:rgb(245,245,245)">''</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">初始图片地址</span>
+    <span style="color:rgb(0,128,128)">14</span> <span style="background-color:rgb(245,245,245)">      d:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">http://www.ckplayer.com/temp/11.jpg</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">暂停时播放的广告，swf/图片</span>
+    <span style="color:rgb(0,128,128)">15</span> <span style="background-color:rgb(245,245,245)">      u:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">http://www.baidu.com</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">暂停时如果是图片的话，加个链接地址</span>
+    <span style="color:rgb(0,128,128)">16</span> <span style="background-color:rgb(245,245,245)">      l:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">http://www.ckplayer.com/down/start.swf</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">视频开始前播放的广告，swf/图片/视频</span>
+    <span style="color:rgb(0,128,128)">17</span> <span style="background-color:rgb(245,245,245)">      r:</span><span style="background-color:rgb(245,245,245)">''</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">视频开始前播放图片/视频时加一个链接地址</span>
+    <span style="color:rgb(0,128,128)">18</span> <span style="background-color:rgb(245,245,245)">      t:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">1</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">视频开始前播放swf/图片时的时间</span>
+    <span style="color:rgb(0,128,128)">19</span> <span style="background-color:rgb(245,245,245)">      e:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">3</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">视频结束后的动作，0是调用js函数，1是循环播放，2是暂停播放，3是调用视频推荐列表的插件</span>
+    <span style="color:rgb(0,128,128)">20</span> <span style="background-color:rgb(245,245,245)">      v:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">85</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">默认音量，0-100之间</span>
+    <span style="color:rgb(0,128,128)">21</span> <span style="background-color:rgb(245,245,245)">      p:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">1</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">视频默认0是暂停，1是播放</span>
+    <span style="color:rgb(0,128,128)">22</span> <span style="background-color:rgb(245,245,245)">      h:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">1</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">播放http视频流时采用何种拖动方法，0是按关键帧，1是按关键时间点</span>
+    <span style="color:rgb(0,128,128)">23</span> <span style="background-color:rgb(245,245,245)">      q:</span><span style="background-color:rgb(245,245,245)">''</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">视频流拖动时参考函数，默认是start</span>
+    <span style="color:rgb(0,128,128)">24</span> <span style="background-color:rgb(245,245,245)">      m:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">0</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">默认是否采用点击播放按钮后再加载视频，0不是，1是,设置成1时不要有前置广告</span>
+    <span style="color:rgb(0,128,128)">25</span> <span style="background-color:rgb(245,245,245)">      g:</span><span style="background-color:rgb(245,245,245)">''</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">视频直接g秒开始播放</span>
+    <span style="color:rgb(0,128,128)">26</span> <span style="background-color:rgb(245,245,245)">      j:</span><span style="background-color:rgb(245,245,245)">''</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">视频提前j秒结束</span>
+    <span style="color:rgb(0,128,128)">27</span> <span style="background-color:rgb(245,245,245)">      k:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">10|40|80</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">提示点时间，如 30|60鼠标经过进度栏30秒，60秒会提示n指定的相应的文字</span>
+    <span style="color:rgb(0,128,128)">28</span> <span style="background-color:rgb(245,245,245)">      n:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">跳过开头|小企鹅宝宝下水了|跳过结尾</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">提示点文字，跟k配合使用，如 提示点1|提示点2</span>
+    <span style="color:rgb(0,128,128)">29</span> <span style="background-color:rgb(245,245,245)">      b:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">0x000</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">播放器的背景色，如果不设置的话将默认透明</span>
+    <span style="color:rgb(0,128,128)">30</span> <span style="background-color:rgb(245,245,245)">      w:</span><span style="background-color:rgb(245,245,245)">''</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">指定调用自己配置的文本文件,不指定将默认调用和播放器同名的txt文件</span>
+    <span style="color:rgb(0,128,128)">31</span> <span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">调用播放器的所有参数列表结束</span>
+    <span style="color:rgb(0,128,128)">32</span> <span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">以下为自定义的播放器参数用来在插件里引用的</span>
+    <span style="color:rgb(0,128,128)">33</span> <span style="background-color:rgb(245,245,245)">      my_title:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">视频标题</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">视频标题</span>
+    <span style="color:rgb(0,128,128)">34</span> <span style="background-color:rgb(245,245,245)">      my_url:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">http://www.ckplayer.com/index.php</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">本页面地址</span>
+    <span style="color:rgb(0,128,128)">35</span> <span style="background-color:rgb(245,245,245)">      my_summary:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">这是一个测试页面</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">视频介绍，请保持在一行文字，不要换行</span>
+    <span style="color:rgb(0,128,128)">36</span> <span style="background-color:rgb(245,245,245)">      my_pic:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">http://www.ckplayer.com/temp/11.jpg</span><span style="background-color:rgb(245,245,245)">'</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">分享的图片地址</span>
+    <span style="color:rgb(0,128,128)">37</span> <span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">调用自定义播放器参数结束</span>
+    <span style="color:rgb(0,128,128)">38</span> <span style="background-color:rgb(245,245,245)">};
+    </span><span style="color:rgb(0,128,128)">39</span> <span style="color:rgb(0,0,255); background-color:rgb(245,245,245)">var</span><span style="background-color:rgb(245,245,245)"> params</span><span style="background-color:rgb(245,245,245)">=</span><span style="background-color:rgb(245,245,245)">{bgcolor:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">#000000</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,allowFullScreen:</span><span style="color:rgb(0,0,255); background-color:rgb(245,245,245)">true</span><span style="background-color:rgb(245,245,245)">,allowScriptAccess:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">always</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">};</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">这里定义播放器的其它参数如背景色（跟flashvars中的b不同），是否支持全屏，是否支持交互</span>
+    <span style="color:rgb(0,128,128)">40</span> <span style="color:rgb(0,0,255); background-color:rgb(245,245,245)">var</span><span style="background-color:rgb(245,245,245)"> attributes</span><span style="background-color:rgb(245,245,245)">=</span><span style="background-color:rgb(245,245,245)">{id:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">ckplayer_a1</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,name:</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">ckplayer_a1</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">};
+    </span><span style="color:rgb(0,128,128)">41</span> <span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">下面一行是调用播放器了，括号里的参数含义：（播放器文件，要显示在的div容器，宽，高，需要flash的版本，当用户没有该版本的提示，加载初始化参数，加载设置参数如背景，加载attributes参数，主要用来设置播放器的id）</span>
+    <span style="color:rgb(0,128,128)">42</span> <span style="background-color:rgb(245,245,245)">swfobject.embedSWF(</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">ckplayer/ckplayer.swf</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">, </span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">a1</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">, </span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">600</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">, </span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">400</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">, </span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">10.0.0</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">,</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">ckplayer/expressInstall.swf</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">, flashvars, params, attributes); </span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">播放器地址，容器id，宽，高，需要flash插件的版本，flashvars,params,attributes </span>
+    <span style="color:rgb(0,128,128)">43</span> <span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">调用播放器结束</span>
+    <span style="color:rgb(0,128,128)">44</span> <span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">第一部分：开关灯</span>
+    <span style="color:rgb(0,128,128)">45</span> <span style="color:rgb(0,0,255); background-color:rgb(245,245,245)">var</span><span style="background-color:rgb(245,245,245)"> box </span><span style="background-color:rgb(245,245,245)">=</span> <span style="color:rgb(0,0,255); background-color:rgb(245,245,245)">new</span><span style="background-color:rgb(245,245,245)"> LightBox(</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">flashcontent</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">);
+    </span><span style="color:rgb(0,128,128)">46</span> <span style="color:rgb(0,0,255); background-color:rgb(245,245,245)">var</span><span style="background-color:rgb(245,245,245)"> $</span><span style="background-color:rgb(245,245,245)">=</span><span style="color:rgb(0,0,255); background-color:rgb(245,245,245)">function</span><span style="background-color:rgb(245,245,245)">(id){</span><span style="color:rgb(0,0,255); background-color:rgb(245,245,245)">return</span><span style="background-color:rgb(245,245,245)"> document.getElementById(id)};
+    </span><span style="color:rgb(0,128,128)">47</span> <span style="color:rgb(0,0,255); background-color:rgb(245,245,245)">function</span><span style="background-color:rgb(245,245,245)"> closelights(){</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">关灯</span>
+    <span style="color:rgb(0,128,128)">48</span> <span style="background-color:rgb(245,245,245)">      box.Show();
+    </span><span style="color:rgb(0,128,128)">49</span> <span style="background-color:rgb(245,245,245)">      $(</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">video</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">).style.width</span><span style="background-color:rgb(245,245,245)">=</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">940px</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">;
+    </span><span style="color:rgb(0,128,128)">50</span> <span style="background-color:rgb(245,245,245)">      $(</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">video</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">).style.height</span><span style="background-color:rgb(245,245,245)">=</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">550px</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">;
+    </span><span style="color:rgb(0,128,128)">51</span> <span style="background-color:rgb(245,245,245)">      swfobject.getObjectById(</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">ckplayer_a1</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">).width</span><span style="background-color:rgb(245,245,245)">=</span><span style="background-color:rgb(245,245,245)">940</span><span style="background-color:rgb(245,245,245)">;
+    </span><span style="color:rgb(0,128,128)">52</span> <span style="background-color:rgb(245,245,245)">      swfobject.getObjectById(</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">ckplayer_a1</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">).height</span><span style="background-color:rgb(245,245,245)">=</span><span style="background-color:rgb(245,245,245)">550</span><span style="background-color:rgb(245,245,245)">;
+    </span><span style="color:rgb(0,128,128)">53</span> <span style="background-color:rgb(245,245,245)">}
+    </span><span style="color:rgb(0,128,128)">54</span> <span style="color:rgb(0,0,255); background-color:rgb(245,245,245)">function</span><span style="background-color:rgb(245,245,245)"> openlights(){</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">//</span><span style="color:rgb(0,128,0); background-color:rgb(245,245,245)">开灯</span>
+    <span style="color:rgb(0,128,128)">55</span> <span style="background-color:rgb(245,245,245)">    box.Close();
+    </span><span style="color:rgb(0,128,128)">56</span> <span style="background-color:rgb(245,245,245)">    $(</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">video</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">).style.width</span><span style="background-color:rgb(245,245,245)">=</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">600px</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">;
+    </span><span style="color:rgb(0,128,128)">57</span> <span style="background-color:rgb(245,245,245)">    $(</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">video</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">).style.height</span><span style="background-color:rgb(245,245,245)">=</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">400px</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">;
+    </span><span style="color:rgb(0,128,128)">58</span> <span style="background-color:rgb(245,245,245)">    swfobject.getObjectById(</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">ckplayer_a1</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">).width</span><span style="background-color:rgb(245,245,245)">=</span><span style="background-color:rgb(245,245,245)">600</span><span style="background-color:rgb(245,245,245)">;
+    </span><span style="color:rgb(0,128,128)">59</span> <span style="background-color:rgb(245,245,245)">    swfobject.getObjectById(</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">ckplayer_a1</span><span style="background-color:rgb(245,245,245)">'</span><span style="background-color:rgb(245,245,245)">).height</span><span style="background-color:rgb(245,245,245)">=</span><span style="background-color:rgb(245,245,245)">400</span><span style="background-color:rgb(245,245,245)">;
+    </span><span style="color:rgb(0,128,128)">60</span> <span style="background-color:rgb(245,245,245)">}
+    </span><span style="color:rgb(0,128,128)">61</span> <span style="color:rgb(0,0,255)"></</span><span style="color:rgb(128,0,0)">script</span><span style="color:rgb(0,0,255)">></span>
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/hongten/archive/2012/10/31/javascript_ckplayer.html)
+
+
+
+
+
+
+
+4.大功告成。。。。。
+
+
+
+
+如果有不清楚的地方，请参考：
+
+
+
+
+功能介绍： [
+http://www.ckplayer.com/view.php?id=1](http://www.ckplayer.com/view.php?id=1)
+
+
+
+
+帮助手册： [
+http://www.ckplayer.com/article.php?id=1](http://www.ckplayer.com/article.php?id=1)
+
+
+
+
+使用实例[js篇] ：[http://www.ckplayer.com/article.php?id=2](http://www.ckplayer.com/article.php?id=2)
+
+
+

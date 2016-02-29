@@ -1,0 +1,42 @@
+---
+author: admin
+comments: true
+date: 2014-05-17 16:38:18+00:00
+layout: post
+slug: mac%e4%b8%8asvn%e5%ae%a2%e6%88%b7%e7%ab%af%e3%80%91smartsvn%e4%b8%93%e4%b8%9a%e7%89%88%e5%ae%89%e8%a3%85%e3%80%81%e7%a0%b4%e8%a7%a3%e5%8f%8arelocate%e5%8a%9f%e8%83%bd%e4%bd%bf%e7%94%a8
+title: Mac上SVN客户端】SmartSVN专业版安装、破解及relocate功能使用
+wordpress_id: 273
+categories:
+- mac
+- 实用软件技巧
+---
+
+都说SMART SVN是最全的Mac上的SVN客户端工具，分Pro版和基础版，基础版跟Versions差不多，这里找了Pro版下载并破解：
+mac版本smartSVN客户端下载：http://www.smartsvn.com/get/?f=smartsvn/smartsvn-macosx-7_5_1.tar.gz (注，这里不是一定用7.5.1，我试验过用网络上下载的7.0.6版本也是可以的)这个好难下哦，我自己在网上随便找了个8.几的，也能用
+破解文件下载(这个好难下，下我下面上传的吧)：http://page2.yunfile.com/file/shuaiger/aaad30ce/
+
+[SmartSVN-Keygen](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/05/SmartSVN-Keygen.rar)
+下载下来解压后输入用户名，邮箱生成license，导入到SmartSVN即可激活！
+
+
+
+=====华丽丽的分割线=====
+
+SmartSVN的relocate问题，顾名思义就是svn服务器地址改变后，需要重定向地址。
+
+1: relocate选项默认是看不到的，需要自定义界面中设置。先打开自定义界面。
+
+![](http://img.my.csdn.net/uploads/201304/18/1366274836_2525.png)
+
+
+
+2：在左侧找到relocate移动到右边来，记得context menu下拉里选择Directory：
+
+![](http://img.my.csdn.net/uploads/201304/18/1366274867_6245.png)
+
+
+
+3: 接下来对着需要的文件夹点右键，菜单出来就有relocate选项了:
+
+![](http://img.my.csdn.net/uploads/201304/18/1366274920_6500.png)
+4: 然后输入新的网址。。。搞定ok！

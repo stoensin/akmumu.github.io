@@ -1,0 +1,513 @@
+---
+author: admin
+comments: true
+date: 2015-09-11 06:01:37+00:00
+layout: post
+slug: '%e6%9e%84%e5%bb%ba%e5%ae%89%e5%85%a8%e7%9a%84php%e5%ba%94%e7%94%a8%e5%b7%b2%e5%9c%a8%e8%b1%86%e7%93%a3%e9%98%85%e8%af%bb%e5%8f%91%e5%b8%83'
+title: 构建安全的PHP应用已在豆瓣阅读发布
+wordpress_id: 376
+categories:
+- 未分类
+---
+
+先上链接：[构建安全的PHP应用](http://read.douban.com/ebook/12390772/)
+
+然后给几个全新的兑换码，刚更新的WHNU2EFXL830，WHNU2E0EKXLT，WHNU2EPGQ9XJ
+
+[![buildingsecurephpapps-ch](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/title_page.png)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/title_page.png)
+
+2015年7月的一天，我正在Feedly上悠然的阅读，突然出现一篇博客有介绍这本书，因为说的是我当时正在关注的PHP安全，所以认真看了那篇博客，顺着博客里的链接找到了这本书的官网，看起来很靠谱，而恰好我也需要，网站上有购买链接，一直到leanpub上我都在寻找是否有中文版可以购买，但没有找到，而后在Twitter上联系了作者Ben，问他关于中文版的事，遗憾的是还没人翻译过，当时就想这本书也不长，为什么我不来翻译一下，为中国的开发者做点贡献呢，当然也会收获小小的成就感，随后我们用邮件沟通了翻译的详细事项，只用了来回两封邮件，不过几百个单词，交流真简单明了，我爱上了这种高效简单的沟通方式！当然以后如果还有这样的机会，我想我还会继续行好事，做想做该做的，不问前程！如果有翻译不好的地方，可以随时邮件我，我会非常积极的修改，这本书在相当长的一段时间都会以电子版的形式存在，所以当我修改了你提出的问题后，一定会最快的同步线上，这样购买的所有人都会收到更新了，一起行好事吧！
+
+我的博客http://akmumu.com
+
+
+## 导言
+
+
+因为不确定你的PHP应用是否足够安全而无法安然入睡？读完本书，让我们确保每天能够按时下班回家，并能高枕无忧的做闭目佳人！
+
+
+
+
+PHP基础安全需要一个高级开发者长年累月的经验累积， 就这样悄然的凝聚在了这本快速易读的手册当中！
+
+这本书将会是一本可以在具体项目中进行参考的快速阅读手册。这意味着你可以在数个小时内快速看完并在你需要的时候随时查阅。我也会尽量使阅读本书变得更加有趣。
+
+
+## 目录
+
+
+
+
+
+	
+  1. 
+
+
+##### [译者序](http://read.douban.com/reader/ebook/12390772/toc/1)
+
+
+
+
+	
+  2. 
+
+
+##### [写在前面](http://read.douban.com/reader/ebook/12390772/toc/2)
+
+
+
+
+	
+  3. 
+
+
+##### [格式说明](http://read.douban.com/reader/ebook/12390772/toc/3)
+
+
+
+
+	
+  4. 
+
+
+##### [勘误表](http://read.douban.com/reader/ebook/12390772/toc/4)
+
+
+
+
+	
+  5. 
+
+
+##### [示例代码](http://read.douban.com/reader/ebook/12390772/toc/5)
+
+
+
+
+	
+  6. 
+
+
+##### [关于作者](http://read.douban.com/reader/ebook/12390772/toc/6)
+
+
+
+
+	
+  7. 
+
+
+##### [关于译者](http://read.douban.com/reader/ebook/12390772/toc/7)
+
+
+
+
+	
+  8. 
+
+
+##### [第一章 - 不相信任何用户，格式化所有的输入！](http://read.douban.com/reader/ebook/12390772/toc/8)
+
+
+
+
+	
+  9. 
+
+
+##### [SQL 注入](http://read.douban.com/reader/ebook/12390772/toc/9)
+
+
+
+
+	
+  10. 
+
+
+##### [Mass Assignment(批量赋值)](http://read.douban.com/reader/ebook/12390772/toc/10)
+
+
+
+
+	
+  11. 
+
+
+##### [类型转换](http://read.douban.com/reader/ebook/12390772/toc/11)
+
+
+
+
+	
+  12. 
+
+
+##### [净化输出](http://read.douban.com/reader/ebook/12390772/toc/12)
+
+
+
+
+	
+  13. 
+
+
+##### [第二章 - HTTPS/SSL/BCA/JWH/SHA 等其他的随机序列及他们的实际问题。](http://read.douban.com/reader/ebook/12390772/toc/13)
+
+
+
+
+	
+  14. 
+
+
+##### [什么是 HTTPS](http://read.douban.com/reader/ebook/12390772/toc/14)
+
+
+
+
+	
+  15. 
+
+
+##### [局限性](http://read.douban.com/reader/ebook/12390772/toc/15)
+
+
+
+
+	
+  16. 
+
+
+##### [证书类型](http://read.douban.com/reader/ebook/12390772/toc/16)
+
+
+
+
+	
+  17. 
+
+
+##### [什么时候用HTTPS](http://read.douban.com/reader/ebook/12390772/toc/17)
+
+
+
+
+	
+  18. 
+
+
+##### [实现 HTTPS](http://read.douban.com/reader/ebook/12390772/toc/18)
+
+
+
+
+	
+  19. 
+
+
+##### [Apache 配置](http://read.douban.com/reader/ebook/12390772/toc/19)
+
+
+
+
+	
+  20. 
+
+
+##### [Nginx 配置](http://read.douban.com/reader/ebook/12390772/toc/20)
+
+
+
+
+	
+  21. 
+
+
+##### [小附加内容](http://read.douban.com/reader/ebook/12390772/toc/21)
+
+
+
+
+	
+  22. 
+
+
+##### [路径](http://read.douban.com/reader/ebook/12390772/toc/22)
+
+
+
+
+	
+  23. 
+
+
+##### [第三章 - 为每个人存储加密的密码](http://read.douban.com/reader/ebook/12390772/toc/23)
+
+
+
+
+	
+  24. 
+
+
+##### [哈希是什么?](http://read.douban.com/reader/ebook/12390772/toc/24)
+
+
+
+
+	
+  25. 
+
+
+##### [流行的攻击](http://read.douban.com/reader/ebook/12390772/toc/25)
+
+
+
+
+	
+  26. 
+
+
+##### [来点盐](http://read.douban.com/reader/ebook/12390772/toc/26)
+
+
+
+
+	
+  27. 
+
+
+##### [哈希算法](http://read.douban.com/reader/ebook/12390772/toc/27)
+
+
+
+
+	
+  28. 
+
+
+##### [存储](http://read.douban.com/reader/ebook/12390772/toc/28)
+
+
+
+
+	
+  29. 
+
+
+##### [验证](http://read.douban.com/reader/ebook/12390772/toc/29)
+
+
+
+
+	
+  30. 
+
+
+##### [放在一起说说](http://read.douban.com/reader/ebook/12390772/toc/30)
+
+
+
+
+	
+  31. 
+
+
+##### [残忍的暴力攻击防护](http://read.douban.com/reader/ebook/12390772/toc/31)
+
+
+
+
+	
+  32. 
+
+
+##### [升级遗留的老系统](http://read.douban.com/reader/ebook/12390772/toc/32)
+
+
+
+
+	
+  33. 
+
+
+##### [资源](http://read.douban.com/reader/ebook/12390772/toc/33)
+
+
+
+
+	
+  34. 
+
+
+##### [第四章 - 身份验证, 权限控制, 安全的文件操作](http://read.douban.com/reader/ebook/12390772/toc/34)
+
+
+
+
+	
+  35. 
+
+
+##### [身份验证](http://read.douban.com/reader/ebook/12390772/toc/35)
+
+
+
+
+	
+  36. 
+
+
+##### [权限控制](http://read.douban.com/reader/ebook/12390772/toc/36)
+
+
+
+
+	
+  37. 
+
+
+##### [验证重定向](http://read.douban.com/reader/ebook/12390772/toc/37)
+
+
+
+
+	
+  38. 
+
+
+##### [模糊处理](http://read.douban.com/reader/ebook/12390772/toc/38)
+
+
+
+
+	
+  39. 
+
+
+##### [安全的文件操作](http://read.douban.com/reader/ebook/12390772/toc/39)
+
+
+
+
+	
+  40. 
+
+
+##### [第五章 - 缺省安全, 跨站脚本以及其他的流行攻击](http://read.douban.com/reader/ebook/12390772/toc/40)
+
+
+
+
+	
+  41. 
+
+
+##### [永远别太自信 - 使用缺省的安全](http://read.douban.com/reader/ebook/12390772/toc/41)
+
+
+
+
+	
+  42. 
+
+
+##### [跨站脚本攻击](http://read.douban.com/reader/ebook/12390772/toc/42)
+
+
+
+
+	
+  43. 
+
+
+##### [攻击的入口](http://read.douban.com/reader/ebook/12390772/toc/43)
+
+
+
+
+	
+  44. 
+
+
+##### [跨站请求伪造](http://read.douban.com/reader/ebook/12390772/toc/44)
+
+
+
+
+	
+  45. 
+
+
+##### [多次表单提交](http://read.douban.com/reader/ebook/12390772/toc/45)
+
+
+
+
+	
+  46. 
+
+
+##### [条件竞争](http://read.douban.com/reader/ebook/12390772/toc/46)
+
+
+
+
+	
+  47. 
+
+
+##### [过时的库 / 第三方程序](http://read.douban.com/reader/ebook/12390772/toc/47)
+
+
+
+
+	
+  48. 
+
+
+##### [尾声](http://read.douban.com/reader/ebook/12390772/toc/48)
+
+
+
+
+	
+  49. 
+
+
+##### [关于作者](http://read.douban.com/reader/ebook/12390772/toc/49)
+
+
+
+
+	
+  50. 
+
+
+##### [关于译者](http://read.douban.com/reader/ebook/12390772/toc/50)
+
+
+
+
+	
+  51. 
+
+
+##### [安全审核 / 咨询](http://read.douban.com/reader/ebook/12390772/toc/51)
+
+
+
+
+
+[![张庆龙头像](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/QQ20150907-1@2x.png)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/QQ20150907-1@2x.png)
+
+
+
+木木老蔫
+
+微博: http://weibo.com/u/2007078517
+
+
+
+

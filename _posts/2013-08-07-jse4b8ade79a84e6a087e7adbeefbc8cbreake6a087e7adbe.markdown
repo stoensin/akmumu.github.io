@@ -1,0 +1,66 @@
+---
+author: admin
+comments: true
+date: 2013-08-07 08:50:43+00:00
+layout: post
+slug: js%e4%b8%ad%e7%9a%84%e6%a0%87%e7%ad%be%ef%bc%8cbreak%e6%a0%87%e7%ad%be
+title: js中的标签，break标签
+wordpress_id: 210
+categories:
+- JS
+tags:
+- JS
+---
+
+以前从来没有用过js标签，用break的时候一般都是跳出循环，也觉得够用，今天看文档中有个标签，百度了一下竟然没有太多例子，还是文档好，一个例子说清。
+
+
+## JavaScript 标签
+
+
+可以对 JavaScript 语句进行标记。
+
+如需标记 JavaScript 语句，请在语句之前加上冒号：
+
+    
+    label:
+    语句
+
+
+break 和 continue 语句仅仅是能够跳出代码块的语句。
+
+
+### 语法
+
+
+
+    
+    break labelname;
+    
+    continue labelname;
+
+
+continue 语句（带有或不带标签引用）只能用在循环中。
+
+break 语句（不带标签引用），只能用在循环或 switch 中。
+
+通过标签引用，break 语句可用于跳出任何 JavaScript 代码块：
+
+
+### 实例
+
+
+
+    
+    cars=["BMW","Volvo","Saab","Ford"];
+    list:
+    {
+    document.write(cars[0] + "<br>");
+    document.write(cars[1] + "<br>");
+    document.write(cars[2] + "<br>");
+    break list;
+    document.write(cars[3] + "<br>");
+    document.write(cars[4] + "<br>");
+    document.write(cars[5] + "<br>");
+    }
+    注意break通过标签list跳出的并不是循环。

@@ -1,0 +1,449 @@
+---
+author: admin
+comments: true
+date: 2012-07-13 08:29:00+00:00
+layout: post
+slug: zend-studio-9-0-3-%e7%a0%b4%e8%a7%a3%ef%bc%8c%e6%b1%89%e5%8c%96%ef%bc%8c%e5%ad%97%e4%bd%93%ef%bc%8c%e9%a2%9c%e8%89%b2%ef%bc%8c%e5%bf%ab%e6%8d%b7%e9%94%ae%e7%ad%89%e7%9b%b8%e5%85%b3%e8%ae%be%ef%bf%bdb
+title: Zend studio 9.0.3 破解，汉化，字体，颜色，快捷键等相关设置
+wordpress_id: 37
+categories:
+- 实用软件技巧
+tags:
+- 实用软件技巧
+---
+
+
+**注册破解步骤**  
+
+第一步：如果已经安装过Zend Studio 9.0.3的,请打开Zend Studio 9.0.3,在菜单中“help>Unregister”,如果显示是灰的跳过此步退出Zend Studio。如果显示可以点击的请点击，这时Zend Studio会重启，重启到要求你填注册码时点“QUIT”按钮  
+
+  
+
+第二步：请根据你使用的Zend Studio版本下载对应的破解文件：  
+
+  
+
+ZendStudio9.0.3破解文件[com.zend.php.core_9.0.3.201205071416.jar](http://download.csdn.net/download/akmumu2010/4427573)   
+
+  
+
+下载成功后(**提示：破解文件千万不要解压,也不要修改破解文件的文件名**)复制到你安装Zend Studio 9.0.3的plugins目录下，覆盖同名文件。  
+
+  
+
+第三步：启动Zend Studio,复制如下注册码License key,粘贴(粘贴快捷键是ctrl+v)到注册框中  
+
+  
+
+提示：先覆盖第二步当中的破解文件，然后在启动Zend Studio输入注册码。  
+
+  
+
+第四步：查看是否注册成功，在菜单中“help>About Zend Studio ”, 显示如下图。  
+
+过期时间9999年12月31日说明注册破解成功完成。  
+
+
+
+![]()  
+
+
+
+
+
+
+![]()  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+**汉化**
+
+
+
+
+**汉化：选择Help菜单->Install New Software…在Work with框中复制此地址：http://archive.eclipse.org/technology/babel/update-site/R0.9.1/helios/，(提示:最后一个/线不能少)复制完地址后按回车键确认，这时会提示pending…(等待…)，等待完成后会出来很多语言列表让你选择，请选择“Babel Language Packs in Chinese(Simplified)”简体中文包选择项，下一步选同意，再漫长的等待之后就汉化好了，提示重启zend studio。  
+
+**
+
+
+
+
+****
+
+
+
+
+## 
+字体，颜色，快捷键等相关设置
+
+
+
+
+
+由于zend又出新版的studio，为了感受一下所说的快速，安装了zend studio 9 特意感受一把。一直以来，都不觉得zend studio比dreamweaver好用。可能是先入为主的观念，我把zend studio8的代码着色风格全改成了DW风格，哈哈。现在装了zs9，从头修理一下，稍作修改，特以记录。
+
+
+
+
+
+**一、修改字体**
+
+
+
+
+
+　　没想到zend studio 9中对中文显示不太好看，似乎有点小了。修改如下：打开Window->Preferences->General->Appearance->Colors and Fonts，找到Basic->Text Font，如果想用系统默认字体，就点Use System Font，我知道你似乎也不太愿意用系统默认字体，那就点Edit选择你想要的字体吧。
+
+
+
+
+
+　　这时win7用户可能会出现一种情况（XP不知道，其他系统也不清楚），发现字体列表里，没自己想要的字体，明明系统中有N多字体，这里才显示了一小部分。遇到这种情况可以点“显示更多字体”，会打开系统字体文件夹，找到你想要的字体，应该是隐藏属性，然后就 右键->显示，就OK了。选择后点 确定->apply->OK就可以了。
+
+
+
+
+
+　　本人比较喜欢Courier New字体作为代码编辑字体。
+
+
+
+
+
+**二、修改字体颜色**
+
+
+
+
+
+　　目前感觉zend studio自带的PHP代码着色方案不是很好，特别是关键字没有高亮，修改方法也很简单。Window->Preferences->PHP->Editor->Syntax Coloring。修改对应的颜色就可以了。下面提供一套仿dreamweaver的着色方案，仅供参考。懒得弄的话也可以下载导入[http://download.csdn.net/detail/akmumu2010/4458561](http://download.csdn.net/detail/akmumu2010/4458561)(注意前面这个是8.0版本的)选择，文件，导入，常规，首选项，下一步导入即可
+
+
+
+
+
+<table width="423" align="center" height="297" >
+
+<tbody >
+<tr height="21" >
+
+<td style="color:#000000" >中文
+</td>
+
+<td style="color:#000000" >英文
+</td>
+
+<td style="color:#000000" >HEX
+</td>
+
+<td style="color:#000000" >RGB
+</td>
+</tr>
+<tr height="29" >
+
+<td style="color:#000000" >变量
+</td>
+
+<td style="color:#000000" >Variable
+</td>
+
+<td style="color:#000000" >#0066FF
+</td>
+
+<td style="color:#000000" >0,102,255
+</td>
+</tr>
+<tr height="28" >
+
+<td style="color:#000000" >字符串
+</td>
+
+<td style="color:#000000" >String
+</td>
+
+<td style="color:#000000" >#CC0000
+</td>
+
+<td style="color:#000000" >0,12,0
+</td>
+</tr>
+<tr height="44" >
+
+<td style="color:#000000" >常数/内部常数
+</td>
+
+<td style="color:#000000" >constants/internal constants
+</td>
+
+<td style="color:#000000" >
+
+
+#552200
+
+
+
+</td>
+
+<td style="color:#000000" >85,34,0
+</td>
+</tr>
+<tr height="20" >
+
+<td style="color:#000000" >数字
+</td>
+
+<td style="color:#000000" >Number
+</td>
+
+<td style="color:#000000" >#FF0000
+</td>
+
+<td style="color:#000000" >255,0,0
+</td>
+</tr>
+<tr height="28" >
+
+<td style="color:#000000" >保留关键字
+</td>
+
+<td style="color:#000000" >Keyword
+</td>
+
+<td style="color:#000000" >#006600
+</td>
+
+<td style="color:#000000" >0,102,0
+</td>
+</tr>
+<tr height="20" >
+
+<td style="color:#000000" >块分隔符
+</td>
+
+<td style="color:#000000" >PHP tags
+</td>
+
+<td style="color:#000000" >#FF0000
+</td>
+
+<td style="color:#000000" >255,0,0
+</td>
+</tr>
+<tr height="26" >
+
+<td style="color:#000000" >注释
+</td>
+
+<td style="color:#000000" >PHPDoc comment
+</td>
+
+<td style="color:#000000" >#FF9900
+</td>
+
+<td style="color:#000000" >255,135,0
+</td>
+</tr>
+<tr height="20" >
+
+<td style="color:#000000" >注释
+</td>
+
+<td style="color:#000000" >PHPDoc
+</td>
+
+<td style="color:#000000" >#FF4400
+</td>
+
+<td style="color:#000000" >255,68,0
+</td>
+</tr>
+<tr height="41" >
+
+<td style="color:#000000" >单/多行注释
+</td>
+
+<td style="color:#000000" >Single/Multi-line comment
+</td>
+
+<td style="color:#000000" >#FF9900
+</td>
+
+<td style="color:#000000" >255,135,0
+</td>
+</tr>
+<tr height="20" >
+
+<td style="color:#000000" >函数
+</td>
+
+<td style="color:#000000" >functions
+</td>
+
+<td style="color:#000000" >#0000FF
+</td>
+
+<td style="color:#000000" >0,0,255
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+![](http://my.csdn.net/uploads/201207/27/1343377363_8209.png)
+
+
+
+
+就是这样的颜色
+
+
+
+
+  
+
+
+
+
+
+
+
+
+三、快捷键
+
+
+
+
+
+　　此部分引自互联网，可对照Window->Preferences->General->Keys。
+
+
+
+
+
+　　CTRL+B | 重构项目  
+
+　　CTRL+D | 删除一行  
+
+　　CTRL+E | 搜索已打开的文件名  
+
+　　CTRL+F | 打开本文件的搜索/替换 ，只搜索当前文件  
+
+　　CTRL+H | 打开搜索替换窗口 ，可搜索整个磁盘、工作集  
+
+　　CTRL+K | 查找下一个  
+
+　　CTRL+SHIFT+K | 查找上一个  
+
+　　CTRL+L | 转到文件某一行  
+
+　　CTRL+M | 将当前编辑窗口最大化/还原  
+
+　　CTRL+N | 新建  
+
+　　CTRL+O | 快速大纲, 列出文件中的所有变量和方法，对阅读类文件时很有用  
+
+　　CTRL+P | 打印  
+
+　　CTRL+W | 关闭打开的文件  
+
+  
+
+　　CTRL+数字键/ | 可以收起/展开代码段  
+
+　　CTRL+/ | 单行注释  
+
+　　CTRL+BACKSPACE |删除光标前一个单词，这个单词的定义由ZEND自已理解，如前面是符号，就删除一个符号,前面是一个单词就删除一个单词  
+
+　　CTRL+SHIFT+/ | 先选中代码块后，按组合键可注释代码块  
+
+　　CTRL+SHIFT+ | 取消块注释  
+
+　　Tab/Shift+Tab | 增加/减少代码缩进  
+
+　　ALT+ENTER | 查看当前文档的属性  
+
+　　CTRL+SHIFT+F | 快速格式化代码样式，可选择ZF的代码格式 ( PS 如何设置格式化的样式，可在“首选项”-> “代码样式” -> “格式化程序” 里设置)  
+
+　　ALTER+ ->或<- | 在编辑过的位置前进或后退  
+
+　　CTRL+SHIFT+L | 显示所有快捷键列表(个人称之为“新手键”)  
+
+　　CTRL+F12 | 打开任务(| PS：任务 个人定义某一个特定的工作集,如你要完成一个注册模块，有三个文件config.phpregister.class.php register.php| 你可以将这些文件保存成一个任务register ,只要打开register就能同时打开这三个文件| )  
+
+　　CTRL+F9 | 激活任务  
+
+　　CTRL+SHIFT+F9 | 取消任务  
+
+　　F11 | 调试当前文件  
+
+　　CTRL+F11 | 运行  
+
+　　F3 | 打开声明 ，在工作集下可用  
+
+　　SHIFT+F2 | 打开PHP手册帮助,查看函数的详细说明  
+
+  
+
+　　CTRL+HOME 或 CTRL+END | 光标移到文件头或到文件尾  
+
+　　SHIFT+HOME 或SHIFT+END | 选中从光标处到行首或行尾的文字  
+
+　　CTRL+SHIFT+M | 搜索方法名  
+
+  
+
+　　Zend Studio调试快捷键  
+
+  
+
+　　F9 | 添加/删除断点 所有代码部分  
+
+　　F10 | 逐过程。单步执行调试文件到下一行  
+
+　　F5 | 开始执行。执行调试文件，直到遇到断点。  
+
+　　F8 | 调试URL。打开调试URL对话框  
+
+　　F12 | 概要文件URL。打开profile URL对话框  
+
+　　Shift+F8 | 添加监视点。打开添加监视点对话框  
+
+　　Shift+F11 | 跳出。单步执行到返回后执行的第一行  
+
+　　F11 | 逐语句。单步执行到下一被执行的行  
+
+　　Shift+F10 | 执行到光标行。执行代码到光标所在行。  
+
+　　Ctrl+F5 | 无中断的执行脚本  
+
+　　Shift+F5 | 停止调试器  
+
+　　Ctrl+Alt+B | 在浏览器中显示
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+

@@ -1,0 +1,144 @@
+---
+author: admin
+comments: true
+date: 2014-03-06 06:10:56+00:00
+layout: post
+slug: '%e4%bb%80%e4%b9%88%e6%98%afdata-uri-scheme%e5%8f%8a%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8data-uri-scheme'
+title: '什么是data URI scheme及如何使用data URI scheme '
+wordpress_id: 258
+categories:
+- css
+- JS
+---
+
+网页优化的一大首要任务是减少HTTP 请求 (http request) 的次数，例如通过合并多个JS文件，合并CSS样式文件。除此之外，还有一个data URL 的密技，让我们直接把图像的内容崁入网页里面，这个密技的官方名称是 [data URI scheme](http://sjolzy.cn/What-is-the-data-URI-scheme-and-how-to-use-the-data-URI-scheme.html) 。
+
+
+
+
+### 什么是 data URI scheme？
+
+
+假设你有以下的图像：
+
+A
+
+把它在网页上显示出来的标准方法是：
+
+    
+    <img src="http://sjolzy.cn/images/A.png"/>
+
+
+这 种取得资料的方法称为 http URI scheme ，同样的效果使用 data URI scheme 可以写成：
+
+    
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA
+    7ljmRAAAAGElEQVQIW2P4DwcMDAxAfBvMAhEQMYgcACEHG8ELxtbPAAAAAElFTkSuQmCC" />
+
+
+换句话说我们把图像档案的内容内置在 HTML 档案中，节省了一个 HTTP 请求。
+
+
+### Data URI scheme 的语法
+
+
+我们来分析一下这句 img 标签的语法：
+
+    
+    <img src="data:image/png;base64,iVBOR....>
+
+
+它包含一下部分：
+
+data - 取得数据的协定名称
+
+image/png - 数据类型名称
+
+base64 - 数据的编码方法
+
+iVBOR.... - 编码后的数据
+
+: , ; - data URI scheme 指定的分隔符号
+
+
+### Base64 编码？
+
+
+不知道什么是 base64 吗？简单地说它把一些 8-bit 数据翻译成标准 ASCII 字符，往上有很多免费的 base64 编码和解码的工具，你也可以用 PHP 的 base64_encode() 进行编码：
+
+    
+    echo base64_encode(file_get_contents('check.png'));
+
+
+
+
+### 在 CSS 中使用 data URL
+
+
+Data URI scheme 也可以在 CSS 中使用，例如：
+
+    
+    body { background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA
+    7ljmRAAAAGElEQVQIW2P4DwcMDAxAfBvMAhEQMYgcACEHG8ELxtbPAAAAAElFTkSuQmCC");}
+
+
+
+
+### 浏 览器会缓存这种图像吗？
+
+
+不会，Data URL 虽然节省 HTTP 请求，但是倘若这个图像要在网页多个地方显示的话，便会加大网页的内容，延长了下载的时间，其中一个解决办法是在一个 CSS class 中加入 data URL，在需要显示图像的区块调用这个 class，例如：
+
+    
+    .logobg {
+      background: url(data:…)
+    }
+
+
+
+    
+    <div class=”navigation logobg”>..
+    helo, hello
+    <div class=”footer logobg”>…
+
+
+
+
+### 又 是 IE 来搞破坏
+
+
+任何精采的技巧都可能受到 IE 的排挤，这次也有这种情况，IE8 之前的版本都不支援 data URI scheme。
+
+解决这个问题的办法有：**使用MHTML 解决 data URI scheme 的浏览器兼容问题**
+
+具体做法看代码(肯定是用css hack来实现)
+
+    
+    /*
+    Content-Type: multipart/related; boundary="_ANY_STRING_WILL_DO_AS_A_SEPARATOR"
+    
+    --_ANY_STRING_WILL_DO_AS_A_SEPARATOR
+    Content-Location:the9
+    Content-Transfer-Encoding:base64
+    
+    /9j/4AA....+b0//2Q== (这里是base64编码)
+    */
+    
+    #the9{
+      background-image: url("data:image/png;base64/9j/4AA....+b0//2Q=="); /* normal */
+      *background-image: url(mhtml:http://www.zhangjingwei.com/demo/scheme/style.css!the9);
+      width:300px;
+      height:300px;
+      color:#F00;
+      font-weight:900;
+    }
+
+
+
+
+_作者: _[_Sjolzy_](http://sjolzy.cn/) | [Google+](https://plus.google.com/104665796833359449317)
+
+
+
+
+_地址: _[http://sjolzy.cn/What-is-the-data-URI-scheme-and-how-to-use-the-data-URI-scheme.html](http://sjolzy.cn/What-is-the-data-URI-scheme-and-how-to-use-the-data-URI-scheme.html)

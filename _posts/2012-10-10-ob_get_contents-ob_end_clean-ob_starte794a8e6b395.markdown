@@ -1,0 +1,267 @@
+---
+author: admin
+comments: true
+date: 2012-10-10 07:06:00+00:00
+layout: post
+slug: ob_get_contents-ob_end_clean-ob_start%e7%94%a8%e6%b3%95
+title: ob_get_contents(); ob_end_clean(); ob_start()用法
+wordpress_id: 88
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+下面3个函数的用法
+
+
+
+
+ob_get_contents();   
+
+ob_end_clean();   
+
+ob_start()  
+
+  
+
+使用ob_start()把输出那同输出到缓冲区，而不是到浏览器。  
+
+然后用ob_get_contents得到缓冲区的数据。
+
+
+
+
+ob_start()在服务器打开一个缓冲区来保存所有的输出。所以在任何时候使用echo ，输出都将被加入缓冲区中，直到程序运行结束或者使用ob_flush()来结束。然后在服务器中缓冲区的内容才会发送到浏览器，由浏览器来解析显示。  
+
+  
+
+函数ob_end_clean 会清除缓冲区的内容，并将缓冲区关闭，但不会输出内容。  
+
+此时得用一个函数ob_get_contents()在ob_end_clean()前面来获得缓冲区的内容。  
+
+这样的话， 能将在执行ob_end_clean()前把内容保存到一个变量中，然后在ob_end_clean()后面对这个变量做操作。  
+
+  
+
+这是EG：   
+
+  
+
+ob_start(); // buf1   
+
+echo ' multiple ';   
+
+ob_start(); // buf2   
+
+echo ' buffers work ';   
+
+$buf2 = ob_get_contents();   
+
+ob_end_clean();   
+
+$buf1 = ob_get_contents();   
+
+ob_end_clean();   
+
+  
+
+echo $buf1;   
+
+echo '<br/>';   
+
+echo $buf2;   
+
+  
+
+  
+
+
+
+
+ob_get_contents
+
+
+(PHP 4, PHP 5)
+
+
+ob_get_contents -- Return the contents of the output buffer Descriptionstring
+**ob_get_contents** ( void )  
+
+  
+
+
+
+This will return the contents of the output buffer or **FALSE**, if output buffering isn't active.
+
+
+
+
+
+See also [**ob_start()**](http://winet.cn/php/function.ob-start.php) and
+[**ob_get_length()**](http://winet.cn/php/function.ob-get-length.php).
+  
+
+
+
+
+
+
+`if you use ob_start with a callback function as a parameter, and that function changes ob string (as in example in manual) don't expect that ob_get_contents will return changed ob.  
+
+it will work as you would use ob_start with no parameter at all. So don't be confused.`
+
+
+`transfer image, another method (alternative to fsockopen or function socket) :  
+
+  
+
+server(192.168.0.1)  
+
+makeimage.php  
+
+...........  
+
+...........  
+
+$nameimage="xxxx.jpg"  
+
+$comand=exec("plotvelocity.sh $nameimage $paramater1 $paramater2");  
+
+ob_start();  
+
+readfile($nameimage);  
+
+$image_data = ob_get_contents();  
+
+ob_end_clean();  
+
+echo $image_data;  
+
+unlink($nameimage);  
+
+  
+
+Client (192.168.0.2)  
+
+$bild="images/newimage2.gif";  
+
+$host="192.168.0.1";  
+
+$url=file_get_contents("[http://$host/makeimage.php?$querystring](http://$host/makeimage.php?$querystring)");  
+
+$fp = fopen("$bild", 'wb');  
+
+fwrite($fp, $url);  
+
+fclose($fp);  
+
+echo '<img src="'.$bild.'">';  
+
+  
+
+naturally you can transfer whichever thing and not only images  
+
+  
+
+`ob_get_clean
+
+
+(PHP 4 >= 4.3.0, PHP 5)
+
+
+ob_get_clean -- Get current buffer contents and delete current output buffer 
+Descriptionstring **ob_get_clean** ( void )  
+
+  
+
+
+
+This will return the contents of the output buffer and end output buffering. If output buffering isn't active then
+**FALSE** is returned. **ob_get_clean()** essentially executes both
+[**ob_get_contents()**](http://winet.cn/php/function.ob-get-contents.php) and
+[**ob_end_clean()**](http://winet.cn/php/function.ob-end-clean.php).
+
+
+
+
+
+
+
+
+**例子 1. A simple ****ob_get_clean()** example
+
+
+`<?php  
+
+  
+
+ob_start();  
+
+  
+
+echo "Hello World";  
+
+  
+
+$out = ob_get_clean();  
+
+$out = strtolower($out);  
+
+  
+
+var_dump($out);  
+
+?> `
+
+
+Our example will output: 
+
+
+string(11) "hello world"
+
+
+
+
+
+See also [**ob_start()**](http://winet.cn/php/function.ob-start.php) and
+[**ob_get_contents()**](http://winet.cn/php/function.ob-get-contents.php).
+  
+
+
+
+
+
+
+`Notice that the function beneath does not catch errors, so throw in an @ before those ob_* calls`
+
+
+
+
+`Running PHP4 < 4.3.0, you can simply add the following to use the function anyway:  
+
+  
+
+<?php  
+
+if (!function_exists("ob_get_clean")) {  
+
+function ob_get_clean() {  
+
+$ob_contents = ob_get_contents();  
+
+ob_end_clean();  
+
+return $ob_contents;  
+
+}  
+
+}  
+
+?>`
+
+
+

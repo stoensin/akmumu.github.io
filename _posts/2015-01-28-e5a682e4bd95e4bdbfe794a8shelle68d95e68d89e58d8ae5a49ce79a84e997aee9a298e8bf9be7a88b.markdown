@@ -1,0 +1,41 @@
+---
+author: admin
+comments: true
+date: 2015-01-28 07:44:45+00:00
+layout: post
+slug: '%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8shell%e6%8d%95%e6%8d%89%e5%8d%8a%e5%a4%9c%e7%9a%84%e9%97%ae%e9%a2%98%e8%bf%9b%e7%a8%8b'
+title: 如何使用Shell捕捉半夜的问题进程
+wordpress_id: 341
+categories:
+- LINUX
+tags:
+- shell
+---
+
+转：http://huoding.com/2013/01/30/225
+
+最近公司服务器不太稳定，总是在凌晨某个时段突发高负载情况，因为客观环境比较复杂，所以很难猜测出到底是哪个进程出现了问题，加之故障发生时，通常我在睡觉，等我被报警短信吵醒，通过公司VPN登上服务器的时候，故障多半已经消失了！不过这个问题难不倒一个合格的DevOps，让我写个Shell搞定它。
+
+
+
+实际上解决问题的思路非常简单：通过CRON每分钟运行一个Shell，查询系统负载，一旦发现异常，就通过「ps」命令保存进程快照，也可以进一步保存负载，内存等相关的数据，但通常没有必要，因为通过「sar」命令很容易拿到。相关Shell代码如下：
+
+    
+    #/bin/bash
+    
+    LOAD=$(awk '{print $1}' /proc/loadavg)
+    CPUNUM=$(grep -c processor /proc/cpuinfo)
+    
+    if [ $(echo "$LOAD > $CPUNUM" | bc) = 1 ]; then
+        RESULT=$(ps -eo pcpu,pmem,user,args | awk '$1 > 0' | sort -nr)
+        if [ -n "$RESULT" ]; then
+            echo "$RESULT" > /var/log/ps.$(date +"%Y%m%d%H%M")
+        fi
+    fi
+
+
+实际使用时需要注意的地方：首先，要避免日志文件塞满硬盘；其次，因为是通过CRON来执行的，所以可能会漏判，如果强调准确性请自行改写为守护进程方式。
+
+…
+
+这个Shell实在是太简单了，以至于我本不想专门写一篇文章，不过它却非常实用，帮我解决了大问题，所以还是记录下来，希望它也能助大家一臂之力。

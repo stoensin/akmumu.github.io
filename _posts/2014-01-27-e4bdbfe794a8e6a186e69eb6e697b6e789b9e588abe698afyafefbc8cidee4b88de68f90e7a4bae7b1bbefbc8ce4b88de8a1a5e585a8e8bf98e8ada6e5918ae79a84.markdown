@@ -1,0 +1,35 @@
+---
+author: admin
+comments: true
+date: 2014-01-27 07:52:35+00:00
+layout: post
+slug: '%e4%bd%bf%e7%94%a8%e6%a1%86%e6%9e%b6%e6%97%b6%e7%89%b9%e5%88%ab%e6%98%afyaf%ef%bc%8cide%e4%b8%8d%e6%8f%90%e7%a4%ba%e7%b1%bb%ef%bc%8c%e4%b8%8d%e8%a1%a5%e5%85%a8%e8%bf%98%e8%ad%a6%e5%91%8a%e7%9a%84'
+title: 使用框架时特别是yaf，IDE不提示类，不补全还警告的解决
+wordpress_id: 248
+categories:
+- PHP
+tags:
+- yaf
+---
+
+最近使用了yaf框架，众所周知，yaf框架是使用了php扩展，速度快，轻量，高效。
+可是我的IDE在继承或实例化的时候，会报警告，因为我并没有在哪个地方创建过类。
+当然这运行起来的时候是没有问题的，就像使用memcache的时候一样，new的时候
+并没有在哪个之前的文件写过class memcache。所以IDE就会有如下的提示（我用的是zend，eclipse同理）：
+<ignore_js_op>![QQ截图20140117143138.png](http://devbbs-discuzx.stor.sinaapp.com/data1/www/htdocs/499/devbbs/3/data/attachment/forum/201401/17/143227t0cy0f8jw0f8ggz0.png)
+有感叹号提示你Class 'Yaf_Dispatcher' not found
+这样看起来是比较不爽的，而且也不会自动提示
+自动提示其实可以让我们避免那些很低级的拼写错误的
+而这两个问题是可以通过一个办法就实现的。
+那就是为你创建的项目引入include path，他将会寻找当中的函数和类
+步骤如下：
+右键你的项目，点属性（properties）-》选择PHP include path-》点击libraries-》add external source folder-》选择你要包含的文件夹（这个文件夹包含你需要使用的提示文件）
+注意：这个提示文件可以你自己写，也可以使用相关的工具生成。
+我把文件放在了yaf项目的一个目录中yaf\application\library\yaf_classes.php
+这里就包含yaf\application\library这个文件夹即可
+如图：
+<ignore_js_op>![QQ截图20140117144215.png](http://devbbs-discuzx.stor.sinaapp.com/data1/www/htdocs/499/devbbs/3/data/attachment/forum/201401/17/14424944zu711uk212u4it.png)
+再看一下，没有错误了
+<ignore_js_op>![QQ截图20140117144308.png](http://devbbs-discuzx.stor.sinaapp.com/data1/www/htdocs/499/devbbs/3/data/attachment/forum/201401/17/144343bx0zt3qmbub2a9qq.png)
+很清爽，不是么？你值得拥有！
+另外我把那个提示文件上传上来，这样大家就可以直接拿来用[yaf_classes](http://akmumu-wordpress.stor.sinaapp.com/uploads/2014/01/yaf_classes.rar)

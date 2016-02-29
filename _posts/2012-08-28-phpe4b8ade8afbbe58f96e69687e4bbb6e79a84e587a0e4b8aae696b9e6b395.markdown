@@ -1,0 +1,568 @@
+---
+author: admin
+comments: true
+date: 2012-08-28 10:48:00+00:00
+layout: post
+slug: php%e4%b8%ad%e8%af%bb%e5%8f%96%e6%96%87%e4%bb%b6%e7%9a%84%e5%87%a0%e4%b8%aa%e6%96%b9%e6%b3%95
+title: PHP中读取文件的几个方法
+wordpress_id: 58
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+
+
+
+整理了一下PHP中读取文件的几个方法，方便以后查阅。
+
+
+
+
+## 1.fread
+
+
+
+
+　　**_string fread ( int $handle , int $length )_**
+
+
+
+
+　　fread() 从 handle 指向的文件中读取最多 length 个字节。该函数在读取完最多 length 个字节数，或到达 EOF 的时候，或（对于网络流）当一个包可用时，或（在打开用户空间流之后）已读取了 8192 个字节时就会停止读取文件，视乎先碰到哪种情况。
+
+
+
+
+　　fread() 返回所读取的字符串，如果出错返回 FALSE。
+
+
+
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+    
+    <?php
+        <span style="color:#800080">$filename</span> = "/usr/local/something.txt";
+        <span style="color:#800080">$handle</span> = <span style="color:#008080">fopen</span>(<span style="color:#800080">$filename</span>, "r");<span style="color:#008000">//</span><span style="color:#008000">读取二进制文件时，需要将第二个参数设置成'rb'
+        
+        //通过filesize获得文件大小，将整个文件一下子读到一个字符串中</span><span style="color:#008000">
+    </span> <span style="color:#800080">$contents</span> = <span style="color:#008080">fread</span>(<span style="color:#800080">$handle</span>, <span style="color:#008080">filesize</span> (<span style="color:#800080">$filename</span>));
+        <span style="color:#008080">fclose</span>(<span style="color:#800080">$handle</span>);
+    ?>
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+
+
+
+
+  
+
+　　如果所要读取的文件不是本地普通文件，而是远程文件或者流文件，就不能用这种方法，因为，filesize不能获得这些文件的大小。此时，你需要通过feof()或者fread()的返回值判断是否已经读取到了文件的末尾。
+
+
+
+
+　　例如：
+
+
+
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+    
+    <?php
+        <span style="color:#800080">$handle</span> = <span style="color:#008080">fopen</span>('http://www.baidu.com', 'r');
+        <span style="color:#800080">$content</span> = '';
+        <span style="color:#0000ff">while</span>(!<span style="color:#008080">feof</span>(<span style="color:#800080">$handle</span>)){
+            <span style="color:#800080">$content</span> .= <span style="color:#008080">fread</span>(<span style="color:#800080">$handle</span>, 8080);
+        }
+        <span style="color:#0000ff">echo</span> <span style="color:#800080">$content</span>;
+        <span style="color:#008080">fclose</span>(<span style="color:#800080">$handle</span>);
+    ?>
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+
+
+
+
+或者：
+
+
+
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+    
+    <?php
+        <span style="color:#800080">$handle</span> = <span style="color:#008080">fopen</span>('http://www.baidu.com', 'r');
+        <span style="color:#800080">$content</span> = '';
+        <span style="color:#0000ff">while</span>(<span style="color:#0000ff">false</span> != (<span style="color:#800080">$a</span> = <span style="color:#008080">fread</span>(<span style="color:#800080">$handle</span>, 8080))){<span style="color:#008000">//</span><span style="color:#008000">返回false表示已经读取到文件末尾</span><span style="color:#008000">
+    </span> <span style="color:#800080">$content</span> .= <span style="color:#800080">$a</span>;
+        }
+        <span style="color:#0000ff">echo</span> <span style="color:#800080">$content</span>;
+        <span style="color:#008080">fclose</span>(<span style="color:#800080">$handle</span>);
+    ?>
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+
+
+
+
+
+
+
+## 2.fgets
+
+
+
+
+　**_　string fgets ( int $handle [, int $length ] )_**
+
+
+
+
+**__**　　fgets()从 handle 指向的文件中读取一行并返回长度最多为 length - 1 字节的字符串。碰到换行符（包括在返回值中）、EOF 或者已经读取了 length - 1 字节后停止（看先碰到那一种情况）。如果没有指定 length，则默认为 1K，或者说 1024 字节。
+
+
+
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+    
+    <?php
+        <span style="color:#800080">$handle</span> = <span style="color:#008080">fopen</span>('./file.txt', 'r');
+        <span style="color:#0000ff">while</span>(!<span style="color:#008080">feof</span>(<span style="color:#800080">$handle</span>)){
+            <span style="color:#0000ff">echo</span> <span style="color:#008080">fgets</span>(<span style="color:#800080">$handle</span>, 1024);
+        }
+        <span style="color:#008080">fclose</span>(<span style="color:#800080">$handle</span>);
+    ?>
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+
+
+
+
+　　**Note:** length 参数从 PHP 4.2.0 起成为可选项，如果忽略，则行的长度被假定为 1024。从 PHP 4.3 开始，忽略掉 length 将继续从流中读取数据直到行结束。如果文件中的大多数行都大于 8KB，则在脚本中指定最大行的长度在利用资源上更为有效。从 PHP 4.3 开始本函数可以安全用于二进制文件。早期的版本则不行。  
+
+  
+
+
+
+
+
+
+## 3.fgetss
+
+
+
+
+　　_**string fgetss ( resource $handle [, int $length [, string $allowable_tags ]] )**_
+
+
+
+
+　　跟fgets功能一样，但是fgetss会尝试从读取的文本中去掉任何 HTML 和 PHP 标记，可以用可选的第三个参数指定哪些标记不被去掉。
+
+
+
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+    
+    <?php
+        <span style="color:#800080">$handle</span> = <span style="color:#008080">fopen</span>('./file.txt', 'r');
+        <span style="color:#0000ff">while</span>(!<span style="color:#008080">feof</span>(<span style="color:#800080">$handle</span>)){
+            <span style="color:#0000ff">echo</span> <span style="color:#008080">fgetss</span>(<span style="color:#800080">$handle</span>, 1024, '<br>');
+        }
+        <span style="color:#008080">fclose</span>(<span style="color:#800080">$handle</span>);
+    ?>
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+
+
+
+
+
+
+
+## 4.file
+
+
+
+
+　　_**array file ( string $filename [, int $use_include_path [, resource $context ]] )**_  
+
+　　将文件内容读入一个数组中，数组的每一项对应文件中的一行，包括换行符在内。不需要行结束符时可以使用 rtrim() 函数过滤换行符。
+
+
+
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+    
+    <?php
+        <span style="color:#800080">$a</span> = <span style="color:#008080">file</span>('./file.txt');
+        <span style="color:#0000ff">foreach</span>(<span style="color:#800080">$a</span> <span style="color:#0000ff">as</span> <span style="color:#800080">$line</span> => <span style="color:#800080">$content</span>){
+            <span style="color:#0000ff">echo</span> 'line '.(<span style="color:#800080">$line</span> + 1).':'.<span style="color:#800080">$content</span>;
+        }
+    ?>
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+
+
+
+
+##   
+
+5.readfile
+
+
+
+
+　　_**int readfile ( string $filename [, bool $use_include_path [, resource $context ]] )**_
+
+
+
+
+　　读入一个文件并写入到输出缓冲。返回从文件中读入的字节数。如果出错返回 FALSE 并且除非是以 @readfile() 形式调用，否则会显示错误信息。
+
+
+
+
+
+
+    
+    <?php
+        <span style="color:#800080">$size</span> = <span style="color:#008080">readfile</span>('./file.txt');
+        <span style="color:#0000ff">echo</span> <span style="color:#800080">$size</span>;
+    ?>
+
+
+
+
+
+
+
+
+
+
+## 6.file_get_contents
+
+
+
+
+　　_**string file_get_contents ( string $filename [, bool $use_include_path [, resource $context [, int $offset [, int $maxlen ]]]] )**_
+
+
+
+
+　　将文件读入一个字符串。第三个参数_**$context**_可以用来设置一些参数，比如访问远程文件时，设置超时等等。
+
+
+
+
+　　另外，file_get_contents相对于以上几个函数，性能要好得多，所以应该优先考虑使用file_get_contents。但是readfile貌似比file_get_contents性能好一点**（？）**，因为它不需要调用fopen。
+
+
+
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+    
+    <?php 
+        <span style="color:#800080">$ctx</span> = <span style="color:#008080">stream_context_create</span>(<span style="color:#0000ff">array</span>( 
+            'http' => <span style="color:#0000ff">array</span>( 
+                'timeout' => 1    <span style="color:#008000">//</span><span style="color:#008000">设置超时</span><span style="color:#008000">
+    </span>            ) 
+            ) 
+        ); 
+        <span style="color:#0000ff">echo</span> <span style="color:#008080">file_get_contents</span>("http://www.baidu.com/", 0, <span style="color:#800080">$ctx</span>); 
+    ?>
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+
+
+
+
+##   
+
+7.fpassthru
+
+
+
+
+　　**_int fpassthru ( resource $handle )_**
+
+
+
+
+　　将给定的文件指针从当前的位置读取到 EOF 并把结果写到输出缓冲区。
+
+
+
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+    
+    <?php 
+        <span style="color:#008080">header</span>("Content-Type:text/html;charset=utf-8"); 
+        <span style="color:#800080">$handle</span> = <span style="color:#008080">fopen</span>('./test2.php', 'r');
+        <span style="color:#008080">fseek</span>(<span style="color:#800080">$handle</span>, 1024);<span style="color:#008000">//</span><span style="color:#008000">将指针定位到1024字节处</span><span style="color:#008000">
+    </span> <span style="color:#008080">fpassthru</span>(<span style="color:#800080">$handle</span>);
+    ?>
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+
+
+
+
+
+
+
+## 8.parse_ini_file
+
+
+
+
+　　_**array parse_ini_file ( string $filename [, bool $process_sections ] )**_
+
+
+
+
+　　parse_ini_file() 载入一个由 filename 指定的 ini 文件，并将其中的设置作为一个联合数组返回。如果将最后的 process_sections 参数设为 TRUE，将得到一个多维数组，包括了配置文件中每一节的名称和设置。process_sections 的默认值是 FALSE。
+
+
+
+
+　　注意：
+
+
+
+
+1. 如果 ini 文件中的值包含任何非字母数字的字符，需要将其括在双引号中（"）。  
+
+2. 有些保留字不能作为 ini 文件中的键名，包括：null，yes，no，true 和 false。值为 null，no 和 false 等效于 ""，值为 yes 和 true 等效于 "1"。字符 {}|&~![()" 也不能用在键名的任何地方，而且这些字符在选项值中有着特殊的意义。
+
+
+
+
+test.ini文件内容：
+
+
+
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+    
+    ; This is a sample configuration <span style="color:#008080">file</span>
+    ; Comments start with ';', <span style="color:#0000ff">as</span> in php.ini
+    
+    [first_section]
+    one = 1
+    five = 5
+    animal = BIRD
+    
+    [second_section]
+    path = "/usr/local/bin"
+    URL = "http://www.example.com/~username
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+
+
+
+
+test.php内容：
+
+
+
+
+
+
+    
+    <?php 
+        <span style="color:#800080">$config</span> = <span style="color:#008080">parse_ini_file</span>('./test.ini', ture);
+        <span style="color:#008080">print_r</span>(<span style="color:#800080">$config</span>);
+    ?>
+
+
+
+
+
+
+
+输出内容：
+
+
+
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+    
+    Array
+    (
+        [first_section] => Array
+            (
+                [one] => 1
+                [five] => 5
+                [animal] => BIRD
+            )
+    
+        [second_section] => Array
+            (
+                [path] => /usr/local/bin
+                [URL] => http://www.example.com/~username
+            )
+    
+    )
+
+
+
+
+![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+几个注意事项：
+
+
+
+
+　　1. 鼓励在处理二进制文件时使用 _b_ 标志，即使系统并不需要，这样可以使脚本的移植性更好。
+
+
+
+
+　　2. allow_url_fopen选项激活了 URL 形式的 fopen 封装协议使得可以访问 URL 对象例如文件。默认的封装协议提供用 ftp 和 http 协议来访问远程文件，一些扩展库例如 zlib 可能会注册更多的封装协议。出于安全性考虑，此选项只能在 php.ini 中设置。
+
+
+
+
+　　3. 如果要打开有特殊字符的 URL （比如说有空格），就需要使用 urlencode() 进行 URL 编码。
+
+
+
+
+
+

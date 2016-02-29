@@ -1,0 +1,541 @@
+---
+author: admin
+comments: true
+date: 2012-08-17 01:50:00+00:00
+layout: post
+slug: mvc-in-php-%e6%8e%a7%e5%88%b6%e5%99%a8controller
+title: MVC in php -- 控制器(Controller)
+wordpress_id: 49
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+
+控制器，有的地方又称之为Action。
+
+
+
+
+它是MVC中的C，控制视图展现
+
+
+
+    
+    它会担负很多任务。要接受请求，要选择M处理，最后选择V来显示。
+
+
+
+    
+     
+
+
+
+    
+    一般在php中大多数情况下他都作为业务的处理层了。
+
+
+
+    
+     
+
+
+
+    
+    比如对传入参数进行处理，对显示元素进行组装。
+
+
+
+    
+     
+
+
+
+    
+    它的实现一般也两类
+
+
+
+    
+     
+
+
+
+    
+    通过对象的映射或者是通过文件包含的形式
+
+
+
+    
+     
+
+
+
+    
+    最简单当然就是通过文件包含的形式。
+
+
+
+    
+     
+
+
+
+    
+    比如访问index.php/aa/bb/cc
+
+
+
+    
+     
+
+
+
+    
+    可以让程序加载aa目录下的bb文件
+
+
+
+    
+     
+
+
+
+    
+    然后之后的作为参数注入，这个过程在路由模块中实现
+
+
+
+    
+     
+
+
+
+    
+    另外的一种就是通过类的方式
+
+
+
+    
+     
+
+
+
+    
+    一般说来以类方式实现的控制器大致会长成这样
+
+
+
+    
+     
+
+
+
+
+
+
+    
+    <span style="color:#ff0000"><span style="color:rgb(0,0,255)"><span style="color:#ff0000"><?</span></span>php</span>
+    <span style="color:#0000ff">class</span> IndexController <span style="color:#0000ff">extends</span> CController{
+    
+        <span style="color:#0000ff">public function</span> sae() {
+            <span style="color:#0000ff">echo</span> <span style="color:#c0504d">'Hello'</span>;    
+        }
+    
+    }
+
+
+
+    
+     
+
+
+
+    
+    现在有一个请求index.php/index/sae
+
+
+
+    
+     
+
+
+
+
+
+怎样路由到它上面呢?   
+
+
+    
+     
+
+
+
+    
+    方法也是多种多样的~ 
+
+
+
+    
+     
+
+
+
+    
+    首先我可以从url上得到参数
+
+
+
+    
+     
+
+
+
+    
+    <span style="color:#c0504d">$action</span> = <span style="color:#c0504d">'index'</span>;
+
+
+
+    
+     
+
+
+
+    
+    <span style="color:#c0504d">$method</span> = <span style="color:#c0504d">'sae'</span>;
+
+
+
+    
+     
+
+
+
+    
+    然后通过$ac = new $action();
+
+
+
+    
+     
+
+
+
+    
+    可以得到一个新的IndexController实例
+
+
+
+    
+     
+
+
+
+    
+    然后再调用$ac->$method();
+
+
+
+    
+     
+
+
+
+    
+    就阔以了。
+
+
+
+    
+     
+
+
+
+    
+    另外的方式就是通过反射来实现。
+
+
+
+    
+     
+
+
+
+    
+    以上两种方式都会出现一个问题，如果我即将包含的这个文件IndexController.php中包含错误
+
+
+
+    
+     
+
+
+
+    
+    或者是在sae() (执行过程中) 出现了错误被终止。我怎样去捕获它呢？
+
+
+
+    
+     
+
+
+
+    
+    在php的oop中，exception的处理并没有java那样严格。不会强制要求throws Exception
+
+
+
+    
+     
+
+
+
+    
+    比如以下的例子
+
+
+
+    
+     
+
+
+
+
+<?php
+
+
+
+
+class a {   
+
+  
+
+public function expt() {   
+
+throw new Exception('wa!');   
+
+}   
+
+}
+
+
+
+
+class c {   
+
+  
+
+public function combinea() {   
+
+$a = new a();   
+
+$a->expt();   
+
+}   
+
+}
+
+
+
+
+$c = new c();   
+
+$c->combinea();
+
+
+
+    
+    它会抛出一个<strong>Fatal error: Uncaught exception 'Exception'</strong>
+
+
+
+    
+     
+
+
+
+    
+    但是在php5.2的某些版本，他什么都不会输出，而且你也不能用try catch来捕获$c->combinea()抛出的异常。
+
+
+
+    
+     
+
+
+
+    
+    最怕的不是出错，而是出了错什么都没有记录。增加了你debug的难度。
+
+
+
+    
+     
+
+
+
+    
+    然后是另外一个问题~
+
+
+
+    
+     
+
+
+
+    
+    如果我想要访问的地址是
+
+
+
+    
+     
+
+
+
+    
+    index.php/index/list
+
+
+
+    
+     
+
+
+
+    
+    <span style="color:#ff0000"><span style="color:rgb(0,0,255)"><span style="color:#ff0000"><?</span></span>php</span> 
+
+
+
+    
+     <span style="color:#0000ff">class</span> IndexController <span style="color:#0000ff">extends</span> CController{ 
+
+
+
+    
+    <span style="color:#0000ff">        public function</span> <span style="color:#0000ff">list</span>() { 
+
+
+
+    
+     <span style="color:#0000ff">echo</span> <span style="color:#c0504d">'Hello'</span>; 
+
+
+
+    
+            } 
+
+
+
+    
+        }
+
+
+
+    
+    注意!  list这个词是php的预留词，所以这个文件语法有问题，包含的时候就会报错。
+
+
+
+    
+     
+
+
+
+    
+    一些框架的解决方案是方法前统一加个词 比如action
+
+
+
+    
+     
+
+
+
+    
+    控制器大致是这样的
+
+
+
+    
+     
+
+
+
+    
+    <span style="color:#ff0000"><span style="color:rgb(0,0,255)"><span style="color:#ff0000"><?</span></span>php</span> 
+
+
+
+    
+     <span style="color:#0000ff">class</span> IndexController <span style="color:#0000ff">extends</span> CController{ 
+
+
+
+    
+    <span style="color:#0000ff">        public function</span> <span style="color:#000000">actionlist()</span> { 
+
+
+
+    
+     <span style="color:#0000ff">echo</span> <span style="color:#c0504d">'Hello'</span>; 
+
+
+
+    
+            } 
+
+
+
+    
+        }
+
+
+
+    
+     
+
+
+
+    
+    Controller也会需要参数的获取，模型载入，库载入等等工作。
+
+
+
+    
+     
+
+
+
+    
+    所以框架对这层进行封装，这些工作会在基类CController上实现。
+
+
+
+    
+     
+
+
+
+    
+    这也是为什么90%的框架都需要让你继承它的基类。
+
+
+
+    
+     
+
+
+
+    
+    比如获取参数，涉及到安全性，在框架层面就可以容易封装。
+
+
+

@@ -1,0 +1,35 @@
+---
+author: admin
+comments: true
+date: 2015-04-03 07:08:59+00:00
+layout: post
+slug: mac-zend-studio-12-0-2%e4%b8%ad%e5%9b%bd%e5%85%8d%e8%b4%b9%e4%bd%bf%e7%94%a8%e5%8a%9e%e6%b3%95%e7%a0%b4%e8%a7%a3%e6%b1%89%e5%8c%96
+title: 'Mac zend studio 12.0.2中国免费使用办法破解汉化 '
+wordpress_id: 354
+categories:
+- 实用软件技巧
+tags:
+- zend
+---
+
+1：下载原版，mac版：http://downloads.zend.com/studio-eclipse/12.0.2/ZendStudio-12.0.2-macosx.cocoa.x86_64.dmg
+
+其他版本去官网下载：http://www.zend.com/en/products/studio/downloads
+
+2：下载破解补丁和注册机
+
+在这：  http://download.csdn.net/detail/akmumu2010/8561121
+
+3：打开mac ▸ 应用程序 ▸ ZendStudio ▸ Contents ▸ Resources ▸ Java 路径，把补丁复制进来，即对应的jar文件
+
+4：打开keygen.jar，算一个注册码。
+
+5：打开zend 把注册码填进去，结束。
+
+汉化：
+
+1：打开 Help->Install New Software
+
+2：在work with输入 http://archive.eclipse.org/technology/babel/update-site/R0.10.1/juno/   回车等待很久
+
+3：选择“Babel Language Packs in Chinese(Simplified)”简体中文包项，下一步，漫长的等待之后就汉化好了，提示重启zend studio。

@@ -1,0 +1,193 @@
+---
+author: admin
+comments: true
+date: 2011-08-04 09:28:00+00:00
+layout: post
+slug: discuz%e8%b0%83%e7%94%a8%e5%b8%96%e5%ad%90%e5%9b%be%e7%89%87%e5%b9%b6%e4%bb%8e%e5%b7%a6%e5%90%91%e5%8f%b3%e6%bb%9a%e5%8a%a8
+title: discuz调用帖子图片并从左向右滚动
+wordpress_id: 16
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+
+* <style type="text/css">  
+
+
+* <!--  
+
+
+* #demo {  
+
+
+* background: #FFF;  
+
+
+* overflow:hidden;  
+
+
+* border: 1px dashed #CCC;  
+
+
+* width: 500px;  
+
+
+* }  
+
+
+* #demo img {  
+
+
+* border: 3px solid #F2F2F2;  
+
+
+* }  
+
+
+* #indemo {  
+
+
+* float: left;  
+
+
+* width: 800%;  
+
+
+* }  
+
+
+* #demo1 {  
+
+
+* float: left;  
+
+
+* }  
+
+
+* #demo2 {  
+
+
+* float: left;  
+
+
+* }  
+
+
+* -->  
+
+
+* </style>  
+
+
+* <div id="demo">  
+
+
+* <div id="indemo">  
+
+
+* <div id="demo1">  
+
+
+* <!-- 这其中添加帖子里面模块模板里面的数据即可
+* 例如
+* <div class="module cl ml">  
+
+<ul>  
+
+[loop]  
+
+<li style="width: {picwidth}px;">  
+
+<a href="{url}"{target}><img src="{pic}" width="{picwidth}" height="{picheight}" alt="{title}" /></a>  
+
+<p><a href="{url}" title="{title}"{target}>{title}</a></p>  
+
+</li>  
+
+[/loop]  
+
+</ul>  
+
+</div>  
+
+
+* * -->  
+
+
+* </div>  
+
+
+* <div id="demo2"></div>  
+
+
+* </div>  
+
+
+* </div>  
+
+
+* <script>  
+
+
+* <!--  
+
+
+* var speed=10;  
+
+
+* var tab=document.getElementById("demo");  
+
+
+* var tab1=document.getElementById("demo1");  
+
+
+* var tab2=document.getElementById("demo2");  
+
+
+* tab2.innerHTML=tab1.innerHTML;  
+
+
+* function Marquee(){  
+
+
+* if(tab2.offsetWidth-tab.scrollLeft<=0)  
+
+
+* tab.scrollLeft-=tab1.offsetWidth  
+
+
+* else{  
+
+
+* tab.scrollLeft++;  
+
+
+* }  
+
+
+* }  
+
+
+* var MyMar=setInterval(Marquee,speed);  
+
+
+* tab.onmouseover=function() {clearInterval(MyMar)};  
+
+
+* tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};  
+
+
+* -->  
+
+
+* </script>  
+
+
+
+

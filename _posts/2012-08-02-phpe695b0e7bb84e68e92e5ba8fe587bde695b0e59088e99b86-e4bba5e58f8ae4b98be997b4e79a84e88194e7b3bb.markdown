@@ -1,0 +1,1094 @@
+---
+author: admin
+comments: true
+date: 2012-08-02 06:01:00+00:00
+layout: post
+slug: php%e6%95%b0%e7%bb%84%e6%8e%92%e5%ba%8f%e5%87%bd%e6%95%b0%e5%90%88%e9%9b%86-%e4%bb%a5%e5%8f%8a%e4%b9%8b%e9%97%b4%e7%9a%84%e8%81%94%e7%b3%bb
+title: PHP数组排序函数合集 以及之间的联系
+wordpress_id: 44
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+**下边提到的几个数组函数的排序有一些共性：  
+
+1 数组被作为排序函数的参数，排序以后，数组本身就发生了改变，函数的返回值为bool类型。  
+
+  
+
+2 函数****名****中出现****单****a表示********association，含义为，在按值排序的过程中**，保持key=>value的对应关系不变  
+
+  
+
+3 函数名中出现单k表示key，**含义为，在按值排序的过程中按照数组key而不是数组的值**排序  
+
+  
+
+4 函数名中出现单r的表示reverse，含义为，按照跟不加r的相反的顺序排列  
+
+  
+
+5 函数名中出现单u的表示user-defined，含义为，使用用户自定义函数排序，如果函数的逻辑是参数1<参数2返回负数，则按照升序排列(p1小2返负升)。  
+
+**  
+
+--------------------sort函数升序排序--------------------------------**  
+
+bool **sort** ( 
+array &$array [,
+int $sort_flags= SORT_REGULAR ] )  
+
+<?php  
+
+$fruits = array("lemon", "orange", "banana", "apple");  
+
+sort($fruits);  
+
+var_dump($fruits);  
+
+?>  
+
+结果：  
+
+**array**
+
+
+
+    
+    0 <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'apple'</span> <em>(length=5)</em>
+      1 <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'banana'</span> <em>(length=6)</em>
+      2 <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'lemon'</span> <em>(length=5)</em>
+      3 <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'orange'</span> <em>(length=6)</em>
+    <strong>--------------------rsort降序排列--------------------</strong>
+    <?php
+    $fruits = array("lemon", "orange", "banana", "apple");
+    rsort($fruits);
+    var_dump($fruits);
+    ?>
+    结果：
+    <strong>array</strong>
+      0 <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'orange'</span> <em>(length=6)</em>
+      1 <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'lemon'</span> <em>(length=5)</em>
+      2 <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'banana'</span> <em>(length=6)</em>
+      3 <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'apple'</span> <em>(length=5)</em>
+    <strong>---------------asort按照二维数组值的升序排列（保持key=>value的关联关系）-----------</strong>
+    <?php
+    $fruits = array("d" => "lemon", "a" => "orange", "b" => "banana", "c" => "apple");
+    asort($fruits);
+    var_dump($fruits);
+    ?>
+    结果：
+    <strong>array</strong>
+      'c' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'apple'</span> <em>(length=5)</em>
+      'b' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'banana'</span> <em>(length=6)</em>
+      'd' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'lemon'</span> <em>(length=5)</em>
+      'a' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'orange'</span> <em>(length=6)</em>
+    <strong>--------------arsort按照二维数组值的降序排列（保持key=>value的关联关系）</strong>--------------
+    <?php
+    $fruits = array("d" => "lemon", "a" => "orange", "b" => "banana", "c" => "apple");
+    arsort($fruits);
+    var_dump($fruits);
+    ?>
+    结果
+    <strong>array</strong>
+      'a' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'orange'</span> <em>(length=6)</em>
+      'd' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'lemon'</span> <em>(length=5)</em>
+      'b' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'banana'</span> <em>(length=6)</em>
+      'c' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'apple'</span> <em>(length=5)</em>
+    
+    --------------------<span class="type"><strong>ksort按照数组的key升序排列</strong>--------------</span> <?php
+
+
+
+
+`$fruits = array("d"=>"lemon",
+"a"=>"orange",
+"b"=>"banana",
+"c"=>"apple");  
+
+ksort($fruits);  
+
+var_dump($fruits);  
+
+?>  
+
+结果  
+
+`**array**
+
+
+
+    
+    'a' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'orange'</span> <em>(length=6)</em>
+      'b' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'banana'</span> <em>(length=6)</em>
+      'c' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'apple'</span> <em>(length=5)</em>
+      'd' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'lemon'</span> <em>(length=5)</em>
+    <strong>---------------------krsort按照数组key的降序排列--------------------------------</strong>
+    <?php
+    $fruits = array("d"=>"lemon", "a"=>"orange", "b"=>"banana", "c"=>"apple");
+    krsort($fruits);
+    var_dump($fruits);
+    ?>
+    
+    <strong>array</strong>
+      'd' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'lemon'</span> <em>(length=5)</em>
+      'c' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'apple'</span> <em>(length=5)</em>
+      'b' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'banana'</span> <em>(length=6)</em>
+      'a' <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'orange'</span> <em>(length=6)
+    
+    
+    </em><strong>----------------<span class="methodname">usort</span>函数按照用户自定义的函数排序----------------
+    </strong><?php
+    function cmp($a, $b)
+    {
+        if ($a == $b) {
+            return 0;
+        }
+        return ($a < $b) ? -1 : 1;
+    }
+    
+    $a = array(3, 2, 5, 6, 1);
+    
+    usort($a, "cmp");
+    
+    var_dump($a);
+    ?><strong>
+    结果：
+    array</strong>
+      0 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">1</span>
+      1 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">2</span>
+      2 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">3</span>
+      3 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">5</span>
+      4 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">6</span>
+    <strong>-----------------</strong><span class="methodname"><strong>uksort</strong></span><strong>使用自定义函数按照数组的key排序-----------------
+    </strong><?php
+    function cmp($a, $b)
+    {
+        $a = preg_replace('@^(a|an|the) @', '', $a);
+        $b = preg_replace('@^(a|an|the) @', '', $b);
+        return strcasecmp($a, $b);
+    }
+    
+    $a = array("John" => 1, "the Earth" => 2, "an apple" => 3, "a banana" => 4);
+    
+    uksort($a, "cmp");
+    
+    var_dump($a);
+    ?>
+    结果：
+    <strong>array</strong>
+      'an apple' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">3</span>
+      'a banana' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">4</span>
+      'the Earth' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">2</span>
+      'John' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">1</span>
+    <strong>-------------------uasort将数组用自定义函数按照value排序，保持索引关系不变---------
+    </strong><?php
+    // Comparison function
+    function cmp($a, $b) {
+        if ($a == $b) {
+            return 0;
+        }
+        return ($a < $b) ? -1 : 1;
+    }
+    
+    // Array to be sorted
+    $array = array('a' => 4, 'b' => 8, 'c' => -1, 'd' => -9, 'e' => 2, 'f' => 5, 'g' => 3, 'h' => -4);
+    var_dump($array);
+    
+    // Sort and print the resulting array
+    uasort($array, 'cmp');
+    var_dump($array);
+    ?>
+    <strong>结果：
+    array</strong>
+      'a' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">4</span>
+      'b' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">8</span>
+      'c' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">-1</span>
+      'd' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">-9</span>
+      'e' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">2</span>
+      'f' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">5</span>
+      'g' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">3</span>
+      'h' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">-4</span>
+    <strong>array</strong>
+      'd' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">-9</span>
+      'h' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">-4</span>
+      'c' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">-1</span>
+      'e' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">2</span>
+      'g' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">3</span>
+      'a' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">4</span>
+      'f' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">5</span>
+      'b' <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">8</span>
+    <strong>-------------------</strong><span class="methodname"><strong>array_multisort排序多个数组或多维数组</strong></span><strong>---------</strong>
+    <?php
+    $ar = array(
+           array("10", 11, 100, 100, "a"),
+           array(   1,  2, "2",   3,   1)
+          );
+       
+    array_multisort($ar[0], SORT_ASC, SORT_STRING,
+                    $ar[1], SORT_NUMERIC, SORT_DESC);
+    var_dump($ar);
+    ?>
+    结果：
+    <strong>array</strong>
+      0 <span style="color:#888a85">=></span>
+    <strong>array</strong>
+          0 <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'10'</span> <em>(length=2)</em>
+          1 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">100</span>
+          2 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">100</span>
+          3 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">11</span>
+          4 <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'a'</span> <em>(length=1)</em>
+      1 <span style="color:#888a85">=></span>
+    <strong>array</strong>
+          0 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">1</span>
+          1 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">3</span>
+          2 <span style="color:#888a85">=></span> 
+
+
+
+
+string
+
+
+
+    
+     <span style="color:#cc0000">'2'</span> <em>(length=1)</em>
+          3 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+     <span style="color:#4e9a06">2</span>
+          4 <span style="color:#888a85">=></span> 
+
+
+
+
+int
+
+
+
+    
+    <span style="color:#4e9a06">1</span>
+    //说明：
+    1 上例中：$ar数组优先按照$ar[0]的字符串值升序排列，如果字符串值相等，再按照$ar[1]数组的数字值降序排列。
+    2 array_multisort函数的任意一个位置的参数如果是数组，表示排序时用的值，
+    如果有多个数组参数，优先按照前边的数组值进行排序，如果是常量，例如<strong><tt class="constant">
+    SORT_ASC</tt></strong>,<strong><tt class="constant"> SORT_DESC</tt></strong>, <strong><tt class="constant">SORT_REGULAR</tt></strong>,<strong><tt class="constant">SORT_NUMERIC</tt></strong>,<strong><tt class="constant"> SORT_STRING</tt></strong>.
+    表示排序方法（数组取值前优先）。
+    
+    
+    
+    
+    
+    
+
+
+
+    
+    ==========================================================================================
+
+
+
+
+# PHP二维数组排序函数
+
+
+
+
+PHP一维数组的排序可以用sort()，asort(),arsort()等函数，但是PHP二维数组的排序需要自定义。
+
+
+
+
+以下函数是对一个给定的二维数组按照指定的键值进行排序，先看函数定义：
+
+
+
+
+
+
+
+
+
+
+[view source](http://www.phper.org.cn/?post=66#viewSource)[print](http://www.phper.org.cn/?post=66#printSource)[?](http://www.phper.org.cn/?post=66#about)
+
+
+
+
+
+
+
+
+
+
+`01.``function`
+`array_sort(``$arr``,``$keys``,``$type``=``'asc'``){
+`
+
+
+
+
+`02.``$keysvalue`
+`= ``$new_array` `
+= ``array``();`
+
+
+
+
+`03.``foreach`
+`(``$arr` `
+as` `$k``=>``$v``){`
+
+
+
+
+`04.``$keysvalue``[``$k``] =
+``$v``[``$keys``];`
+
+
+
+
+`05.``}`
+
+
+
+
+`06.``if``(``$type`
+`== ``'asc'``){`
+
+
+
+
+`07.``asort(``$keysvalue``);`
+
+
+
+
+`08.``}``else``{`
+
+
+
+
+`09.``arsort(``$keysvalue``);`
+
+
+
+
+`10.``}`
+
+
+
+
+`11.``reset(``$keysvalue``);`
+
+
+
+
+`12.``foreach`
+`(``$keysvalue` `
+as` `$k``=>``$v``){`
+
+
+
+
+`13.``$new_array``[``$k``] =
+``$arr``[``$k``];`
+
+
+
+
+`14.``}`
+
+
+
+
+`15.``return`
+`$new_array``; `
+
+
+
+
+`16.``}
+`
+
+
+
+
+
+
+
+
+
+
+它可以对二维数组按照指定的键值进行排序，也可以指定升序或降序排序法（默认为升序），用法示例：
+
+
+
+
+
+
+
+
+
+
+[view source](http://www.phper.org.cn/?post=66#viewSource)[print](http://www.phper.org.cn/?post=66#printSource)[?](http://www.phper.org.cn/?post=66#about)
+
+
+
+
+
+
+
+
+
+
+`01.``$array`
+`= ``array``(`
+
+
+
+
+`02.``array``(``'name'``=>``'手机'``,``'brand'``=>``'诺基亚'``,``'price'``=>1050),`
+
+
+
+
+`03.``array``(``'name'``=>``'笔记本电脑'``,``'brand'``=>``'lenovo'``,``'price'``=>4300),`
+
+
+
+
+`04.``array``(``'name'``=>``'剃须刀'``,``'brand'``=>``'飞利浦'``,``'price'``=>3100),`
+
+
+
+
+`05.``array``(``'name'``=>``'跑步机'``,``'brand'``=>``'三和松石'``,``'price'``=>4900),`
+
+
+
+
+`06.``array``(``'name'``=>``'手表'``,``'brand'``=>``'卡西欧'``,``'price'``=>960),`
+
+
+
+
+`07.``array``(``'name'``=>``'液晶电视'``,``'brand'``=>``'索尼'``,``'price'``=>6299),`
+
+
+
+
+`08.``array``(``'name'``=>``'激光打印机'``,``'brand'``=>``'惠普'``,``'price'``=>1200)`
+
+
+
+
+`09.``);`
+
+
+
+
+`10.`
+
+
+
+
+
+`11.``$ShoppingList`
+`= array_sort(``$array``,``'price'``);`
+
+
+
+
+`12.``print_r(``$ShoppingList``);`
+
+
+
+
+
+
+
+
+
+
+上面是对$array这个二维数组按照'price'从低到高的排序。
+
+
+
+
+输出结果：（略）。
+
+
+

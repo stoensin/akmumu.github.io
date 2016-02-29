@@ -1,0 +1,210 @@
+---
+author: admin
+comments: true
+date: 2013-01-05 05:43:00+00:00
+layout: post
+slug: php-socket%e7%bc%96%e7%a8%8b%e6%a0%b7%e4%be%8b
+title: php socket编程样例
+wordpress_id: 148
+categories:
+- PHP
+- 网络
+tags:
+- php程序设计
+- 网络
+---
+
+
+
+
+客户端代码：
+
+
+
+
+
+
+
+客户端代码：
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+     1 <?php
+     2 error_reporting(E_ALL);
+     3 set_time_limit(0);
+     4 echo "<h2>TCP/IP Connection</h2>n";
+     5 
+     6 $port = 1935;
+     7 $ip = "127.0.0.1";
+     8 
+     9 /*
+    10  +-------------------------------
+    11  *    @socket连接整个过程
+    12  +-------------------------------
+    13  *    @socket_create
+    14  *    @socket_connect
+    15  *    @socket_write
+    16  *    @socket_read
+    17  *    @socket_close
+    18  +--------------------------------
+    19  */
+    20 
+    21 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+    22 if ($socket < 0) {
+    23     echo "socket_create() failed: reason: " . socket_strerror($socket) . "n";
+    24 }else {
+    25     echo "OK.n";
+    26 }
+    27 
+    28 echo "试图连接 '$ip' 端口 '$port'...n";
+    29 $result = socket_connect($socket, $ip, $port);
+    30 if ($result < 0) {
+    31     echo "socket_connect() failed.nReason: ($result) " . socket_strerror($result) . "n";
+    32 }else {
+    33     echo "连接OKn";
+    34 }
+    35 
+    36 $in = "Horn";
+    37 $in .= "first bloodrn";
+    38 $out = '';
+    39 
+    40 if(!socket_write($socket, $in, strlen($in))) {
+    41     echo "socket_write() failed: reason: " . socket_strerror($socket) . "n";
+    42 }else {
+    43     echo "发送到服务器信息成功！n";
+    44     echo "发送的内容为:<font color='red'>$in</font> <br>";
+    45 }
+    46 
+    47 while($out = socket_read($socket, 8192)) {
+    48     echo "接收服务器回传信息成功！n";
+    49     echo "接受的内容为:",$out;
+    50 }
+    51 
+    52 
+    53 echo "关闭SOCKET...n";
+    54 socket_close($socket);
+    55 echo "关闭OKn";
+    56 ?>
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+
+
+
+
+
+
+服务器端代码
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+    
+    <span style="color:#08080"> 1</span> <?<span style="color:#000000">php
+    </span><span style="color:#08080"> 2</span> <span style="color:#0800">//</span><span style="color:#0800">确保在连接客户端时不会超时</span>
+    <span style="color:#08080"> 3</span> <span style="color:#08080">set_time_limit</span>(0<span style="color:#000000">);
+    </span><span style="color:#08080"> 4</span>
+    <span style="color:#08080"> 5</span> <span style="color:#80080">$ip</span> = '127.0.0.1'<span style="color:#000000">;
+    </span><span style="color:#08080"> 6</span> <span style="color:#80080">$port</span> = 1935<span style="color:#000000">;
+    </span><span style="color:#08080"> 7</span>
+    <span style="color:#08080"> 8</span> <span style="color:#0800">/*</span>
+    <span style="color:#08080"> 9</span> <span style="color:#0800"> +-------------------------------
+    </span><span style="color:#08080">10</span> <span style="color:#0800"> *    @socket通信整个过程
+    </span><span style="color:#08080">11</span> <span style="color:#0800"> +-------------------------------
+    </span><span style="color:#08080">12</span> <span style="color:#0800"> *    @socket_create
+    </span><span style="color:#08080">13</span> <span style="color:#0800"> *    @socket_bind
+    </span><span style="color:#08080">14</span> <span style="color:#0800"> *    @socket_listen
+    </span><span style="color:#08080">15</span> <span style="color:#0800"> *    @socket_accept
+    </span><span style="color:#08080">16</span> <span style="color:#0800"> *    @socket_read
+    </span><span style="color:#08080">17</span> <span style="color:#0800"> *    @socket_write
+    </span><span style="color:#08080">18</span> <span style="color:#0800"> *    @socket_close
+    </span><span style="color:#08080">19</span> <span style="color:#0800"> +--------------------------------
+    </span><span style="color:#08080">20</span> <span style="color:#0800">*/</span>
+    <span style="color:#08080">21</span>
+    <span style="color:#08080">22</span> <span style="color:#0800">/*</span><span style="color:#0800">----------------    以下操作都是手册上的    -------------------</span><span style="color:#0800">*/</span>
+    <span style="color:#08080">23</span> <span style="color:#00ff">if</span>((<span style="color:#80080">$sock</span> = socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) < 0<span style="color:#000000">) {
+    </span><span style="color:#08080">24</span> <span style="color:#00ff">echo</span> "socket_create() 失败的原因是:".socket_strerror(<span style="color:#80080">$sock</span>)."n"<span style="color:#000000">;
+    </span><span style="color:#08080">25</span> <span style="color:#000000">}
+    </span><span style="color:#08080">26</span>
+    <span style="color:#08080">27</span> <span style="color:#00ff">if</span>((<span style="color:#80080">$ret</span> = socket_bind(<span style="color:#80080">$sock</span>,<span style="color:#80080">$ip</span>,<span style="color:#80080">$port</span>)) < 0<span style="color:#000000">) {
+    </span><span style="color:#08080">28</span> <span style="color:#00ff">echo</span> "socket_bind() 失败的原因是:".socket_strerror(<span style="color:#80080">$ret</span>)."n"<span style="color:#000000">;
+    </span><span style="color:#08080">29</span> <span style="color:#000000">}
+    </span><span style="color:#08080">30</span>
+    <span style="color:#08080">31</span> <span style="color:#00ff">if</span>((<span style="color:#80080">$ret</span> = socket_listen(<span style="color:#80080">$sock</span>,4)) < 0<span style="color:#000000">) {
+    </span><span style="color:#08080">32</span> <span style="color:#00ff">echo</span> "socket_listen() 失败的原因是:".socket_strerror(<span style="color:#80080">$ret</span>)."n"<span style="color:#000000">;
+    </span><span style="color:#08080">33</span> <span style="color:#000000">}
+    </span><span style="color:#08080">34</span>
+    <span style="color:#08080">35</span> <span style="color:#80080">$count</span> = 0<span style="color:#000000">;
+    </span><span style="color:#08080">36</span>
+    <span style="color:#08080">37</span> <span style="color:#00ff">do</span><span style="color:#000000"> {
+    </span><span style="color:#08080">38</span> <span style="color:#00ff">if</span> ((<span style="color:#80080">$msgsock</span> = socket_accept(<span style="color:#80080">$sock</span>)) < 0<span style="color:#000000">) {
+    </span><span style="color:#08080">39</span> <span style="color:#00ff">echo</span> "socket_accept() failed: reason: " . socket_strerror(<span style="color:#80080">$msgsock</span>) . "n"<span style="color:#000000">;
+    </span><span style="color:#08080">40</span> <span style="color:#00ff">echo</span> "等待连接。。。。"<span style="color:#000000">;
+    </span><span style="color:#08080">41</span> <span style="color:#00ff">break</span><span style="color:#000000">;
+    </span><span style="color:#08080">42</span>     } <span style="color:#00ff">else</span><span style="color:#000000"> {
+    </span><span style="color:#08080">43</span>
+    <span style="color:#08080">44</span> <span style="color:#0800">//</span><span style="color:#0800">发到客户端</span>
+    <span style="color:#08080">45</span> <span style="color:#80080">$msg</span> ="测试成功！n"<span style="color:#000000">;
+    </span><span style="color:#08080">46</span>         socket_write(<span style="color:#80080">$msgsock</span>, <span style="color:#80080">$msg</span>, <span style="color:#08080">strlen</span>(<span style="color:#80080">$msg</span><span style="color:#000000">));
+    </span><span style="color:#08080">47</span>
+    <span style="color:#08080">48</span> <span style="color:#00ff">echo</span> "测试成功了啊n"<span style="color:#000000">;
+    </span><span style="color:#08080">49</span> <span style="color:#80080">$buf</span> = socket_read(<span style="color:#80080">$msgsock</span>,8192<span style="color:#000000">);
+    </span><span style="color:#08080">50</span>
+    <span style="color:#08080">51</span>
+    <span style="color:#08080">52</span> <span style="color:#80080">$talkback</span> = "收到的信息:<span style="color:#80080">$buf</span>n"<span style="color:#000000">;
+    </span><span style="color:#08080">53</span> <span style="color:#00ff">echo</span> <span style="color:#80080">$talkback</span><span style="color:#000000">;
+    </span><span style="color:#08080">54</span>
+    <span style="color:#08080">55</span> <span style="color:#00ff">if</span>(++<span style="color:#80080">$count</span> >= 5<span style="color:#000000">){
+    </span><span style="color:#08080">56</span> <span style="color:#00ff">break</span><span style="color:#000000">;
+    </span><span style="color:#08080">57</span> <span style="color:#000000">        };
+    </span><span style="color:#08080">58</span>
+    <span style="color:#08080">59</span>
+    <span style="color:#08080">60</span> <span style="color:#000000">    }
+    </span><span style="color:#08080">61</span> <span style="color:#0800">//</span><span style="color:#0800">echo $buf;</span>
+    <span style="color:#08080">62</span>     socket_close(<span style="color:#80080">$msgsock</span><span style="color:#000000">);
+    </span><span style="color:#08080">63</span>
+    <span style="color:#08080">64</span> } <span style="color:#00ff">while</span> (<span style="color:#00ff">true</span><span style="color:#000000">);
+    </span><span style="color:#08080">65</span>
+    <span style="color:#08080">66</span> socket_close(<span style="color:#80080">$sock</span><span style="color:#000000">);
+    </span><span style="color:#08080">67</span> ?>
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)]()
+
+
+
+
+原文链接：[http://www.cnblogs.com/luojianqun/archive/2012/12/04/2802027.html](http://www.cnblogs.com/luojianqun/archive/2012/12/04/2802027.html)
+
+
+
+
+
+
+
+
+

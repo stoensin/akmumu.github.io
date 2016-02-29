@@ -1,0 +1,26 @@
+---
+author: admin
+comments: true
+date: 2012-12-06 06:08:00+00:00
+layout: post
+slug: '%e8%8e%b7%e5%8f%96%e4%b8%ad%e6%96%87%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%95%bf%e5%ba%a6strlen-%e4%b8%8e-mb_strlen-%e5%8c%ba%e5%88%ab'
+title: 获取中文字符串长度strlen 与 mb_strlen 区别
+wordpress_id: 133
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+PHP内置的字符串长度函数strlen无法正确处理中文字符串，它得 到的只是字符串所占的字节数。对于GB2312的中文编码，strlen得到的值是汉字个数的2倍，而对于UTF-8编码的中文，就是3倍的差异了（在 UTF-8编码下，一个汉字占3个字节）。
+
+
+
+
+mb_strlen计算时，选定内码为UTF8，则会将一个中文字符当作长度1来计算
+
+
+

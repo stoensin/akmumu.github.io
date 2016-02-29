@@ -1,0 +1,54 @@
+---
+author: admin
+comments: true
+date: 2011-03-27 12:48:00+00:00
+layout: post
+slug: '%e6%b7%bb%e5%8a%a0%e6%94%b6%e8%97%8f%e5%b0%86%e7%bd%91%e9%a1%b5%e6%b7%bb%e5%8a%a0%e5%88%b0%e6%b5%8f%e8%a7%88%e5%99%a8%e6%94%b6%e8%97%8f%e5%a4%b9%e9%87%8c'
+title: 添加收藏,将网页添加到浏览器收藏夹里
+wordpress_id: 9
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+添加收藏效果：当访客点击添加收藏的链接或图片后即可把你的网站地址名称添加到浏览器的收藏夹里。代码如下：
+
+
+
+
+<html>   
+<head>   
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">   
+<title>我要淘模板网|www.51tmb.com|---添加收藏代码</title>   
+</head>   
+<body>   
+右击鼠标查看代码   
+<p>代码一：<a onclick="window.external.AddFavorite(location.href, document.title);" title="网页特效_模板下载::网页模板::免费模板网::我要淘模板网" style="cursor:hand">收藏本页</a> </p>   
+<p><br>   
+代码二：<a href="javascript:window.external.AddFavorite('http://www.51tmb.com', '网页特效_模板下载::网页模板::免费模板网::我要淘模板网')">收藏本站</a>   
+</p>   
+<p>   
+<script language="javascript">   
+function addFavorite(url,title){   
+var fav_url = url;   
+var fav_title = title;   
+if (document.all && window.external){   
+window.external.AddFavorite(fav_url,fav_title);   
+}else if (window.sidebar){   
+window.sidebar.addPanel(fav_title,fav_url,"");   
+}else{   
+alert("浏览器不支持，请手动加入收藏夹");   
+}   
+}   
+</script>   
+代码三：<a href="javascript:addFavorite('http://www.51tmb.com','网页特效_模板下载::网页模板::免费模板网::我要淘模板网');">添加收藏</a>   
+</p>   
+</body>   
+</html>
+
+
+

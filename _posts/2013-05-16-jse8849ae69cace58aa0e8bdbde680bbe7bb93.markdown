@@ -1,0 +1,1359 @@
+---
+author: admin
+comments: true
+date: 2013-05-16 01:38:00+00:00
+layout: post
+slug: js%e8%84%9a%e6%9c%ac%e5%8a%a0%e8%bd%bd%e6%80%bb%e7%bb%93
+title: js脚本加载总结
+wordpress_id: 179
+categories:
+- JS
+tags:
+- JS
+---
+
+
+
+
+
+原文链接：http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html
+
+
+
+
+
+这段时间工作工作上不是很紧，零星的在研究浏览器的一些东西，刚好这个月又一次轮到我做沙龙讲座了，想好了好久，就来一次js脚本加载的总结吧！这一块应该对于很多做项目的朋友来会有所帮助吧！
+
+
+
+
+
+　　**1、js起源**
+
+
+
+
+
+　　总所周知网页最开始的形态是静态的（也就是所谓的静态网页），那时候的网页主要用于浏览资料信息，可是随着用户需求的增加，用户希望在页面上做一些交互操作，比如页面需要验证才能访问、页面输入的一些数据希望下次还可以访问等等，js的出现满足了人们的需求。也就出现了所谓的动态网页。
+
+
+
+
+
+　　虽然js给人们带来了很好的交互性，但是起初人们乱用脚本，只是网页页面代码混乱不堪，当css的出现解决了这一问题：
+
+
+
+
+
+　　![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_cnitblog_25200405-46bb3ca7db634dde894928bb176b1876.png)
+
+
+
+
+
+　　知道如今，我们的网页也是分为三部分：HTML（主要放置界面元素）、CSS（主要负责界面布局）和JS（主要负责界面交互）。
+
+
+
+
+
+　　大家都知道这三部分，但是有很多人不注意一些细节，导致做出的网页访问时效率低下。在这里我将和大家讨论一下关于js的一些知识，希望给大家带来一定帮助吧！
+
+
+
+
+
+　　**2、三种使用脚本方式**
+
+
+
+
+
+　　2.1内部引用JavaScript
+
+
+
+
+
+　　2.11通过[HTML](http://www.dreamdu.com/xhtml/)的[script](http://www.dreamdu.com/xhtml/tag_script/)标签加载JavaScript代码
+
+
+
+
+
+　　如：　　
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+    
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">head</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">script </span><span style="line-height:1.5; color:rgb(255,0,0)">type</span><span style="line-height:1.5; color:rgb(0,0,255)">="text/javascript"</span><span style="line-height:1.5; color:rgb(0,0,255)">></span><span style="line-height:1.5; background-color:rgb(245,245,245)">
+            document.write(</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">Hello World !</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">);
+        </span><span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">script</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">head</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+
+
+
+
+
+　　2.12通过注释隐藏JavaScript代码
+
+
+
+
+
+　　如：
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+    
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">head</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">script </span><span style="line-height:1.5; color:rgb(255,0,0)">type</span><span style="line-height:1.5; color:rgb(0,0,255)">="text/javascript"</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245)"><!--</span><span style="line-height:1.5; background-color:rgb(245,245,245)">
+            document.write(</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">Hello World !</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">);
+            </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">//</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">--></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">script</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">head</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+
+
+
+
+
+　　<!-- ... //-->当浏览器不支持JavaScript时，屏蔽JavaScript代码。这个代码是骇客技术，<!-- ... -->于[HTML](http://www.dreamdu.com/xhtml/comment/)[注释](http://www.dreamdu.com/xhtml/comment/)，// 是JavaScript注释。当浏览器支持JavaScript时//代码生效，因此HTML的注释没有效果；当浏览器不支JavaScript时，//代码无效，因此屏蔽了<!--
+ ... -->之间的JavaScript代码。现在这种隐藏JavaScript代码的方式可以忽略，因为没有浏览器不支持JavaScript，除了部分用户手动禁止浏览器的JavaScript功能，但是这种情况很少发生。
+
+
+
+
+
+　　2.1.3使用noscript标签为用户提供更好的体验
+
+
+
+
+
+　　如：　　
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+    
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">body</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">script </span><span style="line-height:1.5; color:rgb(255,0,0)">type</span><span style="line-height:1.5; color:rgb(0,0,255)">="text/javascript"</span><span style="line-height:1.5; color:rgb(0,0,255)">></span><span style="line-height:1.5; background-color:rgb(245,245,245)">
+            document.write(</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">Hello World !</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">);
+        </span><span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">script</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">noscript</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">p</span><span style="line-height:1.5; color:rgb(0,0,255)">></span><span style="line-height:1.5">如果您想查看此网页，则必须启用JavaScript。
+                  然而，JavaScript 似乎被禁用，要么就是您的
+                  浏览器不支持 JavaScript。请更改您的浏览器
+                  选项以启用 JavaScript，然后刷新。
+            </span><span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">p</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">noscript</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">body</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+
+
+
+
+
+　　通过JavaScript注释的方式可以隐藏JavaScript代码，通过[noscript](http://www.dreamdu.com/xhtml/tag_noscript/)标签可以为用户提供更好的体验（提示用户你的浏览器不支持JavaScript）。
+
+
+
+
+
+　　2.2外部引用JavaScript
+
+
+
+
+
+　　使用<script>标签的src属性来加载js脚本。通常JavaScript文件可以使用script标签加载到网页的任何一个地方，但是标准的方式是加载在head标签内。为防止网页加载缓慢，也可以把非关键的JavaScript放到网页底部。　
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+    
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">script </span><span style="line-height:1.5; color:rgb(255,0,0)">type</span><span style="line-height:1.5; color:rgb(0,0,255)">="text/javascript"</span><span style="line-height:1.5; color:rgb(255,0,0)"> src</span><span style="line-height:1.5; color:rgb(0,0,255)">=“SuperMap.js"</span><span style="line-height:1.5; color:rgb(0,0,255)">></</span><span style="line-height:1.5; color:rgb(128,0,0)">script</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+
+
+
+
+
+　　这里有几点好处：
+
+
+
+
+
+　　1）避免使用<!-- ... //-->，骇客技术。
+
+
+
+
+
+　　2）统一定义JavaScript代码，方便查看，方便维护。
+
+
+
+
+
+　　3）使代码更安全，可以压缩，加密单个JavaScript文件。
+
+
+
+
+
+　　4）浏览器可以缓存JavaScript文件，减少宽带使用。
+
+
+
+
+
+　　2.3内联引用JavaScript
+
+
+
+
+
+　　内联引用是通过[HTML](http://www.dreamdu.com/xhtml/tag/)[标签](http://www.dreamdu.com/xhtml/tag/)中的事件属性实现的。
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+    
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">input </span><span style="line-height:1.5; color:rgb(255,0,0)">type</span><span style="line-height:1.5; color:rgb(0,0,255)">="button"</span><span style="line-height:1.5; color:rgb(255,0,0)"> value</span><span style="line-height:1.5; color:rgb(0,0,255)">="点我"</span><span style="line-height:1.5; color:rgb(255,0,0)"> onclick</span><span style="line-height:1.5; color:rgb(0,0,255)">="alert('你点击了一个按钮');"</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+
+
+
+
+
+　　上面示例将调用[input](http://www.dreamdu.com/xhtml/tag_input/)标签的onclick属性，弹出一个提示框。
+
+
+
+
+
+　**　3内外脚本的比较**
+
+
+
+
+
+　　内联脚本方式使用场景很少，几乎没什么优势。
+
+
+
+
+
+　　内部脚本示例：http://stevesouders.com/hpws/inlined.php
+
+
+
+
+
+　　外部脚本示例：http://stevesouders.com/hpws/external.php
+
+
+
+
+
+　　内部脚本示例只有一个HTML文档，其大小为87kb，所有的js和css都包含在HTML文档自身中。外部脚本示例包含一个HTML文档（7kb）、一个样式表（59kb）和三个脚本（1kb、11kb和9kb），总计87kb。尽管所需下载的总数据量是相同的，内部脚本示例还是比外部示例快30%到50%。这主要是因为外部示例需要承担多个HTTP请求带来的开销。尽管外部脚本示例可以从样式表和脚本的并行下载中获益，但一个HTTP请求与五个HTTP请求之间的差距导致内部脚本示例更快一些。
+
+
+
+
+
+　　尽管结果如此，现实中还是使用外部文件会更合理一些，因为外部文件所带来的收益--------js文件有机会被浏览器缓存起来。HTML文档--------至少是那些包含动态内容的HTML文档--------通常不会被配置为可以进行缓存。当遇到这种情况时（HTML没有被缓存），每次请求HTML文档都要下载内部的js。另一方面，如果js是外部文件，浏览器就能缓存它们，HTML文档的大小减小，而且不会增加HTTP请求的数量。
+
+
+
+
+
+　　关键因素是，与HTML文档请求数量相关的、外部js组件被缓存的频率。这个因素尽管难以量化，但可以通过下面的手段进行衡量：
+
+
+
+
+
+　　3.1页面查看
+
+
+
+
+
+　　每个用户产生的页面查看越少，内部js的论据越强势。想象一个普通用户每个月只访问你的网站一次。在每次访问之间，外部js文件很可能从浏览器的缓存中移除。另一方面，如果普通用户能够产生很多的页面查看，浏览器很可能将外部Js文件放在缓存中。使用外部文件提供js带来的收益会随着用户每月的页面查看次数或用户每会话产生的页面查看次数的增长而增加。
+
+
+
+
+
+　　3.2空缓存VS完整缓存
+
+
+
+
+
+　　在比较内部和外部文件时，知道用户缓存外部组件的可能性这一点非常重要。我们在Yahoo!进行了测量，发现每天至少携带完整缓存访问Yahoo！功能一次的用户占40%到60%。同样的研究表明，具有完整缓存额的页面查看数量占75%到85%。注意第一个统计测量的是“唯一用户”而第二个是“页面查看”。具有完整缓存的页面查看所占的百分比比携带完整缓存的唯一用户的百分比高，这是因为很多用户在一次会话中进行了多次页面查看。每天，用户可能只有开始的一次访问携带的是空缓存，之后的多次后续页面查看都具有完整缓存。如果你的网站的本质上能够为用户带来高完整缓存率，使用外部文件的收益就更大。如果不太可能产生完整缓存，则内部脚本是更好的选择。
+
+
+
+
+
+　　3.3组件重用
+
+
+
+
+
+　　如果你的网站中的每个页面都使用了相同的js，使用外部文件可以提高这些组件的重用率。在这种情况下使用外部文件更加具有优势，因为当用户在页面间导航时，js组件已经位于浏览器的缓存中了。相反的情况也很容易理解--------如果没有任何两个页面共享相同的js，重用率就会非常低。难的是绝大多数网站不是非黑即白的。这就带来一个单独相关的问题--------当把js打包到外部文件中时，应该把边界划在哪里？
+
+
+
+
+
+　　
+
+
+
+
+
+　　在典型情况下，页面之间的js的重用即不可能100%重叠，也不可能100%无关。在这种中间情形中，一个极端就是为每个页面提供一组分离的外部文件。这种方式的缺点在于，每个页面都强制用户使用另外一组外部组件并产生令响应时间变慢的HTTP请求。这种方式对于普通用户只访问一个页面和很少进行跨页访问的网站来说是有意义的。
+
+
+
+
+
+　　另一个极端是创建一个单独的、联合了所有js的文件。这只要求用户生成一个HTTP请求，但它增加了用户首次进行页面查看时的下载数据量。在这种情况下，用户浏览页面时要下载的js多于所需的数量。而且，在任何一块独立的脚本改变后，都需要更新这个文件，使所有用户已经缓存了的当前版本无效。这种情况对于那些每月会话数量较高、普通用户在一个会话中访问多个不同页面的网站来说是有意义的。
+
+
+
+
+
+　　如果你的网站不符合这两种极端情况，最好的答案就是折中。将你的页面划分成几种页面类型，然后为每种类型创建单独的脚本，这比维护一个单独的文件要复杂，但通常比为每个页面维护不同的脚本要容易，并且对于给定的任意页面都只需要下载很少的多余的js。
+
+
+
+
+
+　　最后你做出的与js外部文件的边界相关的决定影响着组件的重用程度。如果你可以找到一个平衡点，实现较高的重用性，那么外部文件的论据更强势一些。如果重用度很低，还是内部脚本更有意义些。
+
+
+
+
+
+　　在对于内部和外部脚本进行比较分析时，关键点在于与HTML文档请求数量相关的外部js组件被缓存的频率。在此我介绍了三种基准（页面查看、空缓存VS完整缓存和组件重用），这有助于你确定最好的选择。对于任何网站来说，正确答案都依赖于这些基准。
+
+
+
+
+
+　　大家如果还想更详细的了解浏览器脚本、css等的一些效率问题，可以看《高性能网站建设指南》，那里面的14条具体的优化原则的确很精辟。
+
+
+
+
+
+　　**4 将脚本放在底部**
+
+
+
+
+
+　　4.1脚本带来的问题
+
+
+
+
+
+　　下面是一个脚本放在中部的示例
+
+
+
+
+
+　　http://stevesouders.com/hpws/js-middle.php
+
+
+
+
+
+　　经过编程的脚本下载需要很长时间，因此很容易看到问题--------页面的下半部分要花很长时间才能显示。出现这一现象是因为脚本阻塞了并行下载。在回顾了浏览器如何并行下载之后，我们再回过头解决这一问题。
+
+
+
+
+
+　　4.2并行下载
+
+
+
+
+
+　　对响应时间影响最大的是页面中组件的数量。当缓存为空，每个组件都会产生一个HTTP请求，有时即便缓存是完整的亦是如此。要知道浏览器会并行地执行HTTP请求，你可能会问，为什么HTTP请求的数量会影响响应时间呢？浏览器不能一次将它们都下载下来吗？
+
+
+
+
+
+　　对此的解释要回到HTTP 1.1规范，该规范建议浏览器从每个主机名并行下载两个组件。很多web页面需要从一个主机名下载所有的组件。查看这些HTTP请求会发现它们是呈阶梯状的，如图所示：
+
+
+
+
+
+　　![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_cnitblog_25212039-8cef38e126cc4306b77db12ea269234a.png)
+
+
+
+
+
+　　　　　　　　　　　　　　　　　　　　　　图4.1
+
+
+
+
+
+　如果一个Web页面平均地将其组件分别放在两个主机名下，整体响应时间将可以减少大约一半。HTTP请求的行为看起来会是图4.2所示
+
+
+
+
+
+　　![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/images_cnitblog_25214437-11330afebaf240b098834f4d2added92.png)
+
+
+
+
+
+　　　　　　　　　　　　　　　　　　　　　　　　图4.2
+
+
+
+
+
+　　此处可以并行下载四个组件（每个主机名两个）。为了对页面加载变快的现象给出可视的效果，其中每个时间块的横向宽度和图4.1是一样的。
+
+
+
+
+
+　　每个主机名并行下载两个组件的限制只是一个建议。默认情况下浏览器都遵守这一建议，但用户也可以重写该默认设置。但增加并行下载数量并不是没有开销的，其优劣取决于你的宽带和CPU速度。
+
+
+
+
+
+　　4.3脚本阻塞下载
+
+
+
+
+
+　　并行下载组件的优点是很明显的。然而，在一些比较旧的浏览器在下载脚本时并行下载实际上是被禁用的--------即使使用了不同的主机名，浏览器也不会启动其他的下载。其中一个原因是，脚本可能使用document.write来修饰页面内容，因此浏览器会等待，以确保页面能够恰当的布局。（现在的浏览器虽然可以并行下载，但是同样阻塞布局）在下载脚本时浏览器阻塞并行下载的另一个原因是为了保证脚本能够按照正确的顺序执行。如果并行下载多个脚本，就无法保证响应是按照特定顺序到达浏览器的。例如：后面的脚本比页面中之前出现的脚本更小，它可能首先执行。如果它们之间存在着依赖关系，不按照顺序执行就会导致js错误。
+
+
+
+
+
+　　如下是一个例子：
+
+
+
+
+
+　　http://stevesouders.com/hpws/js-blocking.php
+
+
+
+
+
+　　该页面按照顺序包含下列组件
+
+
+
+
+
+　　　　1、来至host1的一个图片
+
+
+
+
+
+　　　　2、来至host2的一个图片
+
+
+
+
+
+　　　　3、来至host1的一个加载需要大约10秒的脚本
+
+
+
+
+
+　　　　4、来至host1的一个图片
+
+
+
+
+
+　　　　5、来至host2的一个图片
+
+
+
+
+
+　　4.4最差情况：将脚本放在顶部
+
+
+
+
+
+　　至此，脚本对Web页面的影响就清楚了：
+
+
+
+
+
+　　　　1、脚本会阻塞对其后面内容的呈现
+
+
+
+
+
+　　　　2、脚本会阻塞对其后面组件的下载
+
+
+
+
+
+　　如果将脚本放在页面顶部--------正如通常情况那样--------页面中的所有东西都位于脚本之后，整个页面的呈现和下载都会被阻塞，直到脚本加载完毕脚本放在顶部的示例：
+
+
+
+
+
+[　　http://](http://stevesouders.com/hpws/js-top.php)[stevesouders.com/hpws/js-top.php](http://stevesouders.com/hpws/js-top.php)
+
+
+
+
+
+　　由于整个页面的呈现被阻塞，因此导致了白屏现象。逐步呈现对于良好的用户体验来说是非常重要的，但缓慢的脚本下载延迟了用户所期待的反馈。
+
+
+
+
+
+　　4.5最佳情况：将脚本放在底部
+
+
+
+
+
+　　放置脚本的最好地方时页面的底部。这不会阻止页面内容的呈现，而且页面中的可是组件可以尽早下载。脚本放在底部的示例：
+
+
+
+
+
+[　　http://](http://stevesouders.com/hpws/js-bottom.php)[stevesouders.com/hpws/js-bottom.php](http://stevesouders.com/hpws/js-bottom.php)
+
+
+
+
+
+　　把两个页面--------脚本放在顶部的和脚本放在底部的--------并列放在一起浏览，其对比更为突出。可以在下面这个示例中看到这一点：
+
+
+
+
+
+　　http://stevesouders.com/hpws/move-scripts.php
+
+
+
+
+
+　　4.6正确地放置
+
+
+
+
+
+　　前面那些示例是使用了大概需要10秒才能下载完的脚本。希望你使用的脚本不需要这么长时间的延迟，但一个脚本很可能花费比预期长的时间，用户的宽带也会影响脚本的响应时间。你的页面中的脚本所产生的影响可能没有这里展示的那么严重，但仍需要注意。在页面中包含多个脚本也会带来问题。
+
+
+
+
+
+　　在很多情况下，很难将脚本移到底部。例如，如果脚本使用document.write向页面中插入了内容，就不能将其移动到页面中靠后的位置。
+
+
+
+
+
+　　经常出现的另外一种建议是使用延迟脚本。Defer属性表明脚本不包含document.write，浏览器得到这一线索就可继续进行呈现。从下面的示例可以看到这一点：
+
+
+
+
+
+[　　http://](http://stevesouders.com/hpws/js-defer.php)[stevesouders.com/hpws/js-defer.php](http://stevesouders.com/hpws/js-defer.php)
+
+
+
+
+
+　　但是不保险，有一些老的浏览器不能识别defer，所以最好还是将脚本放于底部。
+
+
+
+
+
+　**5动态加载脚本**
+
+
+
+
+
+　　详见我之前的博客
+
+
+
+
+## 
+[js动态加载脚本](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/03/06/2946277.html)
+
+
+
+
+
+　　**6三种实用方式**
+
+
+
+
+
+　　6.1异步批量添加外部脚本
+
+
+
+
+
+　　很多时候我们由于产品模块的划分，一个页面可能需要加载几个脚本，我们需要考虑两点：1、脚本之间是否有依赖关系，如果存在依赖关系即使我们使用script标签是按照顺序的，但是并行下载是一起下载的，如果出现后面的包先下载完，那么执行脚本时就可能出现错误；2、考虑到效率，一般情况下异步加载比同步加载会快一些。为了解决如上问题，我们可以利用之前讨论的知识进行组合
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+    
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">html</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">head</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">title</span><span style="line-height:1.5; color:rgb(0,0,255)">></</span><span style="line-height:1.5; color:rgb(128,0,0)">title</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">script </span><span style="line-height:1.5; color:rgb(255,0,0)">type</span><span style="line-height:1.5; color:rgb(0,0,255)">="text/javascript"</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">function</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> init()
+            {
+                </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">//</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">这里第一个参数是一个数组，可以任意多个，加载顺序按照数组的顺序进行保证</span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">//</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">第二个参数是回调函数，当所有包都确认加载完毕后需要执行的脚本</span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">//</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">第三个参数是script的标签，这个参数可以省略，没有实质意义</span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245)">            attachScript([</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">http://www.cnblogs.com/5/loadJS.js</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">,</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">http://www.cnblogs.com/5/package.js</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">],operation,</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">yy</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">)();
+            }
+            </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">function</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> operation()
+            {
+                </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">//</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">可以运行，显示“成功加载”</span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245)">            functionOne();
+            }
+            </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">//</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">异步批量加载脚本，并且根据数组urlArray中的url顺序来加载</span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">function</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> attachScript(urlArray, callback, id) {
+                </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">if</span><span style="line-height:1.5; background-color:rgb(245,245,245)">(urlArray </span><span style="line-height:1.5; background-color:rgb(245,245,245)">&&</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> ((</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">typeof</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> urlArray) </span><span style="line-height:1.5; background-color:rgb(245,245,245)">==</span> <span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">object</span><span style="line-height:1.5; background-color:rgb(245,245,245)">"</span><span style="line-height:1.5; background-color:rgb(245,245,245)">))
+                {
+                    </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">if</span><span style="line-height:1.5; background-color:rgb(245,245,245)">(urlArray.constructor </span><span style="line-height:1.5; background-color:rgb(245,245,245)">==</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> Array)
+                    {
+                        </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">if</span><span style="line-height:1.5; background-color:rgb(245,245,245)">(urlArray.length</span><span style="line-height:1.5; background-color:rgb(245,245,245)">></span><span style="line-height:1.5; background-color:rgb(245,245,245)">1</span><span style="line-height:1.5; background-color:rgb(245,245,245)">)
+                        {
+                            </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">var</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> array </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> urlArray.splice(</span><span style="line-height:1.5; background-color:rgb(245,245,245)">0</span><span style="line-height:1.5; background-color:rgb(245,245,245)">,</span><span style="line-height:1.5; background-color:rgb(245,245,245)">1</span><span style="line-height:1.5; background-color:rgb(245,245,245)">);
+                            </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">return</span> <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">function</span><span style="line-height:1.5; background-color:rgb(245,245,245)">(){
+                                </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">var</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> dataScript </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> document.createElement(</span><span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">script</span><span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">);
+                                dataScript.type </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span> <span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">text/javascript</span><span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">;
+                                </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">if</span><span style="line-height:1.5; background-color:rgb(245,245,245)">(dataScript.readyState) { </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">//</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">IE</span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245)">                                dataScript.onreadystatechange </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span> <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">function</span><span style="line-height:1.5; background-color:rgb(245,245,245)">() {
+                                        </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">if</span><span style="line-height:1.5; background-color:rgb(245,245,245)">(dataScript.readyState </span><span style="line-height:1.5; background-color:rgb(245,245,245)">==</span> <span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">complete</span><span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">||</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> dataScript.readyState </span><span style="line-height:1.5; background-color:rgb(245,245,245)">==</span> <span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">loaded</span><span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">){
+                                            dataScript.onreadystatechange </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span> <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">null</span><span style="line-height:1.5; background-color:rgb(245,245,245)">;
+                                            attachScript(urlArray,callback,id)();
+                                        }
+                                    }
+                                } </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">else</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> { </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">//</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">standers</span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245)">                                dataScript.onload </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span> <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">function</span><span style="line-height:1.5; background-color:rgb(245,245,245)">() {
+                                        attachScript(urlArray,callback,id)();
+                                    }
+                                }
+                                dataScript.src </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> array[</span><span style="line-height:1.5; background-color:rgb(245,245,245)">0</span><span style="line-height:1.5; background-color:rgb(245,245,245)">];
+                                dataScript.id </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> id;
+                                document.body.appendChild(dataScript);
+                            }
+                        }
+                        </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">else</span> <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">if</span><span style="line-height:1.5; background-color:rgb(245,245,245)">(urlArray.length </span><span style="line-height:1.5; background-color:rgb(245,245,245)">==</span> <span style="line-height:1.5; background-color:rgb(245,245,245)">1</span><span style="line-height:1.5; background-color:rgb(245,245,245)">)
+                        {
+                            </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">return</span> <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">function</span><span style="line-height:1.5; background-color:rgb(245,245,245)">(){
+                                </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">var</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> dataScript </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> document.createElement(</span><span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">script</span><span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">);
+                                dataScript.type </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span> <span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">text/javascript</span><span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">;
+                                </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">if</span><span style="line-height:1.5; background-color:rgb(245,245,245)">(dataScript.readyState) { </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">//</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">IE</span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245)">                                dataScript.onreadystatechange </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span> <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">function</span><span style="line-height:1.5; background-color:rgb(245,245,245)">() {
+                                        </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">if</span><span style="line-height:1.5; background-color:rgb(245,245,245)">(dataScript.readyState </span><span style="line-height:1.5; background-color:rgb(245,245,245)">==</span> <span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">complete</span><span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">||</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> dataScript.readyState </span><span style="line-height:1.5; background-color:rgb(245,245,245)">==</span> <span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">loaded</span><span style="line-height:1.5; background-color:rgb(245,245,245)">'</span><span style="line-height:1.5; background-color:rgb(245,245,245)">){
+                                            dataScript.onreadystatechange </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span> <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">null</span><span style="line-height:1.5; background-color:rgb(245,245,245)">;
+                                            callback();
+                                        }
+                                    }
+                                } </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">else</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> { </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">//</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,128,0)">standers</span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245)">                                dataScript.onload </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span> <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">function</span><span style="line-height:1.5; background-color:rgb(245,245,245)">() {
+                                        callback();
+                                    }
+                                }
+                                dataScript.src </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> urlArray[</span><span style="line-height:1.5; background-color:rgb(245,245,245)">0</span><span style="line-height:1.5; background-color:rgb(245,245,245)">];
+                                dataScript.id </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> id;
+                                document.body.appendChild(dataScript);
+                            }
+                        }
+                    }
+                }
+            }
+    
+        </span><span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">script</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">head</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">body</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">input </span><span style="line-height:1.5; color:rgb(255,0,0)">type</span><span style="line-height:1.5; color:rgb(0,0,255)">="button"</span><span style="line-height:1.5; color:rgb(255,0,0)"> value</span><span style="line-height:1.5; color:rgb(0,0,255)">="测试按钮"</span><span style="line-height:1.5; color:rgb(255,0,0)"> onclick</span><span style="line-height:1.5; color:rgb(0,0,255)">="init()"</span><span style="line-height:1.5; color:rgb(0,0,255)">/></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">body</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">html</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+
+
+
+
+
+　　使用很方便，通过一个方法attachScript可以加载你的任意多个有序的ja包，并且下载的时候还是并行下载，效率上也还不错，你可以把这个方法单独打包，方便以后使用，不过里面的代码也许需要稍微修改一下，有些地方不严谨哦！　　
+
+
+
+
+
+　　6.2同步分类（或模块）动态加载
+
+
+
+
+
+　　这里的动态加载是指当用户使用到了某个类或者模块才去加载，并且加载不是用户来控制，而是自动的。
+
+
+
+
+
+　　优点：
+
+
+
+
+
+　　　　1、同步加载可以很好的保证脚本的依赖关系
+
+
+
+
+
+　　　　2、用时才加载，可以保证基础包尽量小，提高用户体验
+
+
+
+
+
+　　缺点：
+
+
+
+
+
+　　　　1、同步加载相对异步加载来说一般偏慢
+
+
+
+
+
+　　　　2、在未发布的情况下不支持Chrome、Opera
+
+
+
+
+
+　　详细的说明请看：[js动态加载脚本之实用小技巧](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/03/08/2949920.html)
+
+
+
+
+
+　　6.3异步分类（或模块）动态加载
+
+
+
+
+
+　　这里采用回调函数形式的异步加载
+
+
+
+
+
+　　优点：
+
+
+
+
+
+　　　　1、异步加载速度快
+
+
+
+
+
+　　　　2、使用回调函数也可以保证脚本的良好依赖关系
+
+
+
+
+
+　　　　3、同样时基础包小，提高用户体验
+
+
+
+
+
+　　缺点：
+
+
+
+
+
+　　　　1、调试不太方便
+
+
+
+
+
+　　　　2、类被划分为两个部分，划分难度大
+
+
+
+
+
+　　说明：大家如果了解了6.2的同步分模块加载后发现最大的缺点在于未发布的情况下不支持某些浏览器，并且代码的执行中途会强制被阻止，当某些代码下载下来后在执行，这样的话所有代码的下载都是呈线性的下载，没有并行，效率会比较低。
+
+
+
+
+
+　　不知道大家有木有注意过百度地图的包和google地图的包是如何实现的，他们实现方式一样：基础包都是大概70到80kb的样子，比较小（所有地图功能包加起来有200到300左右），第一次访问地图的时候就比较小，效率快，用户体验好，但是用户在地图上面触发了其他复杂的功能（比如交通换乘）时，你会发现它开始下载一些比较小的包，但这些包是并行下载的。它是如何做到的呢？
+
+
+
+
+
+　　其实基础包里面已经将所有的API都已经定义了，如果没定义，那运行到那一块的时候浏览器肯定会报错误，但是所有功能都在基础包里不可能那么小，是因为百度的基础包里面定义的所有的接口（API），但是只有简单的属性是真实可用的，而那些复杂的方法都是空的，也就是这些方法里面只是负责记录是否执行了此方法，那样这些方法必定代码很少，所以基础包就很小，等程序执行一遍后再去下载需要的功能模块，下完后再按照之前记录的信息重新执行一遍，而这些包里面的方法必将覆盖以前的假的方法，当第二次使用的时候就执行的真正的方法了。
+
+
+
+
+
+　　下面我们来写一个比较简单的例子看一下：
+
+
+
+
+
+　　先看一下测试的页面：　　
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+    
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">html</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">head</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">title</span><span style="line-height:1.5; color:rgb(0,0,255)">></</span><span style="line-height:1.5; color:rgb(128,0,0)">title</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">script </span><span style="line-height:1.5; color:rgb(255,0,0)">type</span><span style="line-height:1.5; color:rgb(0,0,255)">="text/javascript"</span><span style="line-height:1.5; color:rgb(255,0,0)"> src</span><span style="line-height:1.5; color:rgb(0,0,255)">="Core.js"</span><span style="line-height:1.5; color:rgb(0,0,255)">></</span><span style="line-height:1.5; color:rgb(128,0,0)">script</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">script </span><span style="line-height:1.5; color:rgb(255,0,0)">type</span><span style="line-height:1.5; color:rgb(0,0,255)">="text/javascript"</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">var</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> button;
+            </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">function</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> init1()
+            {
+                button </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">new</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> SuperMap.Control.Button(</span><span style="line-height:1.5; background-color:rgb(245,245,245)">20</span><span style="line-height:1.5; background-color:rgb(245,245,245)">,</span><span style="line-height:1.5; background-color:rgb(245,245,245)">10</span><span style="line-height:1.5; background-color:rgb(245,245,245)">);
+                </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">var</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> height </span><span style="line-height:1.5; background-color:rgb(245,245,245)">=</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> button.getHeight();
+                button.draw();
+            }
+            </span><span style="line-height:1.5; background-color:rgb(245,245,245); color:rgb(0,0,255)">function</span><span style="line-height:1.5; background-color:rgb(245,245,245)"> init2()
+            {
+                button.draw();
+            }
+        </span><span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">script</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">head</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">body</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">input </span><span style="line-height:1.5; color:rgb(255,0,0)">type</span><span style="line-height:1.5; color:rgb(0,0,255)">="button"</span><span style="line-height:1.5; color:rgb(255,0,0)"> onclick</span><span style="line-height:1.5; color:rgb(0,0,255)">="init1()"</span><span style="line-height:1.5; color:rgb(255,0,0)"> value</span><span style="line-height:1.5; color:rgb(0,0,255)">="按钮"</span> <span style="line-height:1.5; color:rgb(0,0,255)">/></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"><</span><span style="line-height:1.5; color:rgb(128,0,0)">input </span><span style="line-height:1.5; color:rgb(255,0,0)">type</span><span style="line-height:1.5; color:rgb(0,0,255)">="button"</span><span style="line-height:1.5; color:rgb(255,0,0)"> onclick</span><span style="line-height:1.5; color:rgb(0,0,255)">="init2()"</span><span style="line-height:1.5; color:rgb(255,0,0)"> value</span><span style="line-height:1.5; color:rgb(0,0,255)">="按钮2"</span> <span style="line-height:1.5; color:rgb(0,0,255)">/></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">body</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+    <span style="line-height:1.5; color:rgb(0,0,255)"></</span><span style="line-height:1.5; color:rgb(128,0,0)">html</span><span style="line-height:1.5; color:rgb(0,0,255)">></span>
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+
+
+
+
+
+　　这里点击“按钮”，初始化了一个Button的对象，然后调用了方法getHeight(真的简单方法)和draw(假的复杂方法，第一次调用，只是记录)，再次点击“按钮2”，调用方法draw(真的复杂方法，第二次调用，假的已经被覆盖了)。
+
+
+
+
+
+　　这里Core.js是基础包，代码如下：　
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+    
+    <span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">一下为框架代码，大家不需要了解</span>
+    window.SuperMap =<span style="line-height:1.5"> {
+    
+        VERSION_NUMBER: </span>"Release 6.1.3"<span style="line-height:1.5">,
+    
+        _getScriptLocation: (</span><span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">() {
+            </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">SuperMap-6.1.1-8828</span>
+    <span style="line-height:1.5; color:rgb(0,0,255)">var</span> r = <span style="line-height:1.5; color:rgb(0,0,255)">new</span> RegExp("(^|(.*?\/))(SuperMap(-(\d{1}.)*\d{1}-\d{4,})?.js)(\?|$)"<span style="line-height:1.5">),
+                s </span>= document.getElementsByTagName('script'<span style="line-height:1.5">),
+                src, m, l </span>= ""<span style="line-height:1.5">;
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">for</span>(<span style="line-height:1.5; color:rgb(0,0,255)">var</span> i=0, len=s.length; i<len; i++<span style="line-height:1.5">) {
+                src </span>= s[i].getAttribute('src'<span style="line-height:1.5">);
+                </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span><span style="line-height:1.5">(src) {
+                    </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> m =<span style="line-height:1.5"> src.match(r);
+                    </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span><span style="line-height:1.5">(m) {
+                        l </span>= m[1<span style="line-height:1.5">];
+                        </span><span style="line-height:1.5; color:rgb(0,0,255)">break</span><span style="line-height:1.5">;
+                    }
+                }
+            }
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">return</span> (<span style="line-height:1.5; color:rgb(0,0,255)">function</span>() { <span style="line-height:1.5; color:rgb(0,0,255)">return</span><span style="line-height:1.5"> l; });
+        })()
+    };
+    
+    SuperMap.Control </span>= SuperMap.Control ||<span style="line-height:1.5"> {};
+    
+    SuperMap.Util </span>= SuperMap.Util ||<span style="line-height:1.5"> {};
+    
+    SuperMap.Class </span>= <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">() {
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> len =<span style="line-height:1.5"> arguments.length;
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> P = arguments[0<span style="line-height:1.5">];
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> F = arguments[len-1<span style="line-height:1.5">];
+    
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> C = <span style="line-height:1.5; color:rgb(0,0,255)">typeof</span> F.initialize == "function" ?  F.initialize : <span style="line-height:1.5; color:rgb(0,0,255)">function</span>(){ P.prototype.initialize.apply(<span style="line-height:1.5; color:rgb(0,0,255)">this</span><span style="line-height:1.5">, arguments); };
+    
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span> (len > 1<span style="line-height:1.5">) {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> newArgs = [C, P].concat( Array.prototype.slice.call(arguments).slice(1, len-1<span style="line-height:1.5">), F);
+            SuperMap.inherit.apply(</span><span style="line-height:1.5; color:rgb(0,0,255)">null</span><span style="line-height:1.5">, newArgs);
+        } </span><span style="line-height:1.5; color:rgb(0,0,255)">else</span><span style="line-height:1.5"> {
+            C.prototype </span>=<span style="line-height:1.5"> F;
+        }
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">return</span><span style="line-height:1.5"> C;
+    };
+    SuperMap.inherit </span>= <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(C, P) {
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> F = <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">() {};
+        F.prototype </span>=<span style="line-height:1.5"> P.prototype;
+        C.prototype </span>= <span style="line-height:1.5; color:rgb(0,0,255)">new</span><span style="line-height:1.5"> F;
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span><span style="line-height:1.5"> i, l, o;
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">for</span>(i=2, l=arguments.length; i<l; i++<span style="line-height:1.5">) {
+            o </span>=<span style="line-height:1.5"> arguments[i];
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(<span style="line-height:1.5; color:rgb(0,0,255)">typeof</span> o === "function"<span style="line-height:1.5">) {
+                o </span>=<span style="line-height:1.5"> o.prototype;
+            }
+            SuperMap.Util.extend(C.prototype, o);
+        }
+    };
+    
+    SuperMap.Util </span>= SuperMap.Util ||<span style="line-height:1.5"> {};
+    SuperMap.Util.extend </span>= <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(destination, source) {
+        destination </span>= destination ||<span style="line-height:1.5"> {};
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span><span style="line-height:1.5"> (source) {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">for</span> (<span style="line-height:1.5; color:rgb(0,0,255)">var</span> property <span style="line-height:1.5; color:rgb(0,0,255)">in</span><span style="line-height:1.5"> source) {
+                </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> value =<span style="line-height:1.5"> source[property];
+                </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span> (value !==<span style="line-height:1.5"> undefined) {
+                    destination[property] </span>=<span style="line-height:1.5"> value;
+                }
+            }
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> sourceIsEvt = <span style="line-height:1.5; color:rgb(0,0,255)">typeof</span> window.Event == "function"
+                && source <span style="line-height:1.5; color:rgb(0,0,255)">instanceof</span><span style="line-height:1.5"> window.Event;
+    
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span> (!<span style="line-height:1.5">sourceIsEvt
+                </span>&& source.hasOwnProperty && source.hasOwnProperty("toString"<span style="line-height:1.5">)) {
+                destination.toString </span>=<span style="line-height:1.5"> source.toString;
+            }
+        }
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">return</span><span style="line-height:1.5"> destination;
+    };
+    SuperMap.Util.copy </span>= <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(des, soc) {
+        des </span>= des ||<span style="line-height:1.5"> {};
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span><span style="line-height:1.5"> v;
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span><span style="line-height:1.5">(soc) {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">for</span>(<span style="line-height:1.5; color:rgb(0,0,255)">var</span> p <span style="line-height:1.5; color:rgb(0,0,255)">in</span><span style="line-height:1.5"> des) {
+                v </span>=<span style="line-height:1.5"> soc[p];
+                </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(<span style="line-height:1.5; color:rgb(0,0,255)">typeof</span> v !== 'undefined'<span style="line-height:1.5">) {
+                    des[p] </span>=<span style="line-height:1.5"> v;
+                }
+            }
+        }
+    };
+    SuperMap.Util.reset </span>= <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(obj) {
+        obj </span>= obj ||<span style="line-height:1.5"> {};
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">for</span>(<span style="line-height:1.5; color:rgb(0,0,255)">var</span> p <span style="line-height:1.5; color:rgb(0,0,255)">in</span><span style="line-height:1.5"> obj) {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span><span style="line-height:1.5">(obj.hasOwnProperty(p)) {
+                </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(<span style="line-height:1.5; color:rgb(0,0,255)">typeof</span> obj[p] === "object" && obj[p] <span style="line-height:1.5; color:rgb(0,0,255)">instanceof</span><span style="line-height:1.5"> Array) {
+                    </span><span style="line-height:1.5; color:rgb(0,0,255)">for</span>(<span style="line-height:1.5; color:rgb(0,0,255)">var</span> i <span style="line-height:1.5; color:rgb(0,0,255)">in</span><span style="line-height:1.5"> obj[p]) {
+                        </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span><span style="line-height:1.5">(obj[p][i].destroy) {
+                            obj[p][i].destroy();
+                        }
+                    }
+                    obj[p].length </span>= 0<span style="line-height:1.5">;
+                } </span><span style="line-height:1.5; color:rgb(0,0,255)">else</span> <span style="line-height:1.5; color:rgb(0,0,255)">if</span>(<span style="line-height:1.5; color:rgb(0,0,255)">typeof</span> obj[p] === "object" && obj[p] <span style="line-height:1.5; color:rgb(0,0,255)">instanceof</span><span style="line-height:1.5"> Object) {
+                    </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span><span style="line-height:1.5">(obj[p].destroy) {
+                        obj[p].destroy();
+                    }
+                }
+                obj[p] </span>= <span style="line-height:1.5; color:rgb(0,0,255)">null</span><span style="line-height:1.5">;
+            }
+        }
+    };
+    </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">以下为核心代码</span><span style="line-height:1.5; color:rgb(0,128,0)">
+    //</span><span style="line-height:1.5; color:rgb(0,128,0)">加载脚本的方法</span>
+    SuperMap.Util.loadJs = <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(urlArray, callback, id) {
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(urlArray && ((<span style="line-height:1.5; color:rgb(0,0,255)">typeof</span> urlArray) == "object"<span style="line-height:1.5">))
+        {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(urlArray.constructor ==<span style="line-height:1.5"> Array)
+            {
+                </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(urlArray.length>1<span style="line-height:1.5">)
+                {
+                    </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> array = urlArray.splice(0,1<span style="line-height:1.5">);
+                    </span><span style="line-height:1.5; color:rgb(0,0,255)">return</span> <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(){
+                        </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> dataScript = document.createElement('script'<span style="line-height:1.5">);
+                        dataScript.type </span>= 'text/javascript'<span style="line-height:1.5">;
+                        </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(dataScript.readyState) { <span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">IE</span>
+                            dataScript.onreadystatechange = <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">() {
+                                </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(dataScript.readyState == 'complete'|| dataScript.readyState == 'loaded'<span style="line-height:1.5">){
+                                    dataScript.onreadystatechange </span>= <span style="line-height:1.5; color:rgb(0,0,255)">null</span><span style="line-height:1.5">;
+                                    SuperMap.Util.loadJs(urlArray,callback,id)();
+                                }
+                            }
+                        } </span><span style="line-height:1.5; color:rgb(0,0,255)">else</span> { <span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">standers</span>
+                            dataScript.onload = <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">() {
+                                SuperMap.Util.loadJs(urlArray,callback,id)();
+                            }
+                        }
+                        dataScript.src </span>= array[0<span style="line-height:1.5">];
+                        dataScript.id </span>=<span style="line-height:1.5"> id;
+                        document.body.appendChild(dataScript);
+                    }
+                }
+                </span><span style="line-height:1.5; color:rgb(0,0,255)">else</span> <span style="line-height:1.5; color:rgb(0,0,255)">if</span>(urlArray.length == 1<span style="line-height:1.5">)
+                {
+                    </span><span style="line-height:1.5; color:rgb(0,0,255)">return</span> <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(){
+                        </span><span style="line-height:1.5; color:rgb(0,0,255)">var</span> dataScript = document.createElement('script'<span style="line-height:1.5">);
+                        dataScript.type </span>= 'text/javascript'<span style="line-height:1.5">;
+                        </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(dataScript.readyState) { <span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">IE</span>
+                            dataScript.onreadystatechange = <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">() {
+                                </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(dataScript.readyState == 'complete'|| dataScript.readyState == 'loaded'<span style="line-height:1.5">){
+                                    dataScript.onreadystatechange </span>= <span style="line-height:1.5; color:rgb(0,0,255)">null</span><span style="line-height:1.5">;
+                                    callback();
+                                }
+                            }
+                        } </span><span style="line-height:1.5; color:rgb(0,0,255)">else</span> { <span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">standers</span>
+                            dataScript.onload = <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">() {
+                                callback();
+                            }
+                        }
+                        dataScript.src </span>= urlArray[0<span style="line-height:1.5">];
+                        dataScript.id </span>=<span style="line-height:1.5"> id;
+                        document.body.appendChild(dataScript);
+                    }
+                }
+            }
+        }
+    }
+    </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">用于记录模块是否加载</span>
+    SuperMap.Util.IsControl = <span style="line-height:1.5; color:rgb(0,0,255)">false</span><span style="line-height:1.5">;
+    </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">按照模块名称来加载脚本</span>
+    SuperMap.Util.load = <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(backName,callbackFunction){
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(backName == "Control"<span style="line-height:1.5">)
+        {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">if</span>(SuperMap.Util.IsControl == <span style="line-height:1.5; color:rgb(0,0,255)">false</span><span style="line-height:1.5">)
+            {
+                SuperMap.Util.loadJs([</span>"Control.js"],callbackFunction,546756<span style="line-height:1.5">)();
+            }
+            SuperMap.Util.IsControl </span>== <span style="line-height:1.5; color:rgb(0,0,255)">true</span><span style="line-height:1.5">;
+        }
+        </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">其他模块</span>
+    <span style="line-height:1.5; color:rgb(0,0,255)">else</span> <span style="line-height:1.5; color:rgb(0,0,255)">if</span><span style="line-height:1.5">(...)
+        {
+          ...
+        }
+        </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">....</span>
+    <span style="line-height:1.5">}
+    </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">用于测试的类 Control模块</span>
+    SuperMap.Control.Button =<span style="line-height:1.5"> SuperMap.Class({
+        w: </span>0.0<span style="line-height:1.5">,
+        h: </span>0.0<span style="line-height:1.5">,
+        initialize: </span><span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(w, h) {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">this</span>.w =<span style="line-height:1.5"> parseFloat(w);
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">this</span>.h =<span style="line-height:1.5"> parseFloat(h);
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">this</span>.flow =<span style="line-height:1.5"> [];
+            </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">需要注册一个回调函数</span>
+    <span style="line-height:1.5; color:rgb(0,0,255)">var</span> c = <span style="line-height:1.5; color:rgb(0,0,255)">this</span><span style="line-height:1.5">;
+            SuperMap.Util.load(</span>"Control",<span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(){
+                </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">等加载完脚本后重新执行一遍</span>
+    <span style="line-height:1.5">            c.init();
+            });
+        },
+        getWidth:</span><span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">()
+        {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">return</span> <span style="line-height:1.5; color:rgb(0,0,255)">this</span><span style="line-height:1.5">.w;
+        },
+        setWidth:</span><span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(value)
+        {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">this</span>.w =<span style="line-height:1.5"> value;
+        },
+        getHeight:</span><span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">()
+        {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">return</span> <span style="line-height:1.5; color:rgb(0,0,255)">this</span><span style="line-height:1.5">.h;
+        },
+        setHeight:</span><span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(value)
+        {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">this</span>.h =<span style="line-height:1.5"> value;
+        },
+        getArea:</span><span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">() {
+    
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">return</span> <span style="line-height:1.5; color:rgb(0,0,255)">this</span>.w * <span style="line-height:1.5; color:rgb(0,0,255)">this</span><span style="line-height:1.5">.h;
+        },
+        clone:</span><span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">() {
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">return</span> <span style="line-height:1.5; color:rgb(0,0,255)">new</span> SuperMap.Control.Button(<span style="line-height:1.5; color:rgb(0,0,255)">this</span>.w, <span style="line-height:1.5; color:rgb(0,0,255)">this</span><span style="line-height:1.5">.h);
+        },
+        </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">假的方法</span>
+        draw:<span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">(){
+            </span><span style="line-height:1.5; color:rgb(0,0,255)">this</span>.flow.push({method: "draw", arguments: <span style="line-height:1.5; color:rgb(0,0,255)">null</span><span style="line-height:1.5">});
+        },
+        CLASS_NAME: </span>"SuperMap.Control.Button"<span style="line-height:1.5">
+    });</span>
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+
+
+
+
+
+　　这里的SuperMap.Control.Button类为不完整的类，注意构造函数里面有一个回调函数，当整个类加载完后通过init入口重新执行一遍操作，而里面除了draw是假的以外，其他都是真的。
+
+
+
+
+
+　　再来看一下Control.js模块：
+
+
+
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+    
+    <span style="line-height:1.5; color:rgb(0,0,255)">var</span> Button =<span style="line-height:1.5"> SuperMap.Control.Button;
+    </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">必须有的入口方法</span>
+    Button.prototype.init = <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">()
+    {
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">for</span>(<span style="line-height:1.5; color:rgb(0,0,255)">var</span> i = 0;i<<span style="line-height:1.5; color:rgb(0,0,255)">this</span>.flow.length;i++<span style="line-height:1.5">)
+        {
+            </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">挨个执行</span>
+    <span style="line-height:1.5; color:rgb(0,0,255)">this</span>[<span style="line-height:1.5; color:rgb(0,0,255)">this</span>.flow[i].method](<span style="line-height:1.5; color:rgb(0,0,255)">this</span><span style="line-height:1.5">.flow[i].arguments);
+        }
+        </span><span style="line-height:1.5; color:rgb(0,0,255)">delete</span> <span style="line-height:1.5; color:rgb(0,0,255)">this</span><span style="line-height:1.5">.flow;
+    }
+    </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">比较复杂的方法</span>
+    Button.prototype.draw = <span style="line-height:1.5; color:rgb(0,0,255)">function</span><span style="line-height:1.5">()
+    {
+        </span><span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">....</span>
+    <span style="line-height:1.5; color:rgb(0,128,0)">//</span><span style="line-height:1.5; color:rgb(0,128,0)">alert("绘制完毕");</span>
+    }
+
+
+
+
+
+[![复制代码](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/common_cnblogs_copycode.gif)](http://www.cnblogs.com/zhuimengdeyuanyuan/archive/2013/04/26/3043675.html)
+
+
+
+
+
+
+
+
+　　看完思路大家就会发现他有自己的缺点：我们调试怎么办，调试的时候获取的对象就不是那么明显了，很不方便；怎么把一个类划分成为两个部分，这一点特别的难，我不是百度的员工，也不清楚他们的标准。不过可以猜想他们这样的有点很明显：你管我代码怎么的，反正用户用起来发现效率很快就行，基础包很小，用到哪块再加载哪块，用户体验特别的好，并行加载，效率快。
+
+
+
+
+
+　　没有什么是100%满意的，只要抓住重点就行，百度和google舍弃了调试的便利以及开发的简易（使程序员痛苦），但是获得了广大用户的良好评价，这就是他们的目的。
+
+
+
+
+
+　　这里的三点实用方式希望能给大家给予一定的帮助吧！
+
+
+
+
+
+　　
+
+
+

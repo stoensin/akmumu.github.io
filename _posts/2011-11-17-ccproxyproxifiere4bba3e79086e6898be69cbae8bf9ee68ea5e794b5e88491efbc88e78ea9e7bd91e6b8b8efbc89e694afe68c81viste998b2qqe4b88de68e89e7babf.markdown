@@ -1,0 +1,145 @@
+---
+author: admin
+comments: true
+date: 2011-11-17 02:42:00+00:00
+layout: post
+slug: ccproxyproxifier%e4%bb%a3%e7%90%86%e6%89%8b%e6%9c%ba%e8%bf%9e%e6%8e%a5%e7%94%b5%e8%84%91%ef%bc%88%e7%8e%a9%e7%bd%91%e6%b8%b8%ef%bc%89%e6%94%af%e6%8c%81vist%e9%98%b2qq%e4%b8%8d%e6%8e%89%e7%ba%bf
+title: CCProxy+Proxifier代理手机连接电脑（玩网游）支持VIST(防QQ不掉线)本文转载
+wordpress_id: 20
+categories:
+- 实用软件技巧
+- 操作系统
+tags:
+- 实用软件技巧
+- 操作系统相关
+---
+
+
+
+
+
+
+本文出自论群网[http://gprs.b.lunqun.com/read-htm-tid-442922.html](http://gprs.b.lunqun.com/read-htm-tid-442922.html)
+
+
+
+
+CCProxy+Proxifier代理手机连接电脑（玩网游）支持VIST(防QQ不掉线)
+
+
+
+
+
+
+
+
+
+
+  
+
+说明：这里只讲代理设置手机连接电脑太简单在网上随便都能找到！教程傻瓜式操作，只要按我的步骤和要求（游戏版本最新）100%玩网游
+
+
+
+
+[qq]23496470  
+
+本人空间地址：23496470.qq.com   
+
+原教程空间日志地址：   
+
+[http://user.qzone.qq.com/23496470/blog/1212807718](http://user.qzone.qq.com/23496470/blog/1212807718) S vI
+  
+
+一.需要两个软件 (这两个软件我设置好的别的地方下的不可以用必须用我的)   
+
+1.CProxy   
+
+2.Proxifier   
+
+软件到我空间下载：23496470.qzone.qq.com r4 3dnwX   
+
+提示：VISTA系统的先看第三步骤
+
+
+
+
+使用方法： k)S 7Sb Q   
+
+点击 绿化.cmd Y t| { l   
+
+再打开 Proxifier.exe [ $] Jv F   
+
+接下来就可以用了 UNw4 3EL   
+
+H 5sj% v   
+
+二.软件设置 0|4XV{qT$   
+
+1.CProxy设置 2Db[dk ( ]   
+
+D oI mWNLo   
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/art_5d_10413433188180.gif) L n _q 6n
+  
+
+q l8Cg L   
+
+l & T;G 9z   
+
+代理地址：10.0.0.172端口：80 , T1 t`   
+
+k 6*2= xK~   
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/art_5d_12803188180.gif) vT[%* ) `
+  
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/art_5d_13285463188180.gif) se(_ `a/4Q
+  
+
+"CLd _H*)c   
+
+o1kLT@V Cl   
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/art_5d_14306253188180.gif) m2VF}% EIr
+  
+
+:F m +X[n   
+
+@gs Kb* ,   
+
+6K* 7%8Y/G   
+
+好了设置看图片很简单吧！ 6)DYQ^4y   
+
+因为我许多设置都已经设置好了Proxifier只要载入糊涂设置就简单多了 Z&/;6 [   
+
+通过本代理可以手机连接电脑上网我玩过： )LH n Dx   
+
+魔兽世界.传奇.QQ飞车.QQ炫舞.天龙八部.理论上可以玩任何一款游戏 ywCE2N<-V?   
+
+只要游戏没限制网速就可以玩，玩到现在就 两个游戏不能玩QQ三国和QQ导火线 H VG'v>s@   
+
+通过本代理可以手机连接电脑解决无法登陆邮箱.网页乱码等问题~~~~~~~ o-7>^wV%BD   
+
+[ Y JP   
+
+三.VISTA系统设置 I)DLn nQQ   
+
+tse( iX/D   
+
+VISTA系统安装Proxifier是先对系统进行更改 >^> y8o n   
+
+Wc03 Sv&FZ   
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/art_5d_15188753188180.gif)
+  
+
+四.QQ经常掉线的下载QQ2009试试如果还掉就用彩虹QQ（现在彩虹QQ被腾讯屏蔽了提示会叫你删除软件不要管它没事的） 
+
+
+
+
+
+
+

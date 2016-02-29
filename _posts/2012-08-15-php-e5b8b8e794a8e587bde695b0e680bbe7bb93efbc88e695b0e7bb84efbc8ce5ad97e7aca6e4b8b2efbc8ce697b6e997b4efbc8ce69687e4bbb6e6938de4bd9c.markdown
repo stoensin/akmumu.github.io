@@ -1,0 +1,1028 @@
+---
+author: admin
+comments: true
+date: 2012-08-15 06:10:00+00:00
+layout: post
+slug: php-%e5%b8%b8%e7%94%a8%e5%87%bd%e6%95%b0%e6%80%bb%e7%bb%93%ef%bc%88%e6%95%b0%e7%bb%84%ef%bc%8c%e5%ad%97%e7%ac%a6%e4%b8%b2%ef%bc%8c%e6%97%b6%e9%97%b4%ef%bc%8c%e6%96%87%e4%bb%b6%e6%93%8d%e4%bd%9c
+title: php 常用函数总结（数组，字符串，时间，文件操作）
+wordpress_id: 48
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+**数组:【重点1】**
+
+
+
+
+implode(分隔,arr) 把数组值数据按指定字符连接起来
+
+
+
+
+例如： 
+
+
+
+
+$arr=array('1','2','3','4'); 
+
+
+
+
+$str=implode('-',$arr);  
+
+explode([分隔],arr)按指定规则对一个字符串进行分割，返回值为数组 别名join  
+
+array_merge()合并一个或多个数组  
+
+array_combine(array keys, array values) 创建一个数组，用一个数组的值作为其键名，另一个数组的值作为其值
+
+
+
+
+例如：
+
+
+
+
+$a = array('green','red','yellow');  
+
+$b = array('avocado','apple','banana');  
+
+$c = array_combine($a, $b);  
+
+print_r($c);  
+
+/* Outputs:  
+
+Array  
+
+(  
+
+[green] => avocado  
+
+[red] => apple  
+
+[yellow] => banana  
+
+)  
+
+*/  
+
+  
+
+array_push(arr,str) 将一个或多个单元压入数组的末尾（入栈）  
+
+array_unique(arr)移除数组中重复的值  
+
+array_search() 在数组中搜索给定的值，如果成功则返回相应的键名  
+
+array_values()返回数组中所有的值  
+
+array_keys() 返回数组中所有的键名
+
+
+
+
+count(arr) 计算数组中的单元数目或对象中的属性个数sizeof()  
+
+is_array(arr) 检测变量是否是数组  
+
+sort(arr) 对数组排序  
+
+array_flip(arr) 交换数组中的键和值
+
+
+
+
+注意 _trans_ 中的值需要能够作为合法的键名，例如需要是 [
+**integer**](http://mk:@MSITStore:D: php基础 PHP+官方手册中文版.chm::/zh/) 或者 [
+**string**](http://mk:@MSITStore:D: php基础 PHP+官方手册中文版.chm::/zh/)。如果值的类型不对将发出一个警告，并且有问题的键／值对_将不会反转_。
+
+
+
+
+key(arr)返回数组中当前元素的键名
+
+
+
+
+current(arr) 返回当前指针所指向的值
+
+
+
+
+next 返回下一个指针所指向的值
+
+
+
+
+例如
+
+
+
+
+$array = array (  
+
+'fruit1' => 'apple',  
+
+'fruit2' => 'orange',  
+
+'fruit3' => 'grape',  
+
+'fruit4' => 'apple',  
+
+'fruit5' => 'apple'  
+
+);
+
+
+
+
+// this cycle echoes all associative array  
+
+// key where value equals "apple"  
+
+while ($fruit_name = current($array)) {  
+
+if ($fruit_name == 'apple') {  
+
+echo key($array).'<br>';  
+
+}  
+
+next($array);  
+
+}
+
+
+
+
+  
+
+reset(arr)数组的内部指针指向第一个单元  
+
+array_chunk( array input, int size [, bool preserve_keys])) 将一个数组分割成多个
+
+
+
+
+将一个数组分割成多个数组，其中每个数组的单元数目由 _size_ 决定。最后一个数组的单元数目可能会少几个。得到的数组是一个多维数组中的单元，其索引从零开始。
+
+
+
+
+
+将可选参数 _preserve_keys_ 设为 **TRUE**，可以使 PHP 保留输入数组中原来的键名。如果你指定了
+**FALSE**，那每个结果数组将用从零开始的新数字索引。默认值是 **FALSE**。
+
+
+
+
+
+
+
+
+**字符串【重点2】**
+
+
+
+
+trim(str) 消除字符串两边的空格  
+
+rtrim()  
+
+addslashes在指定预定义字符前加  
+
+strlen(str) 取字符串长度  
+
+substr(str,start,length) 截取指定字符串中指定长度的字符  
+
+strstr(str,search)函数用于获取一个指定字符串在另一个字符串中首次出现的位置到后者末尾的子字符串。与 strchr相同  
+
+strpos(str,search) 查找字符串中某字符第一次出现的位置  
+
+str_replace(search,replace,str) 字符串替换  
+
+ucfirst(str) 将字符串第一个字符大写  
+
+strtolower 变小写  
+
+ucwords(str) 将字符串每个字的第一个字母大写  
+
+strcmp(str1,str2)函数用来对两个字符串进行比较  
+
+substr_count()函数检索子串出现的次数
+
+
+
+
+正则相关字符串函数:  
+
+preg_match(pattern,subject,matches) 在subject字符串中搜索与 pattern 给出的正则表达式相匹配的内容,匹配后的结果存放在matches里边，matches[0]全部匹配内容，matches[1]第一个模式单元matches[1]第二模式单元，以此类推.  
+
+preg_match_all(pattern,subject,matches)全局匹配，其余的preg_match函数相似  
+
+preg_replace(pattern,replacement,str) 执行正则表达式的搜索和替换，三种[string,string][array,string][array,array]  
+
+preg_split(pattern,str) 用正则表达式分割字符串  
+
+preg_grep(pattern,array)用正则表达式匹配数组的值，返回一个新的数组信息
+
+
+
+
+
+
+
+**时间【重点3】**
+
+
+
+
+PHP的日期时间函数date()
+
+
+
+
+1，年-月-日  
+
+echo date('Y-m-j');  
+
+2007-02-6
+
+
+
+
+echo date('y-n-j');  
+
+07-2-6
+
+
+
+
+大写Y表示年四位数字，而小写y表示年的两位数字；  
+
+小写m表示月份的数字(带前导)，而小写n则表示不带前导的月份数字。
+
+
+
+
+echo date('Y-M-j');  
+
+2007-Feb-6
+
+
+
+
+echo date('Y-m-d');  
+
+2007-02-06
+
+
+
+
+大写M表示月份的3个缩写字符，而小写m则表示月份的数字(带前导0);  
+
+没有大写的J，只有小写j表示月份的日期，无前导o；若需要月份带前导则使用小写d。
+
+
+
+
+echo date('Y-M-j');  
+
+2007-Feb-6
+
+
+
+
+echo date('Y-F-jS');  
+
+2007-February-6th
+
+
+
+
+大写M表示月份的3个缩写字符，而大写F表示月份的英文全写。(没有小写f)  
+
+大写S表示日期的后缀，比如“st”、“nd”、“rd”和“th”，具体看日期数字为何。
+
+
+
+
+小结：  
+
+表示年可以用大写的Y和小写y;  
+
+表示月可以用大写F、大写M、小写m和小写n(分别表示字符和数字的两种方式);  
+
+表示日可以用小写d和小写j，大写S表示日期的后缀。
+
+
+
+
+  
+
+2，时:分:秒
+
+
+
+
+默认情况下，PHP解释显示的时间为“格林威治标准时间”，与我们本地的时间相差8个小时。
+
+
+
+
+echo date('g:i:s a');  
+
+5:56:57 am
+
+
+
+
+echo date('h:i:s A');  
+
+05:56:57 AM
+
+
+
+
+小写g表示12小时制，无前导0，而小写h则表示有前导0的12小时制。  
+
+当使用12小时制时需要表明上下午，小写a表示小写的“am”和“pm”，大写A表示大写的“AM”和“PM”。
+
+
+
+
+echo date('G:i:s');  
+
+14:02:26
+
+
+
+
+大写G表示24小时制的小时数，但是不带前导的；使用大写的H表示带前导的24小时制小时数
+
+
+
+
+小结：  
+
+字母g表示小时不带前导，字母h表示小时带前导；  
+
+小写g、h表示12小时制，大写G、H表示24小时制。
+
+
+
+
+3，闰年、星期、天
+
+
+
+
+echo date('L');  
+
+今年是否闰年：0
+
+
+
+
+echo date('l');  
+
+今天是：Tuesday
+
+
+
+
+echo date('D');  
+
+今天是：Tue
+
+
+
+
+大写L表示判断今年是否闰年，布尔值，为真返回1，否则为0；  
+
+小写l表示当天是星期几的英文全写(Tuesday)；  
+
+而使用大写D表示星期几的3个字符缩写(Tue)。
+
+
+
+
+echo date('w');  
+
+今天星期：2
+
+
+
+
+echo date('W');  
+
+本周是全年中的第 06 周
+
+
+
+
+小写w表示星期几，数字形式表示  
+
+大写W表示一年中的星期数
+
+
+
+
+echo date('t');  
+
+本月是 28 天
+
+
+
+
+echo date('z');  
+
+今天是今年的第 36 天
+
+
+
+
+小写t表示当前月份又多少天  
+
+小写z表示今天是本年中第几天
+
+
+
+
+4，其他
+
+
+
+
+echo date('T');  
+
+UTC  
+
+大写T表示服务器的时间区域设置
+
+
+
+
+echo date('I');  
+
+0  
+
+大写I表示判断当前是否为夏令时，为真返回1，否则为0
+
+
+
+
+echo date('U');  
+
+1170769424  
+
+大写U表示从1970年1月1日到现在的总秒数，就是Unix时间纪元的UNIX时间戳。
+
+
+
+
+echo date('c');  
+
+2007-02-06T14:24:43+00:00  
+
+小写c表示ISO8601日期，日期格式为YYYY-MM-DD，用字母T来间隔日期和时间，时间格式为HH:MM:SS，时区使用格林威治标准时间(GMT)的偏差来表示。
+
+
+
+
+echo date('r');  
+
+Tue, 06 Feb 2007 14:25:52 +0000  
+
+小写r表示RFC822日期。
+
+
+
+
+  
+
+小小的date()函数就显示出了PHP的强大功能和迷人魅力，再比较下ASP，呵呵。  
+
+checkdate($month,$date,$year)
+
+
+
+
+如果应用的值构成一个有效日期，则该函数返回为真。例如，对于错误日期2005年2月31日，此函数返回为假。
+
+
+
+
+在日期用于计算或保存在数据库中之前，可用此函数检查日期并使日期生效。
+
+
+
+
+
+
+
+<?php  
+
+// returns false  
+
+echo checkdate(2,30,2005) ? "valid" : "invalid";  
+
+// returns true  
+
+echo checkdate(4,6,2010) ? "valid" : "invalid";  
+
+?>
+
+
+
+
+
+
+
+  
+
+getdate($ts)
+
+
+
+
+在没有自变量的情况下，该函数以结合数组的方式返回当前日期与时间。数组中的每个元素代表日期/时间值中的一个特定组成部分。可向函数提交可选的时间标签自变量，以获得与时间标签对应的日期/时间值。
+
+
+
+
+应用此函数来获得一系列离散的，容易分离的日期/时间值。
+
+
+
+
+
+
+
+<?php  
+
+// get date as associative array  
+
+$arr = getdate();  
+
+echo "Date is " . $arr['mday'] . " " . $arr['weekday'] . " " . $arr['year'];  
+
+echo "Time is " . $arr['hours'] . ":" . $arr['minutes'];  
+
+?>
+
+
+
+
+
+
+
+  
+
+mktime($hour, $minute, $second, $month, $day, $year)
+
+
+
+
+此函数的作用与getdate()的作用相反：它由一系列的日期与时间值生成一个UNIX时间标签（GMT时间1970年1月1日到现在消逝的秒数）。不用自变量时，它生成当前时间的UNIX时间标签。
+
+
+
+
+用此函数获得即时时间的UNIX时间标签。这种时间标签通常用于许多数据库与程序语言中。
+
+
+
+
+
+
+
+<?php  
+
+// returns timestamp for 13:15:23 7-Jun-2006  
+
+echo mktime(13,15,23,6,7,2006);  
+
+?>
+
+
+
+
+
+
+
+  
+
+date($format, $ts)
+
+
+
+
+此函数将UNIX时间标签格式化成一个可人为阅读的日期字符串。它是PHP日期/时间API中功能最为强大的函数，可用在一系列的修正值中，将整数时间标签转变为所需的字符串格式。
+
+
+
+
+为显示格式化时间或日期时，应用此函数。
+
+
+
+
+
+
+
+<?php  
+
+// format current date  
+
+// returns "13-Sep-2005 01:16 PM"  
+
+echo date("d-M-Y h:i A", mktime());  
+
+?>
+
+
+
+
+
+
+
+  
+
+strtotime($str)
+
+
+
+
+此函数将可人为阅读的英文日期/时间字符串转换成UNIX时间标签。
+
+
+
+
+应用此函数将非标准化的日期/时间字符串转换成标准、兼容的UNIX时间标签。
+
+
+
+
+
+
+
+<?php  
+
+// returns 13-Sep-05  
+
+echo date("d-M-y", strtotime("today"));  
+
+// returns 14-Sep-05  
+
+echo date("d-M-y", strtotime("tomorrow"));  
+
+// returns 16-Sep-05  
+
+echo date("d-M-y", strtotime("today +3 days"));  
+
+?>
+
+
+
+
+
+
+
+  
+
+strftime($format,$ts)
+
+
+
+
+如前面的setlocale()函数定义的那样，此函数将UNIX时间标签格式化成适用于当前环境的日期字符串。
+
+
+
+
+应用此函数建立与当前环境兼容的日期字符串。
+
+
+
+
+
+
+
+<?php  
+
+// set locale to France (on Windows)  
+
+setlocale(LC_TIME, "fra_fra");
+
+
+
+
+// format month/day names  
+
+// as per locale setting  
+
+// returns "septembre" and "mardi"
+
+
+
+
+echo strftime("Month: %B ");  
+
+echo strftime("Day: %A ");  
+
+?>
+
+
+
+
+
+
+
+  
+
+microtime()
+
+
+
+
+如前面的setlocale()函数定义的那样，此函数将UNIX时间标签格式化成适用于当前环境的日期字符串。
+
+
+
+
+应用此函数建立与当前环境兼容的日期字符串。
+
+
+
+
+
+
+
+<?php  
+
+// get starting value  
+
+$start = microtime();
+
+
+
+
+// run some code  
+
+for ($x=0; $x<1000; $x++) {  
+
+$null = $x * $x;  
+
+}
+
+
+
+
+// get ending value  
+
+$end = microtime();
+
+
+
+
+// calculate time taken for code execution  
+
+echo "Elapsed time: " . ($end - $start) ." sec";  
+
+?>
+
+
+
+
+
+
+
+  
+
+gmmktime($hour, $minute, $second, $month, $day, $year)
+
+
+
+
+此函数由一系列用GMT时间表示的日期与时间值生成一个UNIX时间标签。不用自变量时，它生成一个当前GMT即时时间的UNIX时间标签。
+
+
+
+
+用此函数来获得GMT即时时间的UNIX时间标签。
+
+
+
+
+
+
+
+<?php  
+
+// returns timestamp for 12:25:23 9-Jul-2006  
+
+echo gmmktime(12,25,23,7,9,2006);  
+
+?>
+
+
+
+
+
+
+
+  
+
+gmdate($format, $ts)
+
+
+
+
+此函数将UNIX时间标签格式化成可人为阅读的日期字符串。此日期字符串以GMT（非当地时间）表示。
+
+
+
+
+用GMT表示时间标签时应用此函数。
+
+
+
+
+
+
+
+<?php  
+
+// format current date into GMT  
+
+// returns "13-Sep-2005 08:32 AM"  
+
+echo gmdate("d-M-Y h:i A", mktime());  
+
+?>
+
+
+
+
+
+
+
+  
+
+date_default_timezone_set($tz)、date_default_timezone_get()
+
+
+
+
+此函数此后所有的日期/时间函数调用设定并恢复默认的时区。
+
+
+
+
+注：此函数仅在PHP 5.1+中有效。 
+
+
+
+
+此函数是一个方便的捷径，可为以后的时间操作设定时区。
+
+
+
+
+  
+
+<?php  
+
+// set timezone to UTC  
+
+date_default_timezone_set('UTC');  
+
+?>
+
+
+
+
+  
+
+<?php  
+
+//今天  
+
+$today = date("Y-m-d");  
+
+//昨天  
+
+$yesterday = date("Y-m-d", strtotime(date("Y-m-d"))-86400);  
+
+//上周  
+
+$lastweek_start = date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1-7,date("Y")));  
+
+$lastweek_end = date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d")-date("w")+7-7,date("Y")));  
+
+//本周  
+
+$thisweek_start = date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1,date("Y")));
+  
+
+$thisweek_end = date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d")-date("w")+7,date("Y")));
+  
+
+//上月  
+
+$lastmonth_start = date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m")-1,1,date("Y")));   
+
+$lastmonth_end = date("Y-m-d H:i:s",mktime(23,59,59,date("m") ,0,date("Y")));   
+
+//本月  
+
+$thismonth_start = date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),1,date("Y")));   
+
+$thismonth_end = date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("t"),date("Y")));
+  
+
+//本季度未最后一月天数   
+
+$getMonthDays = date("t",mktime(0, 0 , 0,date('n')+(date('n')-1)%3,1,date("Y")));  
+
+//本季度/  
+
+$thisquarter_start = date('Y-m-d H:i:s', mktime(0, 0, 0,date('n')-(date('n')-1)%3,1,date('Y')));
+  
+
+$thisquarter_end = date('Y-m-d H:i:s', mktime(23,59,59,date('n')+(date('n')-1)%3,$getMonthDays,date('Y')));  
+
+
+
+
+
+
+**文件操作【重点4】**
+
+
+
+
+**file_exists(filename) 文件或目录是否存在  
+
+filesize(filename) 取得文件大小  
+
+pathinfo(filename) 返回目录名、基本名和扩展名的关联数组**
+
+
+
+
+$path_parts = pathinfo("/www/htdocs/index.html");  
+
+  
+
+echo $path_parts["dirname"] . "n";  
+
+echo $path_parts["basename"] . "n";  
+
+echo $path_parts["extension"] . "n";
+
+
+/www/htdocsindex.htmlhtml  
+
+**mkdir(dirname) 创建目录  
+
+rmdir(dirname) 删除空目录  
+
+fopen(filename,模式) 打开文件  
+
+fclose(fp) 关闭文件  
+
+fwrite(fp,str,length) 写入文件  
+
+file_put_contents(filename,content) 把内容存成文件  
+
+file_get_contents(filename) 从文件读出内容  
+
+fread(fp,length) 读取文件  
+
+fgets() 从文件指针中读取一行  
+
+fgetc() 从文件指针中读取字符  
+
+file()把整个文件读入一个数组中，数组中的每个单元都是文件中相应的一行  
+
+readfile() 读入一个文件并写入到输出缓冲  
+
+copy(filename1,filename2) 复制文件  
+
+unlink(filename) 删除文件  
+
+rename(filename1,filename2) 重命名文件或目录  
+
+$text = iconv('gbk','utf-8','高志伟');///将gbk编码转换为utf-8**
+

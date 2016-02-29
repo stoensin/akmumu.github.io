@@ -1,0 +1,194 @@
+---
+author: admin
+comments: true
+date: 2013-07-29 07:37:00+00:00
+layout: post
+slug: eclipse%e5%ae%89%e8%a3%85svn%e6%8f%92%e4%bb%b6
+title: Eclipse安装SVN插件
+wordpress_id: 186
+categories:
+- PHP
+- 实用软件技巧
+tags:
+- php程序设计
+- 实用软件技巧
+---
+
+
+
+
+
+Eclipse是一个优秀的开源IDE，目前支持C/C++、JAVA、JS、PHP等语言。
+
+
+
+
+
+
+
+
+
+
+
+我使用的是"Eclipse IDE for C/C++ Developers"
+
+
+
+
+
+Version: Helios Release  Build id: 20100617-1415
+
+
+
+
+
+  
+
+
+
+
+
+
+
+该版本默认使用CVS插件进行版本管理。下面安装SVN插件，以便能下载Google Code上的源代码。
+
+
+
+
+
+  
+
+
+
+
+
+
+
+以下是一些关键步骤：
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/pic002_cnblogs_2010080913095859.png)
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/pic002_cnblogs_2010080913101916.png)
+
+
+
+
+
+其中[http://subclipse.tigris.org/update_1.0.x](http://subclipse.tigris.org/update_1.0.x)是SVN插件的下载站点【subclipse是Eclipse的SVN插件】。
+
+
+
+
+
+以update_1.0.x为例
+
+
+
+
+
+Select All 然后单击Next...
+
+
+
+
+
+一路Next，最后点击Finish，下载SVN插件并安装，最后需要重启Eclipse。
+
+
+
+
+
+---------------- 至此 SVN 插件安装完毕 -------------------
+
+
+
+
+
+
+
+
+
+
+
+使用SVN插件从Google Code上下载开源代码
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/pic002_cnblogs_2010080913141049.png)  
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/pic002_cnblogs_2010080913160791.png)  
+
+
+
+
+
+
+
+以skia为例：
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/pic002_cnblogs_2010080913162457.png)  
+
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/pic002_cnblogs_2010080913165226.png)
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/pic002_cnblogs_2010080913170647.png)  
+
+
+
+
+
+
+
+Ctrl + A选中所有文件夹，然后单击“Finish”。
+
+
+
+
+
+  
+
+
+
+
+
+
+
+这时开始下载源码到本地（需要等待一段时间），下载后Eclipse中的内容如下图：
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/pic002_cnblogs_2010080913183445.png)
+
+
+

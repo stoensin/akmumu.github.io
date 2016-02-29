@@ -1,0 +1,340 @@
+---
+author: admin
+comments: true
+date: 2015-07-07 12:25:45+00:00
+layout: post
+slug: mac%e4%b8%8a%e9%80%9a%e8%bf%87privoxy%e5%b0%86shadowsocks%e7%9a%84%e6%b5%81%e9%87%8f%e4%bd%bf%e7%94%a8pac%e4%bb%a3%e7%90%86%e7%bb%99%e6%89%8b%e6%9c%baios%e5%ae%89%e5%8d%93
+title: Mac上通过Privoxy将shadowsocks的流量使用pac代理给手机iOS安卓
+wordpress_id: 367
+categories:
+- mac
+tags:
+- pac
+- Privoxy
+- shadowsocks
+- 代理
+---
+
+# Mac上shadowsocks使用pac代理给手机iOS安卓
+
+
+windows上的shadowsocks如果勾选允许来自局域网的连接可以直接让手机进行socks5连接，配置简单，不再赘述，下面主要记录Mac上实现同样的效果。
+
+
+## 安装shadowsocks
+
+
+
+
+
+	
+  * 下载OSX版安装 [下载地址](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help)
+
+	
+  * 填写服务器设定（自己搭建的或者别人给你的ip,port,密码等）
+
+	
+  * 选择服务器并勾选自动代理模式，现在应该是已经代理好了，因为新版的shadowsocks已经为我们做了很多事情，现在什么浏览器插件都不用装，你的mac浏览器已经拥有了翻墙能力。如果用了其他代理插件就先停掉或者选择**使用系统代理设置** 如图可以看到它为我们都做到了：
+![wifi自动代理](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/07/wifi%E8%87%AA%E5%8A%A8%E4%BB%A3%E7%90%86.png)
+看下端口占用：
+![shadowsocks8090.png](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/07/shadowsocks8090.png)
+
+
+这里shadowsocks还提供了一个Socks5代理服务，在本地地址的 127.0.0.1:1080，这时候使用插件连这个也是能使用的，我们就依照这个线索代理给手机。
+
+
+## 用Privoxy将shadowsocks的Socks5服务转换成局域网可用的http代理
+
+
+如上面说的那个Socks5代理服务，无法直接提供给手机代理服务，我们这里使用Privoxy助力
+
+
+
+	
+  * 安装 `brew install privoxy`
+
+	
+  * 提示下面的内容说明安装成功
+
+    
+    <code>==> Caveats
+    To have launchd start privoxy at login:
+    ln -sfv /usr/local/opt/privoxy/*.plist ~/Library/LaunchAgents
+    Then to load privoxy now:
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.privoxy.plist
+    Or, if you don't want/need launchctl, you can just run:
+    privoxy /usr/local/etc/privoxy/config
+    ==> Summary
+    </code>
+
+
+
+
+	
+  * 根据上面的提示启动，即运行
+
+    
+    <code>ln -sfv /usr/local/opt/privoxy/*.plist ~/Library/LaunchAgents
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.privoxy.plist
+    </code>
+
+
+
+
+	
+  * 编辑配置文件，在/usr/local/etc/privoxy/config
+
+    
+    <code>echo 'listen-address 0.0.0.0:8118' >> /usr/local/etc/privoxy/config
+    注：这里一定要0.0.0.0，如果设置成127.0.0.1只能给自己这台机器用
+    echo 'forward-socks5 / localhost:1080 .' >> /usr/local/etc/privoxy/config
+    注：1080就是shadowsocks的Socks5服务
+    8118是privoxy的服务，一会手机将通过这个端口过来
+    </code>
+
+
+
+
+	
+  * kill 刚才启动的privoxy，然后运行
+
+    
+    <code>/usr/local/Cellar/privoxy/3.0.23/sbin/privoxy /usr/local/etc/privoxy/config
+    </code>
+
+
+可以看到已经成功了
+
+    
+    <code>➜  /opt  ps aux  | grep privoxy
+    mumu  1143   0.0  0.0  2497992   1760   ??  S     3:00下午   0:00.11 /usr/local/Cellar/privoxy/3.0.23/sbin/privoxy --no-daemon /usr/local/etc/privoxy/config
+    ➜  /opt  lsof -i :8118
+    COMMAND  PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+    privoxy 1143 mumu    3u  IPv4 0x659480a42f4476af      0t0  TCP *:privoxy (LISTEN)
+    </code>
+
+
+
+
+	
+  * 这个时候privoxy已经提供了一个127.0.0.1:8118的http代理服务
+
+	
+  * 看下mac的ip地址记下来，假设是192.168.1.133，在iOS打开wifi连接，点击详情，拉到最下面，http代理选择自动，url填写192.168.1.133:8118就好了
+
+	
+  * 同理，其他设备只要支持http代理都可以这样配置。当然要和这台mac在局域网
+
+	
+  * 这时候虽然可以上网了，但是所有的流量都要通过代理，下面是再增加pac使得只对名单之内的流量进行代理。即国内的域名直接连接。
+
+
+
+
+## 使用Proxy auto-config (PAC)作用在手机使其只发送墙外流量
+
+
+Proxy auto-config (PAC) 文件可指定使用代理服务器的规则。比如在国内不能访问某些国外网站，我们可以通过 PAC 文件指定仅当访问某些国外网站时使用代理服务器，其他时候直接访问。
+
+这个文件可以从很多地方下载到，也能用shadowsocks的pac文件，保存。
+我们可以把 PAC 文件部署在可以访问的服务器上，一种部署在局域网机器上,另外一种直接直接部署在你的机器上（如果有的话）。
+使用 Apache/nginx，总之可以通过类似 http://akmumu.com/proxy.pac 的方式访问 PAC 文件即可。
+**注**：pac可以返回多种代理（详情见附录），找到pac文件中最后的部分有形如`return "SOCKS 192.168.1.122:1080";`的地方，为了配合privoxy的http代理，我们改成http的返回即：`return "PROXY 192.168.1.133:8118"`
+
+最后我们只需要在iOS打开wifi连接，点击详情，拉到最下面，http代理选择自动，url改成http://akmumu.com/proxy.pac（或者你自己的本地服务器，只要能访问到）就好了。自此，你已经具有了完美的手机翻墙方案。也能支持多个设备。
+
+
+## 附录一（ PAC 文件详解）
+
+
+PAC 文件用 JavaScript 编写，必须包含 `FindProxyForURL(url, host)` 函数。在访问某个网址时，浏览器会调用 `FindProxyForURL` 根据其返回值来决定该如何访问。该函数的说明如下：
+
+
+
+	
+  * 参数：
+
+	
+    * `url` 为访问的网址
+
+	
+    * `host` 为从 `url` 中推出的主机名，例如 url “[http://www.reddit.com/r/programming/](http://www.reddit.com/r/programming/)” 对应的 host 为 “www.reddit.com”
+
+
+
+
+	
+  * 返回值为字符串，告诉浏览器如何访问。下面是一些可用的返回值：
+
+	
+    * `"DIRECT"` 直接访问，不使用代理
+
+	
+    * `"PROXY host:port` 使用 HTTP 代理
+
+	
+    * `"SOCKS host:port"` 使用 SOCKS 代理，因为不支持 DNS 解析，不推荐
+
+	
+    * `"SOCKS5 host:port"` 使用 SOCKS5 代理
+
+	
+      * **注意，Safari 虽然支持 SOCKS5 代理，但是不支持在 PAC 文件中返回的 `SOCKS5`，只认 `SOCKS`**
+
+	
+      * 一个 workaround 是返回多个代理服务器配置，把`SOCKS5` 放在最前面，接一个 `SOCKS`，这样支持 `SOCKS5` 返回值的浏览器可以正常使用，而 Safari 会忽略第一个 `SOCKS5`。例如 `SOCKS5 127.0.0.1:1080; SOCKS 127.0.0.1:1080; DIRECT`
+
+	
+      * 另一个办法是把 SOCKS 代理用[polipo](http://www.pps.jussieu.fr/~jch/software/polipo/) 转成 http 代理
+
+
+
+
+	
+    * 可以返回多个代理服务器，用分号分隔，浏览器会按顺序尝试。例如 `"PROXY host:port; SOCKS5 host2:port2; DIRECT"`
+
+
+
+
+
+下面是一个 PAC 文件的例子（这个文件的目的应该很清楚），完整版本见 [github](https://github.com/cyfdecyf/cyf-util-conf/blob/master/conf/gfw.pac)。
+
+
+
+
+
+
+    
+    var direct = 'DIRECT';
+    var http_proxy = 'PROXY host:port; DIRECT';
+    
+    var blocked_list = [
+      "akamai.net",
+      "akamaihd.net"
+    ];
+    
+    var blocked = {};
+    for (var i = 0; i < blocked_list.length; i += 1) {
+      blocked[blocked_list[i]] = true;
+    }
+    
+    function host2domain(host) {
+      var dotpos = host.lastIndexOf(".");
+      if (dotpos === -1)
+        return host;
+      // Find the second last dot
+      dotpos = host.lastIndexOf(".", dotpos - 1);
+      if (dotpos === -1)
+        return host;
+      return host.substring(dotpos + 1);
+    };
+    
+    function FindProxyForURL(url, host) {
+      return blocked[host2domain(host)] ? http_proxy : direct;
+    };
+
+
+
+
+
+
+
+我定义了 `host2domain` 函数，抽取 host 中的 domain name。然后通过检查 blocked object 是否有相应的 property 来决定是否使用代理。（为了写 PAC 文件我现学了一把 JavaScript，网上看到的例子都是一连串的 if-else，太低效而且不方便维护。写个数组遍历一把也好啊。）
+
+PAC 文件可以使用一些预先定义好的函数，几个我觉得有用的函数如下：
+
+
+
+	
+  * `isPlainHostName(host)` 判断是否是简单域名，例如 localhost 就是一个简单域名
+
+	
+  * `dnsDomainIs(host, domain)` 判断给定的 host 是否属于某个域名
+
+	
+  * `dnsResolve(host)` 做 DNS 解析，返回 host 的 ip，注意：DNS 解析可能会 block 住浏览器
+
+	
+  * `isInNet(ip, subnet, netmask)` 判断 ip 是否属于某个子网
+
+	
+  * `myIpAddress()` 返回本机的 ip (貌似不太可靠，见 wikipedia 的说明)
+
+	
+  * `shExpMatch(str, pattern)` 判断两个字符串是否匹配，`pattern` 中可以包含 shell 使用的通配符
+
+
+还有一些日期相关的函数，详细的列表可以看 [findproxyforurl.com](http://www.findproxyforurl.com/pac_functions_explained.html)。
+
+
+# 使用 PAC 文件指定代理
+
+
+OS X 和 Windows 都支持 PAC，在代理配置里选择自动配置代理，填入 PAC 文件的 URL 即可。（本地文件用 `file://`路径。）要注意的是在 HTTP 服务器上部署 PAC 文件时，需把文件的 MIME 类型设置成`application/x-ns-proxy-autoconfig`。
+
+如果可以控制 DNS 或者 DHCP 服务器还可以使用自动发现代理，如何部署可以参考 Wikipedia [Web Proxy Autodiscovery Protocol (WPAD)](http://en.wikipedia.org/wiki/Web_Proxy_Autodiscovery_Protocol)。
+
+
+# 调试 PAC 文件
+
+
+PAC 文件执行的环境跟网页里 JavaScript 执行的环境不同，不过用 Firefox 来调试还是挺方便的。
+
+首先自然是让 Firefox 自己配置代理而不使用系统配置，修改过 PAC 文件后别忘了 reload 来更新。（Safari, Chrome 只能使用系统代理配置，不知怎样才能刷新系统的 PAC 缓存。）
+
+![firefox proxy conf](https://img.skitch.com/20120318-n6hyp25ab3k3jegkrdxtwm3yfh.jpg)
+
+PAC 文件里关键点上加 `alert`，实际执行的时候并不会弹窗，而会在 Error Console 里打印出信息。有了这个调试就方便多了。
+
+![firefox error console](https://img.skitch.com/20120318-xwnk64y1wuypga2jhd9j98882k.jpg)
+
+本附录一转自：http://chenyufei.info/blog/2012-03-18/pac-and-debug/
+
+
+## 附录二（Privoxy 的进阶内容）
+
+
+其实 Privoxy 并不只是把 SOCKS5 转换成 HTTP 代理，她本身还有很强大的功能，比如 `action` 和 `filter`，在这仅仅简单介绍一下，具体用途看官方[文档](http://www.privoxy.org/user-manual/configuration.html#CONFOVERVIEW)。
+
+`Action` 可以起到 PAC 文件的作用，也可以当成 AdBlock、user script 和 Stylebot 来使用。
+
+默认的文件分别是 `/usr/local/etc/privoxy/user.action` 和 `/usr/local/etc/privoxy/user.filter`。
+
+大概的语法如下：
+
+    
+    <code>direct      = +forward-override{forward .}
+    ssh         = +forward-override{forward-socks5 127.0.0.1:8080 .}
+    default     = direct
+    {default}
+    /
+    {direct} 
+    .youku.com
+    .twitter.com
+    {ssh}
+    .twitter.com
+    # 后面的规则优先级比前面的高
+    {+block}
+    .weibo.com # 屏蔽微博
+    {-block}
+    .weibo.com/chrisyipw # 但是不屏蔽自己
+    {+block-as-image}
+    .weibo.com # 屏蔽微博下所有合法图片，即使扩展名不是图片扩展名也会被屏蔽
+    </code>
+
+
+可以通过不同的 `alias` 配置不同的代理程序，如果是用 SSH 而不是 shadowsocks，可以考虑链接多个服务器进行分流，毕竟 SSH 并发性能不高。
+
+还有更高级的，比如结合 `filter` 修改页面内容，比如重定向 URL 什么的：
+
+    
+    <code>{+filter{filter_name}}
+    .weibo.com
+    {+fast-redirects{check-decoded-url}}
+    news.google.com/news/url.*&url=http.*&
+    </code>
+
+
+具体看 `user.action` 里的注释吧，而 `filter` 是需要结合 `user.filter` 来用的，如果想要使用多个 `action` 文件，在 `config` 加入`actionsfile name.action` 就行。
+
+本附录二转自：http://chrisyip.github.io/post/use-pow-and-privoxy-bypass-mac-sandbox-and-socks5-issue/

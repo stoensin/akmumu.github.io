@@ -1,0 +1,708 @@
+---
+author: admin
+comments: true
+date: 2013-03-25 01:44:00+00:00
+layout: post
+slug: '%e4%bb%8e%e7%bd%91%e9%a1%b5%e4%b8%8a%e6%8a%93%e5%8f%96%e5%86%85%e5%ae%b9%e7%9a%84%e5%ba%93simple_html_dom'
+title: 从网页上抓取内容的库simple_html_dom
+wordpress_id: 170
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+
+简单范例
+
+
+
+
+
+
+    
+    <span class="pun"><?</span><span class="pln">php</span><p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; "><span class="pln">include </span><span class="str">"simple_html_dom.php"</span><span class="pln"> </span><span class="pun">;</span>
+    <span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(136, 136, 136); font-size: 12px; "><span class="com">// Create DOM from URL or file</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">$html </span><span class="pun">= </span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">file_get_html</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">(</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'http://www.google.com/'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">);</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(136, 136, 136); font-size: 12px; "><span class="com">// Find all images </span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="kwd">foreach</span><span class="pun">(</span><span class="pln">$html</span><span class="pun">-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">find</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">(</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'img'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">)</span><span class="pln"> </span><span class="kwd">as</span><span class="pln"> $element</span><span class="pun">) </span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">       echo $element</span><span class="pun">-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">src</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln"> </span><span class="pun">. </span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'<br>'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">;</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(136, 136, 136); font-size: 12px; "><span class="com">// Find all links </span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="kwd">foreach</span><span class="pun">(</span><span class="pln">$html</span><span class="pun">-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">find</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">(</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'a'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">)</span><span class="pln"> </span><span class="kwd">as</span><span class="pln"> $element</span><span class="pun">) </span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">       echo $element</span><span class="pun">-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">href</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln"> </span><span class="pun">. </span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'<br>'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">;</span></span>
+    </p>
+
+
+
+    
+    <p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; ">
+    <span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(136, 136, 136); font-size: 12px; "><span class="com">// Create DOM from URL</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">$html </span><span class="pun">= </span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">file_get_html</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">(</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'http://slashdot.org/'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">);</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(136, 136, 136); font-size: 12px; "><span class="com">// Find all article blocks</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="kwd">foreach</span><span class="pun">(</span><span class="pln">$html</span><span class="pun">-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">find</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">(</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'div.article'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">)</span><span class="pln"> </span><span class="kwd">as</span><span class="pln"> $article</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">    $item</span><span class="pun">[</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'title'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">]     =</span><span class="pln"> $article</span><span class="pun">-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">find</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">(</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'div.title'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">, </span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="lit">0</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">)-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">plaintext</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">;</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">    $item</span><span class="pun">[</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'intro'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">]    =</span><span class="pln"> $article</span><span class="pun">-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">find</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">(</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'div.intro'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">, </span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="lit">0</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">)-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">plaintext</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">;</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">    $item</span><span class="pun">[</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'details'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">] =</span><span class="pln"> $article</span><span class="pun">-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">find</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">(</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'div.details'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">, </span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="lit">0</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">)-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">plaintext</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">;</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">    $articles</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> $item</span><span class="pun">;</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">}</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">print_r</span><span class="pun">(</span><span class="pln">$articles</span><span class="pun">);</span></span>
+    </p>
+    
+    <p style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; ">
+    <span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(136, 136, 136); font-size: 12px; "><span class="com">// Create DOM from string</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">$html </span><span class="pun">= </span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">str_get_html</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">(</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'<div id="hello">Hello</div><div id="world">World</div>'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">);</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(136, 136, 136); font-size: 12px; "> </span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">$html</span><span class="pun">-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">find</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">(</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'div'</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">)-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="kwd">class</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln"> = </span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'bar'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">;</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">$html</span><span class="pun">-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">find</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">(</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'div[id=hello]'</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">)-></span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">innertext</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln"> = </span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(119, 0, 0); font-size: 12px; "><span class="str">'foo'</span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pun">;</span></span><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><br style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "></br><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(0, 33, 102); font-size: 12px; "><span class="pln">echo $html</span><span class="pun">; </span></span><span style="line-height: 14px; background-color: rgb(246, 246, 246); font-family: Monaco, Verdana, sans-serif; white-space: normal; color: rgb(136, 136, 136); font-size: 12px; "><span class="com">// Output: <div id="hello"></span><strong><span class="com">foo</span></strong><span class="com"></div><div id="world" </span><strong><span class="com">class="bar"</span></strong><span class="com">>World</div></span></span>
+    </p>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+3.DOM的方法
+
+
+
+
+  
+
+
+
+
+
+
+$html = file_get_html('http://www.google.com/');
+  //**$html 所拥有的方法如下表所示**
+
+
+
+
+$html->clear() ;  //**调用方法**
+
+
+
+
+  
+
+
+
+
+
+
+DOM methods
+ & properties   
+
+<table cellpadding="1" width="100%" style="line-height:14px; background-color:rgb(246,246,246); font-family:Monaco,Verdana,sans-serif; color:rgb(0,33,102); font-size:12px" cellspacing="1" >
+<tbody >
+<tr >
+
+Name
+
+Description
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+void
+
+
+__construct ( [string $filename] )
+</td>
+
+<td style="background-color:rgb(221,221,221); font-family:'Lucida Grande',Verdana,Geneva,sans-serif; color:rgb(51,51,51); font-size:11px" >
+Constructor, set the filename parameter will automatically load the contents, either text or file/url.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+string
+
+
+plaintext
+</td>
+
+<td style="background-color:rgb(221,221,221); font-family:'Lucida Grande',Verdana,Geneva,sans-serif; color:rgb(51,51,51); font-size:11px" >
+Returns the contents extracted from HTML.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+void
+
+
+clear ()
+</td>
+
+<td style="background-color:rgb(221,221,221); font-family:'Lucida Grande',Verdana,Geneva,sans-serif; color:rgb(51,51,51); font-size:11px" >
+Clean up memory.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+void
+
+
+load ( string $content )
+</td>
+
+<td style="background-color:rgb(221,221,221); font-family:'Lucida Grande',Verdana,Geneva,sans-serif; color:rgb(51,51,51); font-size:11px" >
+Load contents from a **string**.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+string
+
+
+save ( [string $filename] )
+</td>
+
+<td style="background-color:rgb(221,221,221); font-family:'Lucida Grande',Verdana,Geneva,sans-serif; color:rgb(51,51,51); font-size:11px" >
+Dumps the internal DOM tree back into a **string**. If the $filename is set, result string will save to file.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+void
+
+
+load_file ( string $filename )
+</td>
+
+<td style="background-color:rgb(221,221,221); font-family:'Lucida Grande',Verdana,Geneva,sans-serif; color:rgb(51,51,51); font-size:11px" >
+Load contents from a from a file or a URL.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+void
+
+
+set_callback ( string $function_name )
+</td>
+
+<td style="background-color:rgb(221,221,221); font-family:'Lucida Grande',Verdana,Geneva,sans-serif; color:rgb(51,51,51); font-size:11px" >
+Set a callback function.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+mixed
+
+
+find ( string $selector [, int $index] )
+</td>
+
+<td style="background-color:rgb(221,221,221); font-family:'Lucida Grande',Verdana,Geneva,sans-serif; color:rgb(51,51,51); font-size:11px" >
+Find elements by the CSS selector. Returns the Nth element **object** if **index** is set, otherwise return an **array** of object.
+</td>
+</tr>
+</tbody>
+</table>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+4.find 方法详细介绍
+
+
+
+
+  
+
+
+
+
+
+
+**find ( string $selector [, int $index] ) **
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+// Find all **anchors**, returns a **array** of element objects  
+
+$ret = $html->find('**a**');  
+
+  
+
+// Find **(N)th anchor**, returns element object or **null** if not found (zero
+ based)  
+
+$ret = $html->find('**a**', **0**);  
+
+  
+
+// Find **lastest anchor**, returns element object or **null** if not found (zero
+ based)  
+
+$ret = $html->find('**a**', **-1**);   
+
+  
+
+// Find all **<div>** with the **id** attribute  
+
+$ret = $html->find('**div[id]**');  
+
+  
+
+// Find all **<div>** which attribute **id=foo**  
+
+$ret = $html->find('**div[id=foo]**');
+
+
+
+
+
+  
+
+
+
+
+
+
+
+// Find all element which **id**=foo  
+
+$ret = $html->find('**#foo**');  
+
+  
+
+// Find all element which **class**=foo  
+
+$ret = $html->find('**.foo**');  
+
+  
+
+// Find all element has attribute** id**  
+
+$ret = $html->find('***[id]**');   
+
+  
+
+// Find all **anchors** and **images**   
+
+$ret = $html->find('**a,
+ img**');   
+
+  
+
+// Find all **anchors** and **images** with the "title" attribute  
+
+$ret = $html->find('**a[title],
+ img[title]**');
+
+
+
+
+
+  
+
+
+
+
+
+
+
+// Find all <li> in <ul>   
+
+$es = $html->find('**ul
+ li**');  
+
+  
+
+// Find Nested <div> tags  
+
+$es = $html->find('**div
+ div div**');   
+
+  
+
+// Find all <td> in <table> which class=hello   
+
+$es = $html->find('**table.hello
+ td**');  
+
+  
+
+// Find all td tags with attribite align=center in table tags   
+
+$es = $html->find(''**table td[align=center]**');
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+5. Element 的方法
+
+
+
+
+
+  
+
+
+
+
+
+
+
+$e = $html->find("div", 0);
+  //$e 所拥有的方法如下表所示
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<table cellpadding="1" style="line-height:14px; background-color:rgb(246,246,246); font-family:Monaco,Verdana,sans-serif; color:rgb(0,33,102); font-size:12px" cellspacing="1" >
+<tbody style="line-height:19px" >
+<tr bgcolor="#cccccc" >
+
+Attribute Name
+
+Usage
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >$e->tag
+</td>
+
+<td style="background-color:rgb(221,221,221)" >Read or write the tag name of element.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >$e->outertext
+</td>
+
+<td style="background-color:rgb(221,221,221)" >Read or write the outer HTML text of element.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >$e->innertext
+</td>
+
+<td style="background-color:rgb(221,221,221)" >Read or write the inner HTML text of element.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >$e->plaintext
+</td>
+
+<td style="background-color:rgb(221,221,221)" >Read or write the plain text of element.
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+// Example  
+
+$html
+ = str_get_html("<div>foo
+ <b>bar</b></div>");   
+
+$e = $html->find("div", 0);
+
+
+
+
+
+  
+
+echo $e->tag; //
+ Returns: " **div**"  
+
+echo $e->outertext; //
+ Returns: " **<div>foo <b>bar</b></div>**"  
+
+echo $e->innertext; //
+ Returns: " **foo <b>bar</b>**"  
+
+echo $e->plaintext; //
+ Returns: " foo bar"  
+
+  
+
+  
+
+6.DOM traversing
+ 方法
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<table cellpadding="1" style="line-height:14px; background-color:rgb(246,246,246); font-family:Monaco,Verdana,sans-serif; color:rgb(0,33,102); font-size:12px" cellspacing="1" >
+<tbody >
+<tr >
+
+Method
+
+Description
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+mixed
+
+
+$e->**children** ( [int $index] )
+</td>
+
+<td style="background-color:rgb(221,221,221)" >Returns the Nth **child object** if **index** is set, otherwise return an **array of children**.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+element
+
+
+$e->**parent** ()
+</td>
+
+<td style="background-color:rgb(221,221,221)" >Returns the **parent** of element.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+element
+
+
+$e->**first_child** ()
+</td>
+
+<td style="background-color:rgb(221,221,221)" >Returns the **first child** of element, or **null** if not found.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+element
+
+
+$e->**last_child** ()
+</td>
+
+<td style="background-color:rgb(221,221,221)" >Returns the **last child** of element, or **null** if not found.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+element
+
+
+$e->**next_sibling** ()
+</td>
+
+<td style="background-color:rgb(221,221,221)" >Returns the **next sibling** of element, or** null** if not found.
+</td>
+</tr>
+<tr >
+
+<td style="background-color:rgb(221,221,221)" >
+
+
+
+element
+
+
+$e->**prev_sibling** ()
+</td>
+
+<td style="background-color:rgb(221,221,221)" >Returns the **previous sibling** of element, or **null** if not found.
+</td>
+</tr>
+</tbody>
+</table>
+  
+
+
+
+
+
+
+
+// Example  
+
+echo $html->find("#div1",
+ 0)->children(1)->children(1)->children(2)->id;  
+
+// or   
+
+echo $html->getElementById("div1")->childNodes(1)->childNodes(1)->childNodes(2)->getAttribute('id');
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+附带： DOM方法  set_callback('my_callback')
+  使用方法
+
+
+
+
+
+  
+
+
+
+
+
+
+
+// Write a function with parameter "**$element**"  
+
+function my_callback($element)
+ {  
+
+//
+ Hide all <b> tags   
+
+if ($element->tag=='b')  
+
+$element->outertext = '';  
+
+}   
+
+  
+
+// Register the callback function with it's **function name**  
+
+$html->set_callback('my_callback');  
+
+  
+
+// Callback function will be invoked while dumping  
+
+echo $html;
+
+
+

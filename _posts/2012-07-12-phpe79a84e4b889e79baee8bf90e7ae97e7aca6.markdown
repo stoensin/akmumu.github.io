@@ -1,0 +1,51 @@
+---
+author: admin
+comments: true
+date: 2012-07-12 03:27:00+00:00
+layout: post
+slug: php%e7%9a%84%e4%b8%89%e7%9b%ae%e8%bf%90%e7%ae%97%e7%ac%a6
+title: PHP的三目运算符
+wordpress_id: 36
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+<?php
+
+
+
+
+$a=1;
+
+
+
+
+$b=2;
+
+
+
+
+($a > $b) ? date('Y-m-d', time()-24*3600) : date('Y-m-d');
+
+
+
+
+?>
+
+
+
+
+如果$a>$b则返回date('Y-m-d', time()-24*3600)即前一天的时间
+
+
+
+
+如果$a<$b即条件不成立，那么运算：后面的即，当前时间date('Y-m-d');
+
+
+

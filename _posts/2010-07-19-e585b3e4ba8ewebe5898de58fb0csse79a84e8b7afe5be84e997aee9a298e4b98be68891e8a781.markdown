@@ -1,0 +1,44 @@
+---
+author: admin
+comments: true
+date: 2010-07-19 05:25:00+00:00
+layout: post
+slug: '%e5%85%b3%e4%ba%8eweb%e5%89%8d%e5%8f%b0css%e7%9a%84%e8%b7%af%e5%be%84%e9%97%ae%e9%a2%98%e4%b9%8b%e6%88%91%e8%a7%81'
+title: 关于web前台css的路径问题之我见
+wordpress_id: 106
+categories:
+- PHP
+tags:
+- php程序设计
+---
+
+
+
+
+#  css路径问题
+
+
+
+
+无意间使用div+css设计我的一个网站的前台，在使用css的时候，最初总是在绝对路径里建立css文档的，那时候根本没发现问题，用的时候也是简单的在php页面直接写上<link href="style.css" type="text/css" rel="stylesheet"/>而已，所有进度可以说正常进行，后来为了追求文件整齐，所以在绝对路径下建立了css目录，将所有的css文件全部放进里面去，然后在弄完了就出现了问题，css的路径会导致主页显示虽然不出现问题，可是当主页使用include或者required包含进东西的时候，例如include进来一个top.php，这个时候如果top.php里面使用了css，就会出现问题，他不会用top文件对应的php，二会直接使用index文件需要的css文件，那么这个问题就比较棘手。
+
+
+
+
+当然在href="css/common.css".还有：href=[http://www.xxx.com/css/common.css](http://www.xxx.com/css/common.css)之间我们又会进行选择，前者呢，路径比较短，相对来说读取速度应该是比较快的，二后者应该是相对较慢的，可是前者往往出现这样或那样的问题，后者则较为稳定。而带网址的绝对路径 ，还有一个问题就是开发维护不方便。  
+  
+你在本地修改完CSS文件后，必须将CSS文件上传至你的Web服务器后才能看到实际的样式效果。  
+还有相对绝对 各有千秋  
+  
+如果你的文件的目录位改变了 你会后悔为什么要用相对路径  
+  
+如果你拿了 别人写的网站代码 里面都是绝对路径 你会边改边骂 吃饱了撑的没事搞什么绝对路径  
+呵呵，**link** type="text/css" rel="stylesheet" href="../styles/main.css" **/>** 这个就解决了一些问题，前面加上了.../这就是所谓的相对路径。当我们发现文档显示成功以后，才真正知道css路径问题。
+
+
+
+
+其实还有一些css路径问题是我还没有解决的，再研究一下，希望和大家分享。
+
+
+

@@ -1,0 +1,49 @@
+---
+author: admin
+comments: true
+date: 2012-10-12 09:33:00+00:00
+layout: post
+slug: fedora17-%e5%bf%ab%e6%8d%b7%e9%94%ae%e6%89%93%e5%bc%80%e7%bb%88%e7%ab%af
+title: Fedora17 快捷键打开终端
+wordpress_id: 93
+categories:
+- LINUX
+- 操作系统
+tags:
+- linux
+- 操作系统相关
+---
+
+活动->应用程序->系统工具->键盘->快捷键
+
+
+如图一所示，点击自定义快捷键，点击“+”号，如图二所示输入。
+
+
+
+
+图一
+
+
+
+
+[![5f99444c4c56948e77f09&690](http://akmumu-wordpress.stor.sinaapp.com/uploads/2012/10/5f99444c4c56948e77f09690.jpeg)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2012/10/5f99444c4c56948e77f09690.jpeg)
+
+
+
+
+图二
+
+
+
+
+[![5f99444c07a24210e228f&690](http://akmumu-wordpress.stor.sinaapp.com/uploads/2012/10/5f99444c07a24210e228f690.jpeg)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2012/10/5f99444c07a24210e228f690.jpeg)
+如图三所示点击“新建加速键...”这几个字后，直接按想你想设置的快捷键（一般使用Ctrl+Alt+t）即可，记住不要点击前面的“启动终端”。
+图三、
+
+
+
+
+
+
+![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/img_my_1350034679_5605.jpg)
