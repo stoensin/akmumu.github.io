@@ -558,6 +558,17 @@ ctrl + ] ,回到原来位置是 ctrl + t
 
 
 
+
+
+
+
+
+
+
+
+
+
+
   1. map :NERDTreeToggle
   2. map :TlistToggle
   3. map t :NERDTreeMirrorgTwgtw
@@ -949,7 +960,7 @@ line 13:
 php 中 一般是会在 "$", "->", "::" 后需要出现自动补全，在 .vimrc 中加入以下代码：
 
 
-{% highlight %}    
+    
     if !exists('g:AutoComplPop_Behavior')
         let g:AutoComplPop_Behavior = {}
         let g:AutoComplPop_Behavior['php'] = []
@@ -959,7 +970,7 @@ php 中 一般是会在 "$", "->", "::" 后需要出现自动补全，在 .vimrc
                    'repeat'    : 0,
                 })
     endif
-{% endhighlight %}
+
 
 
 
@@ -967,7 +978,7 @@ php 中 一般是会在 "$", "->", "::" 后需要出现自动补全，在 .vimrc
 
 
 
-{% highlight %}
+
 :inoremap ( ()<ESC>i  
 
 :inoremap ) <c-r>=ClosePair(')')<CR>  
@@ -1000,10 +1011,17 @@ endif
 
 endf
 
-{% endhighlight %}
+
 
 
 这样，写代码的时候不再担心会丢掉右边的括号了，尤其是函数嵌套的时候。
+
+
+
+
+
+
+
 
 
 
@@ -1150,9 +1168,9 @@ zencoing可以很方便的写html,一些常用命令：
 
 
 {% highlight html %}
-    <div>
-        hello world
-    </div>
+<div>
+    hello world
+</div>
 {% endhighlight %}    
 
 
@@ -1161,13 +1179,11 @@ zencoing可以很方便的写html,一些常用命令：
 光标移动到此段落，输入ctrl + y + /变成
 
 
-
 {% highlight html %}    
-    <!-- <div>
-        hello world
-    </div> -->
-{% endhighlight %}    
-
+<!-- <div>
+    hello world
+</div> -->
+{% endhighlight %}
 
 
 
@@ -1209,10 +1225,7 @@ Zen Coding官方提供的速查手册(PDF)：[http://zen-coding.googlecode.com/f
 
 
 
-配置OK了，最后上张帅气的vim图:
+配置OK了，最后上张帅气的vim图:  
 
-
-![](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/img_my_1352346896_1248.jpg)
-
-
-
+[!vim成品](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/img_my_1352346896_1248.jpg)
+[![buildingsecurephpapps-ch](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/title_page.png)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/title_page.png)
