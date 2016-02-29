@@ -1,0 +1,84 @@
+# Site settings
+title: 木木老蔫
+SEOTitle: 木木老蔫 | 少年心意一如明月松间的青石流水，那些年里看到了、却不懂
+header-img: img/home-bg.jpg
+email: mumlaonian@gmail.com
+description: "木木老蔫的博客，主要记录关于PHP，MYSQL等相关技术以及框架应用日志，还有一些互联网新闻，加上自己的生活见解，组成了这样一个博客"
+keyword: "mumu,akmumu,php,mysql,apache,lanmp,程序员,IT,木木老蔫,ak王子,张庆龙"
+url: "http://localhost:4000"              # your host, for absolute URL
+baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
+
+
+
+# SNS settings
+RSS: false
+weibo_username:     2007078517
+zhihu_username:     akmumu
+github_username:    akmumu
+#twitter_username:  huxpro
+facebook_username:  100005517966258
+
+gems: [jekyll-paginate]
+
+# Build settings
+highlighter: pygments
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+
+
+
+# Disqus settings
+#disqus_username: _your_disqus_short_name_
+
+# Duoshuo settings
+duoshuo_username: akmumu
+# Share component is depend on Comment so we can NOT use share only.
+duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+
+
+
+
+# Analytics settings
+# Baidu Analytics
+ba_track_id: 5c48b632b6598a3515bb0d8b63f57969
+# Google Analytics
+ga_track_id: 'UA-57329631-2'            # Format: UA-xxxxxx-xx
+ga_domain: akmumu.github.io
+
+
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "欢迎！我白天是个程序员，晚上就是个有抱负的演员。这是我的博客。我住在天朝的帝都，有条叫做爬爬的狗。"
+sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+
+
+# Friends
+friends: [
+    {
+        title: "Hux Blog",
+        href: "http://huangxuan.me"
+    },{
+        title: "jekyll",
+        href: "http://jekyllrb.com"
+    }
+]
