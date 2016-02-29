@@ -959,14 +959,13 @@ line 13:
 php 中 一般是会在 "$", "->", "::" 后需要出现自动补全，在 .vimrc 中加入以下代码：
 
 
-
     
     if !exists('g:AutoComplPop_Behavior')
         let g:AutoComplPop_Behavior = {}
         let g:AutoComplPop_Behavior['php'] = []
         call add(g:AutoComplPop_Behavior['php'], {
                    'command'   : "<C-x><C-o>", 
-                   'pattern'   : printf('(->|::|$)k{%d,}$', 0),
+                   'pattern'   : printf('(->|::|$)k{ %d,}$', 0),
                    'repeat'    : 0,
                 })
     endif
