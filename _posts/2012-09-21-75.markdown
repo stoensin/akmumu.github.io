@@ -5,6 +5,7 @@ date: 2012-09-21 07:36:00+00:00
 layout: post
 slug: linux%e7%b3%bb%e7%bb%9fshell-if%e8%af%ad%e5%8f%a5%e7%94%a8%e6%b3%95%e5%b0%8f%e7%bb%93
 title: Linux系统Shell if语句用法小结
+permalink: /2012/09/21/75.html
 wordpress_id: 75
 categories:
 - 操作系统

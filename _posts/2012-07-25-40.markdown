@@ -5,6 +5,7 @@ date: 2012-07-25 05:10:00+00:00
 layout: post
 slug: zend-studio%e4%b8%ad%e5%bc%80%e5%8f%91%e5%b8%b8%e7%94%a8%e5%bf%ab%e6%8d%b7%e9%94%ae%ef%bc%8c%e5%ad%97%e7%ac%a6%ef%bc%8c%e6%a8%a1%e6%9d%bf%e8%ae%be%e7%bd%ae
 title: Zend studio中开发常用快捷键，字符，模板设置
+permalink: /2012/07/25/40.html
 wordpress_id: 40
 categories:
 - 实用软件技巧

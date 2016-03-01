@@ -5,6 +5,7 @@ date: 2014-07-15 03:29:11+00:00
 layout: post
 slug: web%e5%bc%80%e5%8f%91%e4%b8%ad%e9%9c%80%e8%a6%81%e4%ba%86%e8%a7%a3%e7%9a%84%e4%b8%9c%e8%a5%bf
 title: Web开发中需要了解的东西
+permalink: /2014/07/15/292.html
 wordpress_id: 292
 categories:
 - 未分类

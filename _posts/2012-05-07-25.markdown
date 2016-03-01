@@ -5,6 +5,7 @@ date: 2012-05-07 03:00:00+00:00
 layout: post
 slug: 2012%e5%b9%b45%e6%9c%886%e6%97%a5%e7%99%be%e5%ba%a6php%e5%bc%80%e5%8f%91%e5%b7%a5%e7%a8%8b%e5%b8%88%e7%ac%94%e8%af%95%e9%a2%98%ef%bc%88%e4%b8%8d%e8%ae%a9%e5%b8%a6%e5%87%ba%e6%9d%a5%ef%bc%8c%e8%84%91e
 title: 2012年5月6日百度PHP开发工程师笔试题（不让带出来，脑子的印象）
+permalink: /2012/05/07/25.html
 wordpress_id: 25
 categories:
 - PHP

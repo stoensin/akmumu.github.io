@@ -5,6 +5,7 @@ date: 2015-06-02 02:33:05+00:00
 layout: post
 slug: github-https%e6%96%b9%e5%bc%8f%e5%85%8d%e5%af%86%e7%a0%81%e6%8f%90%e4%ba%a4%e4%bb%a3%e7%a0%81-%e5%9c%a8git-config-%e4%b8%ad%e6%b7%bb%e5%8a%a0%e7%94%a8%e6%88%b7%e5%90%8d%e5%af%86%e7%a0%81
 title: github https方式免密码提交代码 在git config 中添加用户名密码
+permalink: /2015/06/02/360.html
 wordpress_id: 360
 categories:
 - LINUX

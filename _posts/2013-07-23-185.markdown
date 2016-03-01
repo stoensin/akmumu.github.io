@@ -5,6 +5,7 @@ date: 2013-07-23 13:56:00+00:00
 layout: post
 slug: ubuntu%e4%b8%8b%e5%ae%89%e8%a3%85lnmp%e7%ac%94%e8%ae%b0
 title: ubuntu下安装lnmp笔记
+permalink: /2013/07/23/185.html
 wordpress_id: 185
 categories:
 - LINUX

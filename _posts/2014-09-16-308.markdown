@@ -5,6 +5,7 @@ date: 2014-09-16 15:43:58+00:00
 layout: post
 slug: github%e6%b7%bb%e5%8a%a0ssh-key%e4%b9%8b%e5%90%8epush%e8%bf%98%e8%a6%81%e8%be%93%e5%85%a5%e8%b4%a6%e5%8f%b7%e5%af%86%e7%a0%81%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95
 title: github添加ssh key之后push还要输入账号密码的解决方法
+permalink: /2014/09/16/308.html
 wordpress_id: 308
 categories:
 - 实用软件技巧

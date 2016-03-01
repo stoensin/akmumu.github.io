@@ -5,6 +5,7 @@ date: 2013-08-07 08:07:19+00:00
 layout: post
 slug: js%e7%9a%84%e5%b1%80%e9%83%a8%e5%8f%98%e9%87%8f%e5%92%8c%e5%85%a8%e5%b1%80%e5%8f%98%e9%87%8f
 title: js的局部变量和全局变量
+permalink: /2013/08/07/209.html
 wordpress_id: 209
 categories:
 - JS

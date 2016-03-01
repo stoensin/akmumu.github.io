@@ -5,6 +5,7 @@ date: 2012-10-22 11:00:00+00:00
 layout: post
 slug: awk%e4%b8%ad%e4%b8%89%e7%9b%ae%e8%bf%90%e7%ae%97%e7%9a%84%e6%ad%a3%e7%a1%ae%e5%86%99%e6%b3%95
 title: awk中三目运算的正确写法
+permalink: /2012/10/22/102.html
 wordpress_id: 102
 categories:
 - LINUX

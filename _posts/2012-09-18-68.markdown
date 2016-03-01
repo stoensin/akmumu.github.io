@@ -5,6 +5,7 @@ date: 2012-09-18 10:39:00+00:00
 layout: post
 slug: mysql%e7%9a%84%e9%94%81%e8%a1%a8%e9%97%ae%e9%a2%98
 title: mysql的锁表问题
+permalink: /2012/09/18/68.html
 wordpress_id: 68
 categories:
 - MYSQL

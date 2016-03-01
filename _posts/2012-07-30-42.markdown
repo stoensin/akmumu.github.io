@@ -5,6 +5,7 @@ date: 2012-07-30 10:31:00+00:00
 layout: post
 slug: '%e5%b8%b8%e8%a7%81http%e9%94%99%e8%af%af%e7%8a%b6%e6%80%81%e7%a0%81%e5%8f%8a%e5%85%b6%e4%bd%9c%e7%94%a8'
 title: 常见http错误状态码及其作用
+permalink: /2012/07/30/42.html
 wordpress_id: 42
 categories:
 - 网络

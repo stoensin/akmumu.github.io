@@ -5,6 +5,7 @@ date: 2013-01-21 10:11:00+00:00
 layout: post
 slug: '%e4%b8%80%e4%b8%aa%e7%99%bb%e9%99%86%e5%ae%89%e5%85%a8%e7%9a%84%e5%87%bd%e6%95%b0php-mysql_real_escape_string-%e5%87%bd%e6%95%b0'
 title: 一个登陆安全的函数PHP mysql_real_escape_string() 函数
+permalink: /2013/01/21/153.html
 wordpress_id: 153
 categories:
 - MYSQL

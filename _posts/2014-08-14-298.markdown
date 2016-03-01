@@ -5,6 +5,7 @@ date: 2014-08-14 13:45:40+00:00
 layout: post
 slug: '%e5%88%a9%e7%94%a8nginx%e7%ac%ac%e4%b8%89%e6%96%b9%e6%a8%a1%e5%9d%97%ef%bc%8c%e5%ae%9e%e7%8e%b0%e7%bd%91%e7%ab%99%e4%b8%ad%e7%9a%84%e6%89%93%e5%8c%85%e4%b8%8b%e8%bd%bd'
 title: 利用Nginx第三方模块，实现网站中的打包下载
+permalink: /2014/08/14/298.html
 wordpress_id: 298
 categories:
 - nginx

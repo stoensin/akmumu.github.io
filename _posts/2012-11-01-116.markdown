@@ -5,6 +5,7 @@ date: 2012-11-01 03:26:00+00:00
 layout: post
 slug: shell%e5%88%a4%e6%96%ad%e6%96%87%e4%bb%b6%e7%9b%ae%e5%bd%95%e6%98%af%e5%90%a6%e5%ad%98%e5%9c%a8%e6%88%96%e8%80%85%e5%85%b7%e6%9c%89%e6%9d%83%e9%99%90
 title: shell判断文件,目录是否存在或者具有权限
+permalink: /2012/11/01/116.html
 wordpress_id: 116
 categories:
 - LINUX

@@ -5,6 +5,7 @@ date: 2014-07-02 09:39:07+00:00
 layout: post
 slug: mongodb%e5%b8%b8%e7%94%a8%e6%93%8d%e4%bd%9c%e5%91%bd%e4%bb%a4%e5%a4%a7%e5%85%a8
 title: MongoDB常用操作命令大全
+permalink: /2014/07/02/290.html
 wordpress_id: 290
 categories:
 - LINUX

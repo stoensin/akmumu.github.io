@@ -5,6 +5,7 @@ date: 2012-07-12 03:27:00+00:00
 layout: post
 slug: php%e7%9a%84%e4%b8%89%e7%9b%ae%e8%bf%90%e7%ae%97%e7%ac%a6
 title: PHP的三目运算符
+permalink: /2012/07/12/36.html
 wordpress_id: 36
 categories:
 - PHP

@@ -5,6 +5,7 @@ date: 2012-09-05 09:20:00+00:00
 layout: post
 slug: argc-argv%e5%9c%a8php%e4%b8%ad%e7%9a%84%e5%ba%94%e7%94%a8
 title: argc argv在php中的应用
+permalink: /2012/09/05/61.html
 wordpress_id: 61
 categories:
 - PHP

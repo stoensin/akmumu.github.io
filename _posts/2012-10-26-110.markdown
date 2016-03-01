@@ -5,6 +5,7 @@ date: 2012-10-26 08:38:00+00:00
 layout: post
 slug: php%e8%8e%b7%e5%8f%96%e6%b1%89%e5%ad%97%e7%9a%84%e6%8b%bc%e9%9f%b3%e5%85%a8%e9%83%a8%e4%b8%8e%e9%a6%96%e5%ad%97%e6%af%8d%ef%bc%88%e8%bd%ac%e8%bd%bd%ef%bc%89
 title: PHP获取汉字的拼音(全部与首字母)（转载）
+permalink: /2012/10/26/110.html
 wordpress_id: 110
 categories:
 - PHP

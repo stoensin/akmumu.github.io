@@ -5,6 +5,7 @@ date: 2014-05-17 16:38:18+00:00
 layout: post
 slug: mac%e4%b8%8asvn%e5%ae%a2%e6%88%b7%e7%ab%af%e3%80%91smartsvn%e4%b8%93%e4%b8%9a%e7%89%88%e5%ae%89%e8%a3%85%e3%80%81%e7%a0%b4%e8%a7%a3%e5%8f%8arelocate%e5%8a%9f%e8%83%bd%e4%bd%bf%e7%94%a8
 title: Mac上SVN客户端】SmartSVN专业版安装、破解及relocate功能使用
+permalink: /2014/05/17/273.html
 wordpress_id: 273
 categories:
 - mac

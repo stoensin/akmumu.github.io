@@ -5,6 +5,7 @@ date: 2012-08-22 02:10:00+00:00
 layout: post
 slug: '%e8%ae%be%e7%bd%ae%e7%81%ab%e7%8b%90firefox%e8%87%aa%e5%8a%a8%e6%b8%85%e7%90%86%e7%bc%93%e5%ad%98'
 title: 设置火狐firefox自动清理缓存
+permalink: /2012/08/22/52.html
 wordpress_id: 52
 categories:
 - 实用软件技巧

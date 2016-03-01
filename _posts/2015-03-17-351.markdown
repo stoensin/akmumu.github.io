@@ -5,6 +5,7 @@ date: 2015-03-17 09:19:27+00:00
 layout: post
 slug: javascript%e6%a8%a1%e5%9d%97%e5%8c%96%e7%bc%96%e7%a8%8b%ef%bc%88%e4%b8%89%ef%bc%89%ef%bc%9arequire-js%e7%9a%84%e7%94%a8%e6%b3%95
 title: Javascript模块化编程（三）：require.js的用法
+permalink: /2015/03/17/351.html
 wordpress_id: 351
 categories:
 - JS

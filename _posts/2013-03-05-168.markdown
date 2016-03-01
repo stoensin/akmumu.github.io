@@ -5,6 +5,7 @@ date: 2013-03-05 05:34:00+00:00
 layout: post
 slug: '%e5%9c%a8dropbox%e4%b8%ad%e4%bd%bf%e7%94%a8%e4%b8%a4%e6%ad%a5%e9%aa%8c%e8%af%81'
 title: 在Dropbox中使用两步验证
+permalink: /2013/03/05/168.html
 wordpress_id: 168
 categories:
 - 实用软件技巧

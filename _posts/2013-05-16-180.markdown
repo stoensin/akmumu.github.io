@@ -5,6 +5,7 @@ date: 2013-05-16 10:07:00+00:00
 layout: post
 slug: '%e3%80%90%e8%bd%ac%e3%80%91%e6%ae%b5%e8%aa%89%e7%8e%8b%e8%af%ad%e5%ab%a3%e4%ba%95%e5%ba%95%e6%b7%b1%e6%83%85%e8%a1%a8%e7%99%bd%e4%b8%8d%e5%90%8c%e4%bd%9c%e5%ae%b6%e9%a3%8e%e6%a0%bc%e6%94%b9%ef%bf%bd'
 title: 【转】段誉王语嫣井底深情表白(不同作家风格改写版)
+permalink: /2013/05/16/180.html
 wordpress_id: 180
 categories:
 - 天下杂侃

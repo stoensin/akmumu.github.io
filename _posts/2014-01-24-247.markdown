@@ -5,6 +5,7 @@ date: 2014-01-24 02:46:46+00:00
 layout: post
 slug: php%e5%ae%9e%e7%8e%b0%e4%b8%8b%e8%bd%bd%e5%8a%9f%e8%83%bd%e7%9a%84%e4%bb%a3%e7%a0%81
 title: PHP实现下载功能的代码
+permalink: /2014/01/24/247.html
 wordpress_id: 247
 categories:
 - PHP

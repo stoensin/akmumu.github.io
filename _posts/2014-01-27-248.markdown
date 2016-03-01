@@ -5,6 +5,7 @@ date: 2014-01-27 07:52:35+00:00
 layout: post
 slug: '%e4%bd%bf%e7%94%a8%e6%a1%86%e6%9e%b6%e6%97%b6%e7%89%b9%e5%88%ab%e6%98%afyaf%ef%bc%8cide%e4%b8%8d%e6%8f%90%e7%a4%ba%e7%b1%bb%ef%bc%8c%e4%b8%8d%e8%a1%a5%e5%85%a8%e8%bf%98%e8%ad%a6%e5%91%8a%e7%9a%84'
 title: 使用框架时特别是yaf，IDE不提示类，不补全还警告的解决
+permalink: /2014/01/27/248.html
 wordpress_id: 248
 categories:
 - PHP

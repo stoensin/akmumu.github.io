@@ -5,6 +5,7 @@ date: 2014-02-13 09:39:54+00:00
 layout: post
 slug: apache%e5%92%8cnginx%e7%9a%84rewrite%e7%9a%84%e5%8c%ba%e5%88%ab%ef%bc%8c%e6%8a%8aapache%e7%9a%84%e9%85%8d%e7%bd%ae%e7%bf%bb%e8%af%91%e5%88%b0nginx%ef%bc%8c%e6%8a%8anginx%e7%9a%84%e9%85%8d%e7%bd%ae
 title: apache和nginx的rewrite的区别，把apache的配置翻译到nginx，把nginx的配置翻译到apache
+permalink: /2014/02/13/255.html
 wordpress_id: 255
 categories:
 - Apache

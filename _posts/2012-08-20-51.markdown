@@ -5,6 +5,7 @@ date: 2012-08-20 07:11:00+00:00
 layout: post
 slug: html%e7%89%b9%e6%ae%8a%e7%ac%a6%e5%8f%b7%e5%af%b9%e7%85%a7%e8%a1%a8
 title: HTML特殊符号对照表
+permalink: /2012/08/20/51.html
 wordpress_id: 51
 categories:
 - 前端美工设计

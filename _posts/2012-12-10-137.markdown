@@ -5,6 +5,7 @@ date: 2012-12-10 07:54:00+00:00
 layout: post
 slug: linux-shell-if-%e5%8f%82%e6%95%b0-e%ef%bc%8c-f%ef%bc%8c-d%e7%ad%89
 title: linux shell if 参数-e，-f，-d等
+permalink: /2012/12/10/137.html
 wordpress_id: 137
 categories:
 - LINUX

@@ -6,6 +6,7 @@ layout: post
 published: false
 slug: '%e4%ba%ba%e5%90%8d%e5%8d%95'
 title: 人名单
+permalink: /2015/04/07/300.html
 wordpress_id: 300
 categories:
 - 未分类

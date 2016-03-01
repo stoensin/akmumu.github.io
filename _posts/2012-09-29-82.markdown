@@ -5,6 +5,7 @@ date: 2012-09-29 02:49:00+00:00
 layout: post
 slug: linux%e4%b8%8b%e5%ae%89%e8%a3%85memcacheq%ef%bc%88mcq%ef%bc%89%e5%85%a8%e8%bf%87%e7%a8%8b%e7%ac%94%e8%ae%b0
 title: linux下安装memcacheq（mcq）全过程笔记
+permalink: /2012/09/29/82.html
 wordpress_id: 82
 categories:
 - LINUX

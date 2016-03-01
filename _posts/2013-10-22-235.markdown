@@ -5,6 +5,7 @@ date: 2013-10-22 03:24:27+00:00
 layout: post
 slug: '%e5%a6%82%e4%bd%95%e5%81%9a%e4%b8%80%e4%b8%aa%e8%80%81%e6%9d%bf%e7%9c%bc%e9%87%8c%e7%9a%84%e5%a5%bd%e5%91%98%e5%b7%a5'
 title: 如何做一个老板眼里的好员工
+permalink: /2013/10/22/235.html
 wordpress_id: 235
 categories:
 - 天下杂侃

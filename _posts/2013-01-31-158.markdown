@@ -5,6 +5,7 @@ date: 2013-01-31 04:05:00+00:00
 layout: post
 slug: php-date%e6%97%a5%e6%9c%9f%e6%a0%bc%e5%bc%8f%e6%98%8e%e7%bb%86
 title: PHP Date日期格式明细
+permalink: /2013/01/31/158.html
 wordpress_id: 158
 categories:
 - PHP

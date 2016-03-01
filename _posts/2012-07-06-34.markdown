@@ -5,6 +5,7 @@ date: 2012-07-06 05:22:00+00:00
 layout: post
 slug: '%e4%b8%80%e4%b8%aa%e5%b0%8f%e6%97%b6%e5%bf%ab%e9%80%9f%e7%86%9f%e6%82%89%e5%b9%b6%e6%8e%8c%e6%8f%a1%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f'
 title: 一个小时快速熟悉并掌握正则表达式
+permalink: /2012/07/06/34.html
 wordpress_id: 34
 categories:
 - PHP

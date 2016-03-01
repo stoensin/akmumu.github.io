@@ -5,6 +5,7 @@ date: 2013-07-07 14:26:00+00:00
 layout: post
 slug: '%e5%b8%ae%e5%a6%b9%e5%ad%90%e4%bf%ae%e7%94%b5%e8%84%91%e6%9c%80%e8%a3%85%e9%80%bc%e7%9a%84%e5%91%bd%e4%bb%a4'
 title: 帮妹子修电脑最装逼的命令
+permalink: /2013/07/07/183.html
 wordpress_id: 183
 categories:
 - 天下杂侃

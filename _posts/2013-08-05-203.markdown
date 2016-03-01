@@ -5,6 +5,7 @@ date: 2013-08-05 09:35:09+00:00
 layout: post
 slug: linux%e4%b8%ad%e9%9d%9e%e5%b8%b8%e8%af%a6%e7%bb%86%e7%9a%84etcpasswd%e8%a7%a3%e9%87%8a
 title: linux中非常详细的/etc/passwd解释
+permalink: /2013/08/05/203.html
 wordpress_id: 203
 categories:
 - LINUX

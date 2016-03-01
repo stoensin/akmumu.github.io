@@ -5,6 +5,7 @@ date: 2013-04-16 02:55:00+00:00
 layout: post
 slug: php%e4%b8%ad%e7%9a%84%e9%ad%94%e6%9c%af%e6%96%b9%e6%b3%95%e6%80%bb%e7%bb%93-__construct-__destruct-__call-__callstatic__get-__set-__isset-__unset-__sle
 title: PHP中的魔术方法总结 :__construct, __destruct , __call, __callStatic,__get, __set, __isset,
+permalink: /2013/04/16/174.html
   __unset , __sleep
 wordpress_id: 174
 categories:

@@ -5,6 +5,7 @@ date: 2013-02-22 01:33:00+00:00
 layout: post
 slug: '%e6%8a%8aci%e6%a1%86%e6%9e%b6%e7%9a%84%e6%8e%a7%e5%88%b6%e5%99%a8%e6%94%be%e5%85%a5%e5%ad%99%e6%96%87%e4%bb%b6%e5%a4%b9%ef%bc%8cci%e6%8e%a7%e5%88%b6%e5%99%a8%e5%a4%9a%e5%b1%82%e6%96%87%e4%bb%b6'
 title: 把ci框架的控制器放入孙文件夹，ci控制器多层文件夹中，ci框架扩展路由
+permalink: /2013/02/22/165.html
 wordpress_id: 165
 categories:
 - PHP

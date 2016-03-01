@@ -5,6 +5,7 @@ date: 2012-08-03 01:27:00+00:00
 layout: post
 slug: '%e6%9d%8e%e4%b8%80%e7%94%b72003-%e5%b9%b4%e5%9c%a8%e6%b8%af%e6%b9%be%e7%bb%99%e5%bc%80%e5%8f%91%e4%ba%ba%e5%91%98%e5%9f%b9%e8%ae%ad%e6%97%b6%e7%9a%84%e8%af%ad%e5%bd%95'
 title: 李一男2003 年在港湾给开发人员培训时的语录
+permalink: /2012/08/03/46.html
 wordpress_id: 46
 categories:
 - MYSQL

@@ -5,6 +5,7 @@ date: 2012-08-23 02:15:00+00:00
 layout: post
 slug: html-%e5%87%a0%e7%a7%8d%e7%89%b9%e5%88%ab%e5%88%86%e5%89%b2%e7%ba%bf%e7%89%b9%e6%95%88-%e8%af%a6%e7%bb%86%e5%87%ba%e5%a4%84%e5%8f%82%e8%80%83%ef%bc%9ahttpwww-jb51-netweb28414-html
 title: HTML 几种特别分割线特效  详细出处参考：http://www.jb51.net/web/28414.html
+permalink: /2012/08/23/53.html
 wordpress_id: 53
 categories:
 - 前端美工设计

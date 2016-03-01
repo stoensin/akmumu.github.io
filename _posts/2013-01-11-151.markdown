@@ -5,6 +5,7 @@ date: 2013-01-11 06:28:00+00:00
 layout: post
 slug: '%e5%af%b9%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1%e7%9a%84%e8%ae%a4%e8%af%86'
 title: 对面向对象的认识
+permalink: /2013/01/11/151.html
 wordpress_id: 151
 categories:
 - PHP

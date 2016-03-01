@@ -5,6 +5,7 @@ date: 2012-05-26 14:35:00+00:00
 layout: post
 slug: '%e5%a4%9aweb%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b9%8b%e9%97%b4%e5%85%b1%e4%ba%absession%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88'
 title: 多Web服务器之间共享Session的解决方案
+permalink: /2012/05/26/32.html
 wordpress_id: 32
 categories:
 - PHP

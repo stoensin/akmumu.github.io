@@ -5,6 +5,7 @@ date: 2012-10-22 02:28:00+00:00
 layout: post
 slug: '%e9%9d%a2%e8%af%95%e6%9c%80%e5%90%8e%ef%bc%8c%e4%bd%a0%e8%bf%98%e6%9c%89%e4%bb%80%e4%b9%88%e8%a6%81%e9%97%ae%e6%88%91%e7%9a%84%ef%bc%9f'
 title: 面试最后，你还有什么要问我的？
+permalink: /2012/10/22/99.html
 wordpress_id: 99
 categories:
 - PHP

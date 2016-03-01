@@ -5,6 +5,7 @@ date: 2014-10-24 07:26:51+00:00
 layout: post
 slug: ios8%e9%80%9a%e7%9f%a5%e6%a0%8f%e6%98%be%e7%a4%ba%e5%bf%ab%e6%8d%b7%e5%bc%80%e5%85%b3%e8%9c%82%e7%aa%9d%e6%95%b0%e6%8d%ae%ef%bc%8c%e5%bf%ab%e6%8d%b7%e5%bc%80%e5%85%b3vpn%ef%bc%8c%e5%bf%ab%e6%8d%b7
 title: IOS8通知栏显示快捷开关蜂窝数据，快捷开关VPN，快捷开关定位位置
+permalink: /2014/10/24/314.html
 wordpress_id: 314
 categories:
 - 实用软件技巧

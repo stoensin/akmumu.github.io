@@ -5,6 +5,7 @@ date: 2013-02-20 05:51:00+00:00
 layout: post
 slug: javascript-%e8%af%ad%e8%a8%80%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86%e7%82%b9%e6%80%bb%e7%bb%93%ef%bc%88%e6%80%9d%e7%bb%b4%e5%af%bc%e5%9b%be%ef%bc%89
 title: JavaScript 语言基础知识点总结（思维导图）
+permalink: /2013/02/20/164.html
 wordpress_id: 164
 categories:
 - JS

@@ -5,6 +5,7 @@ date: 2012-09-21 06:18:00+00:00
 layout: post
 slug: '%e6%b5%b7%e9%87%8f%e6%95%b0%e6%8d%ae%e5%a4%84%e7%90%86%ef%bc%9a%e5%8d%81%e9%81%93%e9%9d%a2%e8%af%95%e9%a2%98%e4%b8%8e%e5%8d%81%e4%b8%aa%e6%b5%b7%e9%87%8f%e6%95%b0%e6%8d%ae%e5%a4%84%e7%90%86%e6%96%b9e'
 title: 海量数据处理：十道面试题与十个海量数据处理方法总结
+permalink: /2012/09/21/74.html
 wordpress_id: 74
 categories:
 - 海量数据处理

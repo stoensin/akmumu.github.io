@@ -5,6 +5,7 @@ date: 2012-10-19 02:44:00+00:00
 layout: post
 slug: mysql%e5%87%ba%e7%8e%b0access-denied-for-user-rootlocalhost%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3
 title: MYSQL出现Access denied for user 'root'@'localhost'”问题解决
+permalink: /2012/10/19/96.html
 wordpress_id: 96
 categories:
 - MYSQL

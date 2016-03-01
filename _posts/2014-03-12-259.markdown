@@ -5,6 +5,7 @@ date: 2014-03-12 06:52:36+00:00
 layout: post
 slug: php%e9%80%9a%e8%bf%87%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%b0%83%e7%94%a8%e5%87%bd%e6%95%b0
 title: PHP通过字符串调用函数
+permalink: /2014/03/12/259.html
 wordpress_id: 259
 categories:
 - PHP

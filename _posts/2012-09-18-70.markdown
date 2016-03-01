@@ -5,6 +5,7 @@ date: 2012-09-18 10:49:00+00:00
 layout: post
 slug: mysql-%e8%87%aa%e5%8a%a8%e5%a4%87%e4%bb%bd%e5%8f%91%e9%82%ae%e4%bb%b6-%e5%88%b0%e6%8c%87%e5%ae%9a%e9%82%ae%e7%ae%b1
 title: mysql 自动备份发邮件 到指定邮箱
+permalink: /2012/09/18/70.html
 wordpress_id: 70
 categories:
 - MYSQL

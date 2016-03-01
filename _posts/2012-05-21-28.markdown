@@ -5,6 +5,7 @@ date: 2012-05-21 14:36:00+00:00
 layout: post
 slug: '%e6%b7%b1%e5%85%a5%e6%8e%a2%e8%ae%a8php%e4%b8%ad%e7%9a%84%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%ef%bc%8cphp%e5%8a%a8%e6%80%81%e5%88%86%e9%85%8d%e5%92%8c%e9%87%8a%e6%94%be%e5%86%85%e5%ad%98'
 title: 深入探讨PHP中的内存管理，PHP动态分配和释放内存
+permalink: /2012/05/21/28.html
 wordpress_id: 28
 categories:
 - PHP

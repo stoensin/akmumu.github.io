@@ -5,6 +5,7 @@ date: 2015-09-29 12:23:27+00:00
 layout: post
 slug: laravel-query-builder-eloquent%e7%9a%84where-findorfail-firstbyattributes%e7%ad%89%e5%9c%a8phpstorm%e4%b8%8d%e6%8f%90%e7%a4%ba%e5%be%97%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95
 title: Laravel Query Builder Eloquent的where, findOrFail, firstByAttributes等在Phpstorm不提示得解决办法
+permalink: /2015/09/29/380.html
 wordpress_id: 380
 categories:
 - PHP

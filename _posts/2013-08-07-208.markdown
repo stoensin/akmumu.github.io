@@ -5,6 +5,7 @@ date: 2013-08-07 02:00:01+00:00
 layout: post
 slug: '%e6%90%9c%e7%b4%a2%e5%bc%95%e6%93%8e%e6%98%af%e5%a6%82%e4%bd%95%e5%88%a4%e6%96%ad%e6%9c%89%e4%bb%b7%e5%80%bc%e7%9a%84%e6%96%87%e7%ab%a0'
 title: 搜索引擎是如何判断有价值的文章
+permalink: /2013/08/07/208.html
 wordpress_id: 208
 categories:
 - 天下杂侃

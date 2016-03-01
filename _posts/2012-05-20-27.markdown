@@ -5,6 +5,7 @@ date: 2012-05-20 15:06:00+00:00
 layout: post
 slug: mysql%e5%bc%95%e6%93%8e%e8%af%a6%e8%a7%a3
 title: MYSQL引擎详解
+permalink: /2012/05/20/27.html
 wordpress_id: 27
 categories:
 - MYSQL

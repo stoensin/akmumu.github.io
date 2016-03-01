@@ -5,6 +5,7 @@ date: 2012-10-09 02:51:00+00:00
 layout: post
 slug: rainbow-table%e5%bd%a9%e8%99%b9%e8%a1%a8%e7%a0%b4%e8%a7%a3md5%e5%af%86%e7%a0%81
 title: Rainbow table彩虹表破解md5密码
+permalink: /2012/10/09/85.html
 wordpress_id: 85
 categories:
 - 海量数据处理

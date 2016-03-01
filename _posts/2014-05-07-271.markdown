@@ -5,6 +5,7 @@ date: 2014-05-07 14:07:27+00:00
 layout: post
 slug: securecrt%e8%bf%9e%e6%8e%a5linux%e6%98%be%e7%a4%bamysql%e8%ae%b0%e5%bd%95%e4%b8%ad%e6%96%87%e4%b9%b1%e7%a0%81
 title: 'SecureCRT连接Linux显示Mysql记录中文乱码 '
+permalink: /2014/05/07/271.html
 wordpress_id: 271
 categories:
 - LINUX

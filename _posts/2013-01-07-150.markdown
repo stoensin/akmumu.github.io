@@ -5,6 +5,7 @@ date: 2013-01-07 02:37:00+00:00
 layout: post
 slug: 2012%e5%b9%b4%e5%85%b3%e4%ba%8e%e5%b7%a5%e4%bd%9c%e5%92%8c%e5%ad%a6%e4%b9%a0%e7%9a%84%e6%80%bb%e7%bb%93
 title: 2012年关于工作和学习的总结
+permalink: /2013/01/07/150.html
 wordpress_id: 150
 categories:
 - 生活琐碎

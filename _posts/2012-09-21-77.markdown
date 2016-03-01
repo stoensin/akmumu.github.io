@@ -5,6 +5,7 @@ date: 2012-09-21 10:33:00+00:00
 layout: post
 slug: php%e5%88%a0%e9%99%a4%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%9c%ab%e5%b0%be%e5%ad%90%e5%ad%97%e7%ac%a6%ef%bc%8c%e5%88%a0%e9%99%a4%e5%bc%80%e5%a7%8b%e5%ad%97%e7%ac%a6%ef%bc%8c%e5%88%a0%e9%99%a4%e4%b8%a4
 title: php删除字符串末尾子字符，删除开始字符，删除两端字符
+permalink: /2012/09/21/77.html
 wordpress_id: 77
 categories:
 - PHP

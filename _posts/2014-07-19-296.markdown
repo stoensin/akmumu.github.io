@@ -5,6 +5,7 @@ date: 2014-07-19 15:15:43+00:00
 layout: post
 slug: https%e3%80%81ssl%e4%b8%8e%e6%95%b0%e5%ad%97%e8%af%81%e4%b9%a6%e4%bb%8b%e7%bb%8d
 title: https、SSL与数字证书介绍
+permalink: /2014/07/19/296.html
 wordpress_id: 296
 categories:
 - nginx

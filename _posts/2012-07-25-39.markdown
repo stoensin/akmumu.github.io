@@ -5,6 +5,7 @@ date: 2012-07-25 03:52:00+00:00
 layout: post
 slug: sql%e8%af%ad%e5%8f%a5%e4%b8%ad%e7%9a%84limit
 title: sql语句中的limit
+permalink: /2012/07/25/39.html
 wordpress_id: 39
 categories:
 - 实用软件技巧

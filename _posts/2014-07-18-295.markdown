@@ -5,6 +5,7 @@ date: 2014-07-18 15:06:56+00:00
 layout: post
 slug: css-%e5%ae%9a%e4%bd%8dposistionabsoluterelativefloatclear%e6%9c%80%e7%ae%80%e5%8d%95%e6%98%8e%e4%ba%86%e7%9a%84%e8%a7%a3%e9%87%8a
 title: CSS 定位posistion,absolute,relative,float,clear最简单明了的解释
+permalink: /2014/07/18/295.html
 wordpress_id: 295
 categories:
 - css

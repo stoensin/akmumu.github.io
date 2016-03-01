@@ -5,6 +5,7 @@ date: 2010-07-16 14:41:00+00:00
 layout: post
 slug: '%e7%9c%8b%e7%9d%80%e5%88%86%e9%a1%b5%e7%9a%84%e4%bb%a3%e7%a0%81%ef%bc%8c%e4%b8%8d%e7%9f%a5%e4%b8%8d%e8%a7%89%e4%b8%ad%e9%a1%b9%e6%89%be%e4%b8%80%e4%b8%aa%e6%9c%80%e7%9f%ad%e7%9a%84%e5%88%86%e9%a1%b5e'
 title: 看着分页的代码，不知不觉中项找一个最短的分页代码
+permalink: /2010/07/16/1.html
 wordpress_id: 1
 categories:
 - PHP

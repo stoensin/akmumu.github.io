@@ -5,6 +5,7 @@ date: 2011-04-01 04:38:00+00:00
 layout: post
 slug: php%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1zend-framework%ef%bc%88zf%ef%bc%89invalid-controller-specified%e7%9c%9f%e6%ad%a3%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95
 title: PHP程序设计Zend Framework（ZF）Invalid controller specified真正解决办法
+permalink: /2011/04/01/10.html
 wordpress_id: 10
 categories:
 - PHP

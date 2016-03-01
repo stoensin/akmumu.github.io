@@ -5,6 +5,7 @@ date: 2012-08-29 06:04:00+00:00
 layout: post
 slug: '%e4%b8%aa%e4%ba%ba%e6%82%9f%e5%87%baphp%e6%8e%a5%e5%8f%a3%e4%b8%adinterface%e5%ad%98%e5%9c%a8%e7%9a%84%e6%84%8f%e4%b9%89'
 title: 个人悟出php接口中interface存在的意义
+permalink: /2012/08/29/59.html
 wordpress_id: 59
 categories:
 - PHP

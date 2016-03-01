@@ -5,6 +5,7 @@ date: 2013-04-16 03:04:00+00:00
 layout: post
 slug: ci%e7%9a%84ajax%e5%88%86%e9%a1%b5%e5%8f%a6%e7%b1%bb%e5%ae%9e%e7%8e%b0
 title: CI的AJAX分页另类实现
+permalink: /2013/04/16/175.html
 wordpress_id: 175
 categories:
 - PHP

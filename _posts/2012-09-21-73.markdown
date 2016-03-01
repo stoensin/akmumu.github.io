@@ -5,6 +5,7 @@ date: 2012-09-21 06:06:00+00:00
 layout: post
 slug: '%e5%a0%86%e5%92%8c%e6%a0%88%e7%9a%84%e5%8c%ba%e5%88%ab'
 title: 堆和栈的区别
+permalink: /2012/09/21/73.html
 wordpress_id: 73
 categories:
 - 操作系统

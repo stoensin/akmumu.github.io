@@ -5,6 +5,7 @@ date: 2012-12-10 03:22:00+00:00
 layout: post
 slug: php%e6%95%b0%e7%bb%84%e6%93%8d%e4%bd%9c%e6%b1%87%e6%80%bb-php%e6%95%b0%e7%bb%84%e7%9a%84%e4%bd%bf%e7%94%a8%e6%8a%80%e5%b7%a7
 title: PHP数组操作汇总 php数组的使用技巧
+permalink: /2012/12/10/135.html
 wordpress_id: 135
 categories:
 - PHP

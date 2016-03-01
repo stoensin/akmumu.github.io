@@ -5,6 +5,7 @@ date: 2012-09-18 10:48:00+00:00
 layout: post
 slug: mysqldump%e5%a4%87%e4%bb%bd%e5%92%8c%e8%bf%98%e5%8e%9fmysql%e6%95%b0%e6%8d%ae%e5%ba%93%ef%bc%81
 title: Mysqldump备份和还原MySQL数据库！
+permalink: /2012/09/18/69.html
 wordpress_id: 69
 categories:
 - MYSQL

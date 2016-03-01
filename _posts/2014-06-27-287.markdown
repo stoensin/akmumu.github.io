@@ -5,6 +5,7 @@ date: 2014-06-27 02:27:20+00:00
 layout: post
 slug: ngxtop%ef%bc%9a%e5%9c%a8%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%ae%9e%e6%97%b6%e7%9b%91%e6%8e%a7-nginx-%e7%9a%84%e7%a5%9e%e5%99%a8-linux-mac%e5%ae%89%e8%a3%85ngxtop
 title: ngxtop：在命令行实时监控 Nginx 的神器 linux mac安装ngxtop
+permalink: /2014/06/27/287.html
 wordpress_id: 287
 categories:
 - LINUX

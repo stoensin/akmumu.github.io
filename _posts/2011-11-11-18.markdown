@@ -5,6 +5,7 @@ date: 2011-11-11 01:57:00+00:00
 layout: post
 slug: '%e5%88%86%e5%89%b2ape%e3%80%81flac%e9%9f%b3%e9%a2%91%e6%96%87%e4%bb%b6%e7%9a%84%e5%b7%a5%e5%85%b7-cuesplitter%e3%80%81foobar2000'
 title: 分割APE、FLAC音频文件的工具---CUESplitter、Foobar2000
+permalink: /2011/11/11/18.html
 wordpress_id: 18
 categories:
 - 实用软件技巧

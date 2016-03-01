@@ -5,6 +5,7 @@ date: 2013-07-30 06:26:00+00:00
 layout: post
 slug: win7%e4%b8%8b%e5%ae%89%e8%a3%85apache%ef%bc%8cphp%ef%bc%8cmysql
 title: win7下安装apache，php，mysql
+permalink: /2013/07/30/188.html
 wordpress_id: 188
 categories:
 - PHP

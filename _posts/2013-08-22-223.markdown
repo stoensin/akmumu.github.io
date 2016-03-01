@@ -5,6 +5,7 @@ date: 2013-08-22 08:28:45+00:00
 layout: post
 slug: ajax-%e8%b7%a8%e5%9f%9f%e8%af%b7%e6%b1%82-jsonp%e7%9a%84%e4%bd%bf%e7%94%a8%ef%bc%8cphp%e5%ae%9e%e4%be%8b%e8%af%a6%e8%a7%a3
 title: AJAX 跨域请求 - JSONP的使用，PHP实例详解
+permalink: /2013/08/22/223.html
 wordpress_id: 223
 categories:
 - JS

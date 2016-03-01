@@ -5,6 +5,7 @@ date: 2014-06-05 08:16:34+00:00
 layout: post
 slug: nginx-%e5%b8%b8%e8%a7%81%e5%8f%82%e6%95%b0%e4%bb%a5%e5%8f%8a%e9%87%8d%e5%ae%9a%e5%90%91%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae
 title: nginx 常见参数以及重定向参数配置
+permalink: /2014/06/05/276.html
 wordpress_id: 276
 categories:
 - nginx

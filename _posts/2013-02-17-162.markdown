@@ -5,6 +5,7 @@ date: 2013-02-17 05:55:00+00:00
 layout: post
 slug: mysql%e6%97%a0%e9%99%90%e5%88%86%e7%b1%bb%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84-%e9%a2%84%e6%8e%92%e5%ba%8f%e9%81%8d%e5%8e%86%e6%a0%91%e7%ae%97%e6%b3%95
 title: MySql无限分类数据结构--预排序遍历树算法
+permalink: /2013/02/17/162.html
 wordpress_id: 162
 categories:
 - 算法与数据结构

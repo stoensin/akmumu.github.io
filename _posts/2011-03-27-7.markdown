@@ -5,6 +5,7 @@ date: 2011-03-27 12:37:00+00:00
 layout: post
 slug: '%e9%97%aa%e7%94%b5%e9%97%aa%e7%83%81%e8%83%8c%e6%99%af%e7%89%b9%e6%95%88'
 title: 闪电闪烁背景特效
+permalink: /2011/03/27/7.html
 wordpress_id: 7
 categories:
 - 前端美工设计

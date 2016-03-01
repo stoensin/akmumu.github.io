@@ -5,6 +5,7 @@ date: 2013-09-23 10:10:15+00:00
 layout: post
 slug: php%e8%af%bb%e5%8f%96%e6%96%87%e4%bb%b6%e6%9c%ab%e5%b0%ben%e8%a1%8c%e6%9c%89%e6%95%88%e5%8a%9e%e6%b3%95
 title: php读取文件末尾n行有效办法
+permalink: /2013/09/23/232.html
 wordpress_id: 232
 categories:
 - PHP

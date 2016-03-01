@@ -5,6 +5,7 @@ date: 2011-11-17 02:39:00+00:00
 layout: post
 slug: '%e5%9b%bd%e5%a4%96%e4%bc%98%e7%a7%80windows7%e6%a1%8c%e9%9d%a2%e6%8f%92%e4%bb%b6rainmeter'
 title: 国外优秀Windows7桌面插件RAINMETER
+permalink: /2011/11/17/19.html
 wordpress_id: 19
 categories:
 - 实用软件技巧

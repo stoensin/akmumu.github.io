@@ -5,6 +5,7 @@ date: 2012-10-24 06:02:00+00:00
 layout: post
 slug: tcpip%e5%9b%9b%e5%b1%82%e6%a8%a1%e5%9e%8b%ef%bc%8c%e4%b8%83%e5%b1%82%e6%a8%a1%e5%9e%8b%ef%bc%8c%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b
 title: TCP/IP四层模型，七层模型，三次握手
+permalink: /2012/10/24/108.html
 wordpress_id: 108
 categories:
 - 网络

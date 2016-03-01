@@ -5,6 +5,7 @@ date: 2012-05-28 02:44:00+00:00
 layout: post
 slug: php%e5%bc%95%e7%94%a8%e7%ac%a6amp%e7%9a%84%e7%94%a8%e6%b3%95%e4%bb%8b%e7%bb%8d
 title: PHP引用符&的用法介绍
+permalink: /2012/05/28/33.html
 wordpress_id: 33
 categories:
 - PHP

@@ -5,6 +5,7 @@ date: 2015-01-19 03:31:34+00:00
 layout: post
 slug: javascript%e6%8a%80%e5%b7%a745%e6%8b%9b
 title: JavaScript技巧45招
+permalink: /2015/01/19/340.html
 wordpress_id: 340
 categories:
 - JS

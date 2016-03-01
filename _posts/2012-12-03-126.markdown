@@ -5,6 +5,7 @@ date: 2012-12-03 09:54:00+00:00
 layout: post
 slug: php%e8%84%9a%e6%9c%ac%e5%8e%8b%e5%8a%9b%e6%b5%8b%e8%af%95%ef%bc%8clinux%ef%bc%8capache%e7%9a%84ab%e5%91%bd%e4%bb%a4%e8%af%a6%e8%a7%a3
 title: php脚本压力测试，linux，apache的ab命令详解
+permalink: /2012/12/03/126.html
 wordpress_id: 126
 categories:
 - Apache

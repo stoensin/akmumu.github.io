@@ -5,6 +5,7 @@ date: 2013-08-06 05:15:07+00:00
 layout: post
 slug: zend-studio10-1-0%e5%ae%89%e8%a3%85%e7%a0%b4%e8%a7%a3%e6%b1%89%e5%8c%96%e8%ae%be%e7%bd%ae%e9%85%8d%e7%bd%ae
 title: zend studio10.1.0安装破解汉化设置配置
+permalink: /2013/08/06/205.html
 wordpress_id: 205
 categories:
 - 实用软件技巧

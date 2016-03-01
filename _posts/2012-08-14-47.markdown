@@ -5,6 +5,7 @@ date: 2012-08-14 08:46:00+00:00
 layout: post
 slug: php5%e4%b8%adpdo%e7%9a%84%e7%ae%80%e5%8d%95%e5%85%a5%e9%97%a8%e7%ba%a7%e4%bd%bf%e7%94%a8
 title: PHP5中PDO的简单入门级使用
+permalink: /2012/08/14/47.html
 wordpress_id: 47
 categories:
 - MYSQL

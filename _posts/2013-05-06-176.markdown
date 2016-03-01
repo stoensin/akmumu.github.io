@@ -5,6 +5,7 @@ date: 2013-05-06 10:24:00+00:00
 layout: post
 slug: '%e7%b1%bb%e4%bc%bc%e7%be%8e%e4%b8%bd%e8%af%b4%ef%bc%8c%e7%b1%bb%e4%bc%bc%e7%99%be%e5%ba%a6%e6%97%85%e6%b8%b8%ef%bc%8c%e7%b1%bb%e4%bc%bcsae%e5%af%bc%e8%88%aa%e8%8f%9c%e5%8d%95%e9%9a%8f%e5%8a%a8'
 title: 类似美丽说，类似百度旅游，类似sae导航菜单随动效果
+permalink: /2013/05/06/176.html
 wordpress_id: 176
 categories:
 - JS

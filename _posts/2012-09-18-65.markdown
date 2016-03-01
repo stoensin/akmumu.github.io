@@ -5,6 +5,7 @@ date: 2012-09-18 09:40:00+00:00
 layout: post
 slug: linux-curl%e4%bd%bf%e7%94%a8%e7%ae%80%e5%8d%95%e4%bb%8b%e7%bb%8d
 title: Linux curl使用简单介绍
+permalink: /2012/09/18/65.html
 wordpress_id: 65
 categories:
 - PHP

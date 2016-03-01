@@ -5,6 +5,7 @@ date: 2012-12-27 07:23:00+00:00
 layout: post
 slug: '%e6%8a%80%e6%9c%af%e8%be%be%e4%ba%ba%e8%b0%88php%e5%ba%95%e5%b1%82%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86'
 title: 技术达人谈PHP底层工作原理
+permalink: /2012/12/27/141.html
 wordpress_id: 141
 categories:
 - PHP

@@ -5,6 +5,7 @@ date: 2014-04-10 07:13:48+00:00
 layout: post
 slug: '%e4%bd%bf%e7%94%a8gyp%e6%9e%84%e5%bb%ba%e9%a1%b9%e7%9b%ae%ef%bc%8c%e4%bd%bf%e7%94%a8ninja%e6%9b%b4%e5%bf%ab%e7%9a%84%e7%bc%96%e8%af%91%ef%bc%8c%e4%bb%a5%e5%8f%8a%e4%bd%bf%e7%94%a8%e5%87%ba%e7%8e%b0'
 title: 使用gyp构建项目，使用ninja更快的编译，以及使用出现和解决的问题记录
+permalink: /2014/04/10/265.html
 wordpress_id: 265
 categories:
 - 未分类

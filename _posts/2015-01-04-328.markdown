@@ -6,6 +6,7 @@ layout: post
 published: false
 slug: 2015ok
 title: 2015ok
+permalink: /2015/01/04/328.html
 wordpress_id: 328
 categories:
 - 生活琐碎

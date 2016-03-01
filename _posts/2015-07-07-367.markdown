@@ -5,6 +5,7 @@ date: 2015-07-07 12:25:45+00:00
 layout: post
 slug: mac%e4%b8%8a%e9%80%9a%e8%bf%87privoxy%e5%b0%86shadowsocks%e7%9a%84%e6%b5%81%e9%87%8f%e4%bd%bf%e7%94%a8pac%e4%bb%a3%e7%90%86%e7%bb%99%e6%89%8b%e6%9c%baios%e5%ae%89%e5%8d%93
 title: Mac上通过Privoxy将shadowsocks的流量使用pac代理给手机iOS安卓
+permalink: /2015/07/07/367.html
 wordpress_id: 367
 categories:
 - mac

@@ -5,6 +5,7 @@ date: 2015-06-18 11:52:33+00:00
 layout: post
 slug: mac%e4%b8%8bphpstrom%e9%85%8d%e7%bd%aexdebug
 title: Mac下PhpStrom配置Xdebug
+permalink: /2015/06/18/362.html
 wordpress_id: 362
 categories:
 - mac

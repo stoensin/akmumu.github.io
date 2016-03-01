@@ -5,6 +5,7 @@ date: 2014-03-24 05:01:27+00:00
 layout: post
 slug: '%e4%bd%bf%e7%94%a8%e4%bb%a3%e7%90%86%e4%b9%8b%e5%90%8e%e8%b0%b7%e6%ad%8c%e6%b5%8f%e8%a7%88%e5%99%a8%e7%bf%bb%e8%af%91%e7%bd%91%e9%a1%b5%e6%88%90%e5%8a%9f%e4%bd%86%e8%bf%98%e6%98%af%e6%98%be%e7%a4%ba'
 title: 使用代理之后谷歌浏览器翻译网页成功但还是显示英文的解决办法
+permalink: /2014/03/24/263.html
 wordpress_id: 263
 categories:
 - 实用软件技巧

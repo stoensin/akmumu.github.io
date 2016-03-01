@@ -5,6 +5,7 @@ date: 2012-05-26 02:32:00+00:00
 layout: post
 slug: mysql%e6%95%b0%e6%8d%ae%e5%ba%93%e4%bc%98%e5%8c%96%e6%80%bb%e7%bb%93%ef%bc%88%e8%bd%ac%e8%bd%bd%e5%8a%a0%e8%87%aa%e5%b7%b1%e7%9a%84%e6%80%bb%e7%bb%93%ef%bc%89
 title: mysql数据库优化总结（转载加自己的总结）
+permalink: /2012/05/26/31.html
 wordpress_id: 31
 categories:
 - MYSQL

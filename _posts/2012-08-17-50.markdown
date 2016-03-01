@@ -5,6 +5,7 @@ date: 2012-08-17 01:57:00+00:00
 layout: post
 slug: '%e5%a4%8d%e5%88%b6%e7%99%be%e5%ba%a6%e6%96%87%e5%ba%93%e5%86%85%e5%ae%b9chrome%e6%8f%92%e4%bb%b6'
 title: 复制百度文库内容chrome插件
+permalink: /2012/08/17/50.html
 wordpress_id: 50
 categories:
 - 实用软件技巧

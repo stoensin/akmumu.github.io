@@ -5,6 +5,7 @@ date: 2014-12-03 03:47:32+00:00
 layout: post
 slug: '%e8%af%bb%e8%bf%87%e6%b1%9f%e5%9f%8e'
 title: 读过江城
+permalink: /2014/12/03/320.html
 wordpress_id: 320
 categories:
 - 天下杂侃

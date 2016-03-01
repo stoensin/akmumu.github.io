@@ -5,6 +5,7 @@ date: 2012-05-26 02:24:00+00:00
 layout: post
 slug: smarty%e4%b8%ad%e5%88%a0%e9%99%a4%e7%bc%93%e5%ad%98%e7%9a%84%e6%96%b9%e6%b3%95
 title: smarty中删除缓存的方法
+permalink: /2012/05/26/30.html
 wordpress_id: 30
 categories:
 - PHP

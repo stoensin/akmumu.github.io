@@ -5,6 +5,7 @@ date: 2015-04-03 07:08:59+00:00
 layout: post
 slug: mac-zend-studio-12-0-2%e4%b8%ad%e5%9b%bd%e5%85%8d%e8%b4%b9%e4%bd%bf%e7%94%a8%e5%8a%9e%e6%b3%95%e7%a0%b4%e8%a7%a3%e6%b1%89%e5%8c%96
 title: 'Mac zend studio 12.0.2中国免费使用办法破解汉化 '
+permalink: /2015/04/03/354.html
 wordpress_id: 354
 categories:
 - 实用软件技巧

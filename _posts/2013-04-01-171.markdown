@@ -5,6 +5,7 @@ date: 2013-04-01 02:03:00+00:00
 layout: post
 slug: php%e4%b8%ad_server%e7%9a%84%e8%af%a6%e7%bb%86%e5%8f%82%e6%95%b0%e4%b8%8e%e8%af%b4%e6%98%8e
 title: PHP中$_SERVER的详细参数与说明
+permalink: /2013/04/01/171.html
 wordpress_id: 171
 categories:
 - PHP

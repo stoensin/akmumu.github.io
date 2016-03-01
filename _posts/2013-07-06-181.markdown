@@ -5,6 +5,7 @@ date: 2013-07-06 16:27:00+00:00
 layout: post
 slug: ubuntu%e4%b8%ad%e4%bd%bf%e7%94%a8tab%e9%94%ae%e6%9d%a5%e8%a1%a5%e9%bd%90%e8%be%93%e5%85%a5%e5%91%bd%e4%bb%a4%e6%99%ae%e9%80%9a%e7%94%a8%e6%88%b7%e5%8f%af%e7%94%a8%e5%88%87%e6%8d%a2root%e5%90%8e
 title: ubuntu中使用tab键来补齐输入命令普通用户可用切换root后不能的解决方法
+permalink: /2013/07/06/181.html
 wordpress_id: 181
 categories:
 - LINUX

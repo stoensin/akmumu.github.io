@@ -5,6 +5,7 @@ date: 2013-08-02 06:48:57+00:00
 layout: post
 slug: eclipse-for-php%e6%8a%a5%e9%94%99clipse-is-running-in-a-jre%ef%bc%8c-but-a-jdk-is-required%e5%bf%ab%e6%8d%b7%e9%94%ae%e6%b3%a8%e9%87%8a%e4%b8%8d%e8%83%bd%e7%94%a8
 title: eclipse for php报错clipse is running in a JRE， but a JDK is required快捷键注释不能用
+permalink: /2013/08/02/193.html
 wordpress_id: 193
 categories:
 - 实用软件技巧

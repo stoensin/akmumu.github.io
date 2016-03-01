@@ -5,6 +5,7 @@ date: 2014-02-20 06:29:47+00:00
 layout: post
 slug: phpmysql%e4%b9%8b-%e5%ad%97%e7%ac%a6%e7%bc%96%e7%a0%81%ef%bc%8c%e4%b9%b1%e7%a0%81%ef%bc%8cset-names%e7%9a%84%e6%84%8f%e6%80%9d
 title: PHP&MYSQL之——字符编码，乱码，set names的意思
+permalink: /2014/02/20/256.html
 wordpress_id: 256
 categories:
 - MYSQL

@@ -5,6 +5,7 @@ date: 2012-07-31 03:22:00+00:00
 layout: post
 slug: mysql%e5%91%bd%e4%bb%a4-show-global-status%e5%91%bd%e4%bb%a4%e5%be%97%e5%88%b0%e7%9a%84%e5%8f%82%e6%95%b0%e8%af%a6%e8%a7%a3%ef%bc%88mysql%e9%94%99%e8%af%af%ef%bc%89
 title: MYSQL命令 Show global status命令得到的参数详解（MYSQL错误）
+permalink: /2012/07/31/43.html
 wordpress_id: 43
 categories:
 - MYSQL

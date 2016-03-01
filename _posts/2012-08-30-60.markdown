@@ -5,6 +5,7 @@ date: 2012-08-30 10:10:00+00:00
 layout: post
 slug: sql%e8%af%ad%e5%8f%a5%e4%b8%adreplace-into%e4%b8%8einsert-into%e7%9a%84%e4%b8%8d%e5%90%8c%e4%b9%8b%e5%a4%84
 title: SQL语句中Replace INTO与INSERT INTO的不同之处
+permalink: /2012/08/30/60.html
 wordpress_id: 60
 categories:
 - MYSQL

@@ -5,6 +5,7 @@ date: 2013-07-14 06:52:00+00:00
 layout: post
 slug: '%e5%8f%aa%e6%83%b3%e5%9c%a8%e7%a8%8b%e5%ba%8f%e6%9c%ac%e8%ba%ab%e8%a2%ab%e4%bd%bf%e7%94%a8%e7%9a%84%e6%97%b6%e5%80%99%e8%bf%90%e8%a1%8c%e4%b8%bb%e5%9d%97%ef%bc%8c%e8%80%8c%e5%9c%a8%e5%ae%83%e8%a2%abe'
 title: 只想在程序本身被使用的时候运行主块，而在它被别的模块输入的时候不运行主块
+permalink: /2013/07/14/184.html
 wordpress_id: 184
 categories:
 - Python

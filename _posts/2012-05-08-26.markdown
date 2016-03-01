@@ -5,6 +5,7 @@ date: 2012-05-08 01:01:00+00:00
 layout: post
 slug: '%e5%9c%a8sqlserver%e4%b8%ad%e5%af%bc%e5%85%a5mysql%e5%af%bc%e5%87%ba%e7%9a%84sql%e6%96%87%e4%bb%b6%e7%9a%84%e5%8a%9e%e6%b3%95'
 title: 在sqlserver中导入mysql导出的sql文件的办法
+permalink: /2012/05/08/26.html
 wordpress_id: 26
 categories:
 - MYSQL

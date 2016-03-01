@@ -5,6 +5,7 @@ date: 2013-08-07 08:50:43+00:00
 layout: post
 slug: js%e4%b8%ad%e7%9a%84%e6%a0%87%e7%ad%be%ef%bc%8cbreak%e6%a0%87%e7%ad%be
 title: js中的标签，break标签
+permalink: /2013/08/07/210.html
 wordpress_id: 210
 categories:
 - JS

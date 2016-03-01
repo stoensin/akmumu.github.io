@@ -5,6 +5,7 @@ date: 2013-07-30 09:43:00+00:00
 layout: post
 slug: thrift-%e8%bd%bb%e6%9d%be%e5%ae%9e%e7%8e%b0%e5%a4%9a%e8%af%ad%e8%a8%80%e8%b7%a8%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%80%9a%e4%bf%a1
 title: thrift 轻松实现多语言跨服务器通信
+permalink: /2013/07/30/189.html
 wordpress_id: 189
 categories:
 - PHP

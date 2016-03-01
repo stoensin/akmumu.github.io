@@ -5,6 +5,7 @@ date: 2012-08-28 10:48:00+00:00
 layout: post
 slug: php%e4%b8%ad%e8%af%bb%e5%8f%96%e6%96%87%e4%bb%b6%e7%9a%84%e5%87%a0%e4%b8%aa%e6%96%b9%e6%b3%95
 title: PHP中读取文件的几个方法
+permalink: /2012/08/28/58.html
 wordpress_id: 58
 categories:
 - PHP

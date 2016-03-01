@@ -5,6 +5,7 @@ date: 2014-02-12 03:37:21+00:00
 layout: post
 slug: '%e6%81%a2%e5%a4%8dchrome%e6%89%93%e5%bc%80%e6%96%b0%e7%9a%84%e6%a0%87%e7%ad%be%e9%a1%b5%e7%9a%84%e6%96%b9%e6%b3%95'
 title: 恢复Chrome打开新的标签页的方法
+permalink: /2014/02/12/252.html
 wordpress_id: 252
 categories:
 - 实用软件技巧

@@ -5,6 +5,7 @@ date: 2013-08-15 04:50:18+00:00
 layout: post
 slug: js%e5%9b%be%e5%83%8f%e6%98%a0%e5%b0%84%e7%9a%84%e5%ba%94%e7%94%a8%ef%bc%8c%e5%9c%a8%e4%b8%80%e4%b8%aa%e5%9b%be%e7%89%87%e7%82%b9%e5%87%bb%e6%88%96%e7%a7%bb%e5%8a%a8%e5%88%b0%e4%b8%8d%e5%90%8c%e4%bd%8d
 title: JS图像映射的应用，在一个图片点击或移动到不同位置有不同响应
+permalink: /2013/08/15/215.html
 wordpress_id: 215
 categories:
 - JS

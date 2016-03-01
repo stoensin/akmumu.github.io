@@ -5,6 +5,7 @@ date: 2014-02-12 03:47:26+00:00
 layout: post
 slug: javascript%e4%b8%ad%e4%b8%a4%e4%b8%aa%e6%84%9f%e5%8f%b9%e5%8f%b7%ef%bc%88%ef%bc%89%e7%9a%84%e4%bd%9c%e7%94%a8
 title: JavaScript中两个感叹号（!!）的作用
+permalink: /2014/02/12/254.html
 wordpress_id: 254
 categories:
 - JS

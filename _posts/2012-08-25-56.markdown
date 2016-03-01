@@ -5,6 +5,7 @@ date: 2012-08-25 16:57:00+00:00
 layout: post
 slug: '%e4%bb%a5%e6%95%b0%e6%8d%ae%e5%ba%93%e5%ad%97%e6%ae%b5%e5%88%86%e7%bb%84%e6%98%be%e7%a4%ba%e6%95%b0%e6%8d%ae%e7%9a%84sql%e8%af%ad%e5%8f%a5'
 title: 以数据库字段分组显示数据的sql语句
+permalink: /2012/08/25/56.html
 wordpress_id: 56
 categories:
 - MYSQL

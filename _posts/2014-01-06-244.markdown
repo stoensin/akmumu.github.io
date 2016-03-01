@@ -5,6 +5,7 @@ date: 2014-01-06 03:49:12+00:00
 layout: post
 slug: php%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e7%9a%8461%e6%9d%a1%e9%bb%84%e9%87%91%e6%b3%95%e5%88%99
 title: PHP面向对象程序设计的61条黄金法则
+permalink: /2014/01/06/244.html
 wordpress_id: 244
 categories:
 - PHP

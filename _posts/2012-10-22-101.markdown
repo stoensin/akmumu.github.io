@@ -5,6 +5,7 @@ date: 2012-10-22 08:13:00+00:00
 layout: post
 slug: apache-allow-%e5%92%8cdeny-%e8%af%a6%e8%a7%a3
 title: apache allow 和deny 详解
+permalink: /2012/10/22/101.html
 wordpress_id: 101
 categories:
 - Apache

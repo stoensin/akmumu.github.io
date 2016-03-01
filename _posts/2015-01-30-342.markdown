@@ -5,6 +5,7 @@ date: 2015-01-30 02:18:30+00:00
 layout: post
 slug: top%e5%91%bd%e4%bb%a4%e8%af%a6%e8%a7%a3
 title: top命令详解
+permalink: /2015/01/30/342.html
 wordpress_id: 342
 categories:
 - LINUX

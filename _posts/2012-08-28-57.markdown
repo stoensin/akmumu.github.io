@@ -5,6 +5,7 @@ date: 2012-08-28 10:39:00+00:00
 layout: post
 slug: '%e7%94%a8-php-%e8%af%bb%e5%8f%96%e6%96%87%e4%bb%b6%e7%9a%84%e6%ad%a3%e7%a1%ae%e6%96%b9%e6%b3%95'
 title: 用 PHP 读取文件的正确方法
+permalink: /2012/08/28/57.html
 wordpress_id: 57
 categories:
 - PHP

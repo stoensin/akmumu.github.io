@@ -5,6 +5,7 @@ date: 2014-01-03 03:36:22+00:00
 layout: post
 slug: 2013%e5%b9%b4%e4%b9%8b%e5%b9%b4%e7%bb%88%e6%80%bb%e7%bb%93
 title: 2013年之年终总结
+permalink: /2014/01/03/243.html
 wordpress_id: 243
 categories:
 - 生活琐碎

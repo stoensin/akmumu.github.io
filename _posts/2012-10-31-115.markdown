@@ -5,6 +5,7 @@ date: 2012-10-31 10:25:00+00:00
 layout: post
 slug: centoslinux%e5%ae%89%e8%a3%85mysql-groonga-mroonga%e5%ad%98%e5%82%a8%e5%bc%95%e6%93%8e
 title: centoslinux安装mysql groonga mroonga存储引擎
+permalink: /2012/10/31/115.html
 wordpress_id: 115
 categories:
 - LINUX

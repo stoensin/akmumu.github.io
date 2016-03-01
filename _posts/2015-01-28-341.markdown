@@ -5,6 +5,7 @@ date: 2015-01-28 07:44:45+00:00
 layout: post
 slug: '%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8shell%e6%8d%95%e6%8d%89%e5%8d%8a%e5%a4%9c%e7%9a%84%e9%97%ae%e9%a2%98%e8%bf%9b%e7%a8%8b'
 title: 如何使用Shell捕捉半夜的问题进程
+permalink: /2015/01/28/341.html
 wordpress_id: 341
 categories:
 - LINUX

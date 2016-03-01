@@ -5,6 +5,7 @@ date: 2012-09-26 03:06:00+00:00
 layout: post
 slug: linux%e7%b3%bb%e7%bb%9f%e6%89%be%e5%88%b0apache%e8%bf%9b%e7%a8%8b%e9%85%8d%e7%bd%aeapache%ef%bc%8c%e9%87%8d%e5%90%afapache
 title: linux系统找到apache进程配置apache，重启apache
+permalink: /2012/09/26/79.html
 wordpress_id: 79
 categories:
 - Apache

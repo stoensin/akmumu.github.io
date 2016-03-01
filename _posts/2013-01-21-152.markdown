@@ -5,6 +5,7 @@ date: 2013-01-21 07:23:00+00:00
 layout: post
 slug: wamp5%e4%b8%8b%e8%99%9a%e6%8b%9f%e6%9c%ba%e9%85%8d%e7%bd%ae%e6%96%87%e6%a1%a3
 title: wamp5下虚拟机配置文档
+permalink: /2013/01/21/152.html
 wordpress_id: 152
 categories:
 - PHP

@@ -5,6 +5,7 @@ date: 2014-01-08 07:45:42+00:00
 layout: post
 slug: htmlspecialchars%e5%92%8chtmlentities%e5%8c%ba%e5%88%ab%e6%98%af%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af
 title: htmlspecialchars和htmlentities区别是使用场景
+permalink: /2014/01/08/245.html
 wordpress_id: 245
 categories:
 - PHP

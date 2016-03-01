@@ -5,6 +5,7 @@ date: 2010-10-27 14:02:00+00:00
 layout: post
 slug: php%e5%88%9d%e5%ad%a6%e8%80%85%e5%a4%b4%e7%96%bc%e9%97%ae%e9%a2%98%e6%80%bb%e7%bb%93
 title: PHP初学者头疼问题总结
+permalink: /2010/10/27/5.html
 wordpress_id: 5
 categories:
 - PHP

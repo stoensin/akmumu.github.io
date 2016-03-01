@@ -5,6 +5,7 @@ date: 2013-02-26 01:52:00+00:00
 layout: post
 slug: app-%e7%83%ad%e6%bd%ae%ef%bc%8c%e8%b0%81%e7%9a%84%e6%9c%ba%e4%bc%9a%ef%bc%9f-%e5%9b%be%e8%a7%a3%e4%b9%9d%e7%a7%8dapp%e5%95%86%e4%b8%9a%e6%a8%a1%e5%bc%8f
 title: App 热潮，谁的机会？——图解九种APP商业模式
+permalink: /2013/02/26/167.html
 wordpress_id: 167
 categories:
 - 天下杂侃

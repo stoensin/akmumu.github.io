@@ -5,6 +5,7 @@ date: 2012-09-28 05:56:00+00:00
 layout: post
 slug: windows%e4%b8%8bwamp%e5%ae%89%e8%a3%85php5-3%e6%89%a9%e5%b1%95memcache
 title: windows下wamp安装php5.3扩展memcache
+permalink: /2012/09/28/81.html
 wordpress_id: 81
 categories:
 - PHP

@@ -5,6 +5,7 @@ date: 2012-11-07 07:51:00+00:00
 layout: post
 slug: shell%e8%af%ad%e6%b3%95%e9%94%99%e8%af%af-%e5%8f%98%e9%87%8f%e4%b8%8e%e7%a9%ba%e6%a0%bc-too-many-arguments
 title: 'Shell语法错误----变量与空格[: too many arguments'
+permalink: /2012/11/07/117.html
 wordpress_id: 117
 categories:
 - LINUX

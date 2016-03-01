@@ -5,6 +5,7 @@ date: 2012-10-12 09:10:00+00:00
 layout: post
 slug: vmware%e8%99%9a%e6%8b%9f%e6%9c%ba%e4%b8%8b%e4%b8%baubuntu-12-04-1%e9%85%8d%e7%bd%ae%e9%9d%99%e6%80%81ip%ef%bc%88nat%e6%96%b9%e5%bc%8f%ef%bc%89
 title: VMWare虚拟机下为Ubuntu 12.04.1配置静态IP（NAT方式）
+permalink: /2012/10/12/92.html
 wordpress_id: 92
 categories:
 - LINUX

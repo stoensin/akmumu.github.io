@@ -5,6 +5,7 @@ date: 2014-04-14 03:21:34+00:00
 layout: post
 slug: android%e6%89%8b%e6%9c%ba%e7%ab%af%e6%8a%93%e5%8c%85%e6%96%b9%e6%b3%95%ef%bc%8c%e6%8a%93%e6%95%b0%e6%8d%ae%e5%8c%85
 title: Android手机端抓包方法，抓数据包
+permalink: /2014/04/14/268.html
 wordpress_id: 268
 categories:
 - 网络

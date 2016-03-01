@@ -5,6 +5,7 @@ date: 2013-01-05 05:43:00+00:00
 layout: post
 slug: php-socket%e7%bc%96%e7%a8%8b%e6%a0%b7%e4%be%8b
 title: php socket编程样例
+permalink: /2013/01/05/148.html
 wordpress_id: 148
 categories:
 - PHP

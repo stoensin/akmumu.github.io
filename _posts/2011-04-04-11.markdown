@@ -5,6 +5,7 @@ date: 2011-04-04 12:55:00+00:00
 layout: post
 slug: apache-virtualhost%e9%85%8d%e7%bd%ae%e6%88%90%e5%8a%9fwamp%e8%99%9a%e6%8b%9f%e4%b8%bb%e6%9c%ba%e9%85%8d%e7%bd%ae-%e7%99%be%e5%ba%a6%e7%a9%ba%e9%97%b4_%e5%ba%94%e7%94%a8%e5%b9%b3%e5%8f%b0
 title: Apache VirtualHost配置成功/Wamp虚拟主机配置 百度空间_应用平台
+permalink: /2011/04/04/11.html
 wordpress_id: 11
 categories:
 - PHP

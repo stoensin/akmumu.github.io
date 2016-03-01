@@ -5,6 +5,7 @@ date: 2013-12-26 06:17:51+00:00
 layout: post
 slug: php%e9%a1%b5%e9%9d%a2%e5%9b%9e%e9%80%80%e7%9a%84%e4%b8%a4%e7%a7%8d%e5%ae%9e%e7%8e%b0%e6%96%b9%e6%b3%95php%e8%a1%a8%e5%8d%95%e5%9b%9e%e9%80%80
 title: php页面回退的两种实现方法,php表单回退
+permalink: /2013/12/26/240.html
 wordpress_id: 240
 categories:
 - PHP

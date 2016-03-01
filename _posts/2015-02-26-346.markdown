@@ -5,6 +5,7 @@ date: 2015-02-26 03:34:27+00:00
 layout: post
 slug: '%e5%89%8d%e7%ab%af%e7%bc%96%e7%a0%81%e8%a7%84%e8%8c%83'
 title: 前端编码规范
+permalink: /2015/02/26/346.html
 wordpress_id: 346
 categories:
 - 前端美工设计

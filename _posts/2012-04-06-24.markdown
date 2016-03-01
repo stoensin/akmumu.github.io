@@ -5,6 +5,7 @@ date: 2012-04-06 13:15:00+00:00
 layout: post
 slug: '%e3%80%90%e8%bd%ac%e3%80%91php%e4%b8%advc6-x86%e5%92%8cvc9-x86%e7%9a%84%e5%8c%ba%e5%88%ab%e5%8f%8a-non-thread-safe%e7%9a%84%e6%84%8f%e6%80%9d'
 title: 【转】PHP中VC6 X86和VC9 X86的区别及 Non Thread Safe的意思
+permalink: /2012/04/06/24.html
 wordpress_id: 24
 categories:
 - PHP

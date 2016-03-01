@@ -5,6 +5,7 @@ date: 2013-04-12 03:22:00+00:00
 layout: post
 slug: ci%e6%a1%86%e6%9e%b6%e5%9c%a8pathinfo%e6%a8%a1%e5%bc%8f%e7%a6%81%e7%94%a8%e7%9a%84%e6%97%b6%e5%80%99%e6%80%8e%e4%b9%88%e5%8a%9e%ef%bc%8cbae%e7%9a%84%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6app-conf
 title: ci框架在pathinfo模式禁用的时候怎么办，BAE的配置文件app.conf
+permalink: /2013/04/12/172.html
 wordpress_id: 172
 categories:
 - PHP

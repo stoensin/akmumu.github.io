@@ -5,6 +5,7 @@ date: 2013-11-14 07:42:35+00:00
 layout: post
 slug: '%e4%bd%bf%e7%94%a8js%e8%8e%b7%e5%8f%96get%e5%8f%82%e6%95%b0querystring'
 title: 使用js获取GET参数QueryString
+permalink: /2013/11/14/237.html
 wordpress_id: 237
 categories:
 - JS

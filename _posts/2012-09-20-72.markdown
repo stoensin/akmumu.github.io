@@ -5,6 +5,7 @@ date: 2012-09-20 08:30:00+00:00
 layout: post
 slug: curl%e7%8a%b6%e6%80%81%e7%a0%81%e5%88%97%e8%a1%a8
 title: CURL状态码列表
+permalink: /2012/09/20/72.html
 wordpress_id: 72
 categories:
 - PHP

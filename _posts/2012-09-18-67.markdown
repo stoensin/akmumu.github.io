@@ -5,6 +5,7 @@ date: 2012-09-18 10:37:00+00:00
 layout: post
 slug: mysql%e6%95%b0%e6%8d%ae%e5%ba%93%e9%9b%86%e7%be%a4%e9%85%8d%e7%bd%ae
 title: MySQL数据库集群配置
+permalink: /2012/09/18/67.html
 wordpress_id: 67
 categories:
 - MYSQL

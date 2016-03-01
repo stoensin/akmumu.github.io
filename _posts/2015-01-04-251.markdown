@@ -6,6 +6,7 @@ layout: post
 published: false
 slug: 2014%e5%b9%b4ok
 title: 2014年ok
+permalink: /2015/01/04/251.html
 wordpress_id: 251
 categories:
 - 生活琐碎

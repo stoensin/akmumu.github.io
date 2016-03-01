@@ -5,6 +5,7 @@ date: 2013-07-29 07:37:00+00:00
 layout: post
 slug: eclipse%e5%ae%89%e8%a3%85svn%e6%8f%92%e4%bb%b6
 title: Eclipse安装SVN插件
+permalink: /2013/07/29/186.html
 wordpress_id: 186
 categories:
 - PHP

@@ -5,6 +5,7 @@ date: 2013-07-07 05:44:00+00:00
 layout: post
 slug: ubuntu%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0
 title: ubuntu学习笔记
+permalink: /2013/07/07/182.html
 wordpress_id: 182
 categories:
 - LINUX

@@ -5,6 +5,7 @@ date: 2011-11-03 12:20:00+00:00
 layout: post
 slug: '%e5%a6%82%e4%bd%95%e4%b8%ba%e7%ac%94%e8%ae%b0%e6%9c%ac%e6%9b%b4%e6%8d%a2%e5%8d%87%e7%ba%a7%e5%86%85%e5%ad%98%e8%81%94%e6%83%b3y450%ef%bc%8cy460%e7%ad%89%e5%9d%87%e9%80%82%e7%94%a8'
 title: 如何为笔记本更换升级内存联想Y450，Y460等均适用
+permalink: /2011/11/03/17.html
 wordpress_id: 17
 categories:
 - 电脑周边实用

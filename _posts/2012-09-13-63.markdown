@@ -5,6 +5,7 @@ date: 2012-09-13 06:02:00+00:00
 layout: post
 slug: js-%e8%be%93%e5%87%ba%e5%af%b9%e8%b1%a1%e7%9a%84%e5%b1%9e%e6%80%a7%e4%bb%a5%e5%8f%8a%e6%96%b9%e6%b3%95
 title: JS 输出对象的属性以及方法
+permalink: /2012/09/13/63.html
 wordpress_id: 63
 categories:
 - JS

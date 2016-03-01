@@ -5,6 +5,7 @@ date: 2012-09-19 09:12:00+00:00
 layout: post
 slug: '%e7%9c%9f%e6%ad%a3%e8%a7%a3%e5%86%b3w10-warning-changing-a-readonly-file%ef%bc%8ce45-readonly-option-is-set-add-to-override'
 title: '真正解决W10: Warning: Changing a readonly file，E45: ''readonly'' option is set
+permalink: /2012/09/19/71.html
   (add ! to override)'
 wordpress_id: 71
 categories:

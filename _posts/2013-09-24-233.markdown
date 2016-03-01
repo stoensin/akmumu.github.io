@@ -5,6 +5,7 @@ date: 2013-09-24 07:35:56+00:00
 layout: post
 slug: php%e6%96%87%e4%bb%b6%e7%ac%ac%e4%b8%80%e8%a1%8c%e6%9c%89%e5%a4%9a%e4%bd%99%e5%ad%97%e7%ac%a6%ef%bc%8ccss%e6%96%87%e4%bb%b6%e7%ac%ac%e4%b8%80%e8%a1%8c%e4%b8%8d%e8%b5%b7%e4%bd%9c%e7%94%a8%ef%bc%8cbom
 title: php文件第一行有多余字符，css文件第一行不起作用，bom头在作怪
+permalink: /2013/09/24/233.html
 wordpress_id: 233
 categories:
 - PHP

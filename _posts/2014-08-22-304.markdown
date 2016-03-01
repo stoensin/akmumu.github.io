@@ -5,6 +5,7 @@ date: 2014-08-22 08:12:58+00:00
 layout: post
 slug: dns%e6%95%85%e9%9a%9c%e5%a7%8b%e6%9c%ab%e4%bb%a5%e5%8f%8a%e5%88%86%e6%9e%90%ef%bc%8cdns%e5%8a%ab%e6%8c%81%e8%af%a6%e8%a7%a3%ef%bc%8c%e4%bb%80%e4%b9%88%e6%98%afdns%e6%b1%a1%e6%9f%93
 title: DNS故障始末以及分析，DNS劫持详解，什么是DNS污染
+permalink: /2014/08/22/304.html
 wordpress_id: 304
 categories:
 - 网络

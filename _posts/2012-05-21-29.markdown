@@ -5,6 +5,7 @@ date: 2012-05-21 14:40:00+00:00
 layout: post
 slug: '%e5%bc%80%e5%8f%91%e8%80%85%e7%9a%84%e8%87%aa%e6%88%91%e4%bf%ae%e5%85%bb%ef%bc%9a%e6%8a%80%e6%9c%af%e6%9b%b4%e6%96%b0%ef%bc%8c%e6%96%b9%e5%90%91%e6%98%8e%e6%99%b0'
 title: 开发者的自我修养：技术更新，方向明晰
+permalink: /2012/05/21/29.html
 wordpress_id: 29
 categories:
 - 天下杂侃

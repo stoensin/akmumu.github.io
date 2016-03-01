@@ -5,6 +5,7 @@ date: 2015-03-17 09:16:00+00:00
 layout: post
 slug: javascript%e6%a8%a1%e5%9d%97%e5%8c%96%e7%bc%96%e7%a8%8b%ef%bc%88%e4%ba%8c%ef%bc%89%ef%bc%9aamd%e8%a7%84%e8%8c%83
 title: Javascript模块化编程（二）：AMD规范
+permalink: /2015/03/17/350.html
 wordpress_id: 350
 categories:
 - JS

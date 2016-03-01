@@ -5,6 +5,7 @@ date: 2012-08-23 06:00:00+00:00
 layout: post
 slug: '%e7%a8%8b%e5%ba%8f%e5%91%98%e6%8a%80%e6%9c%af%e7%bb%83%e7%ba%a7%e6%94%bb%e7%95%a5'
 title: 程序员技术练级攻略
+permalink: /2012/08/23/54.html
 wordpress_id: 54
 categories:
 - PHP

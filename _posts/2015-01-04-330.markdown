@@ -5,6 +5,7 @@ date: 2015-01-04 14:46:09+00:00
 layout: post
 slug: 2014%e5%b9%b4%e7%bb%88%e6%80%bb%e7%bb%93-%e5%ae%b6
 title: 2014年终总结--家
+permalink: /2015/01/04/330.html
 wordpress_id: 330
 categories:
 - 生活琐碎

@@ -5,6 +5,7 @@ date: 2013-01-30 05:33:00+00:00
 layout: post
 slug: linux-%e7%9b%ae%e5%bd%95%e7%bb%93%e6%9e%84
 title: Linux 目录结构
+permalink: /2013/01/30/157.html
 wordpress_id: 157
 categories:
 - LINUX

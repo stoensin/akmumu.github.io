@@ -5,6 +5,7 @@ date: 2015-03-17 09:13:20+00:00
 layout: post
 slug: javascript%e6%a8%a1%e5%9d%97%e5%8c%96%e7%bc%96%e7%a8%8b%ef%bc%88%e4%b8%80%ef%bc%89%ef%bc%9a%e6%a8%a1%e5%9d%97%e7%9a%84%e5%86%99%e6%b3%95
 title: Javascript模块化编程（一）：模块的写法
+permalink: /2015/03/17/349.html
 wordpress_id: 349
 categories:
 - JS

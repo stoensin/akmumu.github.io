@@ -5,6 +5,7 @@ date: 2013-01-30 05:09:00+00:00
 layout: post
 slug: 2012%e5%b9%b4%e5%ba%a6%e5%8d%81%e5%a4%a7%e7%97%85%e6%af%92%e8%a7%86%e9%a2%91%e5%b9%bf%e5%91%8a
 title: 2012年度十大病毒视频广告
+permalink: /2013/01/30/156.html
 wordpress_id: 156
 categories:
 - 天下杂侃
