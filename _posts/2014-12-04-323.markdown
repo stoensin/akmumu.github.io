@@ -6,7 +6,6 @@ layout: post
 slug: mac%e5%9c%a8finder%e5%bf%ab%e9%80%9f%e5%ae%9a%e4%bd%8d%e6%89%93%e5%bc%80%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%b0%8f%e5%b7%a5%e5%85%b7go2shell%e9%85%8d%e7%bd%ae
 title: mac在finder快速定位打开命令行小工具Go2Shell配置
 permalink: /2014/12/04/323.html
-permalink: /2014/12/04/323.html
 wordpress_id: 323
 categories:
 - mac
