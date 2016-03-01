@@ -36,7 +36,7 @@ wzskynet#163.com
 
 
 
-
+```
 <?
 // 检查 FORM 是否全部填写完毕...
 if ($form_completed) {
@@ -44,7 +44,7 @@ Header("Location: http://www.jb51.net/download/info_check.exe");
 exit;
 }
 ?>
-
+```
 
 或者是以下的情况：
 
@@ -54,9 +54,9 @@ exit;
 
 
 
-
+```
 <a href="http://www.yourwebl.com/users/download.php?id=124524">开始下载文件</a>
-
+```
 
 这里利用了ID方式接收要下载文件的编号，然后用“Redirect”的方式连接到实际的网址。
 
@@ -68,7 +68,7 @@ exit;
 
 
 
-
+```
 <?
 $file_name = "info_check.exe";
 $file_dir = "/public/www/download/";
@@ -87,7 +87,7 @@ echo fread($file,filesize($file_dir . $file_name));
 fclose($file);
 exit;}
 ?>
-
+```
 
 而如果文件路径是“http”或者“ftp” 网址的话，则源代码会有少许改变，程序如下：
 
@@ -97,7 +97,7 @@ exit;}
 
 
 
-
+```
 ＜?
 $file_name = "info_check.exe";
 $file_dir = "http://www.jb51.net/";
@@ -113,7 +113,7 @@ echo fread($file,50000);
 fclose ($file);
 }
 ?＞
-
+```
 
 这样就可以用PHP直接输出文件了。
 
@@ -125,7 +125,7 @@ fclose ($file);
 
 
 
-
+```
 public function downloads($name){
 $name_tmp = explode("_",$name);
 $type = $name_tmp[0];
@@ -148,6 +148,6 @@ echo fread($file, filesize($file_dir.$name));
 fclose($file);
 }
 }
-
+```
 
 

@@ -63,11 +63,8 @@ categories:
 
 <td width="657" valign="top" >
 
-
+```
 //获取QueryString的数组
-
-
-
 
 function getQueryString(){
 
@@ -115,7 +112,6 @@ function getQueryString(){
 
 
 }
-
 
 
 
@@ -223,6 +219,7 @@ function getQueryStringByIndex(index){
 
 
 }
+```
 </td>
 </tr>
 </tbody>

@@ -44,6 +44,7 @@ RewriteRule ^/(mianshi)_([a-zA-Z]+)/$ /zl/index.php?name=$1_$2 [L] RewriteRule ^
 
 Nginx Rewrite 规则：
 
+```
 rewrite ^/(mianshi|xianjing)/$ /zl/index.php?name=$1 last;
 
 rewrite ^/ceshi/$ /zl/ceshi.php last;
@@ -51,6 +52,8 @@ rewrite ^/ceshi/$ /zl/ceshi.php last;
 rewrite ^/(mianshi)_([a-zA-Z]+)/$ /zl/index.php?name=$1_$2 last;
 
 rewrite ^/pingce([0-9]*)/$ /zl/pingce.php?id=$1 last;
+```
+
 
 不难发现Apache的Rewrite规则改为Nginx的Rewrite规则挺简单的，如果改完规则，使用"nginx -t"命令检查发现nginx.conf配置文件有语法错误，那么可以尝试给条件加上引号。例如一下的Nginx Rewrite规则会报语法错误：
 
@@ -76,6 +79,7 @@ RewriteRule ^/user/login/$ /user/login.php?login=1&forward=http://%{HTTP_HOST} �
 
 Nginx Rewrite 规则：
 
+```
 rewrite  ^/user/login/$ /user/login.php?login=1&forward=http://$host  last;
 Apache与Nginx Rewrite 规则的一些功能相同或类似的指令、标记对应关系：
 Apache的RewriteCond指令对应Nginx的if指令；
@@ -85,6 +89,7 @@ Apache的[P]标记对应Nginx的last标记；
 Apache的[R,L]标记对应Nginx的redirect标记；
 Apache的[P,L]标记对应Nginx的last标记；
 Apache的[PT,L]标记对应Nginx的last标记；
+```
 
 允许指定的域名访问本站，其他域名一律跳转到http://www.aaa.com：
 Apache Rewrite 规则：
@@ -97,6 +102,8 @@ RewriteRule ^/wu/$ /market/%1/index.htm [L]
 
 Nginx的if指令不支持嵌套，也不支持AND、OR等多条件匹配，相比于Apache的RewriteCond，显得麻烦一些，但是，我们可以通过下一页的Nginx配置写法来实现这个示例：
 Nginx Rewrite 规则：
+
+```
 if ($host ~* ^(.*?)\.domain\.com$)
 
 {
@@ -136,7 +143,7 @@ if($var_wupin ~ ‘1′)
 rewrite ^/wu/$ /market/$var_wupin_city/index.htm last;
 
 }
-
+```
 
 
 备注学习：

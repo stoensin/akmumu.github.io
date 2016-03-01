@@ -24,8 +24,8 @@ $data.=fgets($fp,4096);
 
 我们先将指针移动到末尾，并向后倒退2个位置，通过fgetc读取一个字符，判断这个字符是不是"\n"也就是换行符，如果不是换行符，那么继续倒退一个位置再次判断，直到我们倒退到上一行的结尾换行符为止，直接使用fgets将一整行都取出来即可。这里面用到两个while循环，外层循环控制需要取得的行数，内层循环控制fseek动作。
 
-
-<blockquote>/**
+```
+/**
 * 取文件最后$n行
 * @param string $filename 文件路径
 * @param int $n 最后几行
@@ -54,4 +54,5 @@ $n--;
 }
 return $str;
 }
-echo nl2br(FileLastLines('sss.txt',4));</blockquote>
+echo nl2br(FileLastLines('sss.txt',4));
+```

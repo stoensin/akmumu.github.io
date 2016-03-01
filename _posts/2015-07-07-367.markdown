@@ -107,12 +107,11 @@ windows上的shadowsocks如果勾选允许来自局域网的连接可以直接�
 可以看到已经成功了
 
     
-    <code>➜  /opt  ps aux  | grep privoxy
+    ➜  /opt  ps aux  | grep privoxy
     mumu  1143   0.0  0.0  2497992   1760   ??  S     3:00下午   0:00.11 /usr/local/Cellar/privoxy/3.0.23/sbin/privoxy --no-daemon /usr/local/etc/privoxy/config
     ➜  /opt  lsof -i :8118
     COMMAND  PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
     privoxy 1143 mumu    3u  IPv4 0x659480a42f4476af      0t0  TCP *:privoxy (LISTEN)
-    </code>
 
 
 
