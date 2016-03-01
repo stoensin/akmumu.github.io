@@ -1227,5 +1227,5 @@ Zen Coding官方提供的速查手册(PDF)：[http://zen-coding.googlecode.com/f
 
 配置OK了，最后上张帅气的vim图:  
 
-[!vim成品](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/img_my_1352346896_1248.jpg)
-[![buildingsecurephpapps-ch](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/title_page.png)](http://akmumu-wordpress.stor.sinaapp.com/uploads/2015/09/title_page.png)
+![vim成品](http://akmumu-wordpress.stor.sinaapp.com/wp-content/uploads/pic/other_site/img_my_1352346896_1248.jpg)
+
