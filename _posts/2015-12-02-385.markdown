@@ -5,6 +5,7 @@ date: 2015-12-02 07:54:33+00:00
 layout: post
 slug: xml%e4%bd%bf%e7%94%a8xsl%e6%a0%b7%e5%bc%8f%e8%a1%a8%e5%9c%a8%e6%b5%8f%e8%a7%88%e5%99%a8%e4%b8%ad%e4%bb%a5xhtml%e6%a0%b7%e5%bc%8f%e5%b1%95%e7%a4%ba
 title: XML使用XSL样式表在浏览器中以XHTML样式展示
+permalink: /2015/12/02/385.html
 wordpress_id: 385
 categories:
 - 实用软件技巧
