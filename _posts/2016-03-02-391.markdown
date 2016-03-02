@@ -1,9 +1,9 @@
 ---
-author: 木木老蔫
-title: 从wordpress转移到github.io的jekyll3
+author: admin
 comments: true
-date: 2016-03-02 15:01:00+00:00
+date: 2016-03-02 16:51:38+08:00
 layout: post
+title: 从wordpress转移到github.io的jekyll3
 permalink: /2016/03/02/391.html
 wordpress_id: 391
 categories:
@@ -13,30 +13,48 @@ tags:
 ---
 
 # 从wordpress转移到github.io的jekyll3
+
 花了几天的时间，终于把博客从wordpress转移到[jekyll][1]了，从此告别了自豪的wordpress。
+
 ## 为什么转移
+
 开始的时候因为我使用的一个主题比较性能不好，导致我的mac打开博客时风扇转起来没完，后来关了动画好了，但是这个主题用了好几年，想着换换主题吧，要更清新一点，后来找到了[多梦主题][2]，这个主题不赖，我要等他发布正式版会换上，但是在发布完beta之后，我还在苦苦等待的时候，作者由于身体抱恙不再更新，这里我想说，程序员们一定要注意身体啊。
 恰好这时候又出现了另一个重要的原因，我的sae快没欢乐豆了，而且眼看着豆豆一天一天消耗的快，数据库的消耗让我想到用纯html，那干脆托管到github.io+jekyll，就这样，更换博客就成了2016年的一个目标。
+
 ## 怎么是jekyll
+
 开始我想直接生成html扔上去算了，调研了几个工具之后，还是想为了之后写博客简单，用上markdown，并且这个jekyll到处透露着ruby的影子，那是我的第二语言，爱过。
 ## 开搞
+
 ### 在github上搞github page
-1 在github上创建一个repo，名字叫 akmumu.github.io，akmumu换成你的用户名啊，并clone到本地
-2 安装jekyll，使用官网的步骤，有问题去上面查下
+
+1. 在github上创建一个repo，名字叫 akmumu.github.io，akmumu换成你的用户名啊，并clone到本地
+2. 安装jekyll，使用官网的步骤，有问题去上面查下
+3. 代码
+
+```ruby
 gem install jekyll
 jekyll new my-awesome-site
 cd my-awesome-site
- $ jekyll serve
-# => Now browse to http://localhost:4000
-3 如果你已经有目录了，记得new的时候加参数--force
-4 编辑repo中的`_config.yml`文件，更新名称等
-5 ·jekyll serv预览
-6 提交，等下就能再github page看到效果了。
+$ jekyll serve
+# =\> Now browse to http://localhost:4000
+```
+4. 如果你已经有目录了，记得new的时候加参数--force
+5. 编辑repo中的`_config.yml`文件，更新名称等
+6. jekyll serv预览
+7. 提交，等下就能再github page看到效果了。
+
+
 ### 挑选主题
+
 这个就仁者见仁智者见智啦，这里可以推荐一个网站[http://jekyllthemes.org/][3]，应该能找到你喜欢的。
+
 ### wordpress旧内容转移
+
 这里抛开评论不说，只说文章，因为我使用的多说，还挺方便的，加上你的代码就好了。
 这里我是使用的一个开源工具[https://github.com/thomasf/exitwp][4]把从wordpress导出的xml文件直接转成了markdown文件。它考虑的还是挺全面的，来看一个例子。
+
+```
 ---
 author: admin
 comments: true
@@ -48,10 +66,17 @@ wordpress_id: 376
 categories:
 - 未分类
 ---
-所以说看起来不错啊，我想要的信息都有，尤其是wordpress_id，很有用，等下会用到。
+
+```
+
+所以说看起来不错啊，我想要的信息都有，尤其是wordpress\_id，很有用，等下会用到。
+
 ### 修改文章的链接
+
 且不评价它本身的链接，就说我因为之前的wordpress链接已经被各搜索引擎收录了，不想浪费掉，所以决定要把这个链接换成和之前一样。
 首先有个参数叫做[ permalinks ][5]这个东西可以写在每个post里，例如`permalink: /2015/09/11/376.html`，呵呵，这样就和原来一样了，如果你文章少的话，每个写一下不费劲，但是我这边不知道为啥这么多文章，改了几个受不了了，去写了个脚本，批量转换成我的格式，你想要代码？拿走！
+
+```
 #!/bin/bash
 for filename in *0*;
 do
@@ -64,14 +89,20 @@ wordp_id=${ARR2[1]}
 replace_str='permalink: '/${date_num//-//}/${wordp_id}'.html'
 sed -i "/title:/a`echo $replace_str`" $filename
 done
+```
+
 shell脚本，在`_post`中执行，如果你和我的链接并不同，我想你一定会改造的。
 接下来你要逐个检查样式了，这是个繁琐活，我搞了好久。。。
+
 ### 绑定域名
-可以看一下github的[帮助][6]，简单来说就两部
+
+可以看一下github的[帮助][8]，简单来说就两部
 1 新建CNAME文件，在里面写上你的域名如akmumu.com
 2 修改DNS运营商的CNAME，指向akmumu.github.io
 等半个小时，也应该生效了，这时候访问akmumu.github.io还会自动跳转到akmumu.com，挺好。
+
 ### 后面可能还会做的
+
 1 dns看看能不能有备选方案，毕竟怕国内有可能访问github困难，不知道能否访问不到github的时候访问之前的sae
 
 [1]:	http://jekyllrb.com/
@@ -79,4 +110,6 @@ shell脚本，在`_post`中执行，如果你和我的链接并不同，我想�
 [3]:	http://jekyllthemes.org/
 [4]:	https://github.com/thomasf/exitwp
 [5]:	https://jekyllrb.com/docs/permalinks/
-[6]:	https://help.github.com/articles/using-a-custom-domain-with-github-pages/
+[6]:	http://jekyllrb.com/
+[7]:	http://jekyllrb.com/
+[8]:	https://help.github.com/articles/using-a-custom-domain-with-github-pages/
