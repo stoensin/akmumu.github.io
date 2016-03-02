@@ -22,23 +22,24 @@ tags:
 
 
 
-```$page_total = $num/$pagesize_wish; 
+```
+$page_total = $num/$pagesize_wish; 
 $page_total_int = (int)$page_total; 
 if($page_total!=$page_total_int) $page_total = $page_total_int+1; 
 for($i=1;$i<=$page_total;$i++){ 
-if($i==$_GET['w']){ 
-print " <strong>".$i."</strong> "; 
-}else{ 
-if(!$_GET['w']){ 
-if($i==1){ 
- print " <strong>".$i."</strong> "; 
-}else{ 
- print "<a href=/"../?w=$i/"> $i </a>"; 
-} 
-}else{ 
- print "<a href=/"../?w=$i/"> $i </a>"; 
-} 
-} 
+    if($i==$_GET['w']){ 
+        print " <strong>".$i."</strong> "; 
+    }else{ 
+        if(!$_GET['w']){ 
+            if($i==1){ 
+                print " <strong>".$i."</strong> "; 
+            }else{ 
+                print "<a href=/"../?w=$i/"> $i </a>"; 
+            }
+        }else{ 
+            print "<a href=/"../?w=$i/"> $i </a>"; 
+        } 
+    } 
 }
 ```
 是不是很短啊。。。
