@@ -18,21 +18,9 @@ tags:
 
 
 
-  * 
-
-
-
-
-
-
-
-
-
-
-
-
+```
 var ret = !!document.getElementById
-
+```
 
 
 
@@ -41,9 +29,9 @@ var ret = !!document.getElementById
 
 
 
-
+```
 var ret = document.getElementById ? true : false;
-
+```
 
 
 
@@ -52,7 +40,7 @@ var ret = document.getElementById ? true : false;
 
 
 
-
+```
 var a = " "; alert(!!a); //true  
 
 var a = "s"; alert(!!a); //true  
@@ -73,7 +61,7 @@ var a = false; alert(!!a); //false
 
 var a = null; alert(!!a); //false
 
-
+```
 
 
 

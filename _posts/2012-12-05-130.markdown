@@ -17,6 +17,7 @@ tags:
 
 . 长度限制  
 
+```
 <script>  
 
 function test()  
@@ -252,5 +253,5 @@ $("#code_login").focus();
 }   
 
 });
-
+```
 

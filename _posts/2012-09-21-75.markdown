@@ -32,15 +32,6 @@ str1 != str2　　　　　 当串str1和str2不等时为真
 str1　　　　　　　　 当串str1为非空时为真
 
 
-<table width="97%" >
-<tbody >
-<tr >
-
-<td >
-</td>
-</tr>
-</tbody>
-</table>
 
 
 2、数字的判断
@@ -168,6 +159,7 @@ fi
 
 #两个变量判断是否相等  
 
+```
 if [ "$var1" == "$var2" ]; then  
 
 echo '$var1 eq $var2'  
@@ -177,7 +169,7 @@ else
 echo '$var1 not eq $var2'  
 
 fi
-
+```
 
 
 
@@ -185,7 +177,7 @@ fi
 
 
   
-
+```
 if list then  
 
 do something here  
@@ -199,7 +191,7 @@ else
 do something else here  
 
 fi 
-
+```
 
 
 
@@ -217,7 +209,7 @@ SYSTEM=`uname -s` #获取操作系统类型，我本地是linux
 
 
 
-
+```
 if [ $SYSTEM = "Linux" ] ; then #如果是linux的话打印linux字符串  
 
 echo "Linux"  
@@ -235,7 +227,7 @@ else
 echo "What?"  
 
 fi #ifend
-
+```
 
 
 
@@ -247,7 +239,7 @@ fi #ifend
 =========================================================================
 
 
-
+```
 
 #. $HOME/.bash_profile  
 
@@ -302,7 +294,7 @@ objdir=`date -d ' days' +%Y%m%d`
 echo $objdir  
 
 #cp jn_card_sos.txt $objdir.txt
-
+```
 
 
 

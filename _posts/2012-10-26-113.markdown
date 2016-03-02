@@ -229,7 +229,7 @@ Sample Output
 
 
 
-
+```
 1 #include <stdio.h>  
 
 2 #include <stdlib.h>  
@@ -346,7 +346,7 @@ ret[j];
 0;  
 
 52 }
-
+```
 
 
 

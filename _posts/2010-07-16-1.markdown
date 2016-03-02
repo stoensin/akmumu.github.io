@@ -22,62 +22,26 @@ tags:
 
 
 
-
-  1. $page_total = $num/$pagesize_wish; 
-
-
-  2. $page_total_int = (int)$page_total; 
-
-
-  3. if($page_total!=$page_total_int) $page_total = $page_total_int+1; 
-
-
-  4. for($i=1;$i<=$page_total;$i++){ 
-
-
-  5. if($i==$_GET['w']){ 
-
-
-  6. print " <strong>".$i."</strong> "; 
-
-
-  7. }else{ 
-
-
-  8. if(!$_GET['w']){ 
-
-
-  9. if($i==1){ 
-
-
-  10. print " <strong>".$i."</strong> "; 
-
-
-  11. }else{ 
-
-
-  12. print "<a href=/"../?w=$i/"> $i </a>"; 
-
-
-  13. } 
-
-
-  14. }else{ 
-
-
-  15. print "<a href=/"../?w=$i/"> $i </a>"; 
-
-
-  16. } 
-
-
-  17. } 
-
-
-  18. }
-
-
-  19. 是不是很短啊。。。
+```$page_total = $num/$pagesize_wish; 
+$page_total_int = (int)$page_total; 
+if($page_total!=$page_total_int) $page_total = $page_total_int+1; 
+for($i=1;$i<=$page_total;$i++){ 
+if($i==$_GET['w']){ 
+print " <strong>".$i."</strong> "; 
+}else{ 
+if(!$_GET['w']){ 
+if($i==1){ 
+ print " <strong>".$i."</strong> "; 
+}else{ 
+ print "<a href=/"../?w=$i/"> $i </a>"; 
+} 
+}else{ 
+ print "<a href=/"../?w=$i/"> $i </a>"; 
+} 
+} 
+}
+```
+是不是很短啊。。。
 
 
 

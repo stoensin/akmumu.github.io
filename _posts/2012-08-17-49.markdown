@@ -23,122 +23,34 @@ tags:
 
 
 它是MVC中的C，控制视图展现
-
-
-
-    
-    它会担负很多任务。要接受请求，要选择M处理，最后选择V来显示。
-
-
-
-    
-     
-
-
-
-    
-    一般在php中大多数情况下他都作为业务的处理层了。
-
-
-
-    
-     
-
-
-
-    
-    比如对传入参数进行处理，对显示元素进行组装。
-
-
-
-    
-     
-
-
-
-    
-    它的实现一般也两类
-
-
-
-    
-     
-
-
-
-    
-    通过对象的映射或者是通过文件包含的形式
-
-
-
-    
-     
-
-
-
-    
-    最简单当然就是通过文件包含的形式。
-
-
-
-    
-     
-
-
-
-    
-    比如访问index.php/aa/bb/cc
-
-
-
-    
-     
-
-
-
-    
-    可以让程序加载aa目录下的bb文件
-
-
-
-    
-     
-
-
-
-    
-    然后之后的作为参数注入，这个过程在路由模块中实现
-
-
-
-    
-     
-
-
-
-    
-    另外的一种就是通过类的方式
-
-
-
-    
-     
-
-
-
-    
-    一般说来以类方式实现的控制器大致会长成这样
-
-
-
-    
-     
-
-
-
-
-
-
+它会担负很多任务。要接受请求，要选择M处理，最后选择V来显示。
+ 
+一般在php中大多数情况下他都作为业务的处理层了。
+ 
+比如对传入参数进行处理，对显示元素进行组装。
+ 
+它的实现一般也两类
+ 
+通过对象的映射或者是通过文件包含的形式
+ 
+最简单当然就是通过文件包含的形式。
+ 
+比如访问index.php/aa/bb/cc
+ 
+可以让程序加载aa目录下的bb文件
+ 
+然后之后的作为参数注入，这个过程在路由模块中实现
+ 
+另外的一种就是通过类的方式
+ 
+一般说来以类方式实现的控制器大致会长成这样
+ 
+
+
+
+
+
+```
     
     <span style="color:#ff0000"><span style="color:rgb(0,0,255)"><span style="color:#ff0000"><?</span></span>php</span>
     <span style="color:#0000ff">class</span> IndexController <span style="color:#0000ff">extends</span> CController{
@@ -149,7 +61,7 @@ tags:
     
     }
 
-
+```
 
     
      
@@ -195,21 +107,14 @@ tags:
      
 
 
-
+```
     
     <span style="color:#c0504d">$action</span> = <span style="color:#c0504d">'index'</span>;
 
 
-
-    
-     
-
-
-
-    
     <span style="color:#c0504d">$method</span> = <span style="color:#c0504d">'sae'</span>;
 
-
+```
 
     
      
@@ -305,7 +210,7 @@ tags:
      
 
 
-
+```
 
 <?php
 
@@ -348,7 +253,7 @@ $c = new c();
 
 $c->combinea();
 
-
+```
 
     
     它会抛出一个<strong>Fatal error: Uncaught exception 'Exception'</strong>
@@ -410,7 +315,7 @@ $c->combinea();
 
 
 
-    
+```    
     <span style="color:#ff0000"><span style="color:rgb(0,0,255)"><span style="color:#ff0000"><?</span></span>php</span> 
 
 
@@ -438,7 +343,7 @@ $c->combinea();
     
         }
 
-
+```
 
     
     注意!  list这个词是php的预留词，所以这个文件语法有问题，包含的时候就会报错。
@@ -469,7 +374,7 @@ $c->combinea();
      
 
 
-
+```
     
     <span style="color:#ff0000"><span style="color:rgb(0,0,255)"><span style="color:#ff0000"><?</span></span>php</span> 
 
@@ -499,7 +404,7 @@ $c->combinea();
         }
 
 
-
+```
     
      
 

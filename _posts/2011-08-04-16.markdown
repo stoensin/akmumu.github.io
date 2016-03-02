@@ -16,90 +16,35 @@ tags:
 
 
 
-
-* <style type="text/css">  
-
-
-* <!--  
-
-
-* #demo {  
-
-
-* background: #FFF;  
-
-
-* overflow:hidden;  
-
-
-* border: 1px dashed #CCC;  
-
-
-* width: 500px;  
-
-
-* }  
-
-
-* #demo img {  
-
-
-* border: 3px solid #F2F2F2;  
-
-
-* }  
-
-
-* #indemo {  
-
-
-* float: left;  
-
-
-* width: 800%;  
-
-
-* }  
-
-
-* #demo1 {  
-
-
-* float: left;  
-
-
-* }  
-
-
-* #demo2 {  
-
-
-* float: left;  
-
-
-* }  
-
-
-* -->  
-
-
-* </style>  
-
-
-* <div id="demo">  
-
-
-* <div id="indemo">  
-
-
-* <div id="demo1">  
-
-
-* <!-- 这其中添加帖子里面模块模板里面的数据即可
-* 例如
-* <div class="module cl ml">  
-
-<ul>  
+```
+<style type="text/css">  
+<!--  
+#demo {  
+background: #FFF;  
+overflow:hidden;  
+border: 1px dashed #CCC;  
+width: 500px;  
+}  
+#demo img {  
+border: 3px solid #F2F2F2;  
+}  
+#indemo {  
+float: left;  
+width: 800%;  
+}  
+#demo1 {  
+float: left;  
+}  
+#demo2 {  
+float: left;  
+}  
+-->  
+</style>  
+<div id="demo">  
+<div id="indemo">  
+<div id="demo1">  
+<!-- 这其中添加帖子里面模块模板里面的数据即可例如<div class="module cl ml">  
+<ul> 
 
 [loop]  
 
@@ -116,79 +61,31 @@ tags:
 </ul>  
 
 </div>  
-
-
-* * -->  
-
-
-* </div>  
-
-
-* <div id="demo2"></div>  
-
-
-* </div>  
-
-
-* </div>  
-
-
-* <script>  
-
-
-* <!--  
-
-
-* var speed=10;  
-
-
-* var tab=document.getElementById("demo");  
-
-
-* var tab1=document.getElementById("demo1");  
-
-
-* var tab2=document.getElementById("demo2");  
-
-
-* tab2.innerHTML=tab1.innerHTML;  
-
-
-* function Marquee(){  
-
-
-* if(tab2.offsetWidth-tab.scrollLeft<=0)  
-
-
-* tab.scrollLeft-=tab1.offsetWidth  
-
-
-* else{  
-
-
-* tab.scrollLeft++;  
-
-
-* }  
-
-
-* }  
-
-
-* var MyMar=setInterval(Marquee,speed);  
-
-
-* tab.onmouseover=function() {clearInterval(MyMar)};  
-
-
-* tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};  
-
-
 * -->  
-
-
-* </script>  
-
+</div>  
+<div id="demo2"></div>  
+</div>  
+</div>  
+<script>  
+<!--  
+var speed=10;  
+var tab=document.getElementById("demo");  
+var tab1=document.getElementById("demo1");  
+var tab2=document.getElementById("demo2");  
+tab2.innerHTML=tab1.innerHTML;  
+function Marquee(){  
+if(tab2.offsetWidth-tab.scrollLeft<=0)  
+tab.scrollLeft-=tab1.offsetWidth  
+else{  
+tab.scrollLeft++;  
+}  
+}  
+var MyMar=setInterval(Marquee,speed);  
+tab.onmouseover=function() {clearInterval(MyMar)};  
+tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};  
+-->  
+</script>  
+```
 
 
 

@@ -27,52 +27,30 @@ tags:
 
 
 
+```
+<!--{if $_G['group']['allowsetreadperm']}-->  
 
+<p class="mbn">{lang readperm}:</p>  
 
-* <!--{if $_G['group']['allowsetreadperm']}-->  
+<p class="mbn">  
 
+<em class="ftid">  
 
-* <p class="mbn">{lang readperm}:</p>  
+<select name="readperm" id="readperm" class="ps" style="width:90px">  
 
+<option value="">{lang unlimited}</option>  
 
-* <p class="mbn">  
+<!--{loop $_G['cache']['groupreadaccess'] $val}-->  
 
-
-* <em class="ftid">  
-
-
-* <select name="readperm" id="readperm" class="ps" style="width:90px">  
-
-
-* <option value="">{lang unlimited}</option>  
-
-
-* <!--{loop $_G['cache']['groupreadaccess'] $val}-->  
-
-
-* <option value="$val[readaccess]" title="{lang readperm}: $val[readaccess]"{if $thread['readperm'] == $val[readaccess]} selected="selected"{/if}>$val[grouptitle]</option>  
-
-
-* <!--{/loop}-->  
-
-
-* <option value="255">{lang highest_right}</option>  
-
-
-* </select>  
-
-
-* </em>  
-
-
-* <img src="{IMGDIR}/faq.gif" alt="Tip" class="mtn vm" style="margin: 0;" onmouseover="showTip(this)" tip="{lang post_select_usergroup_readacces}" /></a>  
-
-
-* </p>  
-
-
-* <!--{/if}-->
-
+<option value="$val[readaccess]" title="{lang readperm}: $val[readaccess]"{if $thread['readperm'] == $val[readaccess]} selected="selected"{/if}>$val[grouptitle]</option>  
+<!--{/loop}-->  
+<option value="255">{lang highest_right}</option>  
+</select>  
+</em>  
+<img src="{IMGDIR}/faq.gif" alt="Tip" class="mtn vm" style="margin: 0;" onmouseover="showTip(this)" tip="{lang post_select_usergroup_readacces}" /></a>  
+</p>  
+<!--{/if}-->
+```
 
 改成
 
@@ -83,91 +61,33 @@ tags:
 
 
 
-
-
-
-  1. <!--{if $_G['fid'] == 39 }-->  
-
-
-  2. <p class="mbn">{lang readperm}:</p>  
-
-
-  3. <p class="mbn">  
-
-
-  4. <em class="ftid">  
-
-
-  5. <select name="readperm" id="readperm" class="ps" style="width:90px">  
-
-
-  6. <option value="255">{lang highest_right}</option>  
-
-
-  7. </select>  
-
-
-  8. </em>  
-
-
-  9. <img src="{IMGDIR}/faq.gif" alt="Tip" class="mtn vm" style="margin: 0;" onmouseover="showTip(this)" tip="{lang post_select_usergroup_readacces}" /></a>  
-
-
-  10. </p>  
-
-
-  11. <!--{elseif $_G['group']['allowsetreadperm']}-->  
-
-
-  12. <p class="mbn">{lang readperm}:</p>  
-
-
-  13. <p class="mbn">  
-
-
-  14. <em class="ftid">  
-
-
-  15. <select name="readperm" id="readperm" class="ps" style="width:90px">  
-
-
-  16. <option value="">{lang unlimited}</option>  
-
-
-  17. <!--{loop $_G['cache']['groupreadaccess'] $val}-->  
-
-
-  18. <option value="$val[readaccess]" title="{lang readperm}: $val[readaccess]"{if $thread['readperm'] == $val[readaccess]} selected="selected"{/if}>$val[grouptitle]</option>  
-
-
-  19. <!--{/loop}-->  
-
-
-  20. <option value="255">{lang highest_right}</option>  
-
-
-  21. </select>  
-
-
-  22. </em>  
-
-
-  23. <img src="{IMGDIR}/faq.gif" alt="Tip" class="mtn vm" style="margin: 0;" onmouseover="showTip(this)" tip="{lang post_select_usergroup_readacces}" /></a>  
-
-
-  24. </p>  
-
-
-  25. <!--{/if}-->
-
-
-
-
-
-
-
-
-* 
+```
+<!--{if $_G['fid'] == 39 }-->  
+<p class="mbn">{lang readperm}:</p>  
+<p class="mbn">  
+<em class="ftid">  
+<select name="readperm" id="readperm" class="ps" style="width:90px">  
+<option value="255">{lang highest_right}</option>  
+</select>  
+</em>  
+<img src="{IMGDIR}/faq.gif" alt="Tip" class="mtn vm" style="margin: 0;" onmouseover="showTip(this)" tip="{lang post_select_usergroup_readacces}" /></a>  
+</p>  
+<!--{elseif $_G['group']['allowsetreadperm']}-->  
+<p class="mbn">{lang readperm}:</p>  
+<p class="mbn">  
+<em class="ftid">  
+<select name="readperm" id="readperm" class="ps" style="width:90px">  
+<option value="">{lang unlimited}</option>  
+<!--{loop $_G['cache']['groupreadaccess'] $val}-->  
+<option value="$val[readaccess]" title="{lang readperm}: $val[readaccess]"{if $thread['readperm'] == $val[readaccess]} selected="selected"{/if}>$val[grouptitle]</option>  
+<!--{/loop}-->  
+<option value="255">{lang highest_right}</option>  
+</select>  
+</em>  
+<img src="{IMGDIR}/faq.gif" alt="Tip" class="mtn vm" style="margin: 0;" onmouseover="showTip(this)" tip="{lang post_select_usergroup_readacces}" /></a>  
+</p>  
+<!--{/if}-->
+```
 
 
 即可，PS：替换后的第一行代码中39需要更换为目标版块的fid怎么知道fid号？当前版块的地址中比如：[http://www.discuz.net/forumdisplay.php?fid=2](http://www.discuz.net/forumdisplay.php?fid=2)组后fid=后的那个数字 就是当前版块fid号这样就行了，其中value对应的就是阅读权限，比如255，而{lang highest_right}代表了最高权限四个字，其他大家自己参悟喽

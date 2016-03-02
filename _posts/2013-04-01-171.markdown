@@ -24,11 +24,7 @@ PHP编程中经常需要用到一些服务器的一些资料，特把$_SERVER的
 
 
 
-<table style="" border="0" align="center" width="95%" cellpadding="6" cellspacing="0" >
-<tbody >
-<tr >
-
-<td bgcolor="#ddedfb" style="margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:0px; padding-top:5px; padding-right:5px; padding-bottom:5px; padding-left:5px; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-color:rgb(221,221,221); border-right-color:rgb(221,221,221); border-bottom-color:rgb(221,221,221); border-left-color:rgb(221,221,221); word-wrap:break-word" >
+```
 $_SERVER['PHP_SELF'] #当前正在执行脚本的文件名，与 document root相关。  
 
 $_SERVER['argv'] #传递给该脚本的参数。  
@@ -92,8 +88,5 @@ $_SERVER['PHP_AUTH_USER'] #当 PHP 运行在 Apache 模块方式下，并且正�
 $_SERVER['PHP_AUTH_PW'] #当 PHP 运行在 Apache 模块方式下，并且正在使用 HTTP 认证功能，这个变量便是用户输入的密码。  
 
 $_SERVER['AUTH_TYPE'] #当 PHP 运行在 Apache 模块方式下，并且正在使用 HTTP 认证功能，这个变量便是认证的类型。
-</td>
-</tr>
-</tbody>
-</table>
+```
 

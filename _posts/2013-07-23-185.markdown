@@ -372,7 +372,7 @@ ln -s /tmp/mysql.sock /var/run/mysqld/mysqld.sock就可以喽
 
 
 
-<blockquote>
+```
 
 > 
 > 1>进入mysql: mysql –u root –p
@@ -403,7 +403,7 @@ ln -s /tmp/mysql.sock /var/run/mysqld/mysqld.sock就可以喽
 > 6>查看host为%授权是否添加: select * from user;
 > 
 > 
-</blockquote>
+```
 
 
 mysql安装成功

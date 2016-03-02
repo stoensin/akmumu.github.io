@@ -64,13 +64,12 @@ CI的原生分页类中有一个参数 $config[anchor_class]
 
 [?](http://www.cnblogs.com/swymjt/archive/2013/02/17/ci-fpage-ajax.html#)
 
-
+```
 <table cellpadding="0" cellspacing="0" style="background-color:initial!important; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; text-align:left!important; top:auto!important; vertical-align:baseline!important; width:1124px; font-family:'Courier New',Consolas,'Bitstream Vera Sans Mono',Courier,monospace!important; font-size:12px!important; min-height:inherit!important; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-color:rgb(192,192,192); border-right-color:rgb(192,192,192); border-bottom-color:rgb(192,192,192); border-left-color:rgb(192,192,192); border-collapse:collapse" border="0" >
 <tbody style="background-color:initial!important; border-top-width:0px!important; border-right-width:0px!important; border-bottom-width:0px!important; border-left-width:0px!important; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:auto!important; min-height:inherit!important" >
 <tr style="background-color:initial!important; border-top-width:0px!important; border-right-width:0px!important; border-bottom-width:0px!important; border-left-width:0px!important; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:auto!important; min-height:inherit!important" >
 
 <td style="color:rgb(94,94,94); font-family:'Courier New',Consolas,'Bitstream Vera Sans Mono',Courier,monospace!important; line-height:2em!important; background-color:initial!important; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:3px; padding-right:3px; padding-bottom:3px; padding-left:3px; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:1124px; min-height:inherit!important; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-color:rgb(192,192,192); border-right-color:rgb(192,192,192); border-bottom-color:rgb(192,192,192); border-left-color:rgb(192,192,192); border-collapse:collapse; word-break:normal!important" class="code" >
-
 
 
 
@@ -88,7 +87,7 @@ CI的原生分页类中有一个参数 $config[anchor_class]
 </tr>
 </tbody>
 </table>
-
+```
 
 
 
@@ -141,7 +140,7 @@ CI的原生分页类中有一个参数 $config[anchor_class]
 
 [?](http://www.cnblogs.com/swymjt/archive/2013/02/17/ci-fpage-ajax.html#)
 
-
+```
 <table cellpadding="0" cellspacing="0" style="background-color:initial!important; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; text-align:left!important; top:auto!important; vertical-align:baseline!important; width:1141px; font-family:'Courier New',Consolas,'Bitstream Vera Sans Mono',Courier,monospace!important; font-size:12px!important; min-height:inherit!important; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-color:rgb(192,192,192); border-right-color:rgb(192,192,192); border-bottom-color:rgb(192,192,192); border-left-color:rgb(192,192,192); border-collapse:collapse" border="0" >
 <tbody style="background-color:initial!important; border-top-width:0px!important; border-right-width:0px!important; border-bottom-width:0px!important; border-left-width:0px!important; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:auto!important; min-height:inherit!important" >
 <tr style="background-color:initial!important; border-top-width:0px!important; border-right-width:0px!important; border-bottom-width:0px!important; border-left-width:0px!important; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:auto!important; min-height:inherit!important" >
@@ -214,7 +213,7 @@ CI的原生分页类中有一个参数 $config[anchor_class]
 </tbody>
 </table>
 
-
+```
 
 
 
@@ -476,7 +475,7 @@ CI的原生分页类中有一个参数 $config[anchor_class]
 </tr>
 </tbody>
 </table>
-
+```
 
 
 
