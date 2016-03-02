@@ -443,120 +443,46 @@ plain](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[copy](http://bl
 
 
 
-	
-  1. import sys  
-
-	
-  2. sys.path.append('./gen-py')  
-
-	
-  3.    
-
-	
-  4. from helloworld import HelloWorld  
-
-	
-  5. from helloworld.ttypes import *  
-
-	
-  6.    
-
-	
-  7. from thrift.transport import TSocket  
-
-	
-  8. from thrift.transport import TTransport  
-
-	
-  9. from thrift.protocol import TBinaryProtocol  
-
-	
-  10. from thrift.server import TServer  
-
-	
-  11.    
-
-	
-  12. class HellowordHandler:  
-
-	
-  13.     def __init__ (self):  
-
-	
-  14.         pass  
-
-	
-  15.    
-
-	
-  16.     def ping (self, name):  
-
-	
-  17.         print name + ' from server.'  
-
-	
-  18.         return "%s from server." % name  
-
-	
-  19.     def getpng (self):  
-
-	
-  20.         f = open("./logo.png", "rb")  
-
-	
-  21.         c = f.read()  
-
-	
-  22.         f.close()  
-
-	
-  23.         return c  
-
-	
-  24. handler = HellowordHandler()  
-
-	
-  25. processor = HelloWorld.Processor(handler)  
-
-	
-  26. transport = TSocket.TServerSocket(9090)  
-
-	
-  27. tfactory = TTransport.TBufferedTransportFactory()  
-
-	
-  28. pfactory = TBinaryProtocol.TBinaryProtocolFactory()  
-
-	
-  29.    
-
-	
-  30. server = TServer.TSimpleServer(processor, transport, tfactory, pfactory)  
-
-	
-  31.    
-
-	
-  32. # You could do one of these for a multithreaded server  
-
-	
-  33. #server = TServer.TThreadedServer(processor, transport, tfactory, pfactory)  
-
-	
-  34. #server = TServer.TThreadPoolServer(processor, transport, tfactory, pfactory)  
-
-	
-  35.    
-
-	
-  36. print 'Starting the server...'  
-
-	
-  37. server.serve()  
-
-	
-  38. print 'done.'  
-
+```	
+import sys  
+sys.path.append('./gen-py')  
+   
+from helloworld import HelloWorld  
+from helloworld.ttypes import *  
+   
+from thrift.transport import TSocket  
+from thrift.transport import TTransport  
+from thrift.protocol import TBinaryProtocol  
+ from thrift.server import TServer  
+    
+ class HellowordHandler:  
+     def __init__ (self):  
+         pass  
+    
+     def ping (self, name):  
+         print name + ' from server.'  
+         return "%s from server." % name  
+     def getpng (self):  
+         f = open("./logo.png", "rb")  
+         c = f.read()  
+         f.close()  
+         return c  
+ handler = HellowordHandler()  
+ processor = HelloWorld.Processor(handler)  
+ transport = TSocket.TServerSocket(9090)  
+ tfactory = TTransport.TBufferedTransportFactory()  
+ pfactory = TBinaryProtocol.TBinaryProtocolFactory()  
+    
+ server = TServer.TSimpleServer(processor, transport, tfactory, pfactory)  
+    
+ # You could do one of these for a multithreaded server  
+ #server = TServer.TThreadedServer(processor, transport, tfactory, pfactory)  
+ #server = TServer.TThreadPoolServer(processor, transport, tfactory, pfactory)  
+    
+ print 'Starting the server...'  
+ server.serve()  
+ print 'done.'  
+```
 
 
 
@@ -610,99 +536,39 @@ plain](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[copy](http://bl
 
 
 
-	
-  1. <?php  
-
-	
-  2. try{  
-
-	
-  3.    
-
-	
-  4.     $GLOBALS['THRIFT_ROOT'] = './php/src';   
-
-	
-  5.     require_once $GLOBALS['THRIFT_ROOT'].'/Thrift.php';  
-
-	
-  6.     require_once $GLOBALS['THRIFT_ROOT'].'/protocol/TBinaryProtocol.php';  
-
-	
-  7.     require_once $GLOBALS['THRIFT_ROOT'].'/transport/TSocket.php';  
-
-	
-  8.     require_once $GLOBALS['THRIFT_ROOT'].'/transport/THttpClient.php';  
-
-	
-  9.     require_once $GLOBALS['THRIFT_ROOT'].'/transport/TBufferedTransport.php';  
-
-	
-  10.     error_reporting(E_NONE);  
-
-	
-  11.     $GEN_DIR = './gen-php';  
-
-	
-  12.     require_once $GEN_DIR.'/helloworld/HelloWorld.php';  
-
-	
-  13.     error_reporting(E_ALL);  
-
-	
-  14.    
-
-	
-  15.     $socket = new TSocket('*.*.*.*', 9090);  
-
-	
-  16.     $transport = new TBufferedTransport($socket, 1024, 1024);  
-
-	
-  17.     $protocol = new TBinaryProtocol($transport);  
-
-	
-  18.     $client = new HelloWorldClient($protocol);  
-
-	
-  19.    
-
-	
-  20.     $transport->open();  
-
-	
-  21.    
-
-	
-  22.     $a = $client->ping('xyq ');  
-
-	
-  23.     echo $a;  
-
-	
-  24.    
-
-	
-  25.     $transport->close();  
-
-	
-  26.    
-
-	
-  27.     } catch (TException $tx) {  
-
-	
-  28.         print 'TException: '.$tx->getMessage()."/n";  
-
-	
-  29.     }  
-
-	
-  30.    
-
-	
-  31. ?>  
-
+```	
+<?php  
+try{  
+   
+    $GLOBALS['THRIFT_ROOT'] = './php/src';   
+    require_once $GLOBALS['THRIFT_ROOT'].'/Thrift.php';  
+    require_once $GLOBALS['THRIFT_ROOT'].'/protocol/TBinaryProtocol.php';  
+    require_once $GLOBALS['THRIFT_ROOT'].'/transport/TSocket.php';  
+    require_once $GLOBALS['THRIFT_ROOT'].'/transport/THttpClient.php';  
+    require_once $GLOBALS['THRIFT_ROOT'].'/transport/TBufferedTransport.php';  
+     error_reporting(E_NONE);  
+     $GEN_DIR = './gen-php';  
+     require_once $GEN_DIR.'/helloworld/HelloWorld.php';  
+     error_reporting(E_ALL);  
+    
+     $socket = new TSocket('*.*.*.*', 9090);  
+     $transport = new TBufferedTransport($socket, 1024, 1024);  
+     $protocol = new TBinaryProtocol($transport);  
+     $client = new HelloWorldClient($protocol);  
+    
+     $transport->open();  
+    
+     $a = $client->ping('xyq ');  
+     echo $a;  
+    
+     $transport->close();  
+    
+     } catch (TException $tx) {  
+         print 'TException: '.$tx->getMessage()."/n";  
+     }  
+    
+ ?>  
+```
 
 
 

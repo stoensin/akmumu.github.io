@@ -84,45 +84,45 @@ Html代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
 
 
 
-	
-  1. <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+```	
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-	
-  2. <script type="text/javascript">
 
-	
-  3.     function jsonpCallback(result) {
+<script type="text/javascript">
 
-	
-  4.         //alert(result);
 
-	
-  5.         for(var i in result) {
+    function jsonpCallback(result) {
 
-	
-  6.             alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
 
-	
-  7.         }
+        //alert(result);
 
-	
-  8.     }
 
-	
-  9.     var JSONP=document.createElement("script");
+        for(var i in result) {
 
-	
-  10.     JSONP.type="text/javascript";
 
-	
-  11.     JSONP.src="http://crossdomain.com/services.php?callback=jsonpCallback";
+            alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
 
-	
-  12.     document.getElementsByTagName("head")[0].appendChild(JSONP);
 
-	
-  13. </script>
+        }
 
+
+    }
+
+
+    var JSONP=document.createElement("script");
+
+
+     JSONP.type="text/javascript";
+
+
+     JSONP.src="http://crossdomain.com/services.php?callback=jsonpCallback";
+
+
+     document.getElementsByTagName("head")[0].appendChild(JSONP);
+
+
+ </script>
+```
 
 
 
@@ -145,46 +145,42 @@ Html代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
 
 
 
+```
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
 
+<script type="text/javascript">
 
 
-	
-  1. <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    function jsonpCallback(result) {
 
-	
-  2. <script type="text/javascript">
 
-	
-  3.     function jsonpCallback(result) {
+        alert(result.a);
 
-	
-  4.         alert(result.a);
 
-	
-  5.         alert(result.b);
+        alert(result.b);
 
-	
-  6.         alert(result.c);
 
-	
-  7.         for(var i in result) {
+        alert(result.c);
 
-	
-  8.             alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
 
-	
-  9.         }
+        for(var i in result) {
 
-	
-  10.     }
 
-	
-  11. </script>
+            alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
 
-	
-  12. <script type="text/javascript" src="http://crossdomain.com/services.php?callback=jsonpCallback"></script>
 
+        }
+
+
+     }
+
+
+ </script>
+
+
+ <script type="text/javascript" src="http://crossdomain.com/services.php?callback=jsonpCallback"></script>
+```
 
 
 
@@ -215,35 +211,26 @@ Php代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
 
 
 
-	
-  1. <?php
+```	
+<?php
 
-	
-  2. 
-	
-  3. //服务端返回JSON数据
 
-	
-  4. $arr=array('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5);
+//服务端返回JSON数据
 
-	
-  5. $result=json_encode($arr);
+$arr=array('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5);
 
-	
-  6. //echo $_GET['callback'].'("Hello,World!")';
+$result=json_encode($arr);
 
-	
-  7. //echo $_GET['callback']."($result)";
+//echo $_GET['callback'].'("Hello,World!")';
 
-	
-  8. //动态执行回调函数
+//echo $_GET['callback']."($result)";
 
-	
-  9. $callback=$_GET['callback'];
+//动态执行回调函数
 
-	
-  10. echo $callback."($result)";
+$callback=$_GET['callback'];
 
+ echo $callback."($result)";
+```
 
 
 
@@ -253,11 +240,11 @@ Php代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
 如果将上述JS客户端代码用jQuery的方法来实现，也非常简单。
 
 
-
+```
 **$.getJSON
 $.ajax
 $.get**
-
+```
 
 
 客户端JS代码在jQuery中的实现方式1：
@@ -280,33 +267,17 @@ Js代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
 
 
 
-	
-  1. <script type="text/javascript" src="jquery.js"></script>
-
-	
-  2. <script type="text/javascript">
-
-	
-  3.     $.getJSON("http://crossdomain.com/services.php?callback=?",
-
-	
-  4.     function(result) {
-
-	
-  5.         for(var i in result) {
-
-	
-  6.             alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
-
-	
-  7.         }
-
-	
-  8.     });
-
-	
-  9. </script>
-
+```	
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+    $.getJSON("http://crossdomain.com/services.php?callback=?",
+    function(result) {
+        for(var i in result) {
+            alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
+        }
+    });
+</script>
+```
 
 
 
@@ -333,51 +304,23 @@ Js代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
 
 
 
-	
-  1. <script type="text/javascript" src="jquery.js"></script>
-
-	
-  2. <script type="text/javascript">
-
-	
-  3.     $.ajax({
-
-	
-  4.         url:"http://crossdomain.com/services.php",
-
-	
-  5.         dataType:'jsonp',
-
-	
-  6.         data:'',
-
-	
-  7.         jsonp:'callback',
-
-	
-  8.         success:function(result) {
-
-	
-  9.             for(var i in result) {
-
-	
-  10.                 alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
-
-	
-  11.             }
-
-	
-  12.         },
-
-	
-  13.         timeout:3000
-
-	
-  14.     });
-
-	
-  15. </script>
-
+```	
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+    $.ajax({
+        url:"http://crossdomain.com/services.php",
+        dataType:'jsonp',
+        data:'',
+        jsonp:'callback',
+        success:function(result) {
+            for(var i in result) {
+                 alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
+             }
+         },
+         timeout:3000
+     });
+ </script>
+```
 
 
 
@@ -404,18 +347,12 @@ Js代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
 
 
 
-	
-  1. <script type="text/javascript" src="jquery.js"></script>
-
-	
-  2. <script type="text/javascript">
-
-	
-  3.     $.get('http://crossdomain.com/services.php?callback=?', {name: encodeURIComponent('tester')}, function (json) { for(var i in json) alert(i+":"+json[i]); }, 'jsonp');
-
-	
-  4. </script>
-
+```	
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+    $.get('http://crossdomain.com/services.php?callback=?', {name: encodeURIComponent('tester')}, function (json) { for(var i in json) alert(i+":"+json[i]); }, 'jsonp');
+</script>
+```
 
 
 
@@ -444,9 +381,9 @@ Js代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
 
 
 
-	
-  1. jsonpCallback({msg:'this is json data'})
-
+```	
+jsonpCallback({msg:'this is json data'})
+```
 
 **Jsonp原理：**
 首先在客户端注册一个callback, 然后把callback的名字传给服务器。
@@ -457,6 +394,8 @@ Js代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
 最后将 json 数据直接以入参的方式，放置到 function 中，这样就生成了一段 js 语法的文档，返回给客户端。
 
 客户端浏览器，解析script标签，并执行返回的 javascript 文档，此时数据作为参数，传入到了客户端预先定义好的 callback 函数里.（动态执行回调函数）
+
+```
 <table cellpadding="0" cellspacing="0" border="0" >
 <tbody >
 <tr >
@@ -466,6 +405,7 @@ Js代码  ![收藏代码](http://justcoding.iteye.com/images/icon_star.png)
 </tr>
 </tbody>
 </table>
+```
 **使用JSON的优点在于：**
 
 
