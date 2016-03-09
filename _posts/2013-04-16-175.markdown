@@ -38,445 +38,90 @@ tags:
 CI的原生分页类中有一个参数 $config[anchor_class]
 
 
-
-
-
 这个参数是用来设置分页链接的样式的，所以我们可以设置成这样：
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[?](http://www.cnblogs.com/swymjt/archive/2013/02/17/ci-fpage-ajax.html#)
-
-```
-<table cellpadding="0" cellspacing="0" style="background-color:initial!important; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; text-align:left!important; top:auto!important; vertical-align:baseline!important; width:1124px; font-family:'Courier New',Consolas,'Bitstream Vera Sans Mono',Courier,monospace!important; font-size:12px!important; min-height:inherit!important; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-color:rgb(192,192,192); border-right-color:rgb(192,192,192); border-bottom-color:rgb(192,192,192); border-left-color:rgb(192,192,192); border-collapse:collapse" border="0" >
-<tbody style="background-color:initial!important; border-top-width:0px!important; border-right-width:0px!important; border-bottom-width:0px!important; border-left-width:0px!important; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:auto!important; min-height:inherit!important" >
-<tr style="background-color:initial!important; border-top-width:0px!important; border-right-width:0px!important; border-bottom-width:0px!important; border-left-width:0px!important; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:auto!important; min-height:inherit!important" >
-
-<td style="color:rgb(94,94,94); font-family:'Courier New',Consolas,'Bitstream Vera Sans Mono',Courier,monospace!important; line-height:2em!important; background-color:initial!important; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:3px; padding-right:3px; padding-bottom:3px; padding-left:3px; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:1124px; min-height:inherit!important; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-color:rgb(192,192,192); border-right-color:rgb(192,192,192); border-bottom-color:rgb(192,192,192); border-left-color:rgb(192,192,192); border-collapse:collapse; word-break:normal!important" class="code" >
-
-
-
-
-
-`$config``[anchor_class]
- = ``"class=ajax_fpage"``;`
-
-
-
-
-
-
-</td>
-</tr>
-</tbody>
-</table>
-```
-
-
-
-
-
-
-
-
-
-
-
-　　
-
-
-
-
+{% highlight js %}
+$config[anchor_class] = "class=ajax_fpage";
+{% endhighlight %}　
 
 然后在view部分这样采用禁止a便签默认动作的方法来取得AJAX的调取效果。
 
-
-
-
-
-
-
-
-
-
+ 
 
 代码如下：
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[?](http://www.cnblogs.com/swymjt/archive/2013/02/17/ci-fpage-ajax.html#)
-
-```
-<table cellpadding="0" cellspacing="0" style="background-color:initial!important; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; text-align:left!important; top:auto!important; vertical-align:baseline!important; width:1141px; font-family:'Courier New',Consolas,'Bitstream Vera Sans Mono',Courier,monospace!important; font-size:12px!important; min-height:inherit!important; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-color:rgb(192,192,192); border-right-color:rgb(192,192,192); border-bottom-color:rgb(192,192,192); border-left-color:rgb(192,192,192); border-collapse:collapse" border="0" >
-<tbody style="background-color:initial!important; border-top-width:0px!important; border-right-width:0px!important; border-bottom-width:0px!important; border-left-width:0px!important; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:auto!important; min-height:inherit!important" >
-<tr style="background-color:initial!important; border-top-width:0px!important; border-right-width:0px!important; border-bottom-width:0px!important; border-left-width:0px!important; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:auto!important; min-height:inherit!important" >
-
-<td style="color:rgb(94,94,94); font-family:'Courier New',Consolas,'Bitstream Vera Sans Mono',Courier,monospace!important; line-height:2em!important; background-color:initial!important; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:3px; padding-right:3px; padding-bottom:3px; padding-left:3px; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:1141px; min-height:inherit!important; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-color:rgb(192,192,192); border-right-color:rgb(192,192,192); border-bottom-color:rgb(192,192,192); border-left-color:rgb(192,192,192); border-collapse:collapse; word-break:normal!important" class="code" >
-
-
-
-
-
-
-`<script>`
-
-
-
-
-
-` ``$(.ajax_fpage).click(``function``(e){`
-
-
-
-
-
-` ``var` `url
- = $(``this``).attr(href);`
-
-
-
-
-
-` ``$.get(url,{},``function``(res){`
-
-
-
-
-
-` ``$(``#show_what_table).html(res);`
-
-
-
-
-
-` ``});`
-
-
-
-
-
-` ``event.preventDefault();`
-
-
-
-
-
-` ``});`
-
-
-
-
-
-`</script>`
-
-
-
-
-
-
-</td>
-</tr>
-</tbody>
-</table>
-
-```
-
-
-
-
-
-
-
-
-
-
-　　
-
-
-
-
+{% highlight js %}
+<script>
+    $(.ajax_fpage).click(function(e){
+    var url
+ = $(this).attr(href);
+        $.get(url,{},function(res){
+            $(#show_what_table).html(res);
+        });
+    event.preventDefault();
+    });
+</script>
+{% endhighlight %}
 
 当ajax_fpage点击的时候，禁止a标签的默认动作，并得到href信息，然后用get方法取得href的内容，并更新dom.
 
-
-
-
-
-
-
-
-
-
+ 
 
 这样一个完整的ajax分页就实现了。从而不需要对原始的类进行扩展了。
 
-
-
-
-
 详细的PHP代码如下：
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[?](http://www.cnblogs.com/swymjt/archive/2013/02/17/ci-fpage-ajax.html#)
-
-
-<table cellpadding="0" cellspacing="0" style="background-color:initial!important; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; text-align:left!important; top:auto!important; vertical-align:baseline!important; width:1141px; font-family:'Courier New',Consolas,'Bitstream Vera Sans Mono',Courier,monospace!important; font-size:12px!important; min-height:inherit!important; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-color:rgb(192,192,192); border-right-color:rgb(192,192,192); border-bottom-color:rgb(192,192,192); border-left-color:rgb(192,192,192); border-collapse:collapse" border="0" >
-<tbody style="background-color:initial!important; border-top-width:0px!important; border-right-width:0px!important; border-bottom-width:0px!important; border-left-width:0px!important; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:auto!important; min-height:inherit!important" >
-<tr style="background-color:initial!important; border-top-width:0px!important; border-right-width:0px!important; border-bottom-width:0px!important; border-left-width:0px!important; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; line-height:2em!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:0px!important; padding-right:0px!important; padding-bottom:0px!important; padding-left:0px!important; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:auto!important; min-height:inherit!important" >
-
-<td style="color:rgb(94,94,94); font-family:'Courier New',Consolas,'Bitstream Vera Sans Mono',Courier,monospace!important; line-height:2em!important; background-color:initial!important; border-top-width:1px; border-right-width:1px; border-bottom-width:1px; border-left-width:1px; border-style:initial!important; border-color:initial!important; bottom:auto!important; float:none!important; height:auto!important; left:auto!important; margin-top:0px!important; margin-right:0px!important; margin-bottom:0px!important; margin-left:0px!important; outline-width:0px!important; outline-style:initial!important; outline-color:initial!important; overflow-x:visible!important; overflow-y:visible!important; padding-top:3px; padding-right:3px; padding-bottom:3px; padding-left:3px; position:static!important; right:auto!important; top:auto!important; vertical-align:baseline!important; width:1141px; min-height:inherit!important; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid; border-top-color:rgb(192,192,192); border-right-color:rgb(192,192,192); border-bottom-color:rgb(192,192,192); border-left-color:rgb(192,192,192); border-collapse:collapse; word-break:normal!important" class="code" >
-
-
-
-
-
-
-`function` `ContentList(``$id``,``$p``=0)`
-
-
-
-
-
-`{`
-
-
-
-
-
-` ``$this``->load->library(pagination);`
-
-
-
-
-
-` ``$config``[base_url]
- = site_url(qyadmin/ContentList/.``$id``./.``$p``);`
-
-
-
-
-
-` ``$config``[total_rows]
- = ``$this``->admin->content_list(``$id``,``$p``,1);`
-
-
-
-
-
-` ``$config``[per_page]
- = 5;`
-
-
-
-
-
-` ``$config``[uri_segment]
- = 5; `
-
-
-
-
-
-` ``$config``[first_link]
- = FALSE;`
-
-
-
-
-
-` ``$config``[last_link]
- = FALSE;`
-
-
-
-
-
-` ``$config``[full_tag_open]
- = <p>;`
-
-
-
-
-
-` ``$config``[full_tag_close]
- = </p>;`
-
-
-
-
-
-` ``$config``[display_pages]
- = FALSE;`
-
-
-
-
-
-` ``$this``->load->helper(url);`
-
-
-
-
-
-` ``$skin_url` `=
- base_url().APPPATH . ``"views/templates"``;`
-
-
-
-
-
-` ``$config``[next_link]
- = <img src=``".$skin_url./images/page_next.gif"``>;`
-
-
-
-
-
-` ``$config``[next_tag_open]
- = <li ``class``=``"fr"``>;`
-
-
-
-
-
-` ``$config``[next_tag_close]
- = </li>; `
-
-
-
-
-
-` ``$config``[prev_link]
- = <img src=``".$skin_url./images/page_prev.gif"``>;`
-
-
-
-
-
-` ``$config``[prev_tag_open]
- = <li ``class``=``"fr"``>;`
-
-
-
-
-
-` ``$config``[prev_tag_close]
- = </li>;`
-
-
-
-
-
-` ``$config``[anchor_class]
- = ``class``=``"ajax_fpage"``;`
-
-
-
-
-
-` ``$this``->pagination->initialize(``$config``);`
-
-
-
-
-
-` ``$content` `=
-``$this``->admin->content_list(``$id``,``$p``,0,``$config``[per_page],``$this``->uri->segment(5));`
-
-
-
-
-
-` ``$fpage` `=
-``$this``->pagination->create_links();`
-
-
-
-
-
-` ``$this``->smarty->assign(fpage,``$fpage``);`
-
-
-
-
-
-` ``$this``->smarty->assign(content,``$content``);`
-
-
-
-
-
-` ``$this``->smarty->view(show.tpl);`
-
-
-
-
-
-`}`
-
-
-
-
-
-
-</td>
-</tr>
-</tbody>
-</table>
-```
-
+ 
+{% highlight js %}
+function ContentList($id,$p=0)
+{
+    $this->load->library(pagination);
+    $config[base_url]
+ = site_url(qyadmin/ContentList/.$id./.$p);
+    $config[total_rows]
+ = $this->admin->content_list($id,$p,1);
+    $config[per_page]
+ = 5;
+    $config[uri_segment]
+ = 5;  
+    $config[first_link]
+ = FALSE;
+    $config[last_link]
+ = FALSE;
+    $config[full_tag_open]
+ = <p>;
+    $config[full_tag_close]
+ = </p>;
+    $config[display_pages]
+ = FALSE;
+    $this->load->helper(url);
+    $skin_url =
+ base_url().APPPATH . "views/templates";
+    $config[next_link]
+ = <img src=".$skin_url./images/page_next.gif">;
+    $config[next_tag_open]
+ = <li class="fr">;
+    $config[next_tag_close]
+ = </li>;  
+    $config[prev_link]
+ = <img src=".$skin_url./images/page_prev.gif">;
+    $config[prev_tag_open]
+ = <li class="fr">;
+    $config[prev_tag_close]
+ = </li>;
+    $config[anchor_class]
+ = class="ajax_fpage";
+    $this->pagination->initialize($config);
+    $content =
+$this->admin->content_list($id,$p,0,$config[per_page],$this->uri->segment(5));
+    $fpage =
+$this->pagination->create_links();
+    $this->smarty->assign(fpage,$fpage);
+    $this->smarty->assign(content,$content);
+    $this->smarty->view(show.tpl);
+}
+{% endhighlight %}　
 
 
 

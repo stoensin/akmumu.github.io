@@ -471,7 +471,7 @@ url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=,fieldset="
 
   
 
-隐藏的"<input>"，它包含了本应当额外追加到URL上的信息。   
+隐藏的`<input>`，它包含了本应当额外追加到URL上的信息。   
 
   
 

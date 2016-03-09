@@ -295,9 +295,10 @@ sudo service mysql.server status
 
 
 
-
+```
 sudo service mysql.server [status|start|stop] 
 
+```
 
 
   
@@ -315,8 +316,10 @@ sudo chmod +x /etc/init.d/mysql这句也有用
 
 
 
+```
 sudo update-rc.d -f mysql.server defaults [remove]
 
+```
 
 
 
@@ -330,8 +333,10 @@ sudo update-rc.d -f mysql.server defaults [remove]
 
 
 
+```
 sudo ln -s /usr/local/mysql/bin/mysql /usr/local/bin/mysql
 
+```
 
 
 
@@ -339,29 +344,29 @@ sudo ln -s /usr/local/mysql/bin/mysql /usr/local/bin/mysql
 
 
 
-
+```
 export PATH=$PATH:/usr/local/mysql/bin
 
+```
 
 
 
 登录的时候还有可能遇到这个问题
 
-
-
-
+```
 ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
 
+```
 
 
 
 这个时候新建如上提示的目录/var/run/mysqld/，把/tmp/mysql.sock这个软连到哪个地方，即
 
 
-
-
+```
 ln -s /tmp/mysql.sock /var/run/mysqld/mysqld.sock就可以喽  
 
+```
 
 
 
@@ -373,36 +378,12 @@ ln -s /tmp/mysql.sock /var/run/mysqld/mysqld.sock就可以喽
 
 
 ```
-
-> 
-> 1>进入mysql: mysql –u root –p
-> 
-> 
-
-> 
-> 2>改变数据库: use mysql;
-> 
-> 
-
-> 
-> 3>从任意主机登录: grant all privileges on *.* to root@"%" identified by "密码文字" with grant option;
-> 
-> 
-
-> 
-> 4>从指定主机登录: grant all privileges on *.* to root@"192.168.1.101" identified by "passw0rd" with grant option;
-> 
-> 
-
-> 
-> 5>授权生效: flush privileges;
-> 
-> 
-
-> 
-> 6>查看host为%授权是否添加: select * from user;
-> 
-> 
+1>进入mysql: mysql –u root –p
+2>改变数据库: use mysql;
+3>从任意主机登录: grant all privileges on *.* to root@"%" identified by "密码文字" with grant option;
+4>从指定主机登录: grant all privileges on *.* to root@"192.168.1.101" identified by "passw0rd" with grant option;
+5>授权生效: flush privileges;
+6>查看host为%授权是否添加: select * from user;
 ```
 
 
@@ -443,8 +424,8 @@ http://nginx.org/en/download.html
 
 创建www用户组和www用户,并创建/home/www目录  
 
-`  
 
+```
 groupadd www  
 
 useradd -g www -s /sbin/nologin -M www  
@@ -453,20 +434,20 @@ mkdir /home/www
 
 chown -R www:www /home/www`  
 
+```
 
 
 
 
-
-`./configure --user=www --group=www --prefix=/usr/local/server/nginx-1.4.1 --with-http_stub_status_module --with-http_realip_module --with-http_addition_module --with-http_gzip_static_module --with-http_random_index_module
+```
+./configure --user=www --group=www --prefix=/usr/local/server/nginx-1.4.1 --with-http_stub_status_module --with-http_realip_module --with-http_addition_module --with-http_gzip_static_module --with-http_random_index_module
  --with-http_sub_module --with-http_dav_module  
 
 make  
 
-make install`  
+make install
 
-
-
+```
 
 
 
@@ -493,35 +474,37 @@ http_dav_module 开启WebDAV扩展动作模块，可为文件和目录指定权�
 
 修改nginx.conf配置：  
 
+```
 vi /usr/local/server/nginx-1.4.1/conf/nginx.conf
 
+```
 
 
 
 头部添加  
 
-`  
 
-user www www;`  
+user www www;
 
 使用www组的www用户启动nginx  
 
 找到server location,修改www根目录  
 
-`  
 
+```
 location / {  
 
 root /home/www;  
 
 index index.html index.htm;  
 
-}`
+}
+```
 
 
 
 
-```这个配置中有很多不合理的地方，其中一个明显的问题就是root指令被放到了location / 块。如果root指令被定义在location块中那么该root指令只能对其所在的location生效。其它locaiont中没有root指令，像location /images块不会匹配任何请求，需要在每个请求中重复配置root指令来解决这个问题。因此我们需要把root指令放在server块，这样各个location就会继承父server块定义的$document_root，如果某个location需要定义一个不同的$document_root，则可以在location单独定义一个root指令。`  
+这个配置中有很多不合理的地方，其中一个明显的问题就是root指令被放到了location / 块。如果root指令被定义在location块中那么该root指令只能对其所在的location生效。其它locaiont中没有root指令，像location /images块不会匹配任何请求，需要在每个请求中重复配置root指令来解决这个问题。因此我们需要把root指令放在server块，这样各个location就会继承父server块定义的$document_root，如果某个location需要定义一个不同的$document_root，则可以在location单独定义一个root指令。
 
 
 
@@ -533,31 +516,26 @@ index index.html index.htm;
 
 
 
-` root /home/www;  
+```
+root /home/www;  
 
 index index.html index.htm index.php;`
 
+```
 
 
 
-`  
-
-`
-
-
-
-
-`启动nginx:  
+启动nginx:  
 
 /usr/local/server/nginx-1.4.1/sbin/nginx  
 
 这个时候，一般会报错，提示:  
 
-``  
+``` 
 
 error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory  
 
-`  
+```
 
 建立链接:  
 
@@ -571,19 +549,15 @@ ln -s /usr/local/lib/libpcre.so.1 /lib
 
 64位系统:  
 
-`  
 
-ln -s /usr/local/lib/libpcre.so.1 /lib64`
-
-
-
-
-```启动成功以后，在浏览器输入127.0.0.1可以看到欢迎语就好了`
+```
+ln -s /usr/local/lib/libpcre.so.1 /lib64
+```
 
 
 
 
-````
+启动成功以后，在浏览器输入127.0.0.1可以看到欢迎语就好了
 
 
 
@@ -632,20 +606,16 @@ _Thank you for using nginx._
 
 
 
+```
 location ~ .php$ {  
+root html;  
+fastcgi_pass 127.0.0.1:9000;  
+fastcgi_index index.php;  
+fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;  
+include fastcgi_params;  
+}  
 
-#67 root html;  
-
-68 fastcgi_pass 127.0.0.1:9000;  
-
-69 fastcgi_index index.php;  
-
-70 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;  
-
-71 include fastcgi_params;  
-
-72 }  
-
+```
   
 
 重启/usr/local/server/nginx-1.4.1/sbin/nginx -s reload
@@ -678,6 +648,7 @@ vi /etc/init.d/nginx
 
 
 
+```
 #! /bin/sh
 
 
@@ -700,16 +671,14 @@ PIDFILE=/usr/local/nginx/logs/$NAME.pid
 
 SCRIPTNAME=/etc/init.d/$NAME
 
+```
 
 
 
 #我改成了下面的  
 
 
-
-
-
-
+```
 DAEMON=/usr/local/server/nginx-1.4.1/sbin/$NAME  
 
 CONFIGFILE=/usr/local/server/nginx-1.4.1/conf/$NAME.conf  
@@ -816,6 +785,7 @@ esac
 
 exit 0
 
+```
 
 第三步   
 
@@ -828,6 +798,7 @@ chmod 777 /etc/init.d/nginx
 
 之后，就可以使用以下命令了   
 
+```
 service nginx start   
 
 service nginx stop   
@@ -846,6 +817,7 @@ service nginx reload
 
 /etc/init.d/nginx reload
 
+```
 
 
 
@@ -871,12 +843,6 @@ vi /etc/rc.local
 
 到这里，lnmp环境就配置好了，去写代码吧
 
-
-
-
-_  
-
-_
 
 
   

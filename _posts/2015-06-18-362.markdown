@@ -131,13 +131,13 @@ Type: string, Default value:
 
 
 
-    
-    <code>Log opened at 2007-05-27 14:28:15  
+```    
+    Log opened at 2007-05-27 14:28:15  
     -> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/x ... ight></init>
     
     <- step_into -i 1
     -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/db ... ></response>
-    </code>
+```    
 
 
 

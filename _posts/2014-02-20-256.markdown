@@ -24,13 +24,11 @@ categories:
 最早的编码——ASCII编码，ASCII编码只能表示键盘上（A-Z、a-z、0-9、+-*/&^%）等不超过127个字符。
 
 1个字节有8位，可以表示256个字符，要表示ASCII码只需要7位就够了，所有最高位始终是0。
-<table cellpadding="2" cellspacing="0" border="1" >
-<tbody >
-<tr >
-
-<td width="606" valign="top" >0000 0000
-1111 1111    -->   共256种值
-</td>
+<table border="1" cellspacing="0" cellpadding="2">
+<tbody>
+<tr>
+<td valign="top" width="606">0000 0000<br>
+1111 1111&nbsp;&nbsp;&nbsp; --&gt;&nbsp;&nbsp;&nbsp;共256种值</td>
 </tr>
 </tbody>
 </table>
@@ -51,18 +49,16 @@ categories:
 
 
 最早的中文字符集GB2312，GB2312不占用ASCII的0-127，两个字节组合来用，但是这样的组合就少了很多，例如：
-<table cellpadding="2" cellspacing="0" border="1" >
-<tbody >
-<tr >
-
-<td width="600" valign="top" >1xxx xxxx 1xxx xxxx  -->  [129 - 255] [129 - 255]
-例如：
-130  140     97       95      144 233   （分组前）
-↓          ↓         ↓           ↓
-[130 140]  [97]     [95]    [144 233]   (分组后)
-↓          ↓         ↓           ↓
-[汉字]    [字母]   [字母]    [汉字]
-</td>
+<table border="1" cellspacing="0" cellpadding="2">
+<tbody>
+<tr>
+<td valign="top" width="600">1xxx xxxx 1xxx xxxx&nbsp; --&gt;&nbsp; [129 - 255] [129 - 255]<br>
+例如：<br>
+130&nbsp; 140&nbsp;&nbsp;&nbsp;&nbsp; 97&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 95&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 144 233&nbsp;&nbsp; （分组前）<br>
+↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br>
+[130 140]&nbsp; [97]&nbsp;&nbsp;&nbsp;&nbsp; [95]&nbsp;&nbsp;&nbsp; [144 233]&nbsp;&nbsp; (分组后)<br>
+↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br>
+[汉字]&nbsp;&nbsp;&nbsp; [字母]&nbsp;&nbsp; [字母]&nbsp;&nbsp;&nbsp; [汉字]</td>
 </tr>
 </tbody>
 </table>
@@ -73,18 +69,16 @@ GB2312只收录了6763个汉字,基本满足了常用汉字的需求，但有些
 
 
 GBK编码完全兼容GB2312，GBK还是双字节，理论上第2字节不再局限于129-255，如果第1字节大于128,则带下一个字节组成一个汉字，如果第1个小于128，就直接转ASCII。例如：
-<table cellpadding="2" cellspacing="0" border="1" >
-<tbody >
-<tr >
-
-<td width="600" valign="top" >1xxx xxxx xxxx xxxx  -->   [129 - 255][0 - 255]
-例如：
-133  22    63      199  22     (分组前)
-↓         ↓           ↓
-[133 22]  [63]    [199 22]    (分组后)
-↓         ↓           ↓
-[汉字]   [字母]     [汉字]
-</td>
+<table border="1" cellspacing="0" cellpadding="2">
+<tbody>
+<tr>
+<td valign="top" width="600">1xxx xxxx xxxx xxxx&nbsp; --&gt;&nbsp;&nbsp; [129 - 255][0 - 255]<br>
+例如：<br>
+133&nbsp; 22&nbsp;&nbsp;&nbsp; 63&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 199&nbsp; 22&nbsp;&nbsp;&nbsp;&nbsp; (分组前)<br>
+↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br>
+[133 22]&nbsp; [63]&nbsp;&nbsp;&nbsp; [199 22]&nbsp;&nbsp;&nbsp; (分组后)<br>
+↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br>
+[汉字]&nbsp;&nbsp; [字母]&nbsp;&nbsp;&nbsp;&nbsp; [汉字]</td>
 </tr>
 </tbody>
 </table>

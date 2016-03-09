@@ -206,516 +206,77 @@ Finished processing dependencies for ngxtop
 基本使用方法如下：
 
 
+基本使用方法如下：
 
-
-
-
-
-
-
-
-
-
-<table >
-<tbody >
-<tr >
-
-<td data-settings="show" >
-
-
-
-
-
-1
-
-
-
-
-2
-
-
-
-
-3
-
-
-
-
-</td>
-
-<td >
-
-
-
-
-
+```
 ngxtop [options]
-
-
-
-
 ngxtop [options] (print|top|avg|sum) <var>
-
-
-
-
 ngxtop info
-
-
-
-
-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
-
-
-
+``` 
 
 这里是一些通用选项。
 
-
-
-	
-  * **-l **: 指定日志文件的完整路径 (Nginx 或 Apache2)
-
-	
-  * **-f **: 日志格式
-
-	
-  * **–no-follow**: 处理当前已经写入的日志文件，而不是实时处理新添加到日志文件的日志
-
-	
-  * **-t **: 更新频率
-
-	
-  * **-n **: 显示行号
-
-	
-  * **-o **: 排序规则(默认是访问计数)
-
-	
-  * **-a …, –a …**: 添加表达式(一般是聚合表达式如： sum, avg, min, max 等)到输出中。
-
-	
-  * **-v**: 输出详细信息
-
-	
-  * **-i **: 只处理符合规则的记录
-
-
+<ul>
+<li><strong>-l&nbsp;</strong>: 指定日志文件的完整路径 (Nginx 或 Apache2)</li>
+<li><strong>-f&nbsp;</strong>: 日志格式</li>
+<li><strong>–no-follow</strong>: 处理当前已经写入的日志文件，而不是实时处理新添加到日志文件的日志</li>
+<li><strong>-t&nbsp;</strong>: 更新频率</li>
+<li><strong>-n&nbsp;</strong>: 显示行号</li>
+<li><strong>-o&nbsp;<var></var></strong>: 排序规则(默认是访问计数)</li>
+<li><strong>-a …, –a …</strong>: 添加表达式(一般是聚合表达式如： sum, avg, min, max 等)到输出中。</li>
+<li><strong>-v</strong>: 输出详细信息</li>
+<li><strong>-i&nbsp;</strong>: 只处理符合规则的记录</li>
+</ul>
 以下是一些内置变量，他们的含义不言自明。
 
-	
-  * bodybytessend
-
-	
-  * http_referer
-
-	
-  * httpuseragent
-
-	
-  * remote_addr
-
-	
-  * remote_user
-
-	
-  * request
-
-	
-  * status
-
-	
-  * time_local
-
-
-
-
-### **远程实时分析**（这个很实用呦，不用每台server都安装ngxtop）
-
-
-sshpass -f pass.txt ssh 192.168.0.100 tail -f /var/log/nginx/nginx.log|ngxtop
-
-
-### 使用 ngxtop 监控 Nginx
-
+bodybytessend
+http_referer
+httpuseragent
+remote_addr
+remote_user
+request
+status
+time_local
+使用 ngxtop 监控 Nginx
 
 ngxtop 默认会从其配置文件 (/etc/nginx/nginx.conf) 中查找 Nginx 日志的地址。所以，监控 Nginx ，运行以下命令即可：
 
-
-
-
-
-
-
-
-
-
-
-
-<table >
-<tbody >
-<tr >
-
-<td data-settings="show" >
-
-
-
-
-
-1
-
-
-
-
-</td>
-
-<td >
-
-
-
-
-
 $ ngxtop
-
-
-
-
-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
-
-
-
+ 
 
 这将会列出10个 Nginx 服务，按请求数量排序。
 
 显示前20个最频繁的请求：
 
-
-
-
-
-
-
-
-
-
-
-
-<table >
-<tbody >
-<tr >
-
-<td data-settings="show" >
-
-
-
-
-
-1
-
-
-
-
-</td>
-
-<td >
-
-
-
-
-
 $ ngxtop -n 20
-
-
-
-
-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
-
-
-[![hhhh](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/hhhh.jpg)](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/hhhh.jpg)
+hhhh
 
 获取Nginx基本信息：
 
-
-
-
-
-
-
-
-
-
-
-
-<table >
-<tbody >
-<tr >
-
-<td data-settings="show" >
-
-
-
-
-
-1
-
-
-
-
-</td>
-
-<td >
-
-
-
-
-
 $ ngxtop info
-
-
-
-
-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
-
-
-[![gggg](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/gggg1.jpg)](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/gggg1.jpg)
+gggg
 
 你可以自定义显示的变量，简单列出需要显示的变量。使用 “print” 命令显示自定义请求。
 
-
-
-
-
-
-
-
-
-
-
-
-<table >
-<tbody >
-<tr >
-
-<td data-settings="show" >
-
-
-
-
-
-1
-
-
-
-
-</td>
-
-<td >
-
-
-
-
-
 $ ngxtop print request http_user_agent remote_addr
-
-
-
-
-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
-
-
-[![0000](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/00001.jpg)](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/00001.jpg)
+0000
 
 显示请求最多的客户端IP地址
 
-
-
-
-
-
-
-
-
-
-
-
-<table >
-<tbody >
-<tr >
-
-<td data-settings="show" >
-
-
-
-
-
-1
-
-
-
-
-</td>
-
-<td >
-
-
-
-
-
 $ ngxtop top remote_addr
-
-
-
-
-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
-
-
-[![tttt](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/tttt.jpg)](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/tttt.jpg)
+tttt
 
 显示状态码是404的请求
 
-
-
-
-
-
-
-
-
-
-
-
-<table >
-<tbody >
-<tr >
-
-<td data-settings="show" >
-
-
-
-
-
-1
-
-
-
-
-</td>
-
-<td >
-
-
-
-
-
 $ ngxtop -i 'status == 404' print request status
-
-
-
-
-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
-
-
-[![dddd](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/dddd.jpg)](http://officialblog-wordpress.stor.sinaapp.com/uploads/2014/06/dddd.jpg)
+dddd
 
 除了Nginx，ngtop 还可以处理其他的日志文件，比如 Apache 的访问文件。使用以下命令监控 Apache 服务器:
 
-
-
-
-
-
-
-
-
-
-
-
-<table >
-<tbody >
-<tr >
-
-<td data-settings="show" >
-
-
-
-
-
-1
-
-
-
-
-</td>
-
-<td >
-
-
-
-
-
 $ tail -f /var/log/apache2/access.log | ngxtop -f common
+ 
 
-
-
-
-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
-
+via: http://xmodulo.com/2014/06/monitor-nginx-web-server-command-line-real-time.html
 
 
 

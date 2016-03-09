@@ -152,21 +152,19 @@ require.js会先加载jQuery、underscore和backbone，然后再运行回调函�
 
 
 ```javascript
+ require.config({
+ 
+ 　　　　paths: {
+ 
+ 　　　　　　"jquery": "lib/jquery.min",
+ 　　　　　　"underscore": "lib/underscore.min",
+ 　　　　　　"backbone": "lib/backbone.min"
+ 
+ 　　　　}
+ 
+ 　　});
 
->     
->     require.config({
->     
->     　　　　paths: {
->     
->     　　　　　　"jquery": "lib/jquery.min",
->     　　　　　　"underscore": "lib/underscore.min",
->     　　　　　　"backbone": "lib/backbone.min"
->     
->     　　　　}
->     
->     　　});
-> 
-> 
+
 ```
 
 
@@ -175,22 +173,22 @@ require.js会先加载jQuery、underscore和backbone，然后再运行回调函�
 
 ```javascript
 
->     
->     require.config({
->     
->     　　　　baseUrl: "js/lib",
->     
->     　　　　paths: {
->     
->     　　　　　　"jquery": "jquery.min",
->     　　　　　　"underscore": "underscore.min",
->     　　　　　　"backbone": "backbone.min"
->     
->     　　　　}
->     
->     　　});
-> 
-> 
+
+require.config({
+
+　　　　baseUrl: "js/lib",
+
+　　　　paths: {
+
+　　　　　　"jquery": "jquery.min",
+　　　　　　"underscore": "underscore.min",
+　　　　　　"backbone": "backbone.min"
+
+　　　　}
+
+　　});
+
+
 ```
 
 
@@ -199,18 +197,17 @@ require.js会先加载jQuery、underscore和backbone，然后再运行回调函�
 
 ```javascript
 
->     
->     require.config({
->     
->     　　　　paths: {
->     
->     　　　　　　"jquery": "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min"
->     
->     　　　　}
->     
->     　　});
-> 
-> 
+require.config({
+
+　　　　paths: {
+
+　　　　　　"jquery": "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min"
+
+　　　　}
+
+　　});
+
+
 ```
 
 
@@ -227,25 +224,25 @@ require.js加载的模块，采用AMD规范。也就是说，模块必须按照A
 
 ```javascript
 
->     
->     // math.js
->     
->     　　define(function (){
->     
->     　　　　var add = function (x,y){
->     
->     　　　　　　return x+y;
->     
->     　　　　};
->     
->     　　　　return {
->     
->     　　　　　　add: add
->     　　　　};
->     
->     　　});
-> 
-> 
+
+// math.js
+
+　　define(function (){
+
+　　　　var add = function (x,y){
+
+　　　　　　return x+y;
+
+　　　　};
+
+　　　　return {
+
+　　　　　　add: add
+　　　　};
+
+　　});
+
+
 ```
 
 
@@ -254,16 +251,16 @@ require.js加载的模块，采用AMD规范。也就是说，模块必须按照A
 
 ```javascript
 
->     
->     / main.js
->     
->     　　require(['math'], function (math){
->     
->     　　　　alert(math.add(1,1));
->     
->     　　});
-> 
-> 
+
+/ main.js
+
+　　require(['math'], function (math){
+
+　　　　alert(math.add(1,1));
+
+　　});
+
+
 ```
 
 
@@ -272,24 +269,24 @@ require.js加载的模块，采用AMD规范。也就是说，模块必须按照A
 
 ```javascript
 
->     
->     define(['myLib'], function(myLib){
->     
->     　　　　function foo(){
->     
->     　　　　　　myLib.doSomething();
->     
->     　　　　}
->     
->     　　　　return {
->     
->     　　　　　　foo : foo
->     
->     　　　　};
->     
->     　　});
-> 
-> 
+
+define(['myLib'], function(myLib){
+
+　　　　function foo(){
+
+　　　　　　myLib.doSomething();
+
+　　　　}
+
+　　　　return {
+
+　　　　　　foo : foo
+
+　　　　};
+
+　　});
+
+
 ```
 
 
@@ -308,25 +305,25 @@ require.js加载的模块，采用AMD规范。也就是说，模块必须按照A
 
 ```javascript
 
->     
->     require.config({
->     
->     　　　　shim: {
->     
->     　　　　　　'underscore':{
->     　　　　　　　　exports: '_'
->     　　　　　　},
->     
->     　　　　　　'backbone': {
->     　　　　　　　　deps: ['underscore', 'jquery'],
->     　　　　　　　　exports: 'Backbone'
->     　　　　　　}
->     
->     　　　　}
->     
->     　　});
-> 
-> 
+
+require.config({
+
+　　　　shim: {
+
+　　　　　　'underscore':{
+　　　　　　　　exports: '_'
+　　　　　　},
+
+　　　　　　'backbone': {
+　　　　　　　　deps: ['underscore', 'jquery'],
+　　　　　　　　exports: 'Backbone'
+　　　　　　}
+
+　　　　}
+
+　　});
+
+
 ```
 
 
@@ -337,20 +334,20 @@ require.config()接受一个配置对象，这个对象除了有前面说过的p
 
 ```javascript
 
->     
->     shim: {
->     
->     　　　　'jquery.scroll': {
->     
->     　　　　　　deps: ['jquery'],
->     
->     　　　　　　exports: 'jQuery.fn.scroll'
->     
->     　　　　}
->     
->     　　}
-> 
-> 
+
+shim: {
+
+　　　　'jquery.scroll': {
+
+　　　　　　deps: ['jquery'],
+
+　　　　　　exports: 'jQuery.fn.scroll'
+
+　　　　}
+
+　　}
+
+
 ```
 
 
@@ -373,26 +370,26 @@ text和image插件，则是允许require.js加载文本和图片文件。
 
 ```javascript
 
->     
->     define([
->     
->     　　　　'text!review.txt',
->     
->     　　　　'image!cat.jpg'
->     
->     　　　　],
->     
->     　　　　function(review,cat){
->     
->     　　　　　　console.log(review);
->     
->     　　　　　　document.body.appendChild(cat);
->     
->     　　　　}
->     
->     　　);
-> 
-> 
+
+define([
+
+　　　　'text!review.txt',
+
+　　　　'image!cat.jpg'
+
+　　　　],
+
+　　　　function(review,cat){
+
+　　　　　　console.log(review);
+
+　　　　　　document.body.appendChild(cat);
+
+　　　　}
+
+　　);
+
+
 ```
 
 

@@ -30,12 +30,12 @@ Ruby代码
 
 
 	
-  1. 
 
-    
+```
     request.domain #=>  zool.it 
     request.domain(2) #=> blog.zool.it
 
+```
 
 
 
@@ -46,62 +46,25 @@ Ruby代码
 取得子域名：
 
 
-
-
-
-
-
-
 Ruby代码
 
 
-
-
-
-
-    
+```  
     request.subdomain #=>  ”test.blog” 
     request.subdomain(2) #=> ”test”
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
 
 
 
 Ruby代码
 
 
-
-
-
-
-    
+```
     request.subdomain #=>  ["test", "blog"] 
     request.subdomain(2) #=> ["test"]
 
-
-
-
-
-
-
-
-
+```
 
 
 
@@ -110,21 +73,13 @@ Ruby代码
 
 
 
-
-
-
-
-
 Ruby代码
 
 
-
-
-
-
-    
+```
     request.host #=> ”test.blog.zool.it”
 
+```
 
 
 
@@ -147,16 +102,11 @@ Ruby代码
 
 
 
-
-
-
-    
+```    
     request.host_with_port #=> ”test.blog.zool.it:3000″
 
 
-
-
-
+```
 
 
 
@@ -169,13 +119,10 @@ Ruby代码
 Ruby代码
 
 
-
-
-
-
-    
+```
     request.raw_host_with_port #=> ”test.blog.zool.it:3000″
 
+```
 
 
 
@@ -192,13 +139,10 @@ Ruby代码
 Ruby代码
 
 
-
-
-
-
-    
+```
     request.port #=> 3000
 
+```
 
 
 
@@ -221,17 +165,10 @@ Ruby代码
 
 
 
-
-
-
-
-
-	
-  1. 
-
-    
+```
     request.port_string #=> ”:3000″
 
+```
 
 
 
@@ -252,17 +189,11 @@ Ruby代码
 
 
 
-
-
-
-
-
-	
-  1. 
-
+```
     
     request.protocol #=> ”http://”
 
+```
 
 
 
@@ -282,18 +213,11 @@ Ruby代码
 Ruby代码
 
 
-
-
-
-
-
-
-	
-  1. 
-
+```
     
     request.scheme #=> ”http”
 
+```
 
 
 
@@ -315,17 +239,11 @@ Ruby代码
 
 
 
-
-
-
-
-	
-  1. 
-
-    
+```
     request.request_uri #=> ”/posts/Hello-World”
 
 
+```
 
 
 
@@ -345,18 +263,10 @@ Ruby代码
 
 
 
-
-
-
-
-
-	
-  1. 
-
-    
+```
     request.server_port #=> ”3000″
 
-
+```
 
 
 
@@ -375,18 +285,10 @@ Ruby代码
 Ruby代码
 
 
-
-
-
-
-
-
-	
-  1. 
-
-    
+```
     request.ssl?() #=> false
 
+```
 
 
 
@@ -406,19 +308,12 @@ Ruby代码
 Ruby代码
 
 
-
-
-
-
-
-
-	
-  1. 
-
+```
     
     request.standard_port #=> 80
 
 
+```
 
 
 
@@ -437,18 +332,10 @@ Ruby代码
 Ruby代码
 
 
-
-
-
-
-
-
-	
-  1. 
-
-    
+```
     request.standard_port? #=> false
 
+```
 
 
 
@@ -469,17 +356,11 @@ Ruby代码
 
 
 
-
-
-
-
-
-	
-  1. 
-
+```
     
     request.url #=> ”http://test.blog.zool.it:3000/posts/Hello-World”
 
+```
 
 
 

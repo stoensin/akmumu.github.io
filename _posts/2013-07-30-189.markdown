@@ -82,299 +82,93 @@ tags:
 
 
 
-**[c]** [view
-plain](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[copy](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[print](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[?](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)
-
-
-
-
-
-
-
-
-
-
-
-
-	
-  1.  <textarea cols="50" rows="15" name="code" class="c-sharp"># 1.支持的变量类型  
-
-	
-  2.    
-
-	
-  3. 类型          描述    
-
-	
-  4. bool            #true, false    
-
-	
-  5. byte            #8位的有符号整数    
-
-	
-  6. i16             #16位的有符号整数    
-
-	
-  7. i32             #32位的有符号整数    
-
-	
-  8. i64             #64位的有符号整数    
-
-	
-  9. double          #64位的浮点数    
-
-	
-  10. string          #UTF-8编码的字符串    
-
-	
-  11. binary          #字符数组    
-
-	
-  12. struct          #结构体    
-
-	
-  13. list<type>        #有序的元素列表，类似于STL的vector    
-
-	
-  14. set<type>     #无序的不重复元素集，类似于STL的set    
-
-	
-  15. map<type1,type2>  #key-value型的映射，类似于STL的map    
-
-	
-  16. exception       #是一个继承于本地语言的exception基类    
-
-	
-  17. service         #服务包含多个函数接口(纯虚函数)    
-
-	
-  18.    
-
-	
-  19. # 2.摘一段例子上来，让瞧瞧这是啥东东。（本例子文件名为：tutorial.thrift，是本身带的教程。）  
-
-	
-  20. include "shared.thrift"  
-
-	
-  21.    
-
-	
-  22.    
-
-	
-  23. namespace cpp tutorial  
-
-	
-  24. namespace java tutorial  
-
-	
-  25. namespace php tutorial  
-
-	
-  26. namespace perl tutorial  
-
-	
-  27. namespace smalltalk.category Thrift.Tutorial  
-
-	
-  28.    
-
-	
-  29. typedef i32 MyInteger  
-
-	
-  30.    
-
-	
-  31. const i32 INT32CONSTANT = 9853  
-
-	
-  32. const map<string,string> MAPCONSTANT = {'hello':'world', 'goodnight':'moon'}  
-
-	
-  33.    
-
-	
-  34. enum Operation {  
-
-	
-  35.   ADD = 1,  
-
-	
-  36.   SUBTRACT = 2,  
-
-	
-  37.   MULTIPLY = 3,  
-
-	
-  38.   DIVIDE = 4  
-
-	
-  39. }  
-
-	
-  40.    
-
 	
-  41. struct Work {  
-
-	
-  42.   1: i32 num1 = 0,  
-
-	
-  43.   2: i32 num2,  
-
-	
-  44.   3: Operation op,  
-
-	
-  45.   4: optional string comment,  
-
-	
-  46. }  
-
-	
-  47.    
-
-	
-  48. exception InvalidOperation {  
-
-	
-  49.   1: i32 what,  
-
-	
-  50.   2: string why  
-
-	
-  51. }  
-
-	
-  52.    
-
-	
-  53. service Calculator extends shared.SharedService {  
-
-	
-  54.    
-
-	
-  55.    void ping(),  
-
-	
-  56.    
-
-	
-  57.    i32 add(1:i32 num1, 2:i32 num2),  
-
-	
-  58.    
-
-	
-  59.    i32 calculate(1:i32 logid, 2:Work w) throws (1:InvalidOperation ouch),  
-
-	
-  60.    
-
-	
-  61.    oneway void zip()  
-
-	
-  62.    
-
-	
-  63. }  
-
-	
-  64.    
-
-	
-  65. # 3. 我们来写个 helloworld.thrift  
-
-	
-  66.    
-
-	
-  67. service HelloWorld{  
-
-	
-  68.  string ping(1: string name),  
-
-	
-  69.  string getpng(),  
-
-	
-  70. }</textarea>   
-
-
-
-
-
-
-
-
-
-
-
-
-
-**[c]** [view
-plain](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[copy](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[print](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[?](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)
-
-
-
-
-
-
-
-
-
-
-
-
-	
-  1.    
-
-
-
-
-
-
-
-
+1.支持的变量类型
+
+{% highlight html %}  
+类型          描述    
+bool            #true, false    
+byte            #8位的有符号整数    
+i16             #16位的有符号整数    
+i32             #32位的有符号整数    
+i64             #64位的有符号整数    
+double          #64位的浮点数    
+string          #UTF-8编码的字符串    
+binary          #字符数组    
+struct          #结构体    
+list<type>        #有序的元素列表，类似于STL的vector    
+set<type>     #无序的不重复元素集，类似于STL的set    
+map<type1,type2>  #key-value型的映射，类似于STL的map    
+exception       #是一个继承于本地语言的exception基类    
+service         #服务包含多个函数接口(纯虚函数)    
+{% endhighlight %} 
+
+
+
+2. 摘一段例子上来，让瞧瞧这是啥东东。（本例子文件名为：tutorial.thrift，是本身带的教程。）
+  
+
+{% highlight thrift %}
+include "shared.thrift"
+   
+   
+namespace cpp tutorial  
+namespace java tutorial  
+namespace php tutorial  
+namespace perl tutorial  
+namespace smalltalk.category Thrift.Tutorial  
+   
+typedef i32 MyInteger  
+   
+const i32 INT32CONSTANT = 9853  
+const map<string,string> MAPCONSTANT = {'hello':'world', 'goodnight':'moon'}  
+   
+enum Operation {  
+  ADD = 1,  
+  SUBTRACT = 2,  
+  MULTIPLY = 3,  
+  DIVIDE = 4  
+}  
+   
+struct Work {  
+  1: i32 num1 = 0,  
+  2: i32 num2,  
+  3: Operation op,  
+  4: optional string comment,  
+}  
+   
+exception InvalidOperation {  
+  1: i32 what,  
+  2: string why  
+}  
+   
+service Calculator extends shared.SharedService {  
+   
+   void ping(),  
+   
+   i32 add(1:i32 num1, 2:i32 num2),  
+   
+   i32 calculate(1:i32 logid, 2:Work w) throws (1:InvalidOperation ouch),  
+   
+   oneway void zip()  
+   
+} 
+{% endhighlight %}
+
+3. 我们来写个 helloworld.thrift  
+
+{% highlight thrift %}
+service HelloWorld{  
+ string ping(1: string name),  
+ string getpng(),  
+}
+{% endhighlight %}
 
 
 
 
 
 **三、编译 helloworld：**
-
-
-
-
-****
-
-
-
-
-
-
-
-
-
-
-
-**[php]** [view
-plain](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[copy](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[print](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[?](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)
-
-
-
-
-
-
-
-
-
 
 
 
@@ -388,18 +182,6 @@ plain](http://blog.csdn.net/heiyeshuwu/article/details/5982222#)[copy](http://bl
 
 	
   3. #会在当前目录下生成 gen-* 目录。  
-
-
-
-
-
-
-
-
-
-
-
-****
 
 
 

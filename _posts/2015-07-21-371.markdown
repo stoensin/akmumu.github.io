@@ -236,75 +236,54 @@ screen还有更高级的功能。你可以不中断screen窗口中程序的运�
 你可能注意到给screen发送命令使用了特殊的键组合C-a。这是因为我们在键盘上键入的信息是直接发送给当前screen窗口，必须用其他方式向screen窗口管理器发出命令，默认情况下，screen接收以C-a开始的命令。这种命令形式在screen中叫做键绑定（key binding），C-a叫做命令字符（command character）。
 
 可以通过`C-a ?`来查看所有的键绑定，常用的键绑定有：
-<table cellpadding="0" width="50%" cellspacing="0" border="0" summary="" >
 
-<tr >
-C-a ?
-
-<td >显示所有键绑定信息
-</td>
+<table summary="" width="50%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+<th scope="row">C-a ?</th>
+<td>显示所有键绑定信息</td>
 </tr>
-
-<tbody >
-<tr >
-C-a w
-
-<td >显示所有窗口列表
-</td>
+</thead>
+<tbody>
+<tr>
+<th scope="row">C-a w</th>
+<td>显示所有窗口列表</td>
 </tr>
-<tr >
-C-a C-a
-
-<td >切换到之前显示的窗口
-</td>
+<tr>
+<th scope="row">C-a C-a</th>
+<td>切换到之前显示的窗口</td>
 </tr>
-<tr >
-C-a c
-
-<td >创建一个新的运行shell的窗口并切换到该窗口
-</td>
+<tr>
+<th scope="row">C-a c</th>
+<td>创建一个新的运行shell的窗口并切换到该窗口</td>
 </tr>
-<tr >
-C-a n
-
-<td >切换到下一个窗口
-</td>
+<tr>
+<th scope="row">C-a n</th>
+<td>切换到下一个窗口</td>
 </tr>
-<tr >
-C-a p
-
-<td >切换到前一个窗口(与C-a n相对)
-</td>
+<tr>
+<th scope="row">C-a p</th>
+<td>切换到前一个窗口(与C-a n相对)</td>
 </tr>
-<tr >
-C-a 0..9
-
-<td >切换到窗口0..9
-</td>
+<tr>
+<th scope="row">C-a 0..9</th>
+<td>切换到窗口0..9</td>
 </tr>
-<tr >
-C-a a
-
-<td >发送 C-a到当前窗口
-</td>
+<tr>
+<th scope="row">C-a a</th>
+<td>发送 C-a到当前窗口</td>
 </tr>
-<tr >
-C-a d
-
-<td >暂时断开screen会话
-</td>
+<tr>
+<th scope="row">C-a d</th>
+<td>暂时断开screen会话</td>
 </tr>
-<tr >
-C-a k
-
-<td >杀掉当前窗口
-</td>
+<tr>
+<th scope="row">C-a k</th>
+<td>杀掉当前窗口</td>
 </tr>
-<tr >
-C-a [
-
-<td >进入拷贝/回滚模式
-</td>
+<tr>
+<th scope="row">C-a [</th>
+<td>进入拷贝/回滚模式</td>
 </tr>
 </tbody>
 </table>
@@ -345,63 +324,45 @@ C-a [
 ![自定义命令字符和转义字符](http://www.ibm.com/developerworks/cn/linux/l-cn-screen/newkeybinding.jpg)
 
 其他常用的命令选项有：
-<table cellpadding="0" width="80%" cellspacing="0" border="0" summary="" >
-
-<tr >
--c file
-
-<td >使用配置文件file，而不使用默认的$HOME/.screenrc
-</td>
+<table summary="" width="80%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+<th scope="row">-c file</th>
+<td>使用配置文件file，而不使用默认的$HOME/.screenrc</td>
 </tr>
-
-<tbody >
-<tr >
--d|-D [pid.tty.host]
-
-<td >不开启新的screen会话，而是断开其他正在运行的screen会话
-</td>
+</thead>
+<tbody>
+<tr>
+<th scope="row">-d|-D [pid.tty.host]</th>
+<td>不开启新的screen会话，而是断开其他正在运行的screen会话</td>
 </tr>
-<tr >
--h num
-
-<td >指定历史回滚缓冲区大小为num行
-</td>
+<tr>
+<th scope="row">-h num</th>
+<td>指定历史回滚缓冲区大小为num行</td>
 </tr>
-<tr >
--list|-ls
-
-<td >列出现有screen会话，格式为pid.tty.host
-</td>
+<tr>
+<th scope="row">-list|-ls</th>
+<td>列出现有screen会话，格式为pid.tty.host</td>
 </tr>
-<tr >
--d -m
-
-<td >启动一个开始就处于断开模式的会话
-</td>
+<tr>
+<th scope="row">-d -m</th>
+<td>启动一个开始就处于断开模式的会话</td>
 </tr>
-<tr >
--r sessionowner/ [pid.tty.host]
-
-<td >重新连接一个断开的会话。多用户模式下连接到其他用户screen会话需要指定sessionowner，需要setuid-root权限
-</td>
+<tr>
+<th scope="row">-r sessionowner/ [pid.tty.host]</th>
+<td>重新连接一个断开的会话。多用户模式下连接到其他用户screen会话需要指定sessionowner，需要setuid-root权限</td>
 </tr>
-<tr >
--S sessionname
-
-<td >创建screen会话时为会话指定一个名字
-</td>
+<tr>
+<th scope="row">-S sessionname</th>
+<td>创建screen会话时为会话指定一个名字</td>
 </tr>
-<tr >
--v
-
-<td >显示screen版本信息
-</td>
+<tr>
+<th scope="row">-v</th>
+<td>显示screen版本信息</td>
 </tr>
-<tr >
--wipe [match]
-
-<td >同-list，但删掉那些无法连接的会话
-</td>
+<tr>
+<th scope="row">-wipe [match]</th>
+<td>同-list，但删掉那些无法连接的会话</td>
 </tr>
 </tbody>
 </table>
