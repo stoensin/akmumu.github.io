@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 email: mumlaonian@gmail.com
 description: "木木老蔫的博客，主要记录关于PHP，MYSQL等相关技术以及框架应用日志，还有一些互联网新闻，加上自己的生活见解，组成了这样一个博客"
 keyword: "mumu,akmumu,php,mysql,apache,lanmp,程序员,IT,木木老蔫,ak王子,张庆龙"
-url: "http://zisor.com"              # your host, for absolute URL
+url: "http://www.akmumu.com"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 
