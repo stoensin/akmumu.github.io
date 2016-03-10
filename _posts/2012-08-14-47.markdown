@@ -106,6 +106,7 @@ extension_dir =
 
 
 
+```
 extension=php_pdo.dll  
 
 extension=php_pdo_mysql.dll  
@@ -122,6 +123,7 @@ extension=php_pdo_firebird.dll
 
 ;extension=php_pdo_oci8.dll
 
+```
 
 
 
@@ -146,6 +148,7 @@ extension=php_pdo_firebird.dll
 
 
 
+```
 <?  
 
 phpinfo();  
@@ -153,6 +156,7 @@ phpinfo();
 ?>
 
 
+```
 
 
 
