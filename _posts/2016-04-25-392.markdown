@@ -29,7 +29,7 @@ ngrok以及其服务端ngrokd都是开源的，我们直接通过源码编译安
 2. 安装go，`sudo yum install go`
 3. 生成自签名证书, 比如我想把tunnel.akmumu.com作为穿透的网址，那么下面几步就是了：
 
-\`\`\`
+```
 NGROK\_DOMAIN="tunnel.akmumu.com"
 
 openssl genrsa -out base.key 2048
@@ -39,7 +39,7 @@ openssl req -new -key server.key -subj "/CN=$NGROK\_DOMAIN" -out server.csr
 openssl x509 -req -in server.csr -CA base.pem -CAkey base.key -CAcreateserial -days 10000 -out server.crt
 
 cp base.pem assets/client/tls/ngrokroot.crt
-\`\`\`
+```
 
 ## 编译ngrokd
 
@@ -58,30 +58,30 @@ cp base.pem assets/client/tls/ngrokroot.crt
 
 这里我们启动客户端的地方就是我们想要被穿透出去的本地环境，我这里是一台mac，你若不同，可以自己编译一个客户端，还是原来的源码，命令为：`sudo make release-client`,同样bin目录下出现一个ngrok文件，他就是喽。
 写一个简单的配置文件，随意命名如 ngrok.cfg：
-\`\`\`
-\`server\_addr: akmumu.com:4443
-trust\_host\_root\_certs: false\_
-\`\`\`
-\`开始运行
+```
+server_addr: akmumu.com:4443
+trust_host_root_certs: false
+```
+开始运行
 `./ngrok -config=ngrok.cfg -subdomain=tunnel 8080`
-看看提示，呵，成了
-Tunnel Status online
+看看提示，呵，成了  
+Tunnel Status online  
 现在再访问 http://tunnel.akmumu.com:8080，访问到的已经是我本机 8080 端口上的服务了。至于你想映射到80端口，用nginx代理一下吧，因为我相信你和我一样80端口早就被占用了。
 
 ### 微信公众平台只能访问服务端的80端口问题
 
 如果你机器上的80端口没有被占用，那么只需要改一下参数`-httpAddr=":80”`就好了，如果被占用了，只好代理一下了，举个例子
-\`\`\`
+```
 server {
-	    listen       80;
-	    server_name  tunnel.akmumu.com;
-	    access_log  logs/access.log;
+    listen       80;
+    server_name  tunnel.akmumu.com;
+    access_log  logs/access.log;
 	
-	    location / {
-	        proxy_pass http://tunnel.akmumu.com:8080;
-	    }
-	}
-\`\`\`
+    location / {
+        proxy_pass http://tunnel.akmumu.com:8080;
+    }
+}
+```
 好了，只要设置微信那边tunnel.akmumu.com这个就好啦。
 
 ### 还有一个管理小页面
