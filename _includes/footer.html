@@ -235,7 +235,7 @@
                 }
                 $("#search-content").typeahead({
                     source: names,
-                    afterSelect: function (item) {alert('a');
+                    afterSelect: function (item) {
                         $(".search-tool").css("display", "none");
                         show = false;
                         window.location.href = ("http://www.akmumu.com" + urls[names.indexOf(item)]);
